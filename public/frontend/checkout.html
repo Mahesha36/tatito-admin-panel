@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checkout | Tatito Fashions</title>
+  <link rel="icon" href="assets/images/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="checkout">
+  <header class="navbar"></header>
+  <main class="page-shell">
+    <div class="breadcrumb">
+      <a href="index.html" data-i18n="breadcrumbHome">Home</a>
+      <span class="sep">/</span>
+      <a href="cart.html" data-i18n="cartTitle">Cart</a>
+      <span class="sep">/</span>
+      <span data-i18n="checkoutTitle">Checkout</span>
+    </div>
+    <div class="category-hero" style="margin-bottom:24px;">
+      <div>
+        <p class="eyebrow" data-i18n="checkoutTitle">Checkout</p>
+        <h1 data-i18n="checkoutTitle">Checkout</h1>
+        <p data-i18n="checkoutDesc">Complete your order in a few simple steps.</p>
+      </div>
+    </div>
+
+    <div class="checkout-steps">
+      <div class="step-indicator"><div class="step-dot active" id="stepDot1">1</div><span class="step-label active" data-i18n="stepShipping">Shipping</span></div>
+      <div class="step-divider"></div>
+      <div class="step-indicator"><div class="step-dot" id="stepDot2">2</div><span class="step-label" data-i18n="stepPayment">Payment</span></div>
+      <div class="step-divider"></div>
+      <div class="step-indicator"><div class="step-dot" id="stepDot3">3</div><span class="step-label" data-i18n="stepReview">Review</span></div>
+    </div>
+
+    <div class="checkout-layout">
+      <div>
+        <!-- Step 1: Shipping -->
+        <div id="stepShippingPanel" class="checkout-panel">
+          <h2 data-i18n="shippingAddress">Shipping Address</h2>
+          <div id="addressList"></div>
+          <a href="addresses.html" class="btn btn-ghost small" data-i18n="addNewAddress">Add New Address</a>
+          <div style="margin-top:20px;display:flex;gap:8px;">
+            <button class="btn btn-primary" id="toPaymentBtn" data-i18n="next">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 2: Payment -->
+        <div id="stepPaymentPanel" class="checkout-panel hidden">
+          <h2 data-i18n="paymentMethod">Payment Method</h2>
+          <div id="paymentOptions"></div>
+          <div id="paymentFields"></div>
+          <div style="margin-top:20px;display:flex;gap:8px;">
+            <button class="btn btn-ghost" id="backToShippingBtn" data-i18n="back">Back</button>
+            <button class="btn btn-primary" id="toReviewBtn" data-i18n="next">Next</button>
+          </div>
+        </div>
+
+        <!-- Step 3: Review -->
+        <div id="stepReviewPanel" class="checkout-panel hidden">
+          <h2 data-i18n="orderReview">Order Review</h2>
+          <div id="reviewItems"></div>
+          <div style="margin-top:20px;display:flex;gap:8px;">
+            <button class="btn btn-ghost" id="backToPaymentBtn" data-i18n="back">Back</button>
+            <button class="btn btn-primary" id="placeOrderBtn" data-i18n="placeOrderFinal">Place Order</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="cart-sidebar">
+        <div id="checkoutSummary" class="cart-summary"></div>
+      </div>
+    </div>
+  </main>
+  <footer class="footer"></footer>
+  <div id="shopToast" class="shop-toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/store.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
+  <script src="js/checkout.js"></script>
+</body>
+</html>

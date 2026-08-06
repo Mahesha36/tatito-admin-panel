@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact Us | Tatito Fashions</title>
+  <link rel="icon" href="assets/images/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="contact">
+  <header class="navbar"></header>
+  <main class="page-shell">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>Contact Us</span>
+    </div>
+
+    <section class="category-hero" style="margin-bottom:28px;">
+      <div>
+        <p class="eyebrow">We're Here to Help</p>
+        <h1>Contact Us</h1>
+        <p>Questions about orders, customization, bookings, or selling on Tatito? Reach out and our team will get back to you.</p>
+      </div>
+      <div class="hero-card">
+        <h3>Quick Help</h3>
+        <p>📧 support@tatitofashions.com<br>📞 +91 98765 43210<br>🕒 Mon–Sat, 9 AM – 7 PM IST</p>
+      </div>
+    </section>
+
+    <div class="contact-layout">
+      <!-- Contact Form -->
+      <div class="checkout-panel">
+        <h2 style="font-family:var(--font-display);font-size:22px;margin-bottom:16px;">Send Us a Message</h2>
+        <form id="contactForm" class="auth-form">
+          <div class="form-row">
+            <div class="form-field">
+              <label>Full Name *</label>
+              <input type="text" name="name" placeholder="Your name" required />
+            </div>
+            <div class="form-field">
+              <label>Email *</label>
+              <input type="email" name="email" placeholder="you@example.com" required />
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-field">
+              <label>Phone Number</label>
+              <input type="tel" name="phone" placeholder="10-digit mobile number" />
+            </div>
+            <div class="form-field">
+              <label>Subject *</label>
+              <select name="subject" required>
+                <option value="">Select a topic</option>
+                <option>Order &amp; Delivery</option>
+                <option>Customization Request</option>
+                <option>Seller / Vendor Inquiry</option>
+                <option>Photography &amp; Event Booking</option>
+                <option>Designer Quotation</option>
+                <option>Referral Program</option>
+                <option>Technical Support</option>
+                <option>Feedback &amp; Suggestions</option>
+                <option>Other</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-field">
+            <label>Message *</label>
+            <textarea name="message" rows="5" placeholder="How can we help you?" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary block">Send Message</button>
+        </form>
+      </div>
+
+      <!-- Contact Info Cards -->
+      <div class="contact-sidebar">
+        <div class="contact-info-card">
+          <div class="contact-icon">📧</div>
+          <h4>Email</h4>
+          <p>support@tatitofashions.com</p>
+          <p>vendors@tatitofashions.com</p>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">📞</div>
+          <h4>Phone</h4>
+          <p>+91 98765 43210</p>
+          <p>+91 91234 56789</p>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">📍</div>
+          <h4>Office</h4>
+          <p>Tatito Fashions HQ<br>
+          2nd Floor, Fashion Square,<br>
+          Linking Road, Bandra West,<br>
+          Mumbai 400050, India</p>
+        </div>
+        <div class="contact-info-card">
+          <div class="contact-icon">🕒</div>
+          <h4>Business Hours</h4>
+          <p>Monday – Saturday<br>9:00 AM – 7:00 PM IST</p>
+          <p style="font-size:13px;color:var(--muted);">Sunday: Closed</p>
+        </div>
+        <div class="contact-social">
+          <h4>Follow Us</h4>
+          <div class="social-row">
+            <a href="#" class="social-btn" title="Instagram">📷</a>
+            <a href="#" class="social-btn" title="Facebook">📘</a>
+            <a href="#" class="social-btn" title="WhatsApp">💬</a>
+            <a href="#" class="social-btn" title="YouTube">▶️</a>
+            <a href="#" class="social-btn" title="Twitter">🐦</a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section class="section" style="padding:48px 0 0;">
+      <div class="section-head">
+        <div>
+          <h2>Frequently Asked Questions</h2>
+          <p>Quick answers to common questions</p>
+        </div>
+      </div>
+      <div class="faq-list" id="faqList"></div>
+    </section>
+  </main>
+  <footer class="footer"></footer>
+  <div id="shopToast" class="shop-toast"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/translations.js"></script>
+  <script src="js/store.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
+  <script src="js/contact.js"></script>
+</body>
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Products | Tatito Fashions</title>
+  <meta name="description" content="Browse all fashion products from boutiques and designers across the Tatito marketplace." />
+  <link rel="icon" href="assets/images/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="products">
+  <header class="navbar"></header>
+
+  <main class="page-shell">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <span class="sep">/</span>
+      <span>All Products</span>
+    </div>
+
+    <div class="category-hero">
+      <div>
+        <p class="eyebrow">Marketplace</p>
+        <h1>All Products</h1>
+        <p>Shop fashion from boutiques and designers near you.</p>
+      </div>
+      <form id="productSearchForm" class="hero-search-mini">
+        <input type="text" id="productSearchInput" placeholder="Search products…" />
+        <button type="submit" class="btn btn-primary small">Search</button>
+      </form>
+    </div>
+
+    <div class="catalog-layout">
+      <!-- Filters sidebar -->
+      <aside class="filter-sidebar">
+        <h3>Filters</h3>
+
+        <div class="filter-group">
+          <label>Category</label>
+          <select id="filterCategory" class="sort-select">
+            <option value="all">All Categories</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Sort By</label>
+          <select id="filterSort" class="sort-select">
+            <option value="popular">Popularity</option>
+            <option value="price-low">Price: Low to High</option>
+            <option value="price-high">Price: High to Low</option>
+            <option value="rating">Rating</option>
+            <option value="discount">Biggest Discount</option>
+          </select>
+        </div>
+
+        <div class="filter-group">
+          <label>Price Range</label>
+          <div class="price-range-inputs">
+            <input type="number" id="minPrice" placeholder="Min ₹" />
+            <span>—</span>
+            <input type="number" id="maxPrice" placeholder="Max ₹" />
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <label><input type="checkbox" id="inStockOnly" /> In Stock Only</label>
+        </div>
+        <div class="filter-group">
+          <label><input type="checkbox" id="onSaleOnly" /> On Sale Only</label>
+        </div>
+
+        <button class="btn btn-ghost small block" id="clearProductFilters">Clear All</button>
+      </aside>
+
+      <!-- Results -->
+      <div class="catalog-results">
+        <div class="results-bar">
+          <span id="productCount">0 products</span>
+        </div>
+        <div id="productsGrid" class="product-grid"></div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer"></footer>
+  <div id="shopToast" class="shop-toast"></div>
+
+  <script src="js/data.js?v=2"></script>
+  <script src="js/translations.js?v=2"></script>
+  <script src="js/store.js?v=2"></script>
+  <script src="js/app.js?v=2"></script>
+  <script src="js/products.js?v=2"></script>
+</body>
+</html>
