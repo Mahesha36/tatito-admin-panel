@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TATITO Fashions — Admin Login</title>
+<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<!-- SweetAlert2 -->
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body class="auth-body">
+<div class="auth-wrapper">
+    <div class="auth-left">
+        <div class="auth-brand">
+            <img src="assets/logo.svg" alt="TATITO" class="auth-logo" onerror="this.style.display='none'">
+            <h1>TATITO Fashions</h1>
+            <p>Premium E-Commerce Marketplace Admin Panel</p>
+        </div>
+        <div class="auth-features">
+            <div class="auth-feature"><i class="bi bi-shop"></i><span>Multi-Vendor Marketplace</span></div>
+            <div class="auth-feature"><i class="bi bi-palette"></i><span>Designer & Boutique Management</span></div>
+            <div class="auth-feature"><i class="bi bi-graph-up"></i><span>Real-Time Analytics & Reports</span></div>
+            <div class="auth-feature"><i class="bi bi-translate"></i><span>Multilingual Support</span></div>
+        </div>
+    </div>
+    <div class="auth-right">
+        <div class="auth-card">
+            <div class="auth-header">
+                <h2>Admin Login</h2>
+                <p>Sign in to the admin panel</p>
+            </div>
+            <form id="loginForm" onsubmit="return handleLogin(event)">
+                <div class="form-group">
+                    <label>Email Address</label>
+                    <input type="email" class="form-control" id="loginEmail" placeholder="admin@tatitofashions.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Password</label>
+                    <div class="input-group">
+                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" required style="padding-right:40px">
+                        <button type="button" class="password-toggle" onclick="togglePassword()"><i class="bi bi-eye"></i></button>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <label class="checkbox-label"><input type="checkbox" id="rememberMe"> Remember me</label>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block" style="margin-top:1rem">
+                    <i class="bi bi-box-arrow-in-right"></i> Sign In
+                </button>
+            </form>
+            <!-- Demo Accounts Quick Fill -->
+            <div style="margin-top:1rem">
+                <p style="font-size:0.75rem;color:var(--gray-400);margin-bottom:8px;text-align:center">Demo Accounts:</p>
+                <div class="demo-accounts">
+                    <button type="button" onclick="fillDemo('admin@tatitofashions.com')"><i class="bi bi-shield-lock"></i> Admin</button>
+                    <button type="button" onclick="fillDemo('rajesh.textiles@gmail.com')"><i class="bi bi-shop"></i> Seller 1</button>
+                    <button type="button" onclick="fillDemo('fashionhub@gmail.com')"><i class="bi bi-shop"></i> Seller 2</button>
+                    <button type="button" onclick="fillDemo('royal.diamond@gmail.com')"><i class="bi bi-gem"></i> Jeweller</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="js/helpers.js"></script>
+<script src="js/data.js"></script>
+<script>
+function handleLogin(e) {
+    e.preventDefault();
+    var email = document.getElementById('loginEmail').value.trim().toLowerCase();
+    var pwd = document.getElementById('loginPassword').value;
+
+    // Find matching account
+    var account = MockData.accounts.find(function(a) {
+        return a.email.toLowerCase() === email && a.password === pwd;
+    });
+
+    if (!account) {
+        Swal.fire({
+            icon: 'error',
+            title: 'Invalid Credentials',
+            text: 'No account found with these credentials.',
+            confirmButtonColor: '#C9A24B'
+        });
+        return false;
+    }
+
+    var session = {
+        email: account.email,
+        name: account.name,
+        role: account.role,
+        linkedId: account.linkedId,
+        loginTime: new Date().toISOString()
+    };
+
+    localStorage.setItem('tatito_admin_session', JSON.stringify(session));
+
+    var dashboardUrl = {
+        admin: 'app.html',
+        seller: 'seller.html',
+        designer: 'seller.html',
+        customer: 'app.html'
+    };
+
+    Swal.fire({
+        icon: 'success',
+        title: 'Welcome, ' + account.name + '!',
+        html: 'Redirecting to <strong>' + (account.role === 'admin' ? 'Admin' : 'Seller') + ' Dashboard</strong>...',
+        showConfirmButton: false,
+        timer: 1200,
+        timerProgressBar: true
+    }).then(function() {
+        window.location.href = dashboardUrl[account.role] || 'app.html';
+    });
+    return false;
+}
+
+// Demo quick-fill
+function fillDemo(email) {
+    var pwdMap = {
+        'admin@tatitofashions.com': 'admin123',
+        'rajesh.textiles@gmail.com': 'seller123',
+        'fashionhub@gmail.com': 'seller123',
+        'royal.diamond@gmail.com': 'seller123'
+    };
+    document.getElementById('loginEmail').value = email;
+    document.getElementById('loginPassword').value = pwdMap[email] || '';
+}
+
+// Password show/hide toggle
+function togglePassword() {
+    var inp = document.getElementById('loginPassword');
+    var icon = document.querySelector('.password-toggle i');
+    if (inp.type === 'password') {
+        inp.type = 'text';
+        icon.classList.replace('bi-eye', 'bi-eye-slash');
+    } else {
+        inp.type = 'password';
+        icon.classList.replace('bi-eye-slash', 'bi-eye');
+    }
+}
+</script>
+</body>
+</html>
