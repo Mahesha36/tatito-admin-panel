@@ -3,6 +3,37 @@
    Member actions: View, Edit, Block, Login-as, Delete */
 
 App.pages.users = function() {
+    /* NEW: Merge admin users with real frontend-registered users */
+    var adminUsers = MockData.users.slice();
+    var frontendUsers = [];
+
+    if (typeof Bridge !== 'undefined') {
+        var fUser = Bridge.Frontend.getUser();
+        if (fUser && fUser.email) {
+            /* Check if this user is already in MockData (avoid duplicates) */
+            var exists = adminUsers.some(function(u) {
+                return u.email.toLowerCase() === fUser.email.toLowerCase();
+            });
+            if (!exists) {
+                frontendUsers.push({
+                    id: 'USR-FE',
+                    name: fUser.name || 'Frontend User',
+                    email: fUser.email,
+                    phone: fUser.phone || '\u2014',
+                    city: '\u2014',
+                    status: 'active',
+                    joined: fUser.createdAt || new Date().toISOString(),
+                    orders: 0,
+                    totalSpent: 0,
+                    _source: 'frontend'
+                });
+            }
+        }
+    }
+
+    var allUsers = frontendUsers.concat(adminUsers);
+    App._allUsers = allUsers;
+
     document.getElementById('pageContent').innerHTML =
         '<div class="page-content">' +
         '<div class="page-toolbar"><div><h3>Customers</h3><p class="text-muted">Registered marketplace customers</p></div>' +
@@ -11,8 +42,8 @@ App.pages.users = function() {
         '<table class="table table-hover" id="usersTable"><thead><tr>' +
         '<th>ID</th><th>Name</th><th>Email</th><th>Phone</th><th>City</th><th>Status</th><th>Joined</th><th></th>' +
         '</tr></thead><tbody>' +
-        MockData.users.map(function(u) {
-            return '<tr><td>' + u.id + '</td><td><div class="cell-user"><div class="avatar" style="background:' + Helpers.avatarColor(u.id) + '">' + Helpers.initials(u.name) + '</div><strong>' + Helpers.escapeHtml(u.name) + '</strong></div></td><td>' + Helpers.escapeHtml(u.email) + '</td><td>' + Helpers.escapeHtml(u.phone || '\u2014') + '</td><td>' + Helpers.escapeHtml(u.city || '\u2014') + '</td>' +
+        allUsers.map(function(u) {
+            return '<tr' + (u._source === 'frontend' ? ' style="background:rgba(63,138,91,0.03)"' : '') + '><td>' + u.id + (u._source === 'frontend' ? ' <span class="badge badge-success" style="font-size:9px;padding:2px 6px">WEB</span>' : '') + '</td><td><div class="cell-user"><div class="avatar" style="background:' + Helpers.avatarColor(u.id) + '">' + Helpers.initials(u.name) + '</div><strong>' + Helpers.escapeHtml(u.name) + '</strong></div></td><td>' + Helpers.escapeHtml(u.email) + '</td><td>' + Helpers.escapeHtml(u.phone || '\u2014') + '</td><td>' + Helpers.escapeHtml(u.city || '\u2014') + '</td>' +
                 '<td><span class="badge ' + (u.status === 'blocked' ? 'badge-danger' : 'badge-success') + '">' + Helpers.capitalize(u.status || 'active') + '</span></td>' +
                 '<td>' + Helpers.formatDate(u.joined) + '</td>' +
                 '<td>' + MemberActions.render('users', u) + '</td></tr>';

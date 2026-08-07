@@ -151,7 +151,7 @@ App.pages.settings = function() {
                 '<div class="toggle-row"><div class="toggle-info"><strong>Google Login</strong><p class="text-muted">Allow users to login with Google</p></div>' +
                 '<button class="toggle-switch ' + (s.social.googleLogin ? 'on' : '') + '" onclick="App.toggleSocial(\'googleLogin\')"><span class="toggle-knob"></span></button></div>' +
                 '<div class="form-group"><label>Google Client ID</label><input type="text" class="form-control" value="' + (s.social.googleClientId || '') + '"></div>' +
-                '<button class="btn btn-primary" onclick="Helpers.toast(\'Social login settings saved\', \'success\')">Save Settings</button>' +
+                '<button class="btn btn-primary" onclick="App.saveSocialSettings()">Save Settings</button>' +
                 '</div>';
         } else if (tab === 'language') {
             var langs = MockData.languages || [
@@ -225,6 +225,7 @@ App.saveGeneralSettings = function() {
     gs.memberMinAge = get('gsMinAge');
     gs.profilePicturePrivacy = get('gsProfilePrivacy');
     gs.galleryImagePrivacy = get('gsGalleryPrivacy');
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('settings', MockData.settings); Bridge.Settings.save(MockData.settings); }
     Helpers.toast('General settings saved successfully', 'success');
 };
 
@@ -241,17 +242,22 @@ App.switchSettingsTab = function(tabId) {
 App.toggleFeature = function(key) {
     var s = MockData.settings; if (!s || !s.features) return;
     s.features[key] = !s.features[key];
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('settings', MockData.settings); Bridge.Settings.save(MockData.settings); }
     Helpers.toast((s.features[key] ? 'Enabled' : 'Disabled') + ': ' + key, 'success');
     if (this._renderSettingsTab) this._renderSettingsTab();
 };
 App.togglePaymentSetting = function(key) {
     var s = MockData.settings; if (!s || !s.payment) return;
-    s.payment[key] = !s.payment[key]; Helpers.toast('Payment setting updated', 'success');
+    s.payment[key] = !s.payment[key];
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('settings', MockData.settings); Bridge.Settings.save(MockData.settings); }
+    Helpers.toast('Payment setting updated', 'success');
     if (this._renderSettingsTab) this._renderSettingsTab();
 };
 App.toggleNotifSetting = function(key) {
     var s = MockData.settings; if (!s || !s.notifications) return;
-    s.notifications[key] = !s.notifications[key]; Helpers.toast('Notification setting updated', 'success');
+    s.notifications[key] = !s.notifications[key];
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('settings', MockData.settings); Bridge.Settings.save(MockData.settings); }
+    Helpers.toast('Notification setting updated', 'success');
     if (this._renderSettingsTab) this._renderSettingsTab();
 };
 App.changeLanguage = function(code) {
@@ -263,18 +269,21 @@ App.changeLanguage = function(code) {
 App.toggleActivation = function(key) {
     var s = MockData.settings; if (!s || !s.activation) return;
     s.activation[key] = !s.activation[key];
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('settings', MockData.settings); Bridge.Settings.save(MockData.settings); }
     Helpers.toast((s.activation[key] ? 'Enabled' : 'Disabled') + ': ' + key, 'success');
     if (this._renderSettingsTab) this._renderSettingsTab();
 };
 App.toggleSocial = function(key) {
     var s = MockData.settings; if (!s || !s.social) return;
     s.social[key] = !s.social[key];
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('settings', MockData.settings); Bridge.Settings.save(MockData.settings); }
     Helpers.toast((s.social[key] ? 'Enabled' : 'Disabled') + ': ' + key, 'success');
     if (this._renderSettingsTab) this._renderSettingsTab();
 };
 App.toggleThirdParty = function(key) {
     var tp = MockData.thirdPartySettings; if (!tp || !tp[key]) return;
     tp[key].enabled = !tp[key].enabled;
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('settings', MockData.settings); Bridge.Settings.save(MockData.settings); }
     Helpers.toast(key + ' ' + (tp[key].enabled ? 'enabled' : 'disabled'), 'success');
     if (this._renderSettingsTab) this._renderSettingsTab();
 };
@@ -284,10 +293,15 @@ App.saveSmtpSettings = function() {
     smtp.type = get('smtpType'); smtp.host = get('smtpHost'); smtp.port = get('smtpPort');
     smtp.encryption = get('smtpEncryption'); smtp.username = get('smtpUsername');
     smtp.password = get('smtpPassword'); smtp.fromAddress = get('smtpFromAddr'); smtp.fromName = get('smtpFromName');
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('settings', MockData.settings); Bridge.Settings.save(MockData.settings); }
     Helpers.toast('SMTP settings saved successfully', 'success');
 };
 App.sendTestEmail = function() {
     var emailEl = document.getElementById('smtpTestEmail');
     if (!emailEl || !emailEl.value.trim()) { Helpers.toast('Please enter a test email address', 'error'); return; }
     Helpers.toast('Test email sent to ' + emailEl.value.trim(), 'success');
+};
+App.saveSocialSettings = function() {
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('settings', MockData.settings); Bridge.Settings.save(MockData.settings); }
+    Helpers.toast('Social login settings saved', 'success');
 };

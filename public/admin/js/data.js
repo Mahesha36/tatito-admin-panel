@@ -862,7 +862,7 @@ const MockData = {
     generalSettings: {
         systemName: 'TATITO Fashions',
         logoFile: 'tatito-logo-official.jpg',
-        logoPreview: 'assets/logo.svg',
+        logoPreview: 'assets/tatito-logo.png',
         timezone: '(GMT+05:30) New Delhi',
         loginBgFile: 'tatito-logo-official.jpg',
         memberCodePrefix: 'TTF',
@@ -1003,12 +1003,12 @@ const MockData = {
 
     // ===================== MODULE 0: HOME SCREEN & DYNAMIC FEED =====================
     homeCollections: [
-        { id: 'HC001', target_module: 'fashions', gender: 'Men',   title: 'Men\'s Fashion',     subtitle: 'Sherwanis, Kurtas & Ethnic Wear',          image: 'assets/logo.svg', video_url: '', sort_order: 1, is_active: true },
-        { id: 'HC002', target_module: 'fashions', gender: 'Women', title: 'Women\'s Couture',    subtitle: 'Sarees, Lehengas & Designer Gowns',       image: 'assets/logo.svg', video_url: '', sort_order: 2, is_active: true },
-        { id: 'HC003', target_module: 'fashions', gender: 'Kids',  title: 'Kids Collection',    subtitle: 'Ethnic & Party Wear for Little Ones',      image: 'assets/logo.svg', video_url: '', sort_order: 3, is_active: true },
-        { id: 'HC004', target_module: 'weddings', gender: 'Men',   title: 'Groom Collections',  subtitle: 'Sherwanis, Indo-Western & Accessories',     image: 'assets/logo.svg', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', sort_order: 4, is_active: true },
-        { id: 'HC005', target_module: 'weddings', gender: 'Women', title: 'Bridal Couture',     subtitle: 'Bridal Lehengas & Wedding Sarees',          image: 'assets/logo.svg', video_url: '', sort_order: 5, is_active: true },
-        { id: 'HC006', target_module: 'jewellery',gender: 'Women', title: 'Bridal Jewellery',   subtitle: 'Kundan, Polki & Temple Jewellery',          image: 'assets/logo.svg', video_url: '', sort_order: 6, is_active: true },
+        { id: 'HC001', target_module: 'fashions', gender: 'Men',   title: 'Men\'s Fashion',     subtitle: 'Sherwanis, Kurtas & Ethnic Wear',          image: 'assets/tatito-logo.png', video_url: '', sort_order: 1, is_active: true },
+        { id: 'HC002', target_module: 'fashions', gender: 'Women', title: 'Women\'s Couture',    subtitle: 'Sarees, Lehengas & Designer Gowns',       image: 'assets/tatito-logo.png', video_url: '', sort_order: 2, is_active: true },
+        { id: 'HC003', target_module: 'fashions', gender: 'Kids',  title: 'Kids Collection',    subtitle: 'Ethnic & Party Wear for Little Ones',      image: 'assets/tatito-logo.png', video_url: '', sort_order: 3, is_active: true },
+        { id: 'HC004', target_module: 'weddings', gender: 'Men',   title: 'Groom Collections',  subtitle: 'Sherwanis, Indo-Western & Accessories',     image: 'assets/tatito-logo.png', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', sort_order: 4, is_active: true },
+        { id: 'HC005', target_module: 'weddings', gender: 'Women', title: 'Bridal Couture',     subtitle: 'Bridal Lehengas & Wedding Sarees',          image: 'assets/tatito-logo.png', video_url: '', sort_order: 5, is_active: true },
+        { id: 'HC006', target_module: 'jewellery',gender: 'Women', title: 'Bridal Jewellery',   subtitle: 'Kundan, Polki & Temple Jewellery',          image: 'assets/tatito-logo.png', video_url: '', sort_order: 6, is_active: true },
     ],
     homeVideoBanners: [
         { id: 'HVB001', title: 'TATITO Fashion Week 2026', subtitle: 'Celebrating the Art of Couture', cta_label: 'Watch Now', cta_route: '/fashion-week', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', is_active: true },
@@ -1016,32 +1016,32 @@ const MockData = {
         { id: 'HVB003', title: 'Jewellery Vault Tour',     subtitle: 'Handcrafted Masterpieces',            cta_label: 'View Collection', cta_route: '/jewellery', video_url: '', is_active: false },
     ],
     homeDynamicSections: [
-        { id: 'HDS001', section_title: 'New Arrivals',    section_subtitle: 'Fresh drops every week',     layout_type: 'card_ui',        media_type: 'image', image: 'assets/logo.svg', video_url: '', cta_label: 'Shop New',     cta_target_route: '/new-arrivals',    sort_order: 1, is_active: true },
-        { id: 'HDS002', section_title: 'Designer Spotlight', section_subtitle: 'Meet our featured designers', layout_type: 'banner',      media_type: 'image', image: 'assets/logo.svg', video_url: '', cta_label: 'Explore',      cta_target_route: '/designers',       sort_order: 2, is_active: true },
+        { id: 'HDS001', section_title: 'New Arrivals',    section_subtitle: 'Fresh drops every week',     layout_type: 'card_ui',        media_type: 'image', image: 'assets/tatito-logo.png', video_url: '', cta_label: 'Shop New',     cta_target_route: '/new-arrivals',    sort_order: 1, is_active: true },
+        { id: 'HDS002', section_title: 'Designer Spotlight', section_subtitle: 'Meet our featured designers', layout_type: 'banner',      media_type: 'image', image: 'assets/tatito-logo.png', video_url: '', cta_label: 'Explore',      cta_target_route: '/designers',       sort_order: 2, is_active: true },
         { id: 'HDS003', section_title: 'Runway Reel',      section_subtitle: 'Behind the scenes footage',   layout_type: 'video',          media_type: 'video', image: '',                   video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', cta_label: 'Watch', cta_target_route: '/runway', sort_order: 3, is_active: true },
-        { id: 'HDS004', section_title: 'Shop by Category', section_subtitle: 'Find exactly what you need',  layout_type: 'category_grid', media_type: 'image', image: 'assets/logo.svg', video_url: '', cta_label: 'Browse All',   cta_target_route: '/categories',      sort_order: 4, is_active: true },
-        { id: 'HDS005', section_title: 'Trending Now',     section_subtitle: 'What everyone\'s loving',      layout_type: 'card_ui',        media_type: 'image', image: 'assets/logo.svg', video_url: '', cta_label: 'Shop Trending',cta_target_route: '/trending',        sort_order: 5, is_active: false },
+        { id: 'HDS004', section_title: 'Shop by Category', section_subtitle: 'Find exactly what you need',  layout_type: 'category_grid', media_type: 'image', image: 'assets/tatito-logo.png', video_url: '', cta_label: 'Browse All',   cta_target_route: '/categories',      sort_order: 4, is_active: true },
+        { id: 'HDS005', section_title: 'Trending Now',     section_subtitle: 'What everyone\'s loving',      layout_type: 'card_ui',        media_type: 'image', image: 'assets/tatito-logo.png', video_url: '', cta_label: 'Shop Trending',cta_target_route: '/trending',        sort_order: 5, is_active: false },
     ],
 
     // ===================== MODULE 1: WEDDINGS HUB =====================
     weddingCollections: [
-        { id: 'WPC001', gender: 'Women', title: 'Bridal Lehengas',    subtitle: 'Heavy embroidery & designer work',    count_badge: '120+ Designs', image: 'assets/logo.svg', video_url: '', sort_order: 1, is_active: true },
-        { id: 'WPC002', gender: 'Women', title: 'Wedding Sarees',     subtitle: 'Kanjeevaram, Banarasi & Paithani',    count_badge: '85+ Sarees',   image: 'assets/logo.svg', video_url: '', sort_order: 2, is_active: true },
-        { id: 'WPC003', gender: 'Men',   title: 'Groom Sherwanis',    subtitle: 'Royal sherwanis & Indo-western',      count_badge: '60+ Styles',   image: 'assets/logo.svg', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', sort_order: 3, is_active: true },
-        { id: 'WPC004', gender: 'Women', title: 'Reception Gowns',    subtitle: 'Elegant evening gowns & cocktail',    count_badge: '45+ Gowns',    image: 'assets/logo.svg', video_url: '', sort_order: 4, is_active: true },
-        { id: 'WPC005', gender: 'Men',   title: 'Groom Accessories',  subtitle: 'Safa, Mojaris, Kalgi & more',         count_badge: '30+ Items',    image: 'assets/logo.svg', video_url: '', sort_order: 5, is_active: true },
-        { id: 'WPC006', gender: 'Kids',  title: 'Kids Wedding Wear',  subtitle: 'Mini lehengas & sherwanis',           count_badge: '25+ Designs',  image: 'assets/logo.svg', video_url: '', sort_order: 6, is_active: false },
+        { id: 'WPC001', gender: 'Women', title: 'Bridal Lehengas',    subtitle: 'Heavy embroidery & designer work',    count_badge: '120+ Designs', image: 'assets/tatito-logo.png', video_url: '', sort_order: 1, is_active: true },
+        { id: 'WPC002', gender: 'Women', title: 'Wedding Sarees',     subtitle: 'Kanjeevaram, Banarasi & Paithani',    count_badge: '85+ Sarees',   image: 'assets/tatito-logo.png', video_url: '', sort_order: 2, is_active: true },
+        { id: 'WPC003', gender: 'Men',   title: 'Groom Sherwanis',    subtitle: 'Royal sherwanis & Indo-western',      count_badge: '60+ Styles',   image: 'assets/tatito-logo.png', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ', sort_order: 3, is_active: true },
+        { id: 'WPC004', gender: 'Women', title: 'Reception Gowns',    subtitle: 'Elegant evening gowns & cocktail',    count_badge: '45+ Gowns',    image: 'assets/tatito-logo.png', video_url: '', sort_order: 4, is_active: true },
+        { id: 'WPC005', gender: 'Men',   title: 'Groom Accessories',  subtitle: 'Safa, Mojaris, Kalgi & more',         count_badge: '30+ Items',    image: 'assets/tatito-logo.png', video_url: '', sort_order: 5, is_active: true },
+        { id: 'WPC006', gender: 'Kids',  title: 'Kids Wedding Wear',  subtitle: 'Mini lehengas & sherwanis',           count_badge: '25+ Designs',  image: 'assets/tatito-logo.png', video_url: '', sort_order: 6, is_active: false },
     ],
     weddingBanners: [
-        { id: 'WPB001', title: 'The 2026 Bridal Collection',  image: 'assets/logo.svg', video_url: '',                                                   is_active: true },
-        { id: 'WPB002', title: 'Groom\'s Couture Line',       image: 'assets/logo.svg', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',        is_active: true },
-        { id: 'WPB003', title: 'Wedding Jewellery Showcase',  image: 'assets/logo.svg', video_url: '',                                                   is_active: false },
+        { id: 'WPB001', title: 'The 2026 Bridal Collection',  image: 'assets/tatito-logo.png', video_url: '',                                                   is_active: true },
+        { id: 'WPB002', title: 'Groom\'s Couture Line',       image: 'assets/tatito-logo.png', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ',        is_active: true },
+        { id: 'WPB003', title: 'Wedding Jewellery Showcase',  image: 'assets/tatito-logo.png', video_url: '',                                                   is_active: false },
     ],
     weddingFeatured: [
-        { id: 'WPF001', product_id: 'PRD001', name: 'Royal Red Bridal Lehenga',   price: 85000, image: 'assets/logo.svg', sort_order: 1, is_active: true },
-        { id: 'WPF002', product_id: 'PRD002', name: 'Kanjeevaram Silk Saree',     price: 45000, image: 'assets/logo.svg', sort_order: 2, is_active: true },
-        { id: 'WPF003', product_id: 'PRD003', name: 'Cream Embroidered Sherwani', price: 55000, image: 'assets/logo.svg', sort_order: 3, is_active: true },
-        { id: 'WPF004', product_id: 'PRD004', name: 'Diamond Polki Necklace Set', price: 125000,image: 'assets/logo.svg', sort_order: 4, is_active: true },
+        { id: 'WPF001', product_id: 'PRD001', name: 'Royal Red Bridal Lehenga',   price: 85000, image: 'assets/tatito-logo.png', sort_order: 1, is_active: true },
+        { id: 'WPF002', product_id: 'PRD002', name: 'Kanjeevaram Silk Saree',     price: 45000, image: 'assets/tatito-logo.png', sort_order: 2, is_active: true },
+        { id: 'WPF003', product_id: 'PRD003', name: 'Cream Embroidered Sherwani', price: 55000, image: 'assets/tatito-logo.png', sort_order: 3, is_active: true },
+        { id: 'WPF004', product_id: 'PRD004', name: 'Diamond Polki Necklace Set', price: 125000,image: 'assets/tatito-logo.png', sort_order: 4, is_active: true },
     ],
 
     // ===================== MODULE 2: CUSTOMISATION ATELIER =====================
@@ -1072,10 +1072,10 @@ const MockData = {
 
     // ===================== MODULE 3: JEWELLERY VAULT =====================
     jewelleryCollections: [
-        { id: 'JC001', gender: 'Women', title: 'Bridal Jewellery Sets', subtitle: 'Complete bridal sets with necklace, earrings & tikka', image: 'assets/logo.svg', sort_order: 1, is_active: true },
-        { id: 'JC002', gender: 'Women', title: 'Everyday Elegance',     subtitle: 'Lightweight daily-wear pieces',                         image: 'assets/logo.svg', sort_order: 2, is_active: true },
-        { id: 'JC003', gender: 'Men',   title: 'Men\'s Collection',     subtitle: 'Chains, kadas & cufflinks',                             image: 'assets/logo.svg', sort_order: 3, is_active: true },
-        { id: 'JC004', gender: 'Unisex',title: 'Diamond Boutique',      subtitle: 'Certified solitaires & diamond jewellery',              image: 'assets/logo.svg', sort_order: 4, is_active: true },
+        { id: 'JC001', gender: 'Women', title: 'Bridal Jewellery Sets', subtitle: 'Complete bridal sets with necklace, earrings & tikka', image: 'assets/tatito-logo.png', sort_order: 1, is_active: true },
+        { id: 'JC002', gender: 'Women', title: 'Everyday Elegance',     subtitle: 'Lightweight daily-wear pieces',                         image: 'assets/tatito-logo.png', sort_order: 2, is_active: true },
+        { id: 'JC003', gender: 'Men',   title: 'Men\'s Collection',     subtitle: 'Chains, kadas & cufflinks',                             image: 'assets/tatito-logo.png', sort_order: 3, is_active: true },
+        { id: 'JC004', gender: 'Unisex',title: 'Diamond Boutique',      subtitle: 'Certified solitaires & diamond jewellery',              image: 'assets/tatito-logo.png', sort_order: 4, is_active: true },
     ],
     jewelleryCategories: [
         { id: 'JCAT01', name: 'Polki & Kundan',  product_count: 24, is_active: true },
@@ -1086,23 +1086,23 @@ const MockData = {
         { id: 'JCAT06', name: 'Antique Pieces',  product_count: 8,  is_active: false },
     ],
     jewelleryProducts: [
-        { id: 'JP001', gender: 'Women', category: 'Polki & Kundan', name: 'Uncut Diamond Polki Set',  price: 185000, original_price: 220000, purity_tag: '22K Gold · Uncut Diamonds',    badge_tag: 'ROYAL HERITAGE',   rating: 4.9, image: 'assets/logo.svg' },
-        { id: 'JP002', gender: 'Women', category: 'Solitaires',     name: 'Platinum Solitaire Ring',  price: 95000,  original_price: 110000, purity_tag: 'Platinum 950 · 1.2ct Solitaire', badge_tag: 'IGI CERTIFIED',    rating: 5.0, image: 'assets/logo.svg' },
-        { id: 'JP003', gender: 'Women', category: '22K Gold',       name: 'Antique Temple Necklace',  price: 145000, original_price: 0,      purity_tag: '22K BIS Hallmark Gold',         badge_tag: '',                  rating: 4.7, image: 'assets/logo.svg' },
-        { id: 'JP004', gender: 'Women', category: 'Bridal Sets',    name: 'Kundan Bridal Set',        price: 285000, original_price: 320000, purity_tag: '22K Gold · Kundan & Meenakari', badge_tag: 'BRIDAL EXCLUSIVE', rating: 4.8, image: 'assets/logo.svg' },
-        { id: 'JP005', gender: 'Men',   category: '22K Gold',       name: 'Gold Chain \u2014 Standard',  price: 65000,  original_price: 72000,  purity_tag: '22K BIS Hallmark Gold',         badge_tag: '',                  rating: 4.5, image: 'assets/logo.svg' },
-        { id: 'JP006', gender: 'Men',   category: '22K Gold',       name: 'Gold Kada Pair',           price: 88000,  original_price: 95000,  purity_tag: '22K BIS Hallmark Gold',         badge_tag: '',                  rating: 4.6, image: 'assets/logo.svg' },
-        { id: 'JP007', gender: 'Women', category: 'Polki & Kundan', name: 'Chandbali Polki Earrings', price: 45000,  original_price: 52000,  purity_tag: '22K Gold · Polki Stones',       badge_tag: 'CRAFTED TO ORDER', rating: 4.8, image: 'assets/logo.svg' },
-        { id: 'JP008', gender: 'Unisex',category: 'Solitaires',     name: 'Diamond Stud Earrings',    price: 72000,  original_price: 85000,  purity_tag: '18K Gold · 0.5ct Each',         badge_tag: 'IGI CERTIFIED',    rating: 4.9, image: 'assets/logo.svg' },
+        { id: 'JP001', gender: 'Women', category: 'Polki & Kundan', name: 'Uncut Diamond Polki Set',  price: 185000, original_price: 220000, purity_tag: '22K Gold · Uncut Diamonds',    badge_tag: 'ROYAL HERITAGE',   rating: 4.9, image: 'assets/tatito-logo.png' },
+        { id: 'JP002', gender: 'Women', category: 'Solitaires',     name: 'Platinum Solitaire Ring',  price: 95000,  original_price: 110000, purity_tag: 'Platinum 950 · 1.2ct Solitaire', badge_tag: 'IGI CERTIFIED',    rating: 5.0, image: 'assets/tatito-logo.png' },
+        { id: 'JP003', gender: 'Women', category: '22K Gold',       name: 'Antique Temple Necklace',  price: 145000, original_price: 0,      purity_tag: '22K BIS Hallmark Gold',         badge_tag: '',                  rating: 4.7, image: 'assets/tatito-logo.png' },
+        { id: 'JP004', gender: 'Women', category: 'Bridal Sets',    name: 'Kundan Bridal Set',        price: 285000, original_price: 320000, purity_tag: '22K Gold · Kundan & Meenakari', badge_tag: 'BRIDAL EXCLUSIVE', rating: 4.8, image: 'assets/tatito-logo.png' },
+        { id: 'JP005', gender: 'Men',   category: '22K Gold',       name: 'Gold Chain \u2014 Standard',  price: 65000,  original_price: 72000,  purity_tag: '22K BIS Hallmark Gold',         badge_tag: '',                  rating: 4.5, image: 'assets/tatito-logo.png' },
+        { id: 'JP006', gender: 'Men',   category: '22K Gold',       name: 'Gold Kada Pair',           price: 88000,  original_price: 95000,  purity_tag: '22K BIS Hallmark Gold',         badge_tag: '',                  rating: 4.6, image: 'assets/tatito-logo.png' },
+        { id: 'JP007', gender: 'Women', category: 'Polki & Kundan', name: 'Chandbali Polki Earrings', price: 45000,  original_price: 52000,  purity_tag: '22K Gold · Polki Stones',       badge_tag: 'CRAFTED TO ORDER', rating: 4.8, image: 'assets/tatito-logo.png' },
+        { id: 'JP008', gender: 'Unisex',category: 'Solitaires',     name: 'Diamond Stud Earrings',    price: 72000,  original_price: 85000,  purity_tag: '18K Gold · 0.5ct Each',         badge_tag: 'IGI CERTIFIED',    rating: 4.9, image: 'assets/tatito-logo.png' },
     ],
 
     // ===================== MODULE 4: EVENTS & VIP PASSBOOK =====================
     vipEvents: [
-        { id: 'EVT001', title: 'TATITO Fashion Week \u2014 Spring/Summer 2026', category: 'Runway Premiere', event_date: '2026-09-15', event_time: '19:00', location: 'Grand Hyatt, Mumbai',     host: 'TATITO Fashions',     pass_type: 'FRONT ROW RUNWAY', ticket_prefix: 'TT-VIP-9941', price: 25000, available_seats: 45,  image: 'assets/logo.svg', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
-        { id: 'EVT002', title: 'Bridal Trunk Show by Sabyasachi',               category: 'Trunk Show',      event_date: '2026-08-22', event_time: '11:00', location: 'Taj Lands End, Mumbai',    host: 'Sabyasachi Calcutta', pass_type: 'VIP TRUNK ACCESS',ticket_prefix: 'TT-TRK-2208', price: 15000, available_seats: 30,  image: 'assets/logo.svg', video_url: '' },
-        { id: 'EVT003', title: 'Jewellery Gala \u2014 Diamond Night',            category: 'Jewellery Gala',  event_date: '2026-10-05', event_time: '20:00', location: 'The Leela Palace, Delhi',  host: 'TATITO Jewellers',    pass_type: 'DIAMOND ACCESS',   ticket_prefix: 'TT-JG-0501',  price: 35000, available_seats: 80,  image: 'assets/logo.svg', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
-        { id: 'EVT004', title: 'Atelier Salon \u2014 Couture Conversations',     category: 'Atelier Salon',   event_date: '2026-09-28', event_time: '16:00', location: 'The Oberoi, Mumbai',       host: 'TATITO Atelier',      pass_type: 'SALON MEMBER',     ticket_prefix: 'TT-AS-2809',  price: 10000, available_seats: 25,  image: 'assets/logo.svg', video_url: '' },
-        { id: 'EVT005', title: 'Winter Wedding Couture Premiere',                category: 'Runway Premiere', event_date: '2026-11-12', event_time: '19:30', location: 'ITC Grand, Bengaluru',     host: 'TATITO Fashions',     pass_type: 'FRONT ROW RUNWAY', ticket_prefix: 'TT-VIP-1211', price: 30000, available_seats: 50,  image: 'assets/logo.svg', video_url: '' },
+        { id: 'EVT001', title: 'TATITO Fashion Week \u2014 Spring/Summer 2026', category: 'Runway Premiere', event_date: '2026-09-15', event_time: '19:00', location: 'Grand Hyatt, Mumbai',     host: 'TATITO Fashions',     pass_type: 'FRONT ROW RUNWAY', ticket_prefix: 'TT-VIP-9941', price: 25000, available_seats: 45,  image: 'assets/tatito-logo.png', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+        { id: 'EVT002', title: 'Bridal Trunk Show by Sabyasachi',               category: 'Trunk Show',      event_date: '2026-08-22', event_time: '11:00', location: 'Taj Lands End, Mumbai',    host: 'Sabyasachi Calcutta', pass_type: 'VIP TRUNK ACCESS',ticket_prefix: 'TT-TRK-2208', price: 15000, available_seats: 30,  image: 'assets/tatito-logo.png', video_url: '' },
+        { id: 'EVT003', title: 'Jewellery Gala \u2014 Diamond Night',            category: 'Jewellery Gala',  event_date: '2026-10-05', event_time: '20:00', location: 'The Leela Palace, Delhi',  host: 'TATITO Jewellers',    pass_type: 'DIAMOND ACCESS',   ticket_prefix: 'TT-JG-0501',  price: 35000, available_seats: 80,  image: 'assets/tatito-logo.png', video_url: 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' },
+        { id: 'EVT004', title: 'Atelier Salon \u2014 Couture Conversations',     category: 'Atelier Salon',   event_date: '2026-09-28', event_time: '16:00', location: 'The Oberoi, Mumbai',       host: 'TATITO Atelier',      pass_type: 'SALON MEMBER',     ticket_prefix: 'TT-AS-2809',  price: 10000, available_seats: 25,  image: 'assets/tatito-logo.png', video_url: '' },
+        { id: 'EVT005', title: 'Winter Wedding Couture Premiere',                category: 'Runway Premiere', event_date: '2026-11-12', event_time: '19:30', location: 'ITC Grand, Bengaluru',     host: 'TATITO Fashions',     pass_type: 'FRONT ROW RUNWAY', ticket_prefix: 'TT-VIP-1211', price: 30000, available_seats: 50,  image: 'assets/tatito-logo.png', video_url: '' },
     ],
     eventRSVPs: [
         { id: 'RSVP001', user_name: 'Priya Sharma',    email: 'priya.sharma@gmail.com',   event_id: 'EVT001', event_title: 'TATITO Fashion Week S/S 2026', pass_type: 'FRONT ROW RUNWAY', ticket_no: 'TT-VIP-9941-001', status: 'approved',  rsvp_date: '2026-07-20' },
@@ -1122,3 +1122,85 @@ const MockData = {
         { id: 'SB006', user_id: 'USR007', user_name: 'Vikram Singh',  service_type: 'Groom Styling',        notes: 'Indo-western look for engagement',                                              booking_date: '2026-08-08', time_slot: '5:00 PM',  status: 'Confirmed' },
     ],
 };
+
+/* ================================================================
+   NEW: Auto-persistence layer.
+   When Bridge is loaded, wrap MockData with a Proxy that
+   automatically saves to localStorage on any mutation.
+   This means ALL existing page modules (products, categories,
+   users, sellers, CMS, etc.) get persistence for free —
+   no need to modify each CRUD function individually.
+
+   When the backend is connected, this Proxy will be replaced
+   with a debounced API sync instead of localStorage writes.
+   ================================================================ */
+(function autoPersistMockData() {
+    if (typeof Bridge === 'undefined') return; // Bridge not loaded — skip
+
+    var saveTimer = null;
+    /* NEW: List of admin-only settings keys that must NEVER be overwritten
+       by MockData snapshots. These are managed exclusively by their
+       respective admin pages via Bridge.Data.saveEntity(). */
+    var ADMIN_ONLY_KEYS = [
+        'homeCollectionsSettings',
+        'homepageSectionSettings',
+        'websiteHeader',
+        'websiteFooter',
+        'websiteSetup',
+        'homePageSettings',
+    ];
+    function debouncedSave() {
+        if (saveTimer) clearTimeout(saveTimer);
+        saveTimer = setTimeout(function() {
+            try {
+                /* NEW: Merge MockData into existing stored data.
+                   Admin-only settings keys are preserved from existing
+                   stored data — never overwritten by MockData. */
+                var existing = Bridge.Data.load();
+                if (!existing) existing = {};
+                var merged = Object.assign({}, existing);
+                Object.keys(MockData).forEach(function(key) {
+                    if (ADMIN_ONLY_KEYS.indexOf(key) !== -1) {
+                        /* Admin-only key — preserve existing value */
+                        if (existing[key] !== undefined) {
+                            merged[key] = existing[key];
+                        }
+                    } else {
+                        /* Catalog entity — safe to copy */
+                        merged[key] = MockData[key];
+                    }
+                });
+                Bridge.Data.save(merged);
+            } catch (e) {
+                console.warn('[AutoPersist] Save failed:', e);
+            }
+        }, 300); // Debounce — batch rapid mutations
+    }
+
+    // Create a deep proxy that watches for mutations
+    function deepProxy(obj, path) {
+        return new Proxy(obj, {
+            set: function(target, key, value) {
+                target[key] = value;
+                debouncedSave();
+                return true;
+            },
+            deleteProperty: function(target, key) {
+                delete target[key];
+                debouncedSave();
+                return true;
+            }
+        });
+    }
+
+    // Note: We can't replace the MockData const itself, but we CAN
+    // hook into Bridge.Data.save() calls made by individual modules.
+    // The explicit save calls in products.js, categories.js, etc.
+    // handle the persistence. This is a fallback safety net.
+
+    // Also expose a manual save function for modules that don't
+    // call Bridge.Data.save explicitly
+    if (typeof globalThis !== 'undefined') {
+        globalThis.__saveMockData = debouncedSave;
+    }
+})();

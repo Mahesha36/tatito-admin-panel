@@ -2,7 +2,28 @@
 /* TATITO FASHIONS — Contact Us Queries page */
 App.pages.contactQueries = function() {
     var self = this;
-    var queries = MockData.contactQueries || [];
+    /* NEW: Merge admin contact queries with real frontend contact submissions */
+    var adminQueries = (MockData.contactQueries || []).slice();
+    var frontendQueries = [];
+
+    if (typeof Bridge !== 'undefined') {
+        var fMsgs = Bridge.Frontend.getContactMessages();
+        frontendQueries = fMsgs.map(function(fm) {
+            return {
+                id: fm.id || 'CQ-FE-' + Math.random().toString(36).substr(2, 5),
+                name: fm.name || 'Website Visitor',
+                email: fm.email || '',
+                subject: fm.subject || 'Contact Form Submission',
+                message: fm.message || fm.body || '',
+                date: fm.createdAt || fm.date || new Date().toISOString().split('T')[0],
+                status: fm.status || 'pending',
+                _source: 'frontend'
+            };
+        });
+    }
+
+    var queries = frontendQueries.concat(adminQueries);
+    App._allContactQueries = queries;
 
     document.getElementById('pageContent').innerHTML =
         '<div class="page-content"><div class="page-toolbar"><div><h3>Contact Us Queries</h3><p class="text-muted">Manage customer inquiries and messages</p></div></div>' +

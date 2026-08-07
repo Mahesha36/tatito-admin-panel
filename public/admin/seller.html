@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>TATITO Fashions — Seller Dashboard</title>
-<link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+<link rel="icon" href="assets/tatito-logo.png" type="image/png">
 <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <!-- jQuery (required by DataTables) -->
@@ -27,7 +27,7 @@
     <!-- Sidebar -->
     <aside class="sidebar" id="sidebar">
         <div class="sidebar-brand">
-            <img src="assets/logo.svg" alt="TATITO" class="logo-feather" onerror="this.style.display='none'">
+            <img src="assets/tatito-logo.png" alt="TATITO" class="logo-feather" onerror="this.style.display='none'">
             <div class="brand-text">
                 <div class="brand-name">TATITO</div>
                 <div class="brand-sub">Seller Panel</div>
@@ -85,9 +85,10 @@
 </div>
 
 <!-- Scripts -->
-<script src="js/helpers.js"></script>
-<script src="js/data.js"></script>
-<script src="js/seller-app.js"></script>
+<script src="js/helpers.js?v=26"></script>
+<script src="js/bridge.js?v=26"></script>
+<script src="js/data.js?v=26"></script>
+<script src="js/seller-app.js?v=26"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => SellerApp.init());
 </script>

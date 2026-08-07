@@ -12,7 +12,7 @@ App.pages['website-header'] = function() {
         '<div class="card" style="max-width:700px"><div class="card-body">' +
         '<div class="form-group"><label>Header Logo</label>' +
         '<div class="upload-field" onclick="document.getElementById(\'headerLogoInput\').click()" style="cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px;border:2px dashed var(--line);border-radius:8px">' +
-        '<div class="upload-preview"><img src="assets/logo.svg" style="max-height:40px" onerror="this.style.display=\'none\'"></div>' +
+        '<div class="upload-preview"><img src="assets/tatito-logo.png" style="max-height:40px" onerror="this.style.display=\'none\'"></div>' +
         '<div class="upload-info"><button type="button" class="btn btn-outline btn-sm">Browse</button> <span style="font-size:0.78rem;color:var(--gray-500)">' + (h.logoFile || 'No file selected') + '</span></div>' +
         '</div><input type="file" id="headerLogoInput" accept="image/*" style="display:none" onchange="App._previewUpload(this,\'\',\'\')"></div>' +
 
@@ -33,12 +33,15 @@ App.pages['website-header'] = function() {
 
 App.toggleStickyHeader = function() {
     var h = MockData.websiteHeader; if (!h) return;
-    h.stickyHeader = !h.stickyHeader; Helpers.toast('Sticky header ' + (h.stickyHeader ? 'enabled' : 'disabled'), 'success');
+    h.stickyHeader = !h.stickyHeader;
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('websiteHeader', MockData.websiteHeader); }
+    Helpers.toast('Sticky header ' + (h.stickyHeader ? 'enabled' : 'disabled'), 'success');
     App.navigate('website-header');
 };
 App.saveWebsiteHeader = function() {
     var h = MockData.websiteHeader; if (!h) return;
     var get = function(id) { var el = document.getElementById(id); return el ? el.value : ''; };
     h.quickLinkText = get('quickLinkText'); h.quickLinkUrl = get('quickLinkUrl'); h.helplineNumber = get('helplineNumber');
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('websiteHeader', MockData.websiteHeader); Bridge.Settings.save(MockData.websiteHeader); }
     Helpers.toast('Header settings saved', 'success');
 };

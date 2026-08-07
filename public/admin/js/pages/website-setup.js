@@ -26,7 +26,7 @@ App.pages.websiteSetup = function() {
                 '<div class="form-group"><label>Site Motto</label><input type="text" class="form-control" id="wsMotto" value="' + (ws.siteMotto || '') + '"></div>' +
                 '<div class="form-group"><label>Site Icon</label>' +
                 '<div class="upload-field" onclick="document.getElementById(\'wsIcon\').click()">' +
-                '<div class="upload-preview"><img src="assets/logo.svg" style="max-height:50px" onerror="this.style.display=\'none\'"></div>' +
+                '<div class="upload-preview"><img src="assets/tatito-logo.png" style="max-height:50px" onerror="this.style.display=\'none\'"></div>' +
                 '<div class="upload-info"><i class="bi bi-cloud-arrow-up"></i> <span>' + (ws.siteIcon || 'Choose file') + '</span></div>' +
                 '</div><input type="file" id="wsIcon" accept="image/*" style="display:none" onchange="App._previewUpload(this,\'\',\'\')"></div>' +
                 '<div class="form-row">' +
@@ -40,7 +40,7 @@ App.pages.websiteSetup = function() {
                 '<h4 style="font-size:0.88rem;font-weight:700;margin-bottom:16px"><i class="bi bi-image" style="color:var(--gold)"></i> Member Banner</h4>' +
                 '<div class="form-group"><label>Member Public Profile Page Banner</label>' +
                 '<div class="upload-field" onclick="document.getElementById(\'wsBanner\').click()">' +
-                '<div class="upload-preview"><img src="assets/logo.svg" style="max-height:50px" onerror="this.style.display=\'none\'"></div>' +
+                '<div class="upload-preview"><img src="assets/tatito-logo.png" style="max-height:50px" onerror="this.style.display=\'none\'"></div>' +
                 '<div class="upload-info"><i class="bi bi-cloud-arrow-up"></i> <span>' + (ws.bannerImage || 'Choose file') + '</span></div>' +
                 '</div><input type="file" id="wsBanner" accept="image/*" style="display:none" onchange="App._previewUpload(this,\'\',\'\')"></div>' +
                 '<div class="form-group"><label>Banner Link</label><input type="text" class="form-control" id="wsBannerLink" value="' + (ws.bannerLink || '') + '" placeholder="https://"></div>' +
@@ -55,7 +55,7 @@ App.pages.websiteSetup = function() {
                 '<div class="form-group"><label>Keywords</label><textarea class="form-control" rows="3" id="seoKeywords">' + (ws.metaKeywords || '') + '</textarea></div>' +
                 '<div class="form-group"><label>Meta Image</label>' +
                 '<div class="upload-field" onclick="document.getElementById(\'seoImage\').click()">' +
-                '<div class="upload-preview"><img src="assets/logo.svg" style="max-height:50px" onerror="this.style.display=\'none\'"></div>' +
+                '<div class="upload-preview"><img src="assets/tatito-logo.png" style="max-height:50px" onerror="this.style.display=\'none\'"></div>' +
                 '<div class="upload-info"><i class="bi bi-cloud-arrow-up"></i> <span>' + (ws.metaImage || 'Choose file') + '</span></div>' +
                 '</div><input type="file" id="seoImage" accept="image/*" style="display:none" onchange="App._previewUpload(this,\'\',\'\')"></div>' +
                 '<button class="btn btn-primary" onclick="App.saveWebsiteSEO()"><i class="bi bi-check-lg"></i> Update</button>' +
@@ -120,6 +120,7 @@ App.saveWebsiteGeneral = function() {
     ws.websiteName = get('wsName'); ws.siteMotto = get('wsMotto');
     ws.baseColor = get('wsBaseColor'); ws.baseHoverColor = get('wsHoverColor'); ws.secondaryColor = get('wsSecondaryColor');
     ws.bannerLink = get('wsBannerLink');
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('websiteSetup', MockData.websiteSetup); Bridge.Settings.save(MockData.websiteSetup); }
     Helpers.toast('Website settings saved', 'success');
 };
 
@@ -127,12 +128,14 @@ App.saveWebsiteSEO = function() {
     var ws = MockData.websiteSetup;
     var get = function(id) { var el = document.getElementById(id); return el ? el.value : ''; };
     ws.metaTitle = get('seoTitle'); ws.metaDescription = get('seoDesc'); ws.metaKeywords = get('seoKeywords');
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('websiteSetup', MockData.websiteSetup); Bridge.Settings.save(MockData.websiteSetup); }
     Helpers.toast('SEO settings saved', 'success');
 };
 
 App.toggleCookies = function() {
     var ws = MockData.websiteSetup; if (!ws) return;
     ws.cookiesEnabled = !ws.cookiesEnabled;
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('websiteSetup', MockData.websiteSetup); }
     Helpers.toast('Cookies agreement ' + (ws.cookiesEnabled ? 'enabled' : 'disabled'), 'success');
     if (App._renderWSTab) App._renderWSTab();
 };
@@ -141,6 +144,7 @@ App.saveCookies = function() {
     var ws = MockData.websiteSetup;
     if (App._ckEditorInstances.cookiesEditor) ws.cookiesText = App._ckEditorInstances.cookiesEditor.getData();
     App._destroyEditors();
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('websiteSetup', MockData.websiteSetup); Bridge.Settings.save(MockData.websiteSetup); }
     Helpers.toast('Cookies agreement saved', 'success');
 };
 
@@ -148,5 +152,6 @@ App.saveScripts = function() {
     var ws = MockData.websiteSetup;
     var get = function(id) { var el = document.getElementById(id); return el ? el.value : ''; };
     ws.headerScript = get('headerScript'); ws.footerScript = get('footerScript');
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('websiteSetup', MockData.websiteSetup); Bridge.Settings.save(MockData.websiteSetup); }
     Helpers.toast('Custom scripts saved', 'success');
 };

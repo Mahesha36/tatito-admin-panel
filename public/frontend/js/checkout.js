@@ -9,6 +9,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let selectedAddressId = null;
   let selectedPayment = "cod";
   let currentStep = 1;
+  let appliedCoupon = null; /* NEW: Track applied coupon from admin offers */
 
   const cart = TatitoStore.getCart();
   if (!cart.length) {
@@ -21,22 +22,64 @@ document.addEventListener("DOMContentLoaded", () => {
     const subtotal = TatitoStore.cartSubtotal();
     const shipping = subtotal > 5000 ? 0 : 99;
     const tax = Math.round(subtotal * 0.05);
-    const total = subtotal + shipping + tax;
-    return { subtotal, shipping, tax, total };
+
+    /* NEW: Apply admin coupon discount if one is applied */
+    var discount = 0;
+    if (appliedCoupon) {
+      discount = appliedCoupon.discount;
+    }
+    const total = subtotal + shipping + tax - discount;
+    return { subtotal, shipping, tax, discount, total };
   }
 
   function renderSummary() {
     const el = document.getElementById("checkoutSummary");
     if (!el) return;
-    const { subtotal, shipping, tax, total } = calcTotals();
+    const { subtotal, shipping, tax, discount, total } = calcTotals();
     el.innerHTML = `
       <h3>${t("orderSummary")}</h3>
       <div class="cart-summary-row"><span>${t("itemsLabel")}: ${cart.length}</span></div>
       <div class="cart-summary-row"><span>${t("subtotal")}</span><span>${formatPrice(subtotal)}</span></div>
       <div class="cart-summary-row"><span>${t("shipping")}</span><span>${shipping === 0 ? t("free") : formatPrice(shipping)}</span></div>
       <div class="cart-summary-row"><span>${t("tax")}</span><span>${formatPrice(tax)}</span></div>
+      ${discount > 0 ? `<div class="cart-summary-row" style="color:var(--success)"><span>Discount (${appliedCoupon.offer.code})</span><span>-${formatPrice(discount)}</span></div>` : ""}
       <div class="cart-summary-row total"><span>${t("total")}</span><span>${formatPrice(total)}</span></div>
+
+      <!-- NEW: Coupon input section — reads admin-managed offers -->
+      ${typeof FrontendBridge !== 'undefined' && FrontendBridge.getAdminOffers().length > 0 ? `
+      <div style="margin-top:14px;padding-top:14px;border-top:1px solid var(--line);">
+        <label style="font-size:13px;font-weight:600;color:var(--text);">Promo Code</label>
+        <div style="display:flex;gap:6px;margin-top:6px;">
+          <input type="text" id="couponInput" placeholder="Enter code" value="${appliedCoupon ? appliedCoupon.offer.code : ''}" style="flex:1;padding:8px 12px;border:1px solid var(--line);border-radius:8px;font-family:inherit;font-size:13px;background:var(--surface-solid);color:var(--text);text-transform:uppercase;" />
+          <button type="button" id="applyCouponBtn" class="btn btn-ghost small" style="white-space:nowrap;">${appliedCoupon ? 'Remove' : 'Apply'}</button>
+        </div>
+        ${appliedCoupon ? `<p style="font-size:12px;color:var(--success);margin-top:4px;">✓ ${appliedCoupon.offer.title} applied</p>` : `<p style="font-size:11px;color:var(--muted);margin-top:4px;">Try: ${FrontendBridge.getAdminOffers().slice(0,2).map(o => o.code).join(', ')}</p>`}
+      </div>` : ''}
     `;
+
+    /* NEW: Wire up coupon apply/remove button */
+    var couponBtn = document.getElementById('applyCouponBtn');
+    if (couponBtn) {
+      couponBtn.addEventListener('click', function() {
+        if (appliedCoupon) {
+          /* Remove coupon */
+          appliedCoupon = null;
+          showToast('Coupon removed', 'info');
+        } else {
+          /* Apply coupon */
+          var code = document.getElementById('couponInput').value.trim();
+          if (!code) { showToast('Enter a promo code', 'error'); return; }
+          var result = FrontendBridge.applyCoupon(code, TatitoStore.cartSubtotal());
+          if (result) {
+            appliedCoupon = result;
+            showToast(`Coupon "${code}" applied — you saved ${formatPrice(result.discount)}!`, 'success');
+          } else {
+            showToast('Invalid or expired promo code', 'error');
+          }
+        }
+        renderSummary();
+      });
+    }
   }
 
   function renderAddressList() {
@@ -241,7 +284,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const order = TatitoStore.createOrder({
       items: TatitoStore.getCart(),
-      subtotal, shipping, tax, total,
+      subtotal, shipping, tax,
+      discount: discount || 0, /* NEW: Include discount in order */
+      couponCode: appliedCoupon ? appliedCoupon.offer.code : null, /* NEW */
+      total,
       address: addr,
       paymentMethod: selectedPayment,
       status: "placed",

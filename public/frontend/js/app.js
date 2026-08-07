@@ -35,6 +35,9 @@ function renderNavbar() {
   const wishlistCount = TatitoStore.wishlistCount();
   const notifCount = loggedIn ? TatitoStore.unreadNotificationCount() : 0;
 
+  /* Read admin header settings if available */
+  const adminHeader = (typeof FrontendBridge !== "undefined" && FrontendBridge.getAdminHeader) ? FrontendBridge.getAdminHeader() : {};
+
   header.innerHTML = `
     <div class="nav-inner">
       <a class="nav-logo" href="index.html">
@@ -44,7 +47,13 @@ function renderNavbar() {
           <em class="brand-sub">FASHIONS</em>
         </div>
       </a>
+      ${adminHeader.helplineNumber ? `
+      <a href="tel:${adminHeader.helplineNumber}" class="nav-helpline" style="display:flex;align-items:center;gap:4px;font-size:0.78rem;color:var(--gold);white-space:nowrap;" data-admin-helpline>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <span>${adminHeader.helplineNumber}</span>
+      </a>` : ''}
       <nav class="nav-links mega-menu-nav">
+        ${adminHeader.quickLinkText ? `<a href="${adminHeader.quickLinkUrl || '#'}" class="nav-quick-link">${adminHeader.quickLinkText}</a>` : ''}
         <a href="index.html" data-i18n="home">Home</a>
         ${(typeof NAV_VERTICALS !== "undefined" ? NAV_VERTICALS : []).map((cat) => {
           if (cat.slug === "collections") {
@@ -242,6 +251,9 @@ function renderFooter() {
   const footer = document.querySelector(".footer");
   if (!footer) return;
 
+  /* Read admin footer settings if available */
+  const f = (typeof FrontendBridge !== "undefined" && FrontendBridge.getAdminFooter) ? FrontendBridge.getAdminFooter() : {};
+
   footer.innerHTML = `
     <div class="footer-top">
       <div class="footer-brand">
@@ -250,7 +262,7 @@ function renderFooter() {
           <span class="brand-title" style="font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:2px;">TATITO</span>
           <span class="brand-sub" style="font-size:12px;color:var(--gold);letter-spacing:4px;font-family:var(--font-display);">FASHIONS</span>
         </div>
-        <p style="font-size:12.5px;color:var(--muted);margin-top:4px;" data-i18n="footerTagline">Custom fashion for everyone.</p>
+        <p style="font-size:12.5px;color:var(--muted);margin-top:4px;" data-admin-about>Custom fashion for everyone.</p>
       </div>
       <div class="footer-col">
         <h4 data-i18n="footerShop">Shop</h4>
@@ -279,10 +291,24 @@ function renderFooter() {
         <a href="referral.html">Referral Program</a>
         <a href="orders.html">Track Orders</a>
       </div>
+      ${f.contactsWidget ? `
+      <div class="footer-col footer-contacts">
+        <h4>Contact Us</h4>
+        ${f.contactsWidget.address ? `<p style="font-size:12.5px;color:var(--muted);margin-bottom:4px;" data-admin-address>${f.contactsWidget.address}</p>` : ''}
+        ${f.contactsWidget.email ? `<a href="mailto:${f.contactsWidget.email}" style="font-size:12.5px;display:block;margin-bottom:4px;" data-admin-email>${f.contactsWidget.email}</a>` : ''}
+        ${(f.contactsWidget.phones && f.contactsWidget.phones[0]) ? `<a href="tel:${f.contactsWidget.phones[0]}" style="font-size:12.5px;display:block;margin-bottom:4px;" data-admin-phone>${f.contactsWidget.phones[0]}</a>` : ''}
+      </div>` : ''}
     </div>
     <div class="footer-bottom">
-      <span>© 2026 <span data-i18n="brandName">Tatito</span> <span data-i18n="brandSub">Fashions</span>. <span data-i18n="allRightsReserved">All rights reserved.</span></span>
-      <span data-i18n="madeForYou">Made for fashion, made for you.</span>
+      <span data-admin-copyright>© 2026 <span data-i18n="brandName">Tatito</span> <span data-i18n="brandSub">Fashions</span>. <span data-i18n="allRightsReserved">All rights reserved.</span></span>
+      ${(f.copyrightWidget && f.copyrightWidget.showSocialLinks && f.copyrightWidget.social) ? `
+      <div class="footer-social">
+        ${f.copyrightWidget.social.facebook ? `<a href="${f.copyrightWidget.social.facebook}" target="_blank" data-social="facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>` : ''}
+        ${f.copyrightWidget.social.twitter ? `<a href="${f.copyrightWidget.social.twitter}" target="_blank" data-social="twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>` : ''}
+        ${f.copyrightWidget.social.instagram ? `<a href="${f.copyrightWidget.social.instagram}" target="_blank" data-social="instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.41 1.44c.795 0 1.441-.645 1.441-1.44s-.646-1.44-1.441-1.44z"/></svg></a>` : ''}
+        ${f.copyrightWidget.social.youtube ? `<a href="${f.copyrightWidget.social.youtube}" target="_blank" data-social="youtube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>` : ''}
+        ${f.copyrightWidget.social.linkedin ? `<a href="${f.copyrightWidget.social.linkedin}" target="_blank" data-social="linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg></a>` : ''}
+      </div>` : ''}
     </div>
   `;
 }
@@ -602,7 +628,9 @@ function updateNavBadges() {
 function renderCategories() {
   const grid = document.getElementById("categoryGrid");
   if (!grid) return;
-  grid.innerHTML = CATEGORIES.map((cat) => `
+  /* NEW: Filter out categories hidden by admin via Home Collections page */
+  const visibleCats = CATEGORIES.filter((cat) => !cat._hidden);
+  grid.innerHTML = visibleCats.map((cat) => `
     <a href="category.html?category=${cat.slug}" class="category-card">
       <div class="cat-image-wrap">
         ${cat.image
@@ -728,6 +756,8 @@ function renderStores() {
   if (!grid) return;
 
   let stores = [...STORES];
+  /* NEW: Filter out stores hidden by admin via Home Collections page */
+  stores = stores.filter((s) => !s._hidden);
   stores = sortStores(stores, currentSort);
 
   if (!stores.length) {
@@ -861,16 +891,44 @@ function initApp() {
   renderNavbar();
   renderFooter();
 
+  /* Apply admin-managed settings (site name, colors, helpline, footer) if available.
+     Must run AFTER renderNavbar/renderFooter so the DOM elements exist. */
+  if (typeof FrontendBridge !== "undefined" && FrontendBridge.applyAdminSettings) {
+    FrontendBridge.applyAdminSettings();
+  }
+
+  /* NEW: Apply admin collection visibility BEFORE rendering.
+     Sets _hidden flags on STORES/CATEGORIES so renderCategories()
+     and renderStores() filter them out. Must run before render. */
+  if (typeof FrontendBridge !== "undefined" && FrontendBridge.applyCollectionVisibility) {
+    FrontendBridge.applyCollectionVisibility();
+  }
+
   // Homepage-specific
   renderCategories();
   renderFeaturedProducts();
   renderDealsProducts();
+
+  /* NEW: Apply admin hero slider slides BEFORE initHeroSlider().
+     If admin has customized slides via Video Banners, replace the
+     hardcoded HTML with admin-managed slides. */
+  if (typeof FrontendBridge !== "undefined" && FrontendBridge.applyHeroSlider) {
+    FrontendBridge.applyHeroSlider();
+  }
+
   initHeroSlider();
   if (document.body.dataset.page !== "category") {
     renderStores();
   }
   setupSortChips();
   setupHeroSearch();
+
+  /* NEW: Apply admin homepage section visibility settings (DOM-level).
+     Hides entire sections admin toggled off, applies custom titles.
+     Runs AFTER render since it hides existing DOM elements. */
+  if (typeof FrontendBridge !== "undefined" && FrontendBridge.applyHomepageSectionSettings) {
+    FrontendBridge.applyHomepageSectionSettings();
+  }
 
   // Subscribe to store changes (badge updates)
   TatitoStore.subscribe(updateNavBadges);

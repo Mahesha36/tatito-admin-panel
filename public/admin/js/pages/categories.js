@@ -6,9 +6,46 @@ App._expandedCats = {};
 App.pages.categories = function() {
     var tree = MockData.categoryTree || [];
 
+    /* Find a node by ID from the tree */
+    function findNodeById(nodes, id) {
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].id === id) return nodes[i];
+            if (nodes[i].subCategories) {
+                var found = findNodeById(nodes[i].subCategories, id);
+                if (found) return found;
+            }
+        }
+        return null;
+    }
+
+    /* Collect all names (including sub-category names) for a given node,
+       so we can match products whose category is a descriptive string
+       like "Women — Sarees" against tree nodes like "Women" */
+    function collectNodeNames(node) {
+        var names = [];
+        if (node.name) names.push(node.name.toLowerCase());
+        if (node.subCategories) {
+            node.subCategories.forEach(function(sc) {
+                names.push(sc.name.toLowerCase());
+                if (sc.subCategories) {
+                    sc.subCategories.forEach(function(ssc) { names.push(ssc.name.toLowerCase()); });
+                }
+            });
+        }
+        return names;
+    }
+
     function countProducts(catId) {
+        var node = findNodeById(tree, catId);
+        if (!node) return 0;
+        /* Match products that reference this category either by ID fields
+           (newer products) or by category name string (original seed data) */
+        var names = collectNodeNames(node);
         return MockData.products.filter(function(p) {
-            return p.mainCategoryId === catId || p.subCategoryId === catId || p.subSubCategoryId === catId;
+            if (p.mainCategoryId === catId || p.subCategoryId === catId || p.subSubCategoryId === catId) return true;
+            if (!p.category) return false;
+            var cat = p.category.toLowerCase();
+            return names.some(function(n) { return n.length > 2 && cat.indexOf(n) !== -1; });
         }).length;
     }
 
@@ -235,6 +272,8 @@ App.saveMainCategory = function() {
     if (!name) { Helpers.toast('Category name is required', 'error'); return; }
     var newId = 'CAT' + String(MockData.categoryTree.length + 1).padStart(3, '0');
     MockData.categoryTree.push({ id: newId, name: name, icon: data.get('icon') || 'bi-folder', subCategories: [] });
+    /* NEW: Persist to localStorage via Bridge */
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('categoryTree', MockData.categoryTree); }
     Helpers.closeModal();
     Helpers.toast('Main category added', 'success');
     App.navigate('categories');
@@ -270,6 +309,8 @@ App.saveEditCategoryItemAny = function(catId) {
         item.name = name;
         if (data.get('icon')) item.icon = data.get('icon');
     }
+    /* NEW: Persist edit to localStorage via Bridge */
+    if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('categoryTree', MockData.categoryTree); }
     Helpers.closeModal();
     Helpers.toast('Category updated', 'success');
     App.navigate('categories');
@@ -296,6 +337,8 @@ App.deleteCategoryItemAny = function(catId) {
                 // Top-level
                 MockData.categoryTree = MockData.categoryTree.filter(function(c) { return c.id !== catId; });
             }
+            /* NEW: Persist deletion to localStorage via Bridge */
+            if (typeof Bridge !== 'undefined') { Bridge.Data.saveEntity('categoryTree', MockData.categoryTree); }
             Helpers.toast('Category deleted', 'success');
             App.navigate('categories');
         }

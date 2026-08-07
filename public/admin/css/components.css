@@ -87,8 +87,10 @@ select.form-control { cursor: pointer; }
 /* ===== Password toggle ===== */
 .password-wrapper { position: relative; }
 .password-wrapper .form-control { padding-right: 42px; }
-.password-toggle { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; padding: 4px; }
-.password-toggle-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; padding: 4px; }
+.input-group { position: relative; }
+.input-group .form-control { padding-right: 42px; }
+.password-toggle { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; padding: 4px; z-index: 2; }
+.password-toggle-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; padding: 4px; z-index: 2; }
 
 /* ===== Modal ===== */
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(20,18,15,0.55); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }

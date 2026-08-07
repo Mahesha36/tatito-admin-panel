@@ -242,6 +242,10 @@ App.saveProduct = function() {
     delete App._productImages['_new'];
 
     MockData.products.push(newProduct);
+    /* NEW: Persist to localStorage via Bridge so changes survive reload */
+    if (typeof Bridge !== 'undefined') {
+        Bridge.Data.saveEntity('products', MockData.products);
+    }
     Helpers.closeModal();
     Helpers.toast('Product added successfully', 'success');
     App.navigate('products');
@@ -314,6 +318,10 @@ App.saveEditProduct = function(id) {
     p.description = data.get('description') || '';
     var imgs = App._productImages[p.id] || [];
     if (imgs.length > 0) { p.image = imgs[0]; p.images = imgs; }
+    /* NEW: Persist edit to localStorage via Bridge */
+    if (typeof Bridge !== 'undefined') {
+        Bridge.Data.saveEntity('products', MockData.products);
+    }
     Helpers.closeModal();
     Helpers.toast('Product updated', 'success');
     App.navigate('products');
@@ -324,6 +332,10 @@ App.deleteProduct = function(id) {
         if (r.isConfirmed) {
             MockData.products = MockData.products.filter(function(p) { return p.id != id; });
             delete App._productImages[id];
+            /* NEW: Persist deletion to localStorage via Bridge */
+            if (typeof Bridge !== 'undefined') {
+                Bridge.Data.saveEntity('products', MockData.products);
+            }
             Helpers.toast('Product deleted', 'success');
             App.navigate('products');
         }

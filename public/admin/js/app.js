@@ -95,10 +95,36 @@ const App = {
     ],
 
     init() {
-        var saved = localStorage.getItem('tatito_admin_session');
-        if (!saved) { window.location.href = 'index.html'; return; }
-        var session = JSON.parse(saved);
-        if (session.role !== 'admin') { window.location.href = 'index.html'; return; }
+        /* ========================================================
+           NEW: Session check via Bridge.Auth (supports both
+           frontend login and legacy admin login).
+           PREV code:
+           var saved = localStorage.getItem('tatito_admin_session');
+           if (!saved) { window.location.href = 'index.html'; return; }
+           var session = JSON.parse(saved);
+           if (session.role !== 'admin') { window.location.href = 'index.html'; return; }
+           ======================================================== */
+        if (typeof Bridge !== 'undefined' && !Bridge.Auth.hasAdminSession()) {
+            window.location.href = 'index.html';
+            return;
+        }
+        var session = (typeof Bridge !== 'undefined')
+            ? Bridge.Auth.getSession()
+            : JSON.parse(localStorage.getItem('tatito_admin_session') || '{}');
+        if (!session) { window.location.href = 'index.html'; return; }
+
+        /* NEW: Load persisted admin data from localStorage via Bridge.
+           This ensures changes survive page reloads.
+           If no saved data exists, Bridge seeds from MockData defaults. */
+        if (typeof Bridge !== 'undefined') {
+            var persisted = Bridge.Data.load();
+            // Merge persisted data into MockData so all page modules work unchanged
+            if (persisted) {
+                Object.keys(persisted).forEach(function(key) {
+                    MockData[key] = persisted[key];
+                });
+            }
+        }
 
         // Set user info
         var nameEl = document.getElementById('sidebarUserName');
@@ -171,6 +197,42 @@ const App = {
     },
 
     navigate(pageId) {
+        /* NEW: Sync MockData changes to localStorage before navigating.
+           IMPORTANT: Only sync MockData entities (products, orders, etc.)
+           Do NOT overwrite admin-only settings keys (homeCollectionsSettings,
+           homepageSectionSettings, etc.) that MockData doesn't have. */
+        if (typeof __saveMockData === 'function') __saveMockData();
+        if (typeof Bridge !== 'undefined') {
+            var existing = Bridge.Data.load();
+            if (!existing) existing = {};
+            /* Merge: persisted data is the base. Only copy MockData keys
+               that represent catalog entities (not admin-only settings). */
+            var merged = Object.assign({}, existing);
+            if (typeof MockData !== 'undefined') {
+                Object.keys(MockData).forEach(function(key) {
+                    /* Skip admin-only settings keys — these are managed
+                       exclusively by their respective pages via
+                       Bridge.Data.saveEntity() and should never be
+                       overwritten by MockData snapshots. */
+                    if (key === 'homeCollectionsSettings' ||
+                        key === 'homepageSectionSettings' ||
+                        key === 'websiteHeader' ||
+                        key === 'websiteFooter' ||
+                        key === 'websiteSetup' ||
+                        key === 'homePageSettings') {
+                        /* Preserve existing value, don't copy from MockData */
+                        if (existing[key] !== undefined) {
+                            merged[key] = existing[key];
+                        }
+                    } else {
+                        /* Catalog entity — safe to copy from MockData */
+                        merged[key] = MockData[key];
+                    }
+                });
+            }
+            Bridge.Data.save(merged);
+        }
+
         this.currentPage = pageId;
         // Find label
         var label = pageId;
@@ -244,8 +306,15 @@ const App = {
     },
 
     logout() {
+        /* NEW: Logout via Bridge (clears admin session consistently) */
+        if (typeof Bridge !== 'undefined') {
+            Bridge.Auth.clearSession();
+        }
+        // PREV: localStorage.removeItem('tatito_admin_session');
         localStorage.removeItem('tatito_admin_session');
         sessionStorage.removeItem('tatito_session');
+        // NEW: Redirect to frontend login instead of admin login page
+        // PREV: window.location.href = 'index.html';
         window.location.href = 'index.html';
     },
 

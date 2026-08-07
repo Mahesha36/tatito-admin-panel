@@ -172,6 +172,24 @@ document.addEventListener("DOMContentLoaded", () => {
         createdAt: new Date().toISOString()
       });
 
+      /* ================================================================
+         NEW: Admin/Seller detection — after frontend login, check if
+         this email belongs to an admin or seller account. If yes,
+         set the admin session and redirect to the admin panel.
+         This connects the frontend login to the admin panel auth.
+         ================================================================ */
+      if (typeof Bridge !== 'undefined') {
+        var adminAccount = Bridge.Auth.checkAdminAccess(emailVal);
+        if (adminAccount) {
+          // Set admin session so admin panel accepts the login
+          Bridge.Auth.setAdminSession(adminAccount);
+          showToast("Admin login detected! Redirecting to admin panel…", "success");
+          var dest = adminAccount.role === 'admin' ? '/admin/app.html' : '/admin/seller.html';
+          setTimeout(() => { window.location.href = dest; }, 800);
+          return; // Skip the normal customer redirect below
+        }
+      }
+
       showToast("Login successful! Welcome back.", "success");
       setTimeout(() => { window.location.href = "index.html"; }, 800);
     });
@@ -200,6 +218,42 @@ document.addEventListener("DOMContentLoaded", () => {
     sessionStorage.setItem("tatito_mobile_otp", otp);
     showToast(`OTP resent: ${otp} (demo)`, "success");
     startOTPTimer();
+  });
+
+  /* ================================================================
+     NEW: Admin quick-login button handler.
+     Pre-fills the email/password fields with admin credentials
+     and submits the form.
+     ================================================================ */
+  const adminQuickBtn = document.getElementById("adminQuickLogin");
+  adminQuickBtn?.addEventListener("click", () => {
+    // Switch to email tab
+    if (emailTab && !emailTab.classList.contains("active")) {
+      switchTab("email");
+    }
+    // Focus email field
+    const emailInput = loginForm?.querySelector('input[name="email"]');
+    if (emailInput) {
+      emailInput.focus();
+      showToast("Enter your admin credentials below", "info");
+    }
+  });
+
+  // NEW: Demo account quick-fill buttons
+  document.querySelectorAll(".admin-demo-fill").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const email = btn.dataset.email || "";
+      const pwd = btn.dataset.pwd || "";
+      const emailInput = loginForm?.querySelector('input[name="email"]');
+      const pwdInput = loginForm?.querySelector('input[name="password"]');
+      if (emailInput) emailInput.value = email;
+      if (pwdInput) pwdInput.value = pwd;
+      // Switch to email tab if needed
+      if (emailTab && !emailTab.classList.contains("active")) {
+        switchTab("email");
+      }
+      showToast("Credentials filled — click Login to continue", "info");
+    });
   });
 
   /* ========================================================
