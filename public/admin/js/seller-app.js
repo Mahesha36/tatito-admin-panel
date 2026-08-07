@@ -173,7 +173,7 @@ const SellerApp = {
         Helpers.confirm('Logout?', 'You will be returned to the login screen.', 'question').then(result => {
             if (result.isConfirmed) {
                 localStorage.removeItem('tatito_admin_session');
-                window.location.href = 'index.html';
+                window.location.href = '../frontend/login.html';
             }
         });
     },

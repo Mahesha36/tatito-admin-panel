@@ -361,9 +361,9 @@ const App = {
         // PREV: localStorage.removeItem('tatito_admin_session');
         localStorage.removeItem('tatito_admin_session');
         sessionStorage.removeItem('tatito_session');
-        // NEW: Redirect to frontend login instead of admin login page
+        // NEW: Redirect to frontend login page
         // PREV: window.location.href = 'index.html';
-        window.location.href = 'index.html';
+        window.location.href = '../frontend/login.html';
     },
 
     clearCache() {
