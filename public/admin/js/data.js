@@ -5,7 +5,7 @@ const MockData = {
 
     // ====== AUTH ACCOUNTS ======
     accounts: [
-        { id: 'ACC001', email: 'admin@tatitofashions.com', password: 'admin123', role: 'admin', name: 'Mahesh Nalawade', linkedId: 'STF001' },
+        { id: 'ACC001', email: 'admin@tatitofashions.com', password: 'admin123', role: 'admin', name: 'Super Admin', linkedId: 'STF001' },
         { id: 'ACC002', email: 'rajesh.textiles@gmail.com', password: 'seller123', role: 'seller', name: 'Rajesh Textiles', linkedId: 'SEL001' },
         { id: 'ACC003', email: 'fashionhub@gmail.com', password: 'seller123', role: 'seller', name: 'Fashion Hub Mumbai', linkedId: 'SEL002' },
         { id: 'ACC004', email: 'royal.diamond@gmail.com', password: 'seller123', role: 'seller', name: 'Royal Jewellers', linkedId: 'SEL003' },
@@ -300,7 +300,7 @@ const MockData = {
 
     // ====== STAFF ======
     staff: [
-        { id: 'STF001', firstName: 'Mahesh', lastName: 'Nalawade', name: 'Mahesh Nalawade', email: 'admin@tatitofashions.com', phone: '+91 98765 43210', role: 'Super Admin', status: 'active', lastLogin: '2026-03-20T10:00:00Z', permissions: 'all' },
+        { id: 'STF001', firstName: 'Super', lastName: 'Admin', name: 'Super Admin', email: 'admin@tatitofashions.com', phone: '+91 98765 43210', role: 'Super Admin', status: 'active', lastLogin: '2026-03-20T10:00:00Z', permissions: 'all' },
         { id: 'STF002', firstName: 'Arjun', lastName: 'Patel', name: 'Arjun Patel', email: 'arjun@tatitofashions.com', phone: '+91 98220 11223', role: 'Manager', status: 'active', lastLogin: '2026-03-19T14:30:00Z', permissions: 'manager' },
         { id: 'STF003', firstName: 'Deepika', lastName: 'Rao', name: 'Deepika Rao', email: 'deepika@tatitofashions.com', phone: '+91 98300 55667', role: 'Order Manager', status: 'active', lastLogin: '2026-03-19T09:15:00Z', permissions: 'orders' },
         { id: 'STF004', firstName: 'Karan', lastName: 'Malhotra', name: 'Karan Malhotra', email: 'karan@tatitofashions.com', phone: '+91 98400 77889', role: 'Customer Support', status: 'active', lastLogin: '2026-03-18T16:45:00Z', permissions: 'support' },

@@ -126,13 +126,61 @@ const App = {
             }
         }
 
-        // Set user info
+        /* ========================================================
+           NEW: Data migration — fix stale persisted data that still
+           has the old admin name "Mahesh Nalawade". Corrects it in
+           MockData.accounts, MockData.staff, AND the session, then
+           persists the fix back to localStorage so it stays fixed.
+           ======================================================== */
+        (function migrateAdminName() {
+            var oldName = 'Mahesh Nalawade';
+            var newName = 'Super Admin';
+            var changed = false;
+            if (typeof MockData !== 'undefined') {
+                if (MockData.accounts) {
+                    MockData.accounts.forEach(function(a) {
+                        if (a.name === oldName || (a.email === 'admin@tatitofashions.com' && a.name !== newName)) {
+                            a.name = newName; changed = true;
+                        }
+                    });
+                }
+                if (MockData.staff) {
+                    MockData.staff.forEach(function(s) {
+                        if (s.name === oldName || (s.email === 'admin@tatitofashions.com' && s.name !== newName)) {
+                            s.name = newName; s.firstName = 'Super'; s.lastName = 'Admin'; changed = true;
+                        }
+                    });
+                }
+            }
+            // Fix session name too
+            if (session && session.name === oldName) {
+                session.name = newName;
+                if (typeof Bridge !== 'undefined') Bridge.Auth.setAdminSession({ email: session.email, name: newName, role: session.role, linkedId: session.linkedId });
+            }
+            // Persist the fix back
+            if (changed && typeof Bridge !== 'undefined') {
+                Bridge.Data.save(MockData);
+            }
+        })();
+
+        // Set user info — always derive name from current account data,
+        // not from stale session (in case account name was updated)
+        var displayName = session.name || 'Admin';
+        var displayRole = session.role || 'admin';
+        if (typeof MockData !== 'undefined' && MockData.accounts) {
+            MockData.accounts.forEach(function(a) {
+                if (a.email === session.email) {
+                    displayName = a.name || displayName;
+                    displayRole = a.role || displayRole;
+                }
+            });
+        }
         var nameEl = document.getElementById('sidebarUserName');
         var roleEl = document.getElementById('sidebarUserRole');
         var avatarEl = document.getElementById('sidebarAvatar');
-        if (nameEl) nameEl.textContent = session.name || 'Admin';
-        if (roleEl) roleEl.textContent = 'Administrator';
-        if (avatarEl) avatarEl.textContent = (session.name || 'A').charAt(0).toUpperCase();
+        if (nameEl) nameEl.textContent = displayName;
+        if (roleEl) roleEl.textContent = displayRole === 'admin' ? 'Super Admin' : (session.roleLabel || 'Administrator');
+        if (avatarEl) avatarEl.textContent = (displayName || 'A').charAt(0).toUpperCase();
 
         this.buildSidebar();
         I18n.init();
