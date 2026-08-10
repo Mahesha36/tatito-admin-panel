@@ -38,13 +38,20 @@ function renderNavbar() {
   /* Read admin header settings if available */
   const adminHeader = (typeof FrontendBridge !== "undefined" && FrontendBridge.getAdminHeader) ? FrontendBridge.getAdminHeader() : {};
 
+  /* NEW: Read website setup for site name (single source of truth) */
+  const ws = (typeof FrontendBridge !== "undefined" && FrontendBridge.getAdminWebsiteSetup) ? FrontendBridge.getAdminWebsiteSetup() : {};
+  const siteName = ws.websiteName || 'Tatito Fashions';
+  const nameParts = siteName.split(' ');
+  const navBrandTitle = (nameParts[0] || 'TATITO').toUpperCase();
+  const navBrandSub = nameParts.length > 1 ? nameParts.slice(1).join(' ').toUpperCase() : 'FASHIONS';
+
   header.innerHTML = `
     <div class="nav-inner">
       <a class="nav-logo" href="index.html">
-        <img src="assets/images/tatito-logo-official.jpg" alt="Tatito Fashions" />
+        <img src="assets/images/tatito-logo-official.jpg" alt="${siteName}" />
         <div class="nav-brand-name">
-          <span class="brand-title">TATITO</span>
-          <em class="brand-sub">FASHIONS</em>
+          <span class="brand-title">${navBrandTitle}</span>
+          <em class="brand-sub">${navBrandSub}</em>
         </div>
       </a>
       ${adminHeader.helplineNumber ? `
@@ -54,7 +61,7 @@ function renderNavbar() {
       </a>` : ''}
       <nav class="nav-links mega-menu-nav">
         ${adminHeader.quickLinkText ? `<a href="${adminHeader.quickLinkUrl || '#'}" class="nav-quick-link">${adminHeader.quickLinkText}</a>` : ''}
-        <a href="index.html" data-i18n="home">Home</a>
+        ${!adminHeader.quickLinkText ? `<a href="index.html" data-i18n="home">Home</a>` : ''}
         ${(typeof NAV_VERTICALS !== "undefined" ? NAV_VERTICALS : []).map((cat) => {
           if (cat.slug === "collections") {
             const sections = (typeof COLLECTION_SECTIONS !== "undefined" ? COLLECTION_SECTIONS : []);
@@ -246,71 +253,143 @@ function renderNavbar() {
   TATITO_I18N.applyI18n();
 }
 
-/* ---------- Footer renderer (shared) ---------- */
+/* ---------- Footer renderer (shared) ----------
+   NEW: Fully admin-driven. Builds all footer columns from the admin's
+   websiteFooter settings (aboutWidget, contactsWidget, linkWidgets,
+   copyrightWidget, mobileAppWidget). No hardcoded columns — the admin
+   panel is the single source of truth for everything in the footer.
+   PREV: Hardcoded Shop/Services/Company columns were always rendered,
+   then applyAdminSettings() patched text on top, causing duplicates.
+   ================================================================ */
 function renderFooter() {
   const footer = document.querySelector(".footer");
   if (!footer) return;
 
-  /* Read admin footer settings if available */
+  /* Read admin footer settings — this is the single source of truth */
   const f = (typeof FrontendBridge !== "undefined" && FrontendBridge.getAdminFooter) ? FrontendBridge.getAdminFooter() : {};
 
-  footer.innerHTML = `
-    <div class="footer-top">
-      <div class="footer-brand">
-        <img src="assets/images/tatito-logo-official.jpg" alt="Tatito Fashions" />
-        <div class="brand-name" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;">
-          <span class="brand-title" style="font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:2px;">TATITO</span>
-          <span class="brand-sub" style="font-size:12px;color:var(--gold);letter-spacing:4px;font-family:var(--font-display);">FASHIONS</span>
-        </div>
-        <p style="font-size:12.5px;color:var(--muted);margin-top:4px;" data-admin-about>Custom fashion for everyone.</p>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footerShop">Shop</h4>
-        <a href="products.html">All Products</a>
-        <a href="category.html?category=men-wear" data-i18n="men">Men</a>
-        <a href="category.html?category=women-wear" data-i18n="women">Women</a>
-        <a href="category.html?category=kids-wear" data-i18n="kids">Kids</a>
-        <a href="deals.html">🔥 Deals & Offers</a>
-        <a href="try-on.html">AI Try-On</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footerServices">Services</h4>
-        <a href="customize.html">Customize</a>
-        <a href="category.html?category=wedding">Wedding</a>
-        <a href="category.html?category=jewellery">Jewellery</a>
-        <a href="category.html?category=events">Event Management</a>
-        <a href="category.html?category=customize">Custom Fashion</a>
-        <a href="consultations.html">Consultations</a>
-      </div>
-      <div class="footer-col">
-        <h4 data-i18n="footerCompany">Company</h4>
-        <a href="about.html">About Us</a>
-        <a href="careers.html">Careers</a>
-        <a href="seller-register.html" data-i18n="sellOnTatito">Sell on Tatito</a>
-        <a href="contact.html">Contact Us</a>
-        <a href="referral.html">Referral Program</a>
-        <a href="orders.html">Track Orders</a>
-      </div>
-      ${f.contactsWidget ? `
-      <div class="footer-col footer-contacts">
-        <h4>Contact Us</h4>
-        ${f.contactsWidget.address ? `<p style="font-size:12.5px;color:var(--muted);margin-bottom:4px;" data-admin-address>${f.contactsWidget.address}</p>` : ''}
-        ${f.contactsWidget.email ? `<a href="mailto:${f.contactsWidget.email}" style="font-size:12.5px;display:block;margin-bottom:4px;" data-admin-email>${f.contactsWidget.email}</a>` : ''}
-        ${(f.contactsWidget.phones && f.contactsWidget.phones[0]) ? `<a href="tel:${f.contactsWidget.phones[0]}" style="font-size:12.5px;display:block;margin-bottom:4px;" data-admin-phone>${f.contactsWidget.phones[0]}</a>` : ''}
-      </div>` : ''}
-    </div>
-    <div class="footer-bottom">
-      <span data-admin-copyright>© 2026 <span data-i18n="brandName">Tatito</span> <span data-i18n="brandSub">Fashions</span>. <span data-i18n="allRightsReserved">All rights reserved.</span></span>
-      ${(f.copyrightWidget && f.copyrightWidget.showSocialLinks && f.copyrightWidget.social) ? `
-      <div class="footer-social">
-        ${f.copyrightWidget.social.facebook ? `<a href="${f.copyrightWidget.social.facebook}" target="_blank" data-social="facebook"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg></a>` : ''}
-        ${f.copyrightWidget.social.twitter ? `<a href="${f.copyrightWidget.social.twitter}" target="_blank" data-social="twitter"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>` : ''}
-        ${f.copyrightWidget.social.instagram ? `<a href="${f.copyrightWidget.social.instagram}" target="_blank" data-social="instagram"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.41 1.44c.795 0 1.441-.645 1.441-1.44s-.646-1.44-1.441-1.44z"/></svg></a>` : ''}
-        ${f.copyrightWidget.social.youtube ? `<a href="${f.copyrightWidget.social.youtube}" target="_blank" data-social="youtube"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg></a>` : ''}
-        ${f.copyrightWidget.social.linkedin ? `<a href="${f.copyrightWidget.social.linkedin}" target="_blank" data-social="linkedin"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg></a>` : ''}
-      </div>` : ''}
-    </div>
-  `;
+  /* Also read websiteSetup for site name/logo */
+  const ws = (typeof FrontendBridge !== "undefined" && FrontendBridge.getAdminWebsiteSetup) ? FrontendBridge.getAdminWebsiteSetup() : {};
+  const siteName = ws.websiteName || 'Tatito Fashions';
+  const nameParts = siteName.split(' ');
+  const brandTitle = (nameParts[0] || 'TATITO').toUpperCase();
+  const brandSub = nameParts.length > 1 ? nameParts.slice(1).join(' ').toUpperCase() : 'FASHIONS';
+
+  /* About description */
+  const aboutDesc = (f.aboutWidget && f.aboutWidget.description) ? f.aboutWidget.description : '';
+
+  /* Build link columns from admin linkWidgets — or fall back to defaults */
+  var linkColsHtml = '';
+  if (f.linkWidgets && f.linkWidgets.length > 0) {
+    /* Map admin URL paths to actual frontend HTML pages */
+    function mapFooterUrl(url) {
+      var urlMap = {
+        '/about': 'about.html', '/contact': 'contact.html', '/faq': 'contact.html',
+        '/boutiques': 'category.html?category=boutiques', '/designers': 'category.html?category=designers',
+        '/wedding': 'category.html?category=wedding', '/privacy': 'about.html', '/terms': 'about.html',
+        '/returns': 'about.html',
+        '/men': 'category.html?category=men-wear', '/women': 'category.html?category=women-wear',
+        '/kids': 'category.html?category=kids-wear', '/deals': 'deals.html',
+        '/customize': 'customize.html', '/jewellery': 'category.html?category=jewellery',
+        '/consultations': 'consultations.html', '/careers': 'careers.html',
+        '/sell': 'seller-register.html', '/referral': 'referral.html',
+        '/orders': 'orders.html', '/try-on': 'try-on.html',
+        '/products': 'products.html', '/home': 'index.html'
+      };
+      if (urlMap[url]) return urlMap[url];
+      if (url.startsWith('http')) return url;
+      if (url.endsWith('.html')) return url;
+      return url; /* return as-is for unknown paths */
+    }
+
+    linkColsHtml = f.linkWidgets.map(function(lw) {
+      var linksHtml = (lw.links || []).map(function(link) {
+        return '<a href="' + mapFooterUrl(link.url) + '">' + link.text + '</a>';
+      }).join('');
+      return '<div class="footer-col"><h4>' + lw.title + '</h4>' + linksHtml + '</div>';
+    }).join('');
+  } else {
+    /* Default columns when no admin data exists yet */
+    linkColsHtml =
+      '<div class="footer-col"><h4>Shop</h4>' +
+        '<a href="products.html">All Products</a>' +
+        '<a href="category.html?category=men-wear">Men</a>' +
+        '<a href="category.html?category=women-wear">Women</a>' +
+        '<a href="category.html?category=kids-wear">Kids</a>' +
+        '<a href="deals.html">Deals & Offers</a>' +
+        '<a href="try-on.html">AI Try-On</a>' +
+      '</div>' +
+      '<div class="footer-col"><h4>Services</h4>' +
+        '<a href="customize.html">Customize</a>' +
+        '<a href="category.html?category=wedding">Wedding</a>' +
+        '<a href="category.html?category=jewellery">Jewellery</a>' +
+        '<a href="category.html?category=events">Event Management</a>' +
+        '<a href="consultations.html">Consultations</a>' +
+      '</div>' +
+      '<div class="footer-col"><h4>Company</h4>' +
+        '<a href="about.html">About Us</a>' +
+        '<a href="careers.html">Careers</a>' +
+        '<a href="seller-register.html">Sell on Tatito</a>' +
+        '<a href="contact.html">Contact Us</a>' +
+        '<a href="referral.html">Referral Program</a>' +
+      '</div>';
+  }
+
+  /* Contacts column */
+  var contactsHtml = '';
+  if (f.contactsWidget) {
+    var cw = f.contactsWidget;
+    contactsHtml = '<div class="footer-col footer-contacts"><h4>Contact Us</h4>';
+    if (cw.address) contactsHtml += '<p style="font-size:12.5px;color:var(--muted);margin-bottom:4px;" data-admin-address>' + cw.address + '</p>';
+    if (cw.email) contactsHtml += '<a href="mailto:' + cw.email + '" style="font-size:12.5px;display:block;margin-bottom:4px;" data-admin-email>' + cw.email + '</a>';
+    if (cw.phones && cw.phones[0]) contactsHtml += '<a href="tel:' + cw.phones[0] + '" style="font-size:12.5px;display:block;margin-bottom:4px;" data-admin-phone>' + cw.phones[0] + '</a>';
+    contactsHtml += '</div>';
+  }
+
+  /* Copyright + social */
+  var copyrightText = '';
+  if (f.copyrightWidget && f.copyrightWidget.text) {
+    copyrightText = '\u00A9 ' + new Date().getFullYear() + ' ' + f.copyrightWidget.text + ' All rights reserved.';
+  } else {
+    copyrightText = '\u00A9 ' + new Date().getFullYear() + ' ' + siteName + '. All rights reserved.';
+  }
+
+  var socialHtml = '';
+  if (f.copyrightWidget && f.copyrightWidget.showSocialLinks && f.copyrightWidget.social) {
+    var socialIcons = {
+      facebook: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>',
+      twitter: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg>',
+      instagram: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.41 1.44c.795 0 1.441-.645 1.441-1.44s-.646-1.44-1.441-1.44z"/></svg>',
+      youtube: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>',
+      linkedin: '<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5c0 1.381-1.11 2.5-2.48 2.5s-2.48-1.119-2.48-2.5c0-1.38 1.11-2.5 2.48-2.5s2.48 1.12 2.48 2.5zm.02 4.5h-5v16h5v-16zm7.982 0h-4.968v16h4.969v-8.399c0-4.67 6.029-5.052 6.029 0v8.399h4.988v-10.131c0-7.88-8.922-7.593-11.018-3.714v-2.155z"/></svg>'
+    };
+    var socials = ['facebook', 'twitter', 'instagram', 'youtube', 'linkedin'];
+    socialHtml = '<div class="footer-social">';
+    socials.forEach(function(s) {
+      if (f.copyrightWidget.social[s]) {
+        socialHtml += '<a href="' + f.copyrightWidget.social[s] + '" target="_blank" data-social="' + s + '">' + socialIcons[s] + '</a>';
+      }
+    });
+    socialHtml += '</div>';
+  }
+
+  footer.innerHTML =
+    '<div class="footer-top">' +
+      '<div class="footer-brand">' +
+        '<img src="assets/images/tatito-logo-official.jpg" alt="' + siteName + '" />' +
+        '<div class="brand-name" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;">' +
+          '<span class="brand-title" style="font-family:var(--font-display);font-size:19px;font-weight:600;letter-spacing:2px;">' + brandTitle + '</span>' +
+          '<span class="brand-sub" style="font-size:12px;color:var(--gold);letter-spacing:4px;font-family:var(--font-display);">' + brandSub + '</span>' +
+        '</div>' +
+        (aboutDesc ? '<p style="font-size:12.5px;color:var(--muted);margin-top:4px;" data-admin-about>' + aboutDesc + '</p>' : '') +
+      '</div>' +
+      linkColsHtml +
+      contactsHtml +
+    '</div>' +
+    '<div class="footer-bottom">' +
+      '<span data-admin-copyright>' + copyrightText + '</span>' +
+      socialHtml +
+    '</div>';
 }
 
 /* ---------- Theme toggle ---------- */
