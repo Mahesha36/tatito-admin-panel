@@ -28,7 +28,7 @@ App.pages.websiteSetup = function() {
                 '<div class="upload-field" onclick="document.getElementById(\'wsIcon\').click()">' +
                 '<div class="upload-preview"><img src="assets/tatito-logo.png" style="max-height:50px" onerror="this.style.display=\'none\'"></div>' +
                 '<div class="upload-info"><i class="bi bi-cloud-arrow-up"></i> <span>' + (ws.siteIcon || 'Choose file') + '</span></div>' +
-                '</div><input type="file" id="wsIcon" accept="image/*" style="display:none" onchange="App._previewUpload(this,\'\',\'\')"></div>' +
+                '</div><input type="file" id="wsIcon" accept="image/*" style="display:none" onchange="App._previewUploadEnhanced(this,\'\',\'\')"></div>' +
                 '<div class="form-row">' +
                 '<div class="form-group"><label>Website Base Color</label><input type="color" class="form-control form-color" id="wsBaseColor" value="' + (ws.baseColor || '#C9A24B') + '"></div>' +
                 '<div class="form-group"><label>Base Hover Color</label><input type="color" class="form-control form-color" id="wsHoverColor" value="' + (ws.baseHoverColor || '#8B6F2E') + '"></div>' +
@@ -42,7 +42,7 @@ App.pages.websiteSetup = function() {
                 '<div class="upload-field" onclick="document.getElementById(\'wsBanner\').click()">' +
                 '<div class="upload-preview"><img src="assets/tatito-logo.png" style="max-height:50px" onerror="this.style.display=\'none\'"></div>' +
                 '<div class="upload-info"><i class="bi bi-cloud-arrow-up"></i> <span>' + (ws.bannerImage || 'Choose file') + '</span></div>' +
-                '</div><input type="file" id="wsBanner" accept="image/*" style="display:none" onchange="App._previewUpload(this,\'\',\'\')"></div>' +
+                '</div><input type="file" id="wsBanner" accept="image/*" style="display:none" onchange="App._previewUploadEnhanced(this,\'\',\'\')"></div>' +
                 '<div class="form-group"><label>Banner Link</label><input type="text" class="form-control" id="wsBannerLink" value="' + (ws.bannerLink || '') + '" placeholder="https://"></div>' +
                 '<button class="btn btn-primary" onclick="App.saveWebsiteGeneral()"><i class="bi bi-check-lg"></i> Update</button>' +
                 '</div>' +
@@ -57,7 +57,7 @@ App.pages.websiteSetup = function() {
                 '<div class="upload-field" onclick="document.getElementById(\'seoImage\').click()">' +
                 '<div class="upload-preview"><img src="assets/tatito-logo.png" style="max-height:50px" onerror="this.style.display=\'none\'"></div>' +
                 '<div class="upload-info"><i class="bi bi-cloud-arrow-up"></i> <span>' + (ws.metaImage || 'Choose file') + '</span></div>' +
-                '</div><input type="file" id="seoImage" accept="image/*" style="display:none" onchange="App._previewUpload(this,\'\',\'\')"></div>' +
+                '</div><input type="file" id="seoImage" accept="image/*" style="display:none" onchange="App._previewUploadEnhanced(this,\'\',\'\')"></div>' +
                 '<button class="btn btn-primary" onclick="App.saveWebsiteSEO()"><i class="bi bi-check-lg"></i> Update</button>' +
                 '</div>';
         } else if (tab === 'cookies') {

@@ -1,201 +1,40 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>TATITO Fashions — Admin Login</title>
-<link rel="icon" href="assets/tatito-logo.png" type="image/png">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="css/theme.css?v=27">
-<link rel="stylesheet" href="css/layout.css?v=27">
-<link rel="stylesheet" href="css/components.css?v=27">
-<link rel="stylesheet" href="css/pages.css?v=27">
-<!-- SweetAlert2 -->
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-</head>
-<body class="auth-body">
-<div class="auth-wrapper">
-    <div class="auth-left">
-        <div class="auth-brand">
-            <img src="assets/tatito-logo.png" alt="TATITO" class="auth-logo" onerror="this.style.display='none'">
-            <h1>TATITO Fashions</h1>
-            <p>Premium E-Commerce Marketplace Admin Panel</p>
-        </div>
-        <div class="auth-features">
-            <div class="auth-feature"><i class="bi bi-shop"></i><span>Multi-Vendor Marketplace</span></div>
-            <div class="auth-feature"><i class="bi bi-palette"></i><span>Designer & Boutique Management</span></div>
-            <div class="auth-feature"><i class="bi bi-graph-up"></i><span>Real-Time Analytics & Reports</span></div>
-            <div class="auth-feature"><i class="bi bi-translate"></i><span>Multilingual Support</span></div>
-        </div>
-    </div>
-    <div class="auth-right">
-        <div class="auth-card">
-            <div class="auth-header">
-                <h2>Admin Login</h2>
-                <p>Sign in to the admin panel</p>
-            </div>
-            <form id="loginForm" onsubmit="return handleLogin(event)">
-                <div class="form-group">
-                    <label>Email Address</label>
-                    <input type="email" class="form-control" id="loginEmail" placeholder="admin@tatitofashions.com" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <div class="input-group">
-                        <input type="password" class="form-control" id="loginPassword" placeholder="Enter password" required style="padding-right:40px">
-                        <button type="button" class="password-toggle" onclick="togglePassword()"><i class="bi bi-eye"></i></button>
-                    </div>
-                </div>
-                <div class="form-row">
-                    <label class="checkbox-label"><input type="checkbox" id="rememberMe"> Remember me</label>
-                </div>
-                <button type="submit" class="btn btn-primary btn-block" style="margin-top:1rem">
-                    <i class="bi bi-box-arrow-in-right"></i> Sign In
-                </button>
-            </form>
-        </div>
-    </div>
-</div>
-<script src="js/helpers.js?v=27"></script>
-<script src="js/bridge.js?v=27"></script>
-<script src="js/data.js?v=28"></script>
-<script>
-/* ================================================================
-   NEW: On page load, check if user is already logged in via
-   the frontend session. If they have admin access, redirect
-   directly to the admin panel.
-   ================================================================ */
-(function checkExistingSession() {
-    if (typeof Bridge !== 'undefined' && Bridge.Auth.hasAdminSession()) {
-        // Already logged in as admin — go straight to dashboard
-        var session = Bridge.Auth.getSession();
-        if (session.role === 'admin') {
-            window.location.href = 'app.html';
-            return;
-        } else if (session.role === 'seller' || session.role === 'designer') {
-            window.location.href = 'seller.html';
-            return;
-        }
-    }
-    // NEW: Also check if frontend login was done (tatito_auth + tatito_user)
-    if (typeof Bridge !== 'undefined' && Bridge.Frontend.isAuthed()) {
-        var user = Bridge.Frontend.getUser();
-        if (user && user.email) {
-            var adminAccount = Bridge.Auth.checkAdminAccess(user.email);
-            if (adminAccount) {
-                Bridge.Auth.setAdminSession(adminAccount);
-                var dest = adminAccount.role === 'admin' ? 'app.html' : 'seller.html';
-                window.location.href = dest;
-                return;
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TATITO Fashions — Admin Panel</title>
+  <!--
+    Admin login now goes through the FRONTEND login page.
+    The frontend login (auth.js) detects admin accounts via
+    Bridge.Auth.checkAdminAccess() and redirects to /admin/app.html.
+    This page just redirects there if a session exists,
+    or to the frontend login if not.
+  -->
+  <script>
+    (function () {
+      try {
+        var raw = localStorage.getItem('tatito_admin_session');
+        if (raw) {
+          var session = JSON.parse(raw);
+          // Check 24-hour expiry
+          if (session.loginTime) {
+            var age = Date.now() - new Date(session.loginTime).getTime();
+            if (age < 24 * 60 * 60 * 1000) {
+              // Valid session — go to the right panel
+              var dest = session.role === 'admin' ? 'app.html' : 'seller.html';
+              window.location.href = dest;
+              return;
             }
+          }
         }
-    }
-})();
-
-function handleLogin(e) {
-    e.preventDefault();
-    var email = document.getElementById('loginEmail').value.trim().toLowerCase();
-    var pwd = document.getElementById('loginPassword').value;
-
-    /* ========================================================
-       NEW: Auth via Bridge — checks both the admin registry
-       and MockData accounts, and also allows frontend users
-       with admin role to log in here.
-       PREV code:
-       var account = MockData.accounts.find(function(a) {
-           return a.email.toLowerCase() === email && a.password === pwd;
-       });
-       ======================================================== */
-    var account = null;
-
-    // Step 1: Check Bridge admin registry + MockData
-    if (typeof Bridge !== 'undefined') {
-        account = Bridge.Auth.checkAdminAccess(email);
-        // Verify password if the account has one
-        if (account && account.password && account.password !== pwd) {
-            account = null;
-        }
-    }
-
-    // Step 2: Fallback to MockData direct check (original logic)
-    if (!account && typeof MockData !== 'undefined') {
-        account = MockData.accounts.find(function(a) {
-            return a.email.toLowerCase() === email && a.password === pwd;
-        });
-    }
-
-    // Step 3: NEW — Check if this is a frontend-registered user with no password
-    // (frontend auth doesn't use passwords, so allow them in if email matches)
-    if (!account && typeof Bridge !== 'undefined' && Bridge.Frontend.isAuthed()) {
-        var frontendUser = Bridge.Frontend.getUser();
-        if (frontendUser && frontendUser.email.toLowerCase() === email) {
-            // Grant admin access to any logged-in frontend user (for demo)
-            account = {
-                email: frontendUser.email,
-                name: frontendUser.name || 'Admin',
-                role: 'admin',
-                linkedId: null
-            };
-        }
-    }
-
-    if (!account) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Invalid Credentials',
-            text: 'No account found with these credentials.',
-            confirmButtonColor: '#C9A24B'
-        });
-        return false;
-    }
-
-    /* NEW: Set session via Bridge */
-    if (typeof Bridge !== 'undefined') {
-        Bridge.Auth.setAdminSession(account);
-    }
-
-    var session = {
-        email: account.email,
-        name: account.name,
-        role: account.role,
-        linkedId: account.linkedId,
-        loginTime: new Date().toISOString()
-    };
-    localStorage.setItem('tatito_admin_session', JSON.stringify(session));
-
-    var dashboardUrl = {
-        admin: 'app.html',
-        seller: 'seller.html',
-        designer: 'seller.html',
-        customer: 'app.html'
-    };
-
-    Swal.fire({
-        icon: 'success',
-        title: 'Welcome, ' + account.name + '!',
-        html: 'Redirecting to <strong>' + (account.role === 'admin' ? 'Admin' : 'Seller') + ' Dashboard</strong>...',
-        showConfirmButton: false,
-        timer: 1200,
-        timerProgressBar: true
-    }).then(function() {
-        window.location.href = dashboardUrl[account.role] || 'app.html';
-    });
-    return false;
-}
-
-// Password show/hide toggle
-function togglePassword() {
-    var inp = document.getElementById('loginPassword');
-    var icon = document.querySelector('.password-toggle i');
-    if (inp.type === 'password') {
-        inp.type = 'text';
-        icon.classList.replace('bi-eye', 'bi-eye-slash');
-    } else {
-        inp.type = 'password';
-        icon.classList.replace('bi-eye-slash', 'bi-eye');
-    }
-}
-</script>
+      } catch (e) { /* ignore parse errors */ }
+      // No valid session — redirect to frontend login
+      window.location.href = '../frontend/login.html';
+    })();
+  </script>
+</head>
+<body style="background:#1a120f;display:flex;align-items:center;justify-content:center;height:100vh;margin:0;font-family:system-ui,sans-serif;">
+  <p style="color:#8b7355;font-size:14px;">Redirecting to login…</p>
 </body>
 </html>

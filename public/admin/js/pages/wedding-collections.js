@@ -27,7 +27,7 @@ function _wcForm(c) {
         '<div class="form-group"><label>Title *</label><input type="text" class="form-control" name="title" value="'+Helpers.escapeHtml(c.title||'')+'" required></div>' +
         '<div class="form-group"><label>Subtitle</label><input type="text" class="form-control" name="subtitle" value="'+Helpers.escapeHtml(c.subtitle||'')+'"></div>' +
         '<div class="form-group"><label>Count Badge</label><input type="text" class="form-control" name="count_badge" value="'+Helpers.escapeHtml(c.count_badge||'')+'" placeholder="120+ Designs"></div>' +
-        '<div class="form-group"><label>Image</label><div class="upload-zone" onclick="this.querySelector(\'input\').click()"><i class="bi bi-cloud-arrow-up"></i><p>Click to upload</p><input type="file" accept="image/*" hidden></div></div>' +
+        '<div class="form-group"><label>Image</label><div class="upload-zone"><i class="bi bi-cloud-arrow-up"></i><p>Click to upload</p><input type="file" id="wcImage" accept="image/*" hidden></div></div>' +
         '<div class="form-group"><label>Video URL</label><input type="url" class="form-control" name="video_url" value="'+(c.video_url||'')+'"></div>' +
         '<div class="form-row"><div class="form-group"><label>Sort Order</label><input type="number" class="form-control" name="sort_order" value="'+(c.sort_order||1)+'"></div>' +
         '<div class="form-group"><label>Active</label><button type="button" class="toggle-switch '+(c.is_active!==false?'on':'')+'" onclick="this.classList.toggle(\'on\')"><span class="toggle-knob"></span></button></div></div>' +
@@ -38,7 +38,7 @@ App.editWeddingCollection = function(id) { var c=MockData.weddingCollections.fin
 App.saveWeddingCollection = function(id) {
     var f=document.getElementById('wcForm'); var fd=new FormData(f);
     if(!fd.get('title')){Helpers.toast('Title required','error');return;}
-    var entry={gender:fd.get('gender'),title:fd.get('title'),subtitle:fd.get('subtitle')||'',count_badge:fd.get('count_badge')||'',image:'assets/logo.svg',video_url:fd.get('video_url')||'',sort_order:parseInt(fd.get('sort_order'))||1,is_active:f.querySelector('.toggle-switch').classList.contains('on')};
+    var entry={gender:fd.get('gender'),title:fd.get('title'),subtitle:fd.get('subtitle')||'',count_badge:fd.get('count_badge')||'',image:App.getUpload('wcImage')||(id?(MockData.weddingCollections.find(function(x){return x.id===id;}).image):'assets/tatito-logo.png'),video_url:fd.get('video_url')||'',sort_order:parseInt(fd.get('sort_order'))||1,is_active:f.querySelector('.toggle-switch').classList.contains('on')};
     if(id){Object.assign(MockData.weddingCollections.find(function(x){return x.id===id;}),entry);}else{entry.id='WPC'+String(MockData.weddingCollections.length+1).padStart(3,'0');MockData.weddingCollections.push(entry);}
     Helpers.closeModal();Helpers.toast('Saved','success');App.navigate('wedding-collections');
 };

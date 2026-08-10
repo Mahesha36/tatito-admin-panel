@@ -105,13 +105,15 @@ const App = {
            if (session.role !== 'admin') { window.location.href = 'index.html'; return; }
            ======================================================== */
         if (typeof Bridge !== 'undefined' && !Bridge.Auth.hasAdminSession()) {
-            window.location.href = 'index.html';
+            /* NEW: Redirect to frontend login (admin login page removed).
+               PREV: window.location.href = 'index.html'; */
+            window.location.href = '../frontend/login.html';
             return;
         }
         var session = (typeof Bridge !== 'undefined')
             ? Bridge.Auth.getSession()
             : JSON.parse(localStorage.getItem('tatito_admin_session') || '{}');
-        if (!session) { window.location.href = 'index.html'; return; }
+        if (!session) { window.location.href = '../frontend/login.html'; return; }
 
         /* NEW: Load persisted admin data from localStorage via Bridge.
            This ensures changes survive page reloads.
@@ -158,6 +160,85 @@ const App = {
                 if (typeof Bridge !== 'undefined') Bridge.Auth.setAdminSession({ email: session.email, name: newName, role: session.role, linkedId: session.linkedId });
             }
             // Persist the fix back
+            if (changed && typeof Bridge !== 'undefined') {
+                Bridge.Data.save(MockData);
+            }
+        })();
+
+        /* ========================================================
+           NEW: Data migration — sync websiteFooter and websiteHeader
+           from persisted localStorage to the latest MockData defaults.
+           Previous MockData had fake columns (Quick Links, Policies)
+           that didn't match the real frontend footer. This replaces
+           stale persisted data with the correct frontend-matching data
+           when the old column titles are detected.
+           ======================================================== */
+        (function migrateFooterHeader() {
+            var changed = false;
+            if (typeof MockData !== 'undefined' && MockData.websiteFooter) {
+                var lw = MockData.websiteFooter.linkWidgets || [];
+                /* Detect old format: first widget was "Quick Links" or "Policies"
+                   instead of the frontend's real "Shop" column */
+                var isOldFormat = lw.length > 0 && (lw[0].title === 'Quick Links' || lw[0].title === 'Policies' ||
+                    (lw[0].id === 'LW1' && lw[0].title !== 'Shop'));
+                if (isOldFormat) {
+                    /* Replace with the correct frontend-matching defaults */
+                    MockData.websiteFooter = {
+                        aboutWidget: { logoFile: 'tatito-logo-official.jpg', description: 'Custom fashion for everyone.' },
+                        contactsWidget: MockData.websiteFooter.contactsWidget || {
+                            address: 'Mumbai, Maharashtra, 400001', website: 'tatitofashions.com',
+                            email: 'support@tatitofashions.com', phones: ['+91 98765 43210', '+91 98220 11223']
+                        },
+                        linkWidgets: [
+                            { id: 'LW1', title: 'Shop', links: [
+                                { text: 'All Products', url: 'products.html' },
+                                { text: 'Men', url: 'category.html?category=men-wear' },
+                                { text: 'Women', url: 'category.html?category=women-wear' },
+                                { text: 'Kids', url: 'category.html?category=kids-wear' },
+                                { text: 'Deals & Offers', url: 'deals.html' },
+                                { text: 'AI Try-On', url: 'try-on.html' },
+                            ]},
+                            { id: 'LW2', title: 'Services', links: [
+                                { text: 'Customize', url: 'customize.html' },
+                                { text: 'Wedding', url: 'category.html?category=wedding' },
+                                { text: 'Jewellery', url: 'category.html?category=jewellery' },
+                                { text: 'Event Management', url: 'category.html?category=events' },
+                                { text: 'Custom Fashion', url: 'category.html?category=customize' },
+                                { text: 'Consultations', url: 'consultations.html' },
+                            ]},
+                            { id: 'LW3', title: 'Company', links: [
+                                { text: 'About Us', url: 'about.html' },
+                                { text: 'Careers', url: 'careers.html' },
+                                { text: 'Sell on Tatito', url: 'seller-register.html' },
+                                { text: 'Contact Us', url: 'contact.html' },
+                                { text: 'Referral Program', url: 'referral.html' },
+                                { text: 'Track Orders', url: 'orders.html' },
+                            ]},
+                        ],
+                        mobileAppWidget: MockData.websiteFooter.mobileAppWidget || {},
+                        copyrightWidget: MockData.websiteFooter.copyrightWidget || {},
+                    };
+                    changed = true;
+                }
+                /* Also fix copyright text if it's the old format */
+                if (MockData.websiteFooter.copyrightWidget &&
+                    MockData.websiteFooter.copyrightWidget.text === 'Copyright Reserved TATITOFashions.com') {
+                    MockData.websiteFooter.copyrightWidget.text = 'Tatito Fashions. All rights reserved.';
+                    changed = true;
+                }
+            }
+            /* Fix header defaults — old data had fake quickLink and helpline */
+            if (typeof MockData !== 'undefined' && MockData.websiteHeader) {
+                if (MockData.websiteHeader.quickLinkText === 'Home' && MockData.websiteHeader.quickLinkUrl === '/home') {
+                    MockData.websiteHeader.quickLinkText = '';
+                    MockData.websiteHeader.quickLinkUrl = '';
+                    changed = true;
+                }
+                if (MockData.websiteHeader.helplineNumber === '+91 98765 43210') {
+                    MockData.websiteHeader.helplineNumber = '';
+                    changed = true;
+                }
+            }
             if (changed && typeof Bridge !== 'undefined') {
                 Bridge.Data.save(MockData);
             }
@@ -314,6 +395,22 @@ const App = {
         } else {
             container.innerHTML = '<div class="empty-state"><i class="bi bi-inbox"></i><p>Page not found.</p></div>';
         }
+
+        /* NEW: Initialise upload zones after page content is rendered.
+           Also re-init when modals open (modals are rendered dynamically). */
+        if (typeof App._initUploadZones === 'function') App._initUploadZones();
+        var modalObserver = new MutationObserver(function (mutations) {
+            mutations.forEach(function (m) {
+                m.addedNodes.forEach(function (node) {
+                    if (node.nodeType === 1) {
+                        if (node.classList && node.classList.contains('modal-overlay')) {
+                            setTimeout(function () { App._initUploadZones(); }, 50);
+                        }
+                    }
+                });
+            });
+        });
+        modalObserver.observe(document.body, { childList: true, subtree: false });
     },
 
     destroyAll() {
@@ -377,3 +474,92 @@ const App = {
 };
 
 document.addEventListener('DOMContentLoaded', function() { App.init(); });
+
+/* ================================================================
+   UNIVERSAL UPLOAD HANDLER
+   Works with two patterns:
+   1. .upload-zone elements (modal forms): onclick opens file picker,
+      onchange shows preview image + stores dataURL
+   2. Hidden file inputs with data-preview attribute: onchange shows
+      preview in the specified element
+   Stores the uploaded image as a base64 dataURL in App._uploads
+   so save functions can retrieve it via App.getUpload(inputId).
+   ================================================================ */
+App._uploads = App._uploads || {};
+
+/* Initialise all .upload-zone elements on the page after any
+   page render. Called automatically — just needs to be invoked
+   after innerHTML is set. Uses event delegation so it works
+   on dynamically created modals too. */
+App._initUploadZones = function () {
+    var zones = document.querySelectorAll('.upload-zone');
+    zones.forEach(function (zone) {
+        if (zone._uploadInit) return;
+        zone._uploadInit = true;
+        zone.addEventListener('click', function (e) {
+            var input = zone.querySelector('input[type="file"]');
+            if (input && e.target !== input) input.click();
+        });
+        var input = zone.querySelector('input[type="file"]');
+        if (input) {
+            input.addEventListener('change', function () {
+                App._handleUpload(input, zone);
+            });
+        }
+    });
+};
+
+/* Core handler — reads file, shows preview, stores dataURL */
+App._handleUpload = function (input, container) {
+    if (!input.files || !input.files[0]) return;
+    var file = input.files[0];
+    var inputId = input.id || input.name || ('upload_' + Date.now());
+
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        // Store the dataURL so save functions can retrieve it
+        App._uploads[inputId] = e.target.result;
+        // Show filename + size
+        var infoEl = container.querySelector('.upload-info span, .upload-info p, p');
+        if (infoEl) infoEl.textContent = file.name + ' (' + Math.round(file.size / 1024) + ' KB)';
+        // Show preview image
+        var previewImg = container.querySelector('img');
+        if (previewImg) {
+            previewImg.src = e.target.result;
+            previewImg.style.display = 'block';
+        } else {
+            // Create preview image if none exists
+            var img = document.createElement('img');
+            img.src = e.target.result;
+            img.style.cssText = 'max-height:80px;max-width:120px;object-fit:cover;border-radius:6px;margin-top:6px';
+            container.appendChild(img);
+        }
+        // Add visual confirmation
+        container.style.borderColor = 'var(--success, #28a745)';
+        Helpers.toast('Image uploaded: ' + file.name, 'success');
+    };
+    reader.readAsDataURL(file);
+};
+
+/* Retrieve an uploaded image dataURL by input id/name */
+App.getUpload = function (inputId) {
+    return App._uploads[inputId] || null;
+};
+
+/* Enhanced _previewUpload that also stores the dataURL (used by
+   website-header, website-setup, settings pages) */
+App._previewUploadEnhanced = function (input, nameId, previewId) {
+    if (!input.files || !input.files[0]) return;
+    var file = input.files[0];
+    var inputId = input.id || 'preview_' + Date.now();
+    var nameEl = document.getElementById(nameId);
+    if (nameEl) nameEl.textContent = file.name + ' (' + Math.round(file.size / 1024) + ' KB)';
+    var reader = new FileReader();
+    reader.onload = function (e) {
+        App._uploads[inputId] = e.target.result;
+        if (previewId) { var p = document.getElementById(previewId); if (p) p.src = e.target.result; }
+        var previewImg = input.closest('.upload-field, .upload-zone')?.querySelector('img');
+        if (previewImg) { previewImg.src = e.target.result; previewImg.style.display = 'block'; }
+    };
+    reader.readAsDataURL(file);
+};

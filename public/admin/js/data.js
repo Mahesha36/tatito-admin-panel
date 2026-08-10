@@ -918,19 +918,25 @@ const MockData = {
     },
 
     // ====== WEBSITE HEADER (Image 23dd55ff) ======
+    // SYNCED: Matches the header rendered by frontend/js/app.js
+    // renderNavbar(). quickLinkText is the extra nav link before "Home".
     websiteHeader: {
         logoFile: 'tatito-logo-official.jpg',
-        quickLinkText: 'Home',
-        quickLinkUrl: '/home',
-        helplineNumber: '+91 98765 43210',
+        quickLinkText: '',
+        quickLinkUrl: '',
+        helplineNumber: '',
         stickyHeader: true,
     },
 
     // ====== WEBSITE FOOTER (Image 5874eab1) ======
+    // SYNCED: Matches the exact hardcoded footer columns rendered by
+    // frontend/js/app.js renderFooter(). Admin edits these = edits the
+    // real footer content. The three linkWidgets below are the three
+    // columns the frontend renders: Shop, Services, Company.
     websiteFooter: {
         aboutWidget: {
             logoFile: 'tatito-logo-official.jpg',
-            description: 'TATITO Fashions is a trusted platform designed to help individuals and families find custom fashion, boutiques, designers, jewellers and wedding services. Our goal is to make the search for the perfect outfit simple, secure, and convenient through a reliable digital platform.',
+            description: 'Custom fashion for everyone.',
         },
         contactsWidget: {
             address: 'Mumbai, Maharashtra, 400001',
@@ -939,9 +945,30 @@ const MockData = {
             phones: ['+91 98765 43210', '+91 98220 11223'],
         },
         linkWidgets: [
-            { id: 'LW1', title: 'Quick Links', links: [{ text: 'About Us', url: '/about' }, { text: 'Contact', url: '/contact' }, { text: 'FAQ', url: '/faq' }] },
-            { id: 'LW2', title: 'Services', links: [{ text: 'Boutiques', url: '/boutiques' }, { text: 'Designers', url: '/designers' }, { text: 'Wedding Collection', url: '/wedding' }] },
-            { id: 'LW3', title: 'Policies', links: [{ text: 'Privacy Policy', url: '/privacy' }, { text: 'Terms & Conditions', url: '/terms' }, { text: 'Return Policy', url: '/returns' }] },
+            { id: 'LW1', title: 'Shop', links: [
+                { text: 'All Products', url: 'products.html' },
+                { text: 'Men', url: 'category.html?category=men-wear' },
+                { text: 'Women', url: 'category.html?category=women-wear' },
+                { text: 'Kids', url: 'category.html?category=kids-wear' },
+                { text: 'Deals & Offers', url: 'deals.html' },
+                { text: 'AI Try-On', url: 'try-on.html' },
+            ]},
+            { id: 'LW2', title: 'Services', links: [
+                { text: 'Customize', url: 'customize.html' },
+                { text: 'Wedding', url: 'category.html?category=wedding' },
+                { text: 'Jewellery', url: 'category.html?category=jewellery' },
+                { text: 'Event Management', url: 'category.html?category=events' },
+                { text: 'Custom Fashion', url: 'category.html?category=customize' },
+                { text: 'Consultations', url: 'consultations.html' },
+            ]},
+            { id: 'LW3', title: 'Company', links: [
+                { text: 'About Us', url: 'about.html' },
+                { text: 'Careers', url: 'careers.html' },
+                { text: 'Sell on Tatito', url: 'seller-register.html' },
+                { text: 'Contact Us', url: 'contact.html' },
+                { text: 'Referral Program', url: 'referral.html' },
+                { text: 'Track Orders', url: 'orders.html' },
+            ]},
         ],
         mobileAppWidget: {
             title: 'Download Our App',
@@ -949,7 +976,7 @@ const MockData = {
             appStoreImg: '', appStoreLink: 'https://apps.apple.com',
         },
         copyrightWidget: {
-            text: 'Copyright Reserved TATITOFashions.com',
+            text: 'Tatito Fashions. All rights reserved.',
             showSocialLinks: true,
             social: {
                 facebook: 'https://facebook.com/tatitofashions',

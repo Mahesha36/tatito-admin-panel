@@ -21,7 +21,7 @@ App.pages['wedding-banners'] = function() {
 App.addWeddingBanner = function() {
     Helpers.openModal('<div class="modal-header"><h3 class="modal-title">Add Banner</h3><button class="modal-close" onclick="Helpers.closeModal()">&times;</button></div>' +
         '<div class="modal-body"><form id="wbForm"><div class="form-group"><label>Title *</label><input type="text" class="form-control" name="title" required></div>' +
-        '<div class="form-group"><label>Image</label><div class="upload-zone" onclick="this.querySelector(\'input\').click()"><i class="bi bi-cloud-arrow-up"></i><p>Upload banner image</p><input type="file" accept="image/*" hidden></div></div>' +
+        '<div class="form-group"><label>Image</label><div class="upload-zone"><i class="bi bi-cloud-arrow-up"></i><p>Upload banner image</p><input type="file" id="wbImage" accept="image/*" hidden></div></div>' +
         '<div class="form-group"><label>Video URL</label><input type="url" class="form-control" name="video_url"></div>' +
         '<div class="form-group"><label>Active</label><button type="button" class="toggle-switch on" onclick="this.classList.toggle(\'on\')"><span class="toggle-knob"></span></button></div></form></div>' +
         '<div class="modal-footer"><button class="btn btn-outline" onclick="Helpers.closeModal()">Cancel</button><button class="btn btn-primary" onclick="App.saveWeddingBanner()">Save</button></div>');
@@ -29,7 +29,7 @@ App.addWeddingBanner = function() {
 App.saveWeddingBanner = function() {
     var f=document.getElementById('wbForm');var fd=new FormData(f);
     if(!fd.get('title')){Helpers.toast('Title required','error');return;}
-    MockData.weddingBanners.push({id:'WPB'+String(MockData.weddingBanners.length+1).padStart(3,'0'),title:fd.get('title'),image:'assets/logo.svg',video_url:fd.get('video_url')||'',is_active:f.querySelector('.toggle-switch').classList.contains('on')});
+    MockData.weddingBanners.push({id:'WPB'+String(MockData.weddingBanners.length+1).padStart(3,'0'),title:fd.get('title'),image:App.getUpload('wbImage')||'assets/tatito-logo.png',video_url:fd.get('video_url')||'',is_active:f.querySelector('.toggle-switch').classList.contains('on')});
     Helpers.closeModal();Helpers.toast('Added','success');App.navigate('wedding-banners');
 };
 App.editWeddingBanner=function(id){var b=MockData.weddingBanners.find(function(x){return x.id===id;});if(!b)return;

@@ -32,7 +32,7 @@ App.pages['payment-setup'] = function() {
             '<div class="card-body">' +
             '<div class="form-group"><label>Name</label><input type="text" class="form-control" value="' + Helpers.escapeHtml(mp.name) + '"></div>' +
             '<div class="form-group"><label>Instruction</label><textarea class="form-control" rows="3">' + Helpers.escapeHtml(mp.instructions) + '</textarea></div>' +
-            '<div class="form-group"><label>Image</label><div class="upload-field" style="padding:10px;border:2px dashed var(--line);border-radius:6px;text-align:center"><button class="btn btn-outline btn-sm">Browse</button> <span style="font-size:0.78rem;color:var(--gray-500)">' + (mp.imageFile ? mp.imageFile : 'No file selected') + '</span></div></div>' +
+            '<div class="form-group"><label>Image</label><div class="upload-field" style="padding:10px;border:2px dashed var(--line);border-radius:6px;text-align:center;cursor:pointer" onclick="document.getElementById(\'mpImg_'+mp.id+'\').click()"><button type="button" class="btn btn-outline btn-sm">Browse</button> <span style="font-size:0.78rem;color:var(--gray-500)">' + (mp.imageFile ? mp.imageFile : 'No file selected') + '</span><input type="file" id="mpImg_'+mp.id+'" accept="image/*" style="display:none" onchange="App._previewUploadEnhanced(this,\'\',\'\')"></div></div>' +
             '<button class="btn btn-primary btn-sm" onclick="Helpers.toast(\'Manual payment saved\', \'success\')"><i class="bi bi-check-lg"></i> Save</button>' +
             '</div></div>';
     }
