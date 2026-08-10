@@ -255,36 +255,82 @@
        SETTINGS INTEGRATION — Apply admin-managed site name, colors,
        header helpline, footer content to the frontend.
        Called AFTER renderNavbar/renderFooter by app.js so DOM exists.
-
-       NEW: renderNavbar/renderFooter now build directly from admin
-       data, so we no longer need to patch header text, footer text,
-       contacts, copyright, or brand name via DOM queries here.
-       We only apply things the render functions CAN'T do:
-         - Brand colors (CSS variables)
-         - SEO meta tags
-         - Custom header/footer scripts
-       PREV: Also patched .brand-title, .brand-sub, [data-admin-helpline],
-       [data-admin-about], [data-admin-address], [data-admin-email],
-       [data-admin-phone], [data-admin-copyright] — all now handled
-       directly in renderNavbar()/renderFooter().
        ================================================================ */
     function applyAdminSettings() {
         var data = FrontendBridge.getAdminData() || {};
         var ws = data.websiteSetup || {};
+        var header = data.websiteHeader || {};
+        var footer = data.websiteFooter || {};
+        var gs = data.generalSettings || data.settings || {};
+        var gen = gs.general || gs;
+
+        /* ---- Apply website name from websiteSetup if set ---- */
+        var siteName = ws.websiteName || gen.siteName || gs.siteName;
+        if (siteName) {
+            var brandTitles = document.querySelectorAll('.brand-title');
+            brandTitles.forEach(function(el) {
+                el.textContent = siteName.split(' ')[0].toUpperCase();
+            });
+            var brandSubs = document.querySelectorAll('.brand-sub');
+            brandSubs.forEach(function(el) {
+                var parts = siteName.split(' ');
+                if (parts.length > 1) {
+                    el.textContent = parts.slice(1).join(' ').toUpperCase();
+                }
+            });
+            /* Update page title */
+            if (document.title.indexOf('Tatito') !== -1) {
+                document.title = siteName + ' — ' + (document.title.split('—')[1] || 'Fashion').trim();
+            }
+        }
 
         /* ---- Apply brand colors from websiteSetup ---- */
         if (ws.baseColor) document.documentElement.style.setProperty('--ruby', ws.baseColor);
         if (ws.baseHoverColor) document.documentElement.style.setProperty('--ruby-deep', ws.baseHoverColor);
         if (ws.secondaryColor) document.documentElement.style.setProperty('--gold', ws.secondaryColor);
 
+        /* ---- Apply header helpline number (dynamic override) ---- */
+        if (header.helplineNumber) {
+            var helplineEls = document.querySelectorAll('[data-admin-helpline]');
+            helplineEls.forEach(function(el) {
+                el.style.display = '';
+                var textSpan = el.querySelector('span:last-child');
+                if (textSpan) textSpan.textContent = header.helplineNumber;
+                el.href = 'tel:' + header.helplineNumber;
+            });
+        }
+
+        /* ---- Apply footer about description (dynamic override) ---- */
+        if (footer.aboutWidget && footer.aboutWidget.description) {
+            document.querySelectorAll('[data-admin-about]').forEach(function(el) {
+                el.textContent = footer.aboutWidget.description;
+            });
+        }
+
+        /* ---- Apply footer contacts (dynamic override) ---- */
+        if (footer.contactsWidget) {
+            var cw = footer.contactsWidget;
+            if (cw.address) {
+                document.querySelectorAll('[data-admin-address]').forEach(function(el) { el.textContent = cw.address; });
+            }
+            if (cw.email) {
+                document.querySelectorAll('[data-admin-email]').forEach(function(el) { el.textContent = cw.email; el.href = 'mailto:' + cw.email; });
+            }
+            if (cw.phones && cw.phones[0]) {
+                document.querySelectorAll('[data-admin-phone]').forEach(function(el) { el.textContent = cw.phones[0]; el.href = 'tel:' + cw.phones[0]; });
+            }
+        }
+
+        /* ---- Apply footer copyright text (dynamic override) ---- */
+        if (footer.copyrightWidget && footer.copyrightWidget.text) {
+            document.querySelectorAll('[data-admin-copyright]').forEach(function(el) {
+                el.innerHTML = '© ' + new Date().getFullYear() + ' ' + footer.copyrightWidget.text + ' All rights reserved.';
+            });
+        }
+
         /* ---- Apply SEO meta tags if set ---- */
-        var siteName = ws.websiteName || '';
         if (ws.metaTitle) {
             document.title = ws.metaTitle;
-        } else if (siteName) {
-            if (document.title.indexOf('Tatito') !== -1) {
-                document.title = siteName + ' — ' + (document.title.split('—')[1] || 'Fashion').trim();
-            }
         }
         if (ws.metaDescription) {
             var metaDesc = document.querySelector('meta[name="description"]');
