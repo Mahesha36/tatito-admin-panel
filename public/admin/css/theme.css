@@ -1,0 +1,90 @@
+/* ============================================
+   TATITO FASHIONS — Theme Variables
+   NEW: Aligned with Frontend color palette & fonts.
+   All frontend CSS variables are now available here
+   so the admin panel shares the same design language.
+   ============================================ */
+
+:root {
+    /* ========================================
+       NEW: Frontend Brand Colors (from frontend/css/style.css :root)
+       These are the canonical brand tokens used across the storefront.
+       ======================================== */
+    --ivy: #6A0F1E;           /* Deep burgundy red */
+    --ruby: #7D1128;          /* Primary ruby red */
+    --ruby-deep: #5A0A18;     /* Darker ruby for hover states */
+    --ivory: #FAF7F1;          /* Warm off-white background */
+    --champagne: #F1E8D6;      /* Soft champagne accent */
+    --black: #14120F;          /* Near-black for text/sidebar */
+    --charcoal: #2B2822;       /* Dark charcoal */
+    --gold: #C9A24B;           /* Primary gold */
+    --gold-deep: #8B6F2E;      /* Deep gold for accents/hover */
+    --gold-soft: #E7D3A1;      /* Soft gold for backgrounds */
+    --gold-light: #F0DFA8;     /* Light gold for highlights */
+    --white: #FFFFFF;
+
+    /* PREV: Legacy admin-only color aliases (kept for backward compatibility)
+       --gold-light was previously #E0BC65; now uses frontend value #F0DFA8
+       Old value preserved here in case any component breaks:
+       --gold-light-legacy: #E0BC65;
+    */
+    --ivory-dark: #F0EBE0;     /* Kept — used by admin components */
+    --black-soft: #1E1B16;     /* Kept — sidebar hover */
+
+    /* ========================================
+       Semantic tokens — NEW: aligned with frontend
+       PREV values kept as comments for reference.
+       ======================================== */
+    --bg: #F5F3EE;             /* page background */
+    --bg-card: #FFFFFF;
+    --bg-input: #FAFAF8;
+    --bg-sidebar: #14120F;     /* NEW: same as frontend --black */
+    --text: #2A2620;
+    --text-secondary: #6B6358;
+    --text-muted: #9B9388;
+    --text-inverse: #FAF7F1;
+    --border-color: #E5DFD3;
+    --border-light: #F0EBE0;
+
+    /* Status — NEW: aligned with frontend status colors */
+    /* PREV: --success: #198754 */
+    --success: #3f8a5b;        /* frontend green */
+    --success-bg: #D1E7DD;
+    /* PREV: --danger: #DC3545 */
+    --danger: #c44a3f;         /* frontend red */
+    --danger-bg: #F8D7DA;
+    --warning: #B86F1E;
+    --warning-bg: #FFF3CD;
+    --info: #0D6EFD;
+    --info-bg: #CFE2FF;
+
+    /* Radius — NEW: aligned with frontend --radius-s/m/l */
+    /* PREV: --radius-sm: 6px */
+    --radius-sm: 6px;          /* frontend --radius-s */
+    /* PREV: --radius-md: 10px */
+    --radius-md: 12px;         /* frontend --radius-m */
+    /* PREV: --radius-lg: 16px */
+    --radius-lg: 20px;         /* frontend --radius-l */
+    --radius-xl: 24px;
+
+    /* Shadow */
+    --shadow-sm: 0 1px 3px rgba(20,18,15,0.08);
+    --shadow-md: 0 4px 12px rgba(20,18,15,0.10);
+    --shadow-lg: 0 8px 30px rgba(20,18,15,0.12);
+    --shadow-gold: 0 4px 20px rgba(201,162,75,0.25);
+
+    /* Transition */
+    --transition: all 0.2s ease;
+
+    /* Layout */
+    --sidebar-width: 260px;
+    --sidebar-collapsed: 72px;
+    --topbar-height: 64px;
+
+    /* Fonts — NEW: identical to frontend (Playfair Display + Inter) */
+    --font-display: 'Playfair Display', Georgia, serif;
+    --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+    /* NEW: Border line color alias (frontend uses --line) */
+    --line: #E5DFD3;
+}

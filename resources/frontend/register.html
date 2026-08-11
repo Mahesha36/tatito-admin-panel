@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Register | Tatito Fashions</title>
+  <meta name="description" content="Join Tatito Fashions — custom fashion for everyone." />
+  <link rel="icon" href="assets/images/favicon.jpg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css?v=64" />
+</head>
+<body>
+  <header class="navbar"></header>
+
+  <div id="loginLogoIntro" class="login-logo-intro">
+    <div class="brand-plate">
+      <img src="assets/images/tatito-logo-official.jpg" alt="Tatito Fashions" />
+      <div class="brand-name">
+        <span class="brand-title">TATITO</span>
+        <em class="brand-sub">FASHIONS</em>
+      </div>
+    </div>
+  </div>
+
+  <main class="auth-page">
+    <div class="auth-card">
+      <div class="auth-logo">
+        <img src="assets/images/tatito-logo-official.jpg" alt="Tatito Fashions" />
+        <div class="brand-name">
+          <span class="brand-title">TATITO</span>
+          <em class="brand-sub">FASHIONS</em>
+        </div>
+      </div>
+      <div class="auth-tabs">
+        <a href="login.html" class="auth-tab">Login</a>
+        <a href="register.html" class="auth-tab active">Register</a>
+      </div>
+
+      <p class="eyebrow" style="text-align:center;margin-bottom:8px;">Join Tatito</p>
+      <h1>Create Account</h1>
+
+      <form id="registerForm" class="auth-form">
+        <!-- Step 1: Details -->
+        <div id="regStepDetails" style="display:flex;flex-direction:column;gap:14px;">
+          <label>
+            <span>Full Name *</span>
+            <input type="text" name="name" placeholder="Your full name" required />
+          </label>
+          <label>
+            <span>Email *</span>
+            <input type="email" name="email" placeholder="you@example.com" required />
+          </label>
+          <label>
+            <span>Mobile Number *</span>
+            <div class="cc-wrap">
+              <div class="cc-flag-wrap" id="regCcWrap">
+                <img id="regFlagImg" class="cc-flag-img" alt="" src="https://flagcdn.com/w40/in.png" />
+                <select id="regCountryCode" class="cc-flag-select">
+                  <option value="+91" data-flag="in">India +91</option>
+                  <option value="+1" data-flag="us">USA +1</option>
+                  <option value="+1" data-flag="ca">Canada +1</option>
+                  <option value="+44" data-flag="gb">UK +44</option>
+                  <option value="+971" data-flag="ae">UAE +971</option>
+                  <option value="+65" data-flag="sg">Singapore +65</option>
+                  <option value="+61" data-flag="au">Australia +61</option>
+                  <option value="+64" data-flag="nz">New Zealand +64</option>
+                  <option value="+966" data-flag="sa">Saudi +966</option>
+                  <option value="+880" data-flag="bd">Bangladesh +880</option>
+                  <option value="+92" data-flag="pk">Pakistan +92</option>
+                  <option value="+94" data-flag="lk">Sri Lanka +94</option>
+                  <option value="+977" data-flag="np">Nepal +977</option>
+                  <option value="+60" data-flag="my">Malaysia +60</option>
+                  <option value="+62" data-flag="id">Indonesia +62</option>
+                  <option value="+63" data-flag="ph">Philippines +63</option>
+                  <option value="+66" data-flag="th">Thailand +66</option>
+                  <option value="+84" data-flag="vn">Vietnam +84</option>
+                  <option value="+81" data-flag="jp">Japan +81</option>
+                  <option value="+82" data-flag="kr">Korea +82</option>
+                  <option value="+86" data-flag="cn">China +86</option>
+                  <option value="+852" data-flag="hk">Hong Kong +852</option>
+                  <option value="+49" data-flag="de">Germany +49</option>
+                  <option value="+33" data-flag="fr">France +33</option>
+                  <option value="+34" data-flag="es">Spain +34</option>
+                  <option value="+39" data-flag="it">Italy +39</option>
+                  <option value="+31" data-flag="nl">Netherlands +31</option>
+                  <option value="+7" data-flag="ru">Russia +7</option>
+                  <option value="+968" data-flag="om">Oman +968</option>
+                  <option value="+974" data-flag="qa">Qatar +974</option>
+                  <option value="+965" data-flag="kw">Kuwait +965</option>
+                  <option value="+973" data-flag="bh">Bahrain +973</option>
+                  <option value="+20" data-flag="eg">Egypt +20</option>
+                  <option value="+27" data-flag="za">South Africa +27</option>
+                  <option value="+234" data-flag="ng">Nigeria +234</option>
+                  <option value="+254" data-flag="ke">Kenya +254</option>
+                  <option value="+55" data-flag="br">Brazil +55</option>
+                  <option value="+52" data-flag="mx">Mexico +52</option>
+                  <option value="+54" data-flag="ar">Argentina +54</option>
+                </select>
+              </div>
+              <input type="tel" name="mobile" placeholder="98765 43210" maxlength="10" style="flex:1;height:46px;" required />
+            </div>
+          </label>
+          <label>
+            <span>Password *</span>
+            <div class="pwd-field">
+              <input type="password" name="password" id="regPassword" placeholder="Create a password" required />
+              <button type="button" class="pwd-toggle" data-target="regPassword" aria-label="Show password">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+              </button>
+            </div>
+          </label>
+          <button type="submit" class="btn btn-primary block">Send Verification Code →</button>
+        </div>
+
+        <!-- Step 2: OTP Verification -->
+        <div id="regStepOtp" style="display:none;flex-direction:column;gap:14px;">
+          <div style="text-align:center;">
+            <div style="font-size:48px;margin-bottom:8px;">📱</div>
+            <h2 style="font-family:var(--font-display);font-size:20px;margin-bottom:6px;">Verify Your Mobile</h2>
+            <p style="font-size:14px;color:var(--muted);">Enter the 6-digit code sent to <strong id="regOtpDisplay">+91</strong></p>
+          </div>
+
+          <!-- OTP Input Boxes -->
+          <div class="otp-input-row" style="display:flex;gap:8px;justify-content:center;">
+            <input type="text" class="otp-digit" maxlength="1" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:700;border:2px solid var(--line);border-radius:12px;background:var(--surface-solid);color:var(--text);outline:none;transition:border-color .2s;" />
+            <input type="text" class="otp-digit" maxlength="1" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:700;border:2px solid var(--line);border-radius:12px;background:var(--surface-solid);color:var(--text);outline:none;transition:border-color .2s;" />
+            <input type="text" class="otp-digit" maxlength="1" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:700;border:2px solid var(--line);border-radius:12px;background:var(--surface-solid);color:var(--text);outline:none;transition:border-color .2s;" />
+            <input type="text" class="otp-digit" maxlength="1" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:700;border:2px solid var(--line);border-radius:12px;background:var(--surface-solid);color:var(--text);outline:none;transition:border-color .2s;" />
+            <input type="text" class="otp-digit" maxlength="1" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:700;border:2px solid var(--line);border-radius:12px;background:var(--surface-solid);color:var(--text);outline:none;transition:border-color .2s;" />
+            <input type="text" class="otp-digit" maxlength="1" style="width:44px;height:52px;text-align:center;font-size:22px;font-weight:700;border:2px solid var(--line);border-radius:12px;background:var(--surface-solid);color:var(--text);outline:none;transition:border-color .2s;" />
+          </div>
+
+          <button type="button" id="verifyOtpBtn" class="btn btn-primary block">✓ Verify & Create Account</button>
+          <div style="display:flex;justify-content:space-between;align-items:center;">
+            <button type="button" id="changeMobileBtn" class="btn btn-ghost small">← Change Number</button>
+            <button type="button" id="regResendOtp" class="btn btn-ghost small">Resend Code</button>
+          </div>
+        </div>
+      </form>
+      <p class="auth-switch"><span>Already have an account?</span> <a href="login.html">Login</a></p>
+    </div>
+  </main>
+
+  <div id="shopToast" class="shop-toast"></div>
+  <script src="js/data.js?v=58"></script>
+  <script src="js/translations.js?v=58"></script>
+  <script src="js/store.js?v=58"></script>
+  <script src="js/location-gmaps.js?v=58"></script>
+  <script src="js/app.js?v=58"></script>
+  <script src="js/auth.js?v=58"></script>
+  <script>
+    // Password show/hide toggle
+    document.querySelectorAll('.pwd-toggle').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        var input = document.getElementById(this.dataset.target);
+        if(!input) return;
+        if(input.type === 'password'){
+          input.type = 'text';
+          this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>';
+        } else {
+          input.type = 'password';
+          this.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>';
+        }
+      });
+    });
+    // Country code flag sync + auto-fit width
+    function fitSelectWidth(sel){
+      var opt = sel.options[sel.selectedIndex];
+      var tmp = document.createElement('span');
+      tmp.style.cssText = 'visibility:hidden;position:absolute;font:inherit;font-weight:600;font-size:14px;white-space:nowrap;';
+      tmp.textContent = opt ? opt.textContent : '';
+      document.body.appendChild(tmp);
+      sel.style.width = (tmp.offsetWidth + 4) + 'px';
+      document.body.removeChild(tmp);
+    }
+    document.querySelectorAll('.cc-flag-select').forEach(function(sel){
+      fitSelectWidth(sel);
+      sel.addEventListener('change', function(){
+        var opt = this.options[this.selectedIndex];
+        var flag = opt.dataset.flag;
+        if(flag){
+          var img = this.closest('.cc-flag-wrap').querySelector('img');
+          if(img) img.src = 'https://flagcdn.com/w40/' + flag + '.png';
+        }
+        fitSelectWidth(this);
+      });
+    });
+  </script>
+</body>
+</html>
