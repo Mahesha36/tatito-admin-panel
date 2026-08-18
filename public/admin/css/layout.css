@@ -12,6 +12,33 @@ body {
     font-size: 14px;
 }
 
+/* ===== Global Number Font (matches category & product pages) ===== */
+/* Apply Inter with tabular figures to all numeric elements across the admin panel */
+.stat-value,
+.stat-card h3,
+.stat-card h2,
+.stat-sub,
+.cat-badge,
+.pill-count,
+.badge,
+.table td,
+.table th,
+.detail-row .value,
+input[type="number"],
+.format-num,
+.page-header .count,
+.order-total,
+.revenue,
+.price,
+.mrp,
+.stock,
+.qty,
+.amount {
+    font-family: var(--font-number) !important;
+    font-feature-settings: 'tnum' 1, 'lnum' 1;
+    font-variant-numeric: tabular-nums lining-nums;
+}
+
 /* ===== Admin Layout ===== */
 .admin-body { min-height: 100vh; }
 .admin-layout, .admin-body { display: flex; }
