@@ -19,6 +19,36 @@ import re, os, json, html as H
 from pathlib import Path
 
 ROOT = Path('/workspace/laravel-clean/public/admin/modules')
+FORMS = json.load(open('/tmp/captured/_modal_forms.json')) if Path('/tmp/captured/_modal_forms.json').exists() else {}
+
+INLINE_JS = re.compile(r'\son(click|change|submit|error|load|input|focus|blur|mouseover|mouseout|keyup|keydown)="[^"]*"')
+
+def legacy_modal_html(page_id, key):
+    """Return cleaned legacy modal HTML (inline handlers stripped, assets fixed,
+    buttons rewired to design-mode attributes)."""
+    h = (FORMS.get(page_id, {}) or {}).get(key)
+    if not h:
+        return None
+    mid = {'view': 'v', 'member-view': 'mv', 'edit': 'e', 'member-edit': 'me'}.get(key.split('-')[0] if key.startswith('member-') else key.split('-')[0], 'x')
+    h = INLINE_JS.sub('', h)
+    h = h.replace('href="javascript:void(0)"', 'href="#"')
+    h = h.replace('src="assets/', 'src="../../assets/')
+    h = h.replace('<script>', '&lt;script&gt;').replace('</script>', '&lt;/script&gt;')
+    # close / cancel buttons that lost onclick → data-modal-close="<page>-legacy"
+    full_id = f'{page_id}-legacy'
+    h = h.replace('<button class="modal-close">&times;</button>',
+                  f'<button class="modal-close" type="button" data-modal-close="{full_id}">&times;</button>')
+    h = h.replace('<button class="btn btn-outline">Cancel</button>',
+                  f'<button class="btn btn-outline" type="button" data-modal-close="{full_id}">Cancel</button>')
+    h = h.replace('<button class="btn btn-outline">Close</button>',
+                  f'<button class="btn btn-outline" type="button" data-modal-close="{full_id}">Close</button>')
+    # any other btn-primary whose onclick was stripped → toast (catch-all)
+    h = re.sub(r'<button class="btn btn-primary"(?![^>]*data-toast)([^>]*)>',
+               r'<button class="btn btn-primary"\1 type="button" data-toast="Saved (design mode)">', h)
+    # save/primary buttons that lost onclick → toast
+    h = re.sub(r'<button class="btn btn-primary">(\s*<i [^>]*></i>\s*[^<]*)</button>',
+               r'<button class="btn btn-primary" type="button" data-toast="Saved (design mode)">\1</button>', h)
+    return h
 
 # ---------------- helpers ----------------
 
@@ -72,6 +102,34 @@ ROW_RE   = re.compile(r'<tr[^>]*>(.*?)</tr>', re.S | re.I)
 CELL_RE  = re.compile(r'<t[hd][^>]*>(.*?)</t[hd]>', re.S | re.I)
 ONCLICK_LEFT = re.compile(r'\s+on(click|change|submit|error|load|input|focus|blur)="[^"]*"')
 
+def wire_member_dropdowns(s, page_id):
+    """Wire legacy three-dot member dropdown items to captured member modals
+    + design-mode confirms. The dropdown itself is opened by admin-design.js."""
+    ids = [k[12:] for k in (FORMS.get(page_id) or {}) if k.startswith('member-edit-')]
+    vidx = [0]
+    eidx = [0]
+
+    def wire_item(m):
+        cls, inner = m.group(1), m.group(2)
+        if 'view' in cls:
+            i = vidx[0]; vidx[0] += 1
+            if i < len(ids):
+                return f'<button type="button" class="{cls}" data-modal-open="{page_id}-mv-{ids[i]}" data-modal-title="Details">{inner}</button>'
+        elif 'edit' in cls:
+            i = eidx[0]; eidx[0] += 1
+            if i < len(ids):
+                return f'<button type="button" class="{cls}" data-modal-open="{page_id}-me-{ids[i]}" data-modal-title="Edit">{inner}</button>'
+        elif 'block' in cls or 'unblock' in cls:
+            return f'<button type="button" class="{cls}" data-confirm="Change block status? (design mode)">{inner}</button>'
+        elif 'login' in cls:
+            return f'<button type="button" class="{cls}" data-toast="Member portal login (design mode)">{inner}</button>'
+        elif 'delete' in cls:
+            return f'<button type="button" class="{cls}" data-confirm="Delete this member? (design mode — nothing is deleted)">{inner}</button>'
+        return m.group(0)
+
+    s = re.sub(r'<button class="(member-dropdown-item[^"]*)"[^>]*>(.*?)</button>', wire_item, s, flags=re.S)
+    return s
+
 def process_page(path):
     page_id = path.stem
     s = path.read_text()
@@ -79,7 +137,20 @@ def process_page(path):
     modals = []
 
     # ---------- 1. find rows & build detail modals + rewire buttons ----------
-    # Process <tbody> rows (or all rows) in order; pair nth action-btn-set with nth data row
+    # Legacy per-entity forms: rows carry an entity id in cell 0 (PRD001 etc).
+    # eye → view-<ID>, pencil → edit-<ID>, both from captured legacy modal HTML.
+    legacy_ids = [k.split('-', 1)[1] for k in (FORMS.get(page_id) or {}) if k.startswith(('edit-', 'view-'))]
+    member_ids = [k.split('-', 1)[1] for k in (FORMS.get(page_id) or {}) if k.startswith('member-edit-')]
+
+    def row_entity_id(cells):
+        """First cell that looks like an entity id (>=3 chars, has digits)."""
+        for c in cells[:3]:
+            m = re.search(r'\b([A-Z]{2,}[0-9]{2,}[A-Z0-9]*)\b', c)
+            if m:
+                return m.group(1)
+        return None
+
+    # map entity id → row index for pages with table rows
     rows_data = []
     headers = []
     for m in ROW_RE.finditer(s):
@@ -91,15 +162,25 @@ def process_page(path):
             continue
         rows_data.append(cells)
 
-    # assign modals to view/edit buttons in order of appearance
+    # assign modals to view/edit buttons in order of appearance.
+    # Prefer legacy per-entity forms: nth button ↔ nth entity id (row order == MockData order)
+    view_ids = [k[5:] for k in (FORMS.get(page_id) or {}) if k.startswith('view-')]
+    edit_ids = [k[5:] for k in (FORMS.get(page_id) or {}) if k.startswith('edit-')]
     btn_index = {'view': 0, 'edit': 0}
+
     def rewire_view(m):
         idx = btn_index['view']; btn_index['view'] += 1
-        mid = f'{page_id}-row-{idx}'
+        if idx < len(view_ids):
+            mid = f'{page_id}-v-{view_ids[idx]}'
+        else:
+            mid = f'{page_id}-row-{idx}'
         return m.group(1) + f' data-modal-open="{mid}"' + m.group(2) + m.group(3)
     def rewire_edit(m):
         idx = btn_index['edit']; btn_index['edit'] += 1
-        mid = f'{page_id}-row-{idx}'
+        if idx < len(edit_ids):
+            mid = f'{page_id}-e-{edit_ids[idx]}'
+        else:
+            mid = f'{page_id}-row-{idx}'
         return m.group(1) + f' data-modal-open="{mid}"' + m.group(2) + m.group(3)
     def rewire_del(m):
         return m.group(1) + ' data-confirm="Delete this record? (design mode)"' + m.group(2) + m.group(3)
@@ -150,6 +231,28 @@ def process_page(path):
             modals.append(modal_shell(f'{page_id}-row-{idx}', f'Details — {label}', body))
             seen.add(idx)
 
+    # ---------- 1b. legacy per-entity modals (edit forms + view details) ----------
+    legacy_modals = []
+    for k in (FORMS.get(page_id) or {}):
+        body = None
+        mid = None
+        if k.startswith('view-'):
+            mid = f'{page_id}-v-{k[5:]}'; body = legacy_modal_html(page_id, k)
+        elif k.startswith('member-view-'):
+            mid = f'{page_id}-mv-{k[12:]}'; body = legacy_modal_html(page_id, k)
+        elif k.startswith('edit-'):
+            mid = f'{page_id}-e-{k[5:]}'; body = legacy_modal_html(page_id, k)
+        elif k.startswith('member-edit-'):
+            mid = f'{page_id}-me-{k[12:]}'; body = legacy_modal_html(page_id, k)
+        elif k == 'add':
+            mid = f'{page_id}-legacy-add'; body = legacy_modal_html(page_id, k)
+        if mid and body:
+            legacy_modals.append(f'<div class="design-modal" id="{mid}" role="dialog" aria-modal="true">\n  <div class="modal-box">\n{body}\n  </div>\n</div>\n')
+
+    # member pages: wire the three-dot dropdown items
+    if page_id in ('users', 'sellers', 'designers', 'staff'):
+        s = wire_member_dropdowns(s, page_id)
+
     # ---------- 2. generic Add modal + wire Add buttons ----------
     add_re = re.compile(r'(<button[^>]*?class="[^"]*\bbtn-primary\b[^"]*"[^>]*?)(/?>)(\s*(?:<i[^>]*></i>\s*)?(?:Add|Create|New)\s)', re.I)
     has_add = bool(add_re.search(s))
@@ -164,7 +267,10 @@ def process_page(path):
                r'\1 data-confirm="Confirm this action? (design mode)"', s)
 
     # ---------- 4. append modals + script before </body> ----------
-    if modals or page_id in ('settings', 'website-setup'):
+    if legacy_modals:
+        block = '\n<!-- ===== legacy modal forms (captured from original admin) ===== -->\n' + '\n'.join(legacy_modals)
+        s = s.replace('</body>', block + '</body>')
+    if modals or page_id in ('settings', 'website-setup') or legacy_modals:
         block = '\n<!-- ===== design-mode modals (admin-design.js) ===== -->\n' + '\n'.join(modals)
         if 'admin-design.js' not in s:
             s = s.replace('</body>', block + '\n<script src="../../assets/admin-design.js"></script>\n</body>')
@@ -173,8 +279,8 @@ def process_page(path):
 
     if s != orig:
         path.write_text(s)
-        return True, n_modals, int(has_add)
-    return False, 0, 0
+        return True, n_modals, int(has_add), len(legacy_modals)
+    return False, 0, 0, 0
 
 def inject_tab_panels():
     """Settings + Website Setup: replace empty content div with full tab panels."""
@@ -240,14 +346,14 @@ def inject_tab_panels():
 
 def main():
     inject_tab_panels()
-    total = 0; modals = 0; adds = 0
+    total = 0; modals = 0; adds = 0; legacy = 0
     for p in sorted(ROOT.rglob('*.html')):
         if p.name == 'index.html':
             continue
-        changed, n, a = process_page(p)
+        changed, n, a, l = process_page(p)
         if changed:
-            total += 1; modals += n; adds += a
-    print(f'post-processed {total} pages; {modals} detail modals; {adds} add-forms')
+            total += 1; modals += n; adds += a; legacy += l
+    print(f'post-processed {total} pages; {modals} generic modals; {adds} add-forms; {legacy} legacy modal forms')
 
 if __name__ == '__main__':
     main()

@@ -55,6 +55,7 @@
 
     /* ---------- Modals ---------- */
     Design.openModal = function (id) {
+        Design.closeDropdowns();
         var m = document.getElementById(id);
         if (!m) return;
         m.style.display = 'flex';
@@ -158,6 +159,35 @@
         });
     };
 
+    /* ---------- Member three-dot dropdowns ----------
+       Each member row: .member-actions-btn toggles the sibling
+       .member-dropdown (.show). Items carry data-modal-open /
+       data-confirm / data-toast and reuse the generic handlers above. */
+    Design.closeDropdowns = function (except) {
+        document.querySelectorAll('.member-dropdown.show').forEach(function (d) {
+            if (d !== except) d.classList.remove('show');
+        });
+    };
+    Design.initDropdowns = function () {
+        Design._wireOnce('_dropdownsWired', function () {
+            document.addEventListener('click', function (e) {
+                var btn = e.target.closest('.member-actions-btn');
+                if (btn) {
+                    e.stopPropagation();
+                    var dd = btn.parentElement ? btn.parentElement.querySelector('.member-dropdown') : null;
+                    if (!dd) dd = btn.nextElementSibling;
+                    if (!dd) return;
+                    var isOpen = dd.classList.contains('show');
+                    Design.closeDropdowns();
+                    if (!isOpen) dd.classList.add('show');
+                    return;
+                }
+                /* any click outside a dropdown (incl. its items) closes it */
+                Design.closeDropdowns();
+            });
+        });
+    };
+
     /* ---------- Upload zones (file-picker placeholder) ---------- */
     Design.initUploads = function () {
         document.querySelectorAll('.upload-field, .upload-zone').forEach(function (field) {
@@ -175,6 +205,7 @@
         Design.initToggles();
         Design.initToastButtons();
         Design.initConfirm();
+        Design.initDropdowns();
         Design.initUploads();
     });
 

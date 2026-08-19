@@ -45,7 +45,7 @@ LOGOUT = '../../index.html'   # admin root index redirects to frontend login
 def build_sidebar(active_section, active_pid):
     out = ['<div class="sidebar" id="sidebar">']
     out.append('  <div class="sidebar-header">')
-    out.append('    <img src="assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">')
+    out.append('    <img src="../../assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">')
     out.append('    <div>')
     out.append('      <h3 class="sidebar-brand">TATITO</h3>')
     out.append('      <small class="sidebar-subtitle">Admin Panel</small>')
@@ -174,12 +174,6 @@ def main():
     build_modules_index()
 
 def build_refunds():
-    # Copy structure from payments capture if available, else basic table
-    src = os.path.join(CAP, 'payments.html')
-    if os.path.exists(src):
-        content = open(src).read()
-    else:
-        content = '<div class="page-content"><h3>Refunds</h3><p class="text-muted">Refund requests and history.</p></div>'
     page = (HEAD.format(title='Refunds')
             + build_sidebar('Sales', 'refunds')
             + '<div class="main-wrapper" id="mainWrapper">\n' + build_topbar('Sales', 'Refunds')
