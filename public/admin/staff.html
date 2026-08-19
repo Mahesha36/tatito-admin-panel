@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>All Staff — TATITO Admin</title>
+<link rel="icon" type="image/png" href="assets/tatito-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/modules.css">
+</head>
+<body class="admin-body">
+<!-- ============================================================
+     TATITO Admin — static design page (no JavaScript)
+     Content below = exact rendered output of the legacy admin panel
+     (MockData-driven). Sample data is illustrative; Laravel will
+     replace with real data via Blade views + API.
+     ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">
+    <div>
+      <h3 class="sidebar-brand">TATITO</h3>
+      <small class="sidebar-subtitle">Admin Panel</small>
+    </div>
+  </div>
+  <div class="sidebar-user">
+    <div class="sidebar-avatar">SA</div>
+    <div class="sidebar-user-info">
+      <div class="sidebar-user-name">Super Admin</div>
+      <div class="sidebar-user-role">Administrator</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-speedometer2 nav-group-icon"></i><span>Dashboard</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="dashboard.html"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
+        <a class="nav-item" href="reports.html"><i class="bi bi-bar-chart-line"></i><span>Reports & Analytics</span></a>
+        <a class="nav-item" href="tracking.html"><i class="bi bi-geo-alt"></i><span>Live Order Tracking</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-tags nav-group-icon"></i><span>Catalog</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="products.html"><i class="bi bi-bag"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-cart3 nav-group-icon"></i><span>Sales</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="orders.html"><i class="bi bi-receipt"></i><span>Orders</span></a>
+        <a class="nav-item" href="bookings.html"><i class="bi bi-calendar-check"></i><span>Bookings</span></a>
+        <a class="nav-item" href="payments.html"><i class="bi bi-credit-card"></i><span>Payments</span></a>
+        <a class="nav-item" href="refunds.html"><i class="bi bi-cash-coin"></i><span>Refunds</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-people nav-group-icon"></i><span>Members</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="approvals.html"><i class="bi bi-person-check"></i><span>Approvals</span></a>
+        <a class="nav-item" href="users.html"><i class="bi bi-people"></i><span>Customers</span></a>
+        <a class="nav-item" href="sellers.html"><i class="bi bi-shop"></i><span>Sellers</span></a>
+        <a class="nav-item" href="designers.html"><i class="bi bi-palette"></i><span>Designers</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-stars nav-group-icon"></i><span>Services</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="boutiques.html"><i class="bi bi-shop-window"></i><span>Boutiques</span></a>
+        <a class="nav-item" href="customizations.html"><i class="bi bi-brush"></i><span>Customizations</span></a>
+        <a class="nav-item" href="quotations.html"><i class="bi bi-file-text"></i><span>Quotations</span></a>
+        <a class="nav-item" href="consultations.html"><i class="bi bi-headset"></i><span>Consultations</span></a>
+        <a class="nav-item" href="photography.html"><i class="bi bi-camera"></i><span>Photography</span></a>
+        <a class="nav-item" href="events.html"><i class="bi bi-calendar-event"></i><span>Event Management</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-megaphone nav-group-icon"></i><span>Marketing</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="reviews.html"><i class="bi bi-star"></i><span>Reviews & Ratings</span></a>
+        <a class="nav-item" href="referrals.html"><i class="bi bi-diagram-3"></i><span>Referral Program</span></a>
+        <a class="nav-item" href="offers.html"><i class="bi bi-tag"></i><span>Offers & Coupons</span></a>
+        <a class="nav-item" href="notifications.html"><i class="bi bi-bell"></i><span>Notifications</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-life-preserver nav-group-icon"></i><span>Support</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="contact-queries.html"><i class="bi bi-envelope"></i><span>Contact Queries</span></a>
+        <a class="nav-item" href="support-tickets.html"><i class="bi bi-chat-dots"></i><span>Support Tickets</span></a>
+      </div>
+    </details>
+    <details class="nav-group has-active" open>
+      <summary class="nav-group-header"><i class="bi bi-person-badge nav-group-icon"></i><span>Staff</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item active" href="staff.html"><i class="bi bi-people"></i><span>All Staff</span></a>
+        <a class="nav-item" href="roles.html"><i class="bi bi-shield-lock"></i><span>Staff Roles</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-window-stack nav-group-icon"></i><span>Website</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="cms.html"><i class="bi bi-file-earmark-richtext"></i><span>CMS Pages</span></a>
+        <a class="nav-item" href="website-header.html"><i class="bi bi-window"></i><span>Header</span></a>
+        <a class="nav-item" href="website-footer.html"><i class="bi bi-layout-text-window-reverse"></i><span>Footer</span></a>
+        <a class="nav-item" href="website-setup.html"><i class="bi bi-palette2"></i><span>Website Setup</span></a>
+        <a class="nav-item" href="home-page-settings.html"><i class="bi bi-house-gear"></i><span>Home Page Settings</span></a>
+        <a class="nav-item" href="media-manager.html"><i class="bi bi-folder2-open"></i><span>Media Manager</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-house-door nav-group-icon"></i><span>Home Feed</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="home-collections.html"><i class="bi bi-collection"></i><span>Home Collections</span></a>
+        <a class="nav-item" href="home-video-banners.html"><i class="bi bi-camera-video"></i><span>Video Banners</span></a>
+        <a class="nav-item" href="home-dynamic-sections.html"><i class="bi bi-layout-text-window"></i><span>Dynamic Layout</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Weddings Hub</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="wedding-collections.html"><i class="bi bi-grid-3x3-gap"></i><span>Collections</span></a>
+        <a class="nav-item" href="wedding-banners.html"><i class="bi bi-image"></i><span>Banners</span></a>
+        <a class="nav-item" href="wedding-featured.html"><i class="bi bi-star"></i><span>Featured Couture</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-brush nav-group-icon"></i><span>Customise</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="customisation-studios.html"><i class="bi bi-shop-window"></i><span>Studios</span></a>
+        <a class="nav-item" href="customisation-options.html"><i class="bi bi-palette"></i><span>Options & Swatches</span></a>
+        <a class="nav-item" href="bespoke-orders.html"><i class="bi bi-scissors"></i><span>Bespoke Orders</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Jewellery Vault</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="jewellery-collections.html"><i class="bi bi-collection"></i><span>Collections</span></a>
+        <a class="nav-item" href="jewellery-categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="jewellery-products.html"><i class="bi bi-gem"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-calendar2-event nav-group-icon"></i><span>VIP Events</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="events-vip.html"><i class="bi bi-calendar-event"></i><span>Event Calendar</span></a>
+        <a class="nav-item" href="event-rsvps.html"><i class="bi bi-ticket-perforated"></i><span>RSVPs</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-rolodex nav-group-icon"></i><span>Stylist</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="stylist-bookings.html"><i class="bi bi-calendar2-check"></i><span>Bookings</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gear nav-group-icon"></i><span>Settings</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="settings.html"><i class="bi bi-sliders"></i><span>General Settings</span></a>
+        <a class="nav-item" href="payment-setup.html"><i class="bi bi-credit-card-2-front"></i><span>Payment Setup</span></a>
+        <a class="nav-item" href="currencies.html"><i class="bi bi-currency-exchange"></i><span>Currencies</span></a>
+        <a class="nav-item" href="languages.html"><i class="bi bi-translate"></i><span>Languages</span></a>
+        <a class="nav-item" href="email-templates.html"><i class="bi bi-mailbox"></i><span>Email Templates</span></a>
+      </div>
+    </details>
+  </nav>
+  <div class="sidebar-footer">
+    <a class="btn btn-ghost btn-block" href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+  </div>
+</div><div class="main-wrapper" id="mainWrapper">
+<div class="topbar">
+  <div class="topbar-left"><h2>All Staff</h2></div>
+  <div class="topbar-actions">
+    <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="All Modules"><i class="bi bi-grid-3x3-gap"></i></a>
+  </div>
+</div><main class="page-content-wrapper" id="pageContent">
+<div class="page-content"><div class="page-toolbar"><div><h3>Staff Management</h3><p class="text-muted">Admin panel staff and roles</p></div><div class="toolbar-actions"><button class="btn btn-primary" data-modal-open="staff-add"><i class="bi bi-person-plus"></i> Add Staff</button></div></div><div class="tab-bar" style="margin-bottom:20px"><button class="tab-btn active"><i class="bi bi-people"></i> All Staff</button><button class="tab-btn "><i class="bi bi-shield-check"></i> Staff Roles</button></div><div class="card"><div class="card-body"><table class="table table-hover" id="staffTable"><thead><tr><th>Staff Member</th><th>Role</th><th>Email / Phone</th><th>Last Login</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td><div class="cell-user"><div class="avatar" style="background:#7B2D26">SA</div><div><div class="user-cell-name">Super Admin</div><div class="user-cell-meta">STF001</div></div></div></td><td><span class="badge badge-gold">Super Admin</span></td><td>admin@tatitofashions.com<br><small class="text-muted">+91 98765 43210</small></td><td>20 Mar 2026, 10:00 am</td><td><span class="badge badge-success">Active</span></td><td><div class="member-actions" data-entity="staff" data-id="STF001" data-name="Super Admin"><button class="member-actions-btn" title="Actions"><i class="bi bi-three-dots-vertical"></i></button><div class="member-dropdown"><button type="button" class="member-dropdown-item view" data-modal-open="staff-mv-STF001" data-modal-title="Details"><i class="bi bi-eye"></i> View</button><button type="button" class="member-dropdown-item edit" data-modal-open="staff-me-STF001" data-modal-title="Edit"><i class="bi bi-pencil"></i> Edit</button><button type="button" class="member-dropdown-item block" data-confirm="Change block status? (design mode)"><i class="bi bi-slash-circle"></i> Block</button><button type="button" class="member-dropdown-item login" data-toast="Member portal login (design mode)"><i class="bi bi-box-arrow-in-right"></i> Log in as this member</button><div class="member-dropdown-divider"></div><button type="button" class="member-dropdown-item delete" data-confirm="Delete this member? (design mode — nothing is deleted)"><i class="bi bi-trash"></i> Delete</button></div></div></td></tr><tr><td><div class="cell-user"><div class="avatar" style="background:#2D6A4F">AP</div><div><div class="user-cell-name">Arjun Patel</div><div class="user-cell-meta">STF002</div></div></div></td><td><span class="badge badge-info">Manager</span></td><td>arjun@tatitofashions.com<br><small class="text-muted">+91 98220 11223</small></td><td>19 Mar 2026, 02:30 pm</td><td><span class="badge badge-success">Active</span></td><td><div class="member-actions" data-entity="staff" data-id="STF002" data-name="Arjun Patel"><button class="member-actions-btn" title="Actions"><i class="bi bi-three-dots-vertical"></i></button><div class="member-dropdown"><button type="button" class="member-dropdown-item view" data-modal-open="staff-mv-STF002" data-modal-title="Details"><i class="bi bi-eye"></i> View</button><button type="button" class="member-dropdown-item edit" data-modal-open="staff-me-STF002" data-modal-title="Edit"><i class="bi bi-pencil"></i> Edit</button><button type="button" class="member-dropdown-item block" data-confirm="Change block status? (design mode)"><i class="bi bi-slash-circle"></i> Block</button><button type="button" class="member-dropdown-item login" data-toast="Member portal login (design mode)"><i class="bi bi-box-arrow-in-right"></i> Log in as this member</button><div class="member-dropdown-divider"></div><button type="button" class="member-dropdown-item delete" data-confirm="Delete this member? (design mode — nothing is deleted)"><i class="bi bi-trash"></i> Delete</button></div></div></td></tr><tr><td><div class="cell-user"><div class="avatar" style="background:#8338EC">DR</div><div><div class="user-cell-name">Deepika Rao</div><div class="user-cell-meta">STF003</div></div></div></td><td><span class="badge badge-info">Order Manager</span></td><td>deepika@tatitofashions.com<br><small class="text-muted">+91 98300 55667</small></td><td>19 Mar 2026, 09:15 am</td><td><span class="badge badge-success">Active</span></td><td><div class="member-actions" data-entity="staff" data-id="STF003" data-name="Deepika Rao"><button class="member-actions-btn" title="Actions"><i class="bi bi-three-dots-vertical"></i></button><div class="member-dropdown"><button type="button" class="member-dropdown-item view" data-modal-open="staff-mv-STF003" data-modal-title="Details"><i class="bi bi-eye"></i> View</button><button type="button" class="member-dropdown-item edit" data-modal-open="staff-me-STF003" data-modal-title="Edit"><i class="bi bi-pencil"></i> Edit</button><button type="button" class="member-dropdown-item block" data-confirm="Change block status? (design mode)"><i class="bi bi-slash-circle"></i> Block</button><button type="button" class="member-dropdown-item login" data-toast="Member portal login (design mode)"><i class="bi bi-box-arrow-in-right"></i> Log in as this member</button><div class="member-dropdown-divider"></div><button type="button" class="member-dropdown-item delete" data-confirm="Delete this member? (design mode — nothing is deleted)"><i class="bi bi-trash"></i> Delete</button></div></div></td></tr><tr><td><div class="cell-user"><div class="avatar" style="background:#E63946">KM</div><div><div class="user-cell-name">Karan Malhotra</div><div class="user-cell-meta">STF004</div></div></div></td><td><span class="badge badge-info">Customer Support</span></td><td>karan@tatitofashions.com<br><small class="text-muted">+91 98400 77889</small></td><td>18 Mar 2026, 04:45 pm</td><td><span class="badge badge-success">Active</span></td><td><div class="member-actions" data-entity="staff" data-id="STF004" data-name="Karan Malhotra"><button class="member-actions-btn" title="Actions"><i class="bi bi-three-dots-vertical"></i></button><div class="member-dropdown"><button type="button" class="member-dropdown-item view" data-modal-open="staff-mv-STF004" data-modal-title="Details"><i class="bi bi-eye"></i> View</button><button type="button" class="member-dropdown-item edit" data-modal-open="staff-me-STF004" data-modal-title="Edit"><i class="bi bi-pencil"></i> Edit</button><button type="button" class="member-dropdown-item block" data-confirm="Change block status? (design mode)"><i class="bi bi-slash-circle"></i> Block</button><button type="button" class="member-dropdown-item login" data-toast="Member portal login (design mode)"><i class="bi bi-box-arrow-in-right"></i> Log in as this member</button><div class="member-dropdown-divider"></div><button type="button" class="member-dropdown-item delete" data-confirm="Delete this member? (design mode — nothing is deleted)"><i class="bi bi-trash"></i> Delete</button></div></div></td></tr><tr><td><div class="cell-user"><div class="avatar" style="background:#457B9D">SG</div><div><div class="user-cell-name">Sneha Gupta</div><div class="user-cell-meta">STF005</div></div></div></td><td><span class="badge badge-info">Content Manager</span></td><td>sneha@tatitofashions.com<br><small class="text-muted">+91 98950 22334</small></td><td>12 Mar 2026, 02:20 pm</td><td><span class="badge badge-danger">Inactive</span></td><td><div class="member-actions" data-entity="staff" data-id="STF005" data-name="Sneha Gupta"><button class="member-actions-btn" title="Actions"><i class="bi bi-three-dots-vertical"></i></button><div class="member-dropdown"><button type="button" class="member-dropdown-item view" data-modal-open="staff-mv-STF005" data-modal-title="Details"><i class="bi bi-eye"></i> View</button><button type="button" class="member-dropdown-item edit" data-modal-open="staff-me-STF005" data-modal-title="Edit"><i class="bi bi-pencil"></i> Edit</button><button type="button" class="member-dropdown-item unblock" data-confirm="Change block status? (design mode)"><i class="bi bi-unlock"></i> Unblock</button><button type="button" class="member-dropdown-item login" data-toast="Member portal login (design mode)"><i class="bi bi-box-arrow-in-right"></i> Log in as this member</button><div class="member-dropdown-divider"></div><button type="button" class="member-dropdown-item delete" data-confirm="Delete this member? (design mode — nothing is deleted)"><i class="bi bi-trash"></i> Delete</button></div></div></td></tr></tbody></table></div></div></div>
+</main>
+</div>
+
+<script src="js/admin-design.js"></script>
+
+<!-- ===== legacy modal forms (captured from original admin) ===== -->
+<div class="design-modal" id="staff-legacy-add" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title"><i class="bi bi-person-plus" style="color:var(--gold)"></i> Staff Information</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><form id="addStaffForm"><div class="form-row"><div class="form-group"><label>First Name <span class="required">*</span></label><input type="text" class="form-control" name="firstName" placeholder="First Name" required></div><div class="form-group"><label>Last Name <span class="required">*</span></label><input type="text" class="form-control" name="lastName" placeholder="Last Name" required></div></div><div class="form-row"><div class="form-group"><label>Email <span class="required">*</span></label><input type="email" class="form-control" name="email" placeholder="Email" required></div><div class="form-group"><label>Phone</label><input type="tel" class="form-control" name="phone" placeholder="Phone"></div></div><div class="form-row"><div class="form-group"><label>Password <span class="required">*</span></label><div style="position:relative"><input type="password" class="form-control" name="password" id="staffPassword" placeholder="Password" required><button type="button" style="position:absolute;right:10px;top:50%;transform:translateY(-50%);background:none;border:none;color:var(--gray-400);cursor:pointer"><i class="bi bi-eye"></i></button></div></div><div class="form-group"><label>Role <span class="required">*</span></label><select class="form-control" name="role"><option value="Super Admin">Super Admin</option><option value="Manager">Manager</option><option value="Order Manager">Order Manager</option><option value="Customer Support">Customer Support</option><option value="Content Manager">Content Manager</option></select></div></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Save</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-me-STF001" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title"><i class="bi bi-person-gear" style="color:var(--gold)"></i> Edit Staff</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><form id="editMemberForm"><div class="form-row"><div class="form-group"><label>First Name</label><input type="text" class="form-control" name="firstName" value="Super"></div><div class="form-group"><label>Last Name</label><input type="text" class="form-control" name="lastName" value="Admin"></div></div><div class="form-row"><div class="form-group"><label>Email</label><input type="email" class="form-control" name="email" value="admin@tatitofashions.com"></div><div class="form-group"><label>Phone</label><input type="tel" class="form-control" name="phone" value="+91 98765 43210"></div></div><div class="form-group"><label>Role</label><select class="form-control" name="role"><option value="Super Admin" selected>Super Admin</option><option value="Manager">Manager</option><option value="Order Manager">Order Manager</option><option value="Customer Support">Customer Support</option><option value="Content Manager">Content Manager</option></select></div><div class="form-group"><label>Status</label><select class="form-control" name="status"><option value="active" selected>Active</option><option value="blocked">Blocked</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Save Changes</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-mv-STF001" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Staff Details</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><div style="text-align:center;margin-bottom:20px"><div style="width:70px;height:70px;border-radius:50%;background:#7B2D26;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:1.6rem;font-weight:700;color:white">SA</div><h3 style="margin:0">Super Admin</h3><span class="badge badge-success">Active</span></div><table class="table table-borderless"><tr><td class="text-muted" style="width:40%">Name</td><td><strong>Super Admin</strong></td></tr><tr><td class="text-muted" style="width:40%">Role</td><td><strong><span class="badge badge-gold">Super Admin</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Email</td><td><strong>admin@tatitofashions.com</strong></td></tr><tr><td class="text-muted" style="width:40%">Phone</td><td><strong>+91 98765 43210</strong></td></tr><tr><td class="text-muted" style="width:40%">Status</td><td><strong><span class="badge badge-success">Active</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Last Login</td><td><strong>20 Mar 2026, 10:00 am</strong></td></tr></table></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Close</button><button class="btn btn-primary"id":"STF001","firstName":"Super","lastName":"Admin","name":"Super Admin","email":"admin@tatitofashions.com","phone":"+91 98765 43210","role":"Super Admin","status":"active","lastLogin":"2026-03-20T10:00:00Z","permissions":"all"},'Staff')" type="button" data-toast="Saved (design mode)"><i class="bi bi-pencil"></i> Edit</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-me-STF002" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title"><i class="bi bi-person-gear" style="color:var(--gold)"></i> Edit Staff</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><form id="editMemberForm"><div class="form-row"><div class="form-group"><label>First Name</label><input type="text" class="form-control" name="firstName" value="Arjun"></div><div class="form-group"><label>Last Name</label><input type="text" class="form-control" name="lastName" value="Patel"></div></div><div class="form-row"><div class="form-group"><label>Email</label><input type="email" class="form-control" name="email" value="arjun@tatitofashions.com"></div><div class="form-group"><label>Phone</label><input type="tel" class="form-control" name="phone" value="+91 98220 11223"></div></div><div class="form-group"><label>Role</label><select class="form-control" name="role"><option value="Super Admin">Super Admin</option><option value="Manager" selected>Manager</option><option value="Order Manager">Order Manager</option><option value="Customer Support">Customer Support</option><option value="Content Manager">Content Manager</option></select></div><div class="form-group"><label>Status</label><select class="form-control" name="status"><option value="active" selected>Active</option><option value="blocked">Blocked</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Save Changes</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-mv-STF002" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Staff Details</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><div style="text-align:center;margin-bottom:20px"><div style="width:70px;height:70px;border-radius:50%;background:#2D6A4F;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:1.6rem;font-weight:700;color:white">AP</div><h3 style="margin:0">Arjun Patel</h3><span class="badge badge-success">Active</span></div><table class="table table-borderless"><tr><td class="text-muted" style="width:40%">Name</td><td><strong>Arjun Patel</strong></td></tr><tr><td class="text-muted" style="width:40%">Role</td><td><strong><span class="badge badge-info">Manager</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Email</td><td><strong>arjun@tatitofashions.com</strong></td></tr><tr><td class="text-muted" style="width:40%">Phone</td><td><strong>+91 98220 11223</strong></td></tr><tr><td class="text-muted" style="width:40%">Status</td><td><strong><span class="badge badge-success">Active</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Last Login</td><td><strong>19 Mar 2026, 02:30 pm</strong></td></tr></table></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Close</button><button class="btn btn-primary"id":"STF002","firstName":"Arjun","lastName":"Patel","name":"Arjun Patel","email":"arjun@tatitofashions.com","phone":"+91 98220 11223","role":"Manager","status":"active","lastLogin":"2026-03-19T14:30:00Z","permissions":"manager"},'Staff')" type="button" data-toast="Saved (design mode)"><i class="bi bi-pencil"></i> Edit</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-me-STF003" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title"><i class="bi bi-person-gear" style="color:var(--gold)"></i> Edit Staff</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><form id="editMemberForm"><div class="form-row"><div class="form-group"><label>First Name</label><input type="text" class="form-control" name="firstName" value="Deepika"></div><div class="form-group"><label>Last Name</label><input type="text" class="form-control" name="lastName" value="Rao"></div></div><div class="form-row"><div class="form-group"><label>Email</label><input type="email" class="form-control" name="email" value="deepika@tatitofashions.com"></div><div class="form-group"><label>Phone</label><input type="tel" class="form-control" name="phone" value="+91 98300 55667"></div></div><div class="form-group"><label>Role</label><select class="form-control" name="role"><option value="Super Admin">Super Admin</option><option value="Manager">Manager</option><option value="Order Manager" selected>Order Manager</option><option value="Customer Support">Customer Support</option><option value="Content Manager">Content Manager</option></select></div><div class="form-group"><label>Status</label><select class="form-control" name="status"><option value="active" selected>Active</option><option value="blocked">Blocked</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Save Changes</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-mv-STF003" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Staff Details</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><div style="text-align:center;margin-bottom:20px"><div style="width:70px;height:70px;border-radius:50%;background:#8338EC;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:1.6rem;font-weight:700;color:white">DR</div><h3 style="margin:0">Deepika Rao</h3><span class="badge badge-success">Active</span></div><table class="table table-borderless"><tr><td class="text-muted" style="width:40%">Name</td><td><strong>Deepika Rao</strong></td></tr><tr><td class="text-muted" style="width:40%">Role</td><td><strong><span class="badge badge-info">Order Manager</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Email</td><td><strong>deepika@tatitofashions.com</strong></td></tr><tr><td class="text-muted" style="width:40%">Phone</td><td><strong>+91 98300 55667</strong></td></tr><tr><td class="text-muted" style="width:40%">Status</td><td><strong><span class="badge badge-success">Active</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Last Login</td><td><strong>19 Mar 2026, 09:15 am</strong></td></tr></table></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Close</button><button class="btn btn-primary"id":"STF003","firstName":"Deepika","lastName":"Rao","name":"Deepika Rao","email":"deepika@tatitofashions.com","phone":"+91 98300 55667","role":"Order Manager","status":"active","lastLogin":"2026-03-19T09:15:00Z","permissions":"orders"},'Staff')" type="button" data-toast="Saved (design mode)"><i class="bi bi-pencil"></i> Edit</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-me-STF004" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title"><i class="bi bi-person-gear" style="color:var(--gold)"></i> Edit Staff</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><form id="editMemberForm"><div class="form-row"><div class="form-group"><label>First Name</label><input type="text" class="form-control" name="firstName" value="Karan"></div><div class="form-group"><label>Last Name</label><input type="text" class="form-control" name="lastName" value="Malhotra"></div></div><div class="form-row"><div class="form-group"><label>Email</label><input type="email" class="form-control" name="email" value="karan@tatitofashions.com"></div><div class="form-group"><label>Phone</label><input type="tel" class="form-control" name="phone" value="+91 98400 77889"></div></div><div class="form-group"><label>Role</label><select class="form-control" name="role"><option value="Super Admin">Super Admin</option><option value="Manager">Manager</option><option value="Order Manager">Order Manager</option><option value="Customer Support" selected>Customer Support</option><option value="Content Manager">Content Manager</option></select></div><div class="form-group"><label>Status</label><select class="form-control" name="status"><option value="active" selected>Active</option><option value="blocked">Blocked</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Save Changes</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-mv-STF004" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Staff Details</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><div style="text-align:center;margin-bottom:20px"><div style="width:70px;height:70px;border-radius:50%;background:#E63946;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:1.6rem;font-weight:700;color:white">KM</div><h3 style="margin:0">Karan Malhotra</h3><span class="badge badge-success">Active</span></div><table class="table table-borderless"><tr><td class="text-muted" style="width:40%">Name</td><td><strong>Karan Malhotra</strong></td></tr><tr><td class="text-muted" style="width:40%">Role</td><td><strong><span class="badge badge-info">Customer Support</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Email</td><td><strong>karan@tatitofashions.com</strong></td></tr><tr><td class="text-muted" style="width:40%">Phone</td><td><strong>+91 98400 77889</strong></td></tr><tr><td class="text-muted" style="width:40%">Status</td><td><strong><span class="badge badge-success">Active</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Last Login</td><td><strong>18 Mar 2026, 04:45 pm</strong></td></tr></table></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Close</button><button class="btn btn-primary"id":"STF004","firstName":"Karan","lastName":"Malhotra","name":"Karan Malhotra","email":"karan@tatitofashions.com","phone":"+91 98400 77889","role":"Customer Support","status":"active","lastLogin":"2026-03-18T16:45:00Z","permissions":"support"},'Staff')" type="button" data-toast="Saved (design mode)"><i class="bi bi-pencil"></i> Edit</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-me-STF005" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title"><i class="bi bi-person-gear" style="color:var(--gold)"></i> Edit Staff</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><form id="editMemberForm"><div class="form-row"><div class="form-group"><label>First Name</label><input type="text" class="form-control" name="firstName" value="Sneha"></div><div class="form-group"><label>Last Name</label><input type="text" class="form-control" name="lastName" value="Gupta"></div></div><div class="form-row"><div class="form-group"><label>Email</label><input type="email" class="form-control" name="email" value="sneha@tatitofashions.com"></div><div class="form-group"><label>Phone</label><input type="tel" class="form-control" name="phone" value="+91 98950 22334"></div></div><div class="form-group"><label>Role</label><select class="form-control" name="role"><option value="Super Admin">Super Admin</option><option value="Manager">Manager</option><option value="Order Manager">Order Manager</option><option value="Customer Support">Customer Support</option><option value="Content Manager" selected>Content Manager</option></select></div><div class="form-group"><label>Status</label><select class="form-control" name="status"><option value="active">Active</option><option value="blocked">Blocked</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Save Changes</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="staff-mv-STF005" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Staff Details</h3><button class="modal-close" type="button" data-modal-close="staff-legacy">&times;</button></div><div class="modal-body"><div style="text-align:center;margin-bottom:20px"><div style="width:70px;height:70px;border-radius:50%;background:#457B9D;display:flex;align-items:center;justify-content:center;margin:0 auto 10px;font-size:1.6rem;font-weight:700;color:white">SG</div><h3 style="margin:0">Sneha Gupta</h3><span class="badge badge-warning">Inactive</span></div><table class="table table-borderless"><tr><td class="text-muted" style="width:40%">Name</td><td><strong>Sneha Gupta</strong></td></tr><tr><td class="text-muted" style="width:40%">Role</td><td><strong><span class="badge badge-info">Content Manager</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Email</td><td><strong>sneha@tatitofashions.com</strong></td></tr><tr><td class="text-muted" style="width:40%">Phone</td><td><strong>+91 98950 22334</strong></td></tr><tr><td class="text-muted" style="width:40%">Status</td><td><strong><span class="badge badge-info">Inactive</span></strong></td></tr><tr><td class="text-muted" style="width:40%">Last Login</td><td><strong>12 Mar 2026, 02:20 pm</strong></td></tr></table></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="staff-legacy">Close</button><button class="btn btn-primary"id":"STF005","firstName":"Sneha","lastName":"Gupta","name":"Sneha Gupta","email":"sneha@tatitofashions.com","phone":"+91 98950 22334","role":"Content Manager","status":"inactive","lastLogin":"2026-03-12T14:20:00Z","permissions":"content"},'Staff')" type="button" data-toast="Saved (design mode)"><i class="bi bi-pencil"></i> Edit</button></div>
+  </div>
+</div>
+
+<!-- ===== design-mode modals (admin-design.js) ===== -->
+<div class="design-modal" id="staff-add" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Add new record</h3><button class="modal-close" type="button" data-modal-close="staff-add" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<form>
+  <div class="form-group"><label>Name</label><input type="text" class="form-control" placeholder="Enter name"></div>
+  <div class="form-group"><label>Description</label><textarea class="form-control" rows="3" placeholder="Short description"></textarea></div>
+  <div class="form-row">
+    <div class="form-group"><label>Status</label><select class="form-control"><option>Active</option><option>Inactive</option><option>Pending</option></select></div>
+    <div class="form-group"><label>Priority</label><select class="form-control"><option>High</option><option selected>Normal</option><option>Low</option></select></div>
+  </div>
+  <div class="toggle-row"><div class="toggle-info"><strong>Enabled</strong><p class="text-muted">Show this record on the storefront</p></div><span class="toggle-switch on"><span class="toggle-knob"></span></span></div>
+</form>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="staff-add">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+</body>
+</html>

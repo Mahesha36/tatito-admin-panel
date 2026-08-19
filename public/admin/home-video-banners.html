@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Video Banners — TATITO Admin</title>
+<link rel="icon" type="image/png" href="assets/tatito-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/modules.css">
+</head>
+<body class="admin-body">
+<!-- ============================================================
+     TATITO Admin — static design page (no JavaScript)
+     Content below = exact rendered output of the legacy admin panel
+     (MockData-driven). Sample data is illustrative; Laravel will
+     replace with real data via Blade views + API.
+     ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">
+    <div>
+      <h3 class="sidebar-brand">TATITO</h3>
+      <small class="sidebar-subtitle">Admin Panel</small>
+    </div>
+  </div>
+  <div class="sidebar-user">
+    <div class="sidebar-avatar">SA</div>
+    <div class="sidebar-user-info">
+      <div class="sidebar-user-name">Super Admin</div>
+      <div class="sidebar-user-role">Administrator</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-speedometer2 nav-group-icon"></i><span>Dashboard</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="dashboard.html"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
+        <a class="nav-item" href="reports.html"><i class="bi bi-bar-chart-line"></i><span>Reports & Analytics</span></a>
+        <a class="nav-item" href="tracking.html"><i class="bi bi-geo-alt"></i><span>Live Order Tracking</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-tags nav-group-icon"></i><span>Catalog</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="products.html"><i class="bi bi-bag"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-cart3 nav-group-icon"></i><span>Sales</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="orders.html"><i class="bi bi-receipt"></i><span>Orders</span></a>
+        <a class="nav-item" href="bookings.html"><i class="bi bi-calendar-check"></i><span>Bookings</span></a>
+        <a class="nav-item" href="payments.html"><i class="bi bi-credit-card"></i><span>Payments</span></a>
+        <a class="nav-item" href="refunds.html"><i class="bi bi-cash-coin"></i><span>Refunds</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-people nav-group-icon"></i><span>Members</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="approvals.html"><i class="bi bi-person-check"></i><span>Approvals</span></a>
+        <a class="nav-item" href="users.html"><i class="bi bi-people"></i><span>Customers</span></a>
+        <a class="nav-item" href="sellers.html"><i class="bi bi-shop"></i><span>Sellers</span></a>
+        <a class="nav-item" href="designers.html"><i class="bi bi-palette"></i><span>Designers</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-stars nav-group-icon"></i><span>Services</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="boutiques.html"><i class="bi bi-shop-window"></i><span>Boutiques</span></a>
+        <a class="nav-item" href="customizations.html"><i class="bi bi-brush"></i><span>Customizations</span></a>
+        <a class="nav-item" href="quotations.html"><i class="bi bi-file-text"></i><span>Quotations</span></a>
+        <a class="nav-item" href="consultations.html"><i class="bi bi-headset"></i><span>Consultations</span></a>
+        <a class="nav-item" href="photography.html"><i class="bi bi-camera"></i><span>Photography</span></a>
+        <a class="nav-item" href="events.html"><i class="bi bi-calendar-event"></i><span>Event Management</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-megaphone nav-group-icon"></i><span>Marketing</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="reviews.html"><i class="bi bi-star"></i><span>Reviews & Ratings</span></a>
+        <a class="nav-item" href="referrals.html"><i class="bi bi-diagram-3"></i><span>Referral Program</span></a>
+        <a class="nav-item" href="offers.html"><i class="bi bi-tag"></i><span>Offers & Coupons</span></a>
+        <a class="nav-item" href="notifications.html"><i class="bi bi-bell"></i><span>Notifications</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-life-preserver nav-group-icon"></i><span>Support</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="contact-queries.html"><i class="bi bi-envelope"></i><span>Contact Queries</span></a>
+        <a class="nav-item" href="support-tickets.html"><i class="bi bi-chat-dots"></i><span>Support Tickets</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-badge nav-group-icon"></i><span>Staff</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="staff.html"><i class="bi bi-people"></i><span>All Staff</span></a>
+        <a class="nav-item" href="roles.html"><i class="bi bi-shield-lock"></i><span>Staff Roles</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-window-stack nav-group-icon"></i><span>Website</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="cms.html"><i class="bi bi-file-earmark-richtext"></i><span>CMS Pages</span></a>
+        <a class="nav-item" href="website-header.html"><i class="bi bi-window"></i><span>Header</span></a>
+        <a class="nav-item" href="website-footer.html"><i class="bi bi-layout-text-window-reverse"></i><span>Footer</span></a>
+        <a class="nav-item" href="website-setup.html"><i class="bi bi-palette2"></i><span>Website Setup</span></a>
+        <a class="nav-item" href="home-page-settings.html"><i class="bi bi-house-gear"></i><span>Home Page Settings</span></a>
+        <a class="nav-item" href="media-manager.html"><i class="bi bi-folder2-open"></i><span>Media Manager</span></a>
+      </div>
+    </details>
+    <details class="nav-group has-active" open>
+      <summary class="nav-group-header"><i class="bi bi-house-door nav-group-icon"></i><span>Home Feed</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="home-collections.html"><i class="bi bi-collection"></i><span>Home Collections</span></a>
+        <a class="nav-item active" href="home-video-banners.html"><i class="bi bi-camera-video"></i><span>Video Banners</span></a>
+        <a class="nav-item" href="home-dynamic-sections.html"><i class="bi bi-layout-text-window"></i><span>Dynamic Layout</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Weddings Hub</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="wedding-collections.html"><i class="bi bi-grid-3x3-gap"></i><span>Collections</span></a>
+        <a class="nav-item" href="wedding-banners.html"><i class="bi bi-image"></i><span>Banners</span></a>
+        <a class="nav-item" href="wedding-featured.html"><i class="bi bi-star"></i><span>Featured Couture</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-brush nav-group-icon"></i><span>Customise</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="customisation-studios.html"><i class="bi bi-shop-window"></i><span>Studios</span></a>
+        <a class="nav-item" href="customisation-options.html"><i class="bi bi-palette"></i><span>Options & Swatches</span></a>
+        <a class="nav-item" href="bespoke-orders.html"><i class="bi bi-scissors"></i><span>Bespoke Orders</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Jewellery Vault</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="jewellery-collections.html"><i class="bi bi-collection"></i><span>Collections</span></a>
+        <a class="nav-item" href="jewellery-categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="jewellery-products.html"><i class="bi bi-gem"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-calendar2-event nav-group-icon"></i><span>VIP Events</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="events-vip.html"><i class="bi bi-calendar-event"></i><span>Event Calendar</span></a>
+        <a class="nav-item" href="event-rsvps.html"><i class="bi bi-ticket-perforated"></i><span>RSVPs</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-rolodex nav-group-icon"></i><span>Stylist</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="stylist-bookings.html"><i class="bi bi-calendar2-check"></i><span>Bookings</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gear nav-group-icon"></i><span>Settings</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="settings.html"><i class="bi bi-sliders"></i><span>General Settings</span></a>
+        <a class="nav-item" href="payment-setup.html"><i class="bi bi-credit-card-2-front"></i><span>Payment Setup</span></a>
+        <a class="nav-item" href="currencies.html"><i class="bi bi-currency-exchange"></i><span>Currencies</span></a>
+        <a class="nav-item" href="languages.html"><i class="bi bi-translate"></i><span>Languages</span></a>
+        <a class="nav-item" href="email-templates.html"><i class="bi bi-mailbox"></i><span>Email Templates</span></a>
+      </div>
+    </details>
+  </nav>
+  <div class="sidebar-footer">
+    <a class="btn btn-ghost btn-block" href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+  </div>
+</div><div class="main-wrapper" id="mainWrapper">
+<div class="topbar">
+  <div class="topbar-left"><h2>Video Banners</h2></div>
+  <div class="topbar-actions">
+    <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="All Modules"><i class="bi bi-grid-3x3-gap"></i></a>
+  </div>
+</div><main class="page-content-wrapper" id="pageContent">
+<div class="page-content"><div class="page-toolbar"><div><h3>Video Banners / Hero Slider</h3><p class="text-muted">Homepage hero slider slides — sourced from frontend</p></div><div class="toolbar-actions"><button class="btn btn-primary" data-modal-open="home-video-banners-add"><i class="bi bi-plus-lg"></i> Add Slide</button></div></div><div class="card" style="margin-bottom:16px"><div class="card-body" style="display:flex;justify-content:space-between;align-items:center"><div><strong style="font-size:0.92rem"><i class="bi bi-toggle-on" style="color:var(--gold)"></i> Hero Slider Visibility</strong><p class="text-muted" style="font-size:0.78rem;margin-top:2px">Toggle OFF to completely hide the hero slider from the homepage</p></div><div style="display:flex;align-items:center;gap:10px"><span style="font-size:0.82rem;color:var(--gray-500)">Visible</span><button class="toggle-switch on"><span class="toggle-knob"></span></button></div></div></div><div style="padding:10px 14px;border-radius:8px;background:rgba(201,162,75,0.1);border:1px solid rgba(201,162,75,0.3);margin-bottom:16px;font-size:0.82rem;color:var(--gray-600)"><i class="bi bi-info-circle" style="color:var(--gold)"></i> These slides appear on the homepage hero slider. Changes are reflected on the storefront immediately.</div><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(350px,1fr));gap:16px"><div style="border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card-bg)"><div style="height:160px;background:linear-gradient(135deg,rgba(26,18,15,0.55),rgba(90,10,24,0.45)),url('https://images.unsplash.com/photo-1606800052052-a08af7148866?auto=format&fit=crop&w=1920&q=80') center/cover;position:relative;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff"><span style="font-size:0.7rem;background:rgba(255,255,255,0.15);padding:2px 8px;border-radius:4px;display:inline-block;width:fit-content;margin-bottom:4px">✨ New Collection</span><h5 style="color:#fff;margin:0;font-size:1rem">Royal Bridal Collection</h5><p style="font-size:0.75rem;opacity:0.8;margin:2px 0 0">Handcrafted lehengas, sherwanis &amp; couture for your special day</p><span style="position:absolute;top:8px;left:8px;background:var(--ruby);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.65rem">Slide 1</span></div><div style="padding:10px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-size:0.75rem;color:var(--gray-500)">CTA: <strong>Explore Wedding</strong> &rarr; category.html?category=wedding</span><div style="display:flex;align-items:center;gap:6px"><span style="font-size:0.7rem;color:var(--gray-500)">Visible</span><button class="toggle-switch on" title="Show/Hide slide"><span class="toggle-knob"></span></button></div></div><div style="display:flex;gap:6px"><button class="btn btn-outline btn-sm"><i class="bi bi-pencil"></i> Edit</button><button class="btn btn-outline btn-sm" disabled><i class="bi bi-arrow-left"></i></button><button class="btn btn-outline btn-sm" ><i class="bi bi-arrow-right"></i></button><button class="btn btn-outline btn-sm" style="color:var(--ruby);border-color:var(--ruby)"><i class="bi bi-trash"></i></button></div></div></div><div style="border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card-bg)"><div style="height:160px;background:linear-gradient(135deg,rgba(26,18,15,0.55),rgba(90,10,24,0.45)),url('https://images.unsplash.com/photo-1617137968427-85924c800a22?auto=format&fit=crop&w=1920&q=80') center/cover;position:relative;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff"><span style="font-size:0.7rem;background:rgba(255,255,255,0.15);padding:2px 8px;border-radius:4px;display:inline-block;width:fit-content;margin-bottom:4px">👔 Premium Men's Wear</span><h5 style="color:#fff;margin:0;font-size:1rem">Dapper &amp; Distinctive</h5><p style="font-size:0.75rem;opacity:0.8;margin:2px 0 0">Sherwanis, kurtas, suits &amp; accessories from top designers near you</p><span style="position:absolute;top:8px;left:8px;background:var(--ruby);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.65rem">Slide 2</span></div><div style="padding:10px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-size:0.75rem;color:var(--gray-500)">CTA: <strong>Shop Men&#39;s Wear</strong> &rarr; category.html?category=men-wear</span><div style="display:flex;align-items:center;gap:6px"><span style="font-size:0.7rem;color:var(--gray-500)">Visible</span><button class="toggle-switch on" title="Show/Hide slide"><span class="toggle-knob"></span></button></div></div><div style="display:flex;gap:6px"><button class="btn btn-outline btn-sm"><i class="bi bi-pencil"></i> Edit</button><button class="btn btn-outline btn-sm" ><i class="bi bi-arrow-left"></i></button><button class="btn btn-outline btn-sm" ><i class="bi bi-arrow-right"></i></button><button class="btn btn-outline btn-sm" style="color:var(--ruby);border-color:var(--ruby)"><i class="bi bi-trash"></i></button></div></div></div><div style="border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card-bg)"><div style="height:160px;background:linear-gradient(135deg,rgba(26,18,15,0.55),rgba(90,10,24,0.45)),url('https://images.unsplash.com/photo-1599643478518-a784e5dc4c8f?auto=format&fit=crop&w=1920&q=80') center/cover;position:relative;padding:14px;display:flex;flex-direction:column;justify-content:flex-end;color:#fff"><span style="font-size:0.7rem;background:rgba(255,255,255,0.15);padding:2px 8px;border-radius:4px;display:inline-block;width:fit-content;margin-bottom:4px">💍 Exquisite Jewellery</span><h5 style="color:#fff;margin:0;font-size:1rem">Timeless Adornments</h5><p style="font-size:0.75rem;opacity:0.8;margin:2px 0 0">Gold, diamond &amp; traditional pieces from trusted jewellers</p><span style="position:absolute;top:8px;left:8px;background:var(--ruby);color:#fff;padding:2px 8px;border-radius:4px;font-size:0.65rem">Slide 3</span></div><div style="padding:10px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px"><span style="font-size:0.75rem;color:var(--gray-500)">CTA: <strong>Shop Jewellery</strong> &rarr; category.html?category=jewellery</span><div style="display:flex;align-items:center;gap:6px"><span style="font-size:0.7rem;color:var(--gray-500)">Visible</span><button class="toggle-switch on" title="Show/Hide slide"><span class="toggle-knob"></span></button></div></div><div style="display:flex;gap:6px"><button class="btn btn-outline btn-sm"><i class="bi bi-pencil"></i> Edit</button><button class="btn btn-outline btn-sm" ><i class="bi bi-arrow-left"></i></button><button class="btn btn-outline btn-sm" disabled><i class="bi bi-arrow-right"></i></button><button class="btn btn-outline btn-sm" style="color:var(--ruby);border-color:var(--ruby)"><i class="bi bi-trash"></i></button></div></div></div></div></div>
+</main>
+</div>
+
+<script src="js/admin-design.js"></script>
+
+<!-- ===== design-mode modals (admin-design.js) ===== -->
+<div class="design-modal" id="home-video-banners-add" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Add new record</h3><button class="modal-close" type="button" data-modal-close="home-video-banners-add" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<form>
+  <div class="form-group"><label>Name</label><input type="text" class="form-control" placeholder="Enter name"></div>
+  <div class="form-group"><label>Description</label><textarea class="form-control" rows="3" placeholder="Short description"></textarea></div>
+  <div class="form-row">
+    <div class="form-group"><label>Status</label><select class="form-control"><option>Active</option><option>Inactive</option><option>Pending</option></select></div>
+    <div class="form-group"><label>Priority</label><select class="form-control"><option>High</option><option selected>Normal</option><option>Low</option></select></div>
+  </div>
+  <div class="toggle-row"><div class="toggle-info"><strong>Enabled</strong><p class="text-muted">Show this record on the storefront</p></div><span class="toggle-switch on"><span class="toggle-knob"></span></span></div>
+</form>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="home-video-banners-add">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+</body>
+</html>

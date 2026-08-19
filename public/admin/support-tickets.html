@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Support Tickets — TATITO Admin</title>
+<link rel="icon" type="image/png" href="assets/tatito-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/modules.css">
+</head>
+<body class="admin-body">
+<!-- ============================================================
+     TATITO Admin — static design page (no JavaScript)
+     Content below = exact rendered output of the legacy admin panel
+     (MockData-driven). Sample data is illustrative; Laravel will
+     replace with real data via Blade views + API.
+     ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">
+    <div>
+      <h3 class="sidebar-brand">TATITO</h3>
+      <small class="sidebar-subtitle">Admin Panel</small>
+    </div>
+  </div>
+  <div class="sidebar-user">
+    <div class="sidebar-avatar">SA</div>
+    <div class="sidebar-user-info">
+      <div class="sidebar-user-name">Super Admin</div>
+      <div class="sidebar-user-role">Administrator</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-speedometer2 nav-group-icon"></i><span>Dashboard</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="dashboard.html"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
+        <a class="nav-item" href="reports.html"><i class="bi bi-bar-chart-line"></i><span>Reports & Analytics</span></a>
+        <a class="nav-item" href="tracking.html"><i class="bi bi-geo-alt"></i><span>Live Order Tracking</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-tags nav-group-icon"></i><span>Catalog</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="products.html"><i class="bi bi-bag"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-cart3 nav-group-icon"></i><span>Sales</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="orders.html"><i class="bi bi-receipt"></i><span>Orders</span></a>
+        <a class="nav-item" href="bookings.html"><i class="bi bi-calendar-check"></i><span>Bookings</span></a>
+        <a class="nav-item" href="payments.html"><i class="bi bi-credit-card"></i><span>Payments</span></a>
+        <a class="nav-item" href="refunds.html"><i class="bi bi-cash-coin"></i><span>Refunds</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-people nav-group-icon"></i><span>Members</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="approvals.html"><i class="bi bi-person-check"></i><span>Approvals</span></a>
+        <a class="nav-item" href="users.html"><i class="bi bi-people"></i><span>Customers</span></a>
+        <a class="nav-item" href="sellers.html"><i class="bi bi-shop"></i><span>Sellers</span></a>
+        <a class="nav-item" href="designers.html"><i class="bi bi-palette"></i><span>Designers</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-stars nav-group-icon"></i><span>Services</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="boutiques.html"><i class="bi bi-shop-window"></i><span>Boutiques</span></a>
+        <a class="nav-item" href="customizations.html"><i class="bi bi-brush"></i><span>Customizations</span></a>
+        <a class="nav-item" href="quotations.html"><i class="bi bi-file-text"></i><span>Quotations</span></a>
+        <a class="nav-item" href="consultations.html"><i class="bi bi-headset"></i><span>Consultations</span></a>
+        <a class="nav-item" href="photography.html"><i class="bi bi-camera"></i><span>Photography</span></a>
+        <a class="nav-item" href="events.html"><i class="bi bi-calendar-event"></i><span>Event Management</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-megaphone nav-group-icon"></i><span>Marketing</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="reviews.html"><i class="bi bi-star"></i><span>Reviews & Ratings</span></a>
+        <a class="nav-item" href="referrals.html"><i class="bi bi-diagram-3"></i><span>Referral Program</span></a>
+        <a class="nav-item" href="offers.html"><i class="bi bi-tag"></i><span>Offers & Coupons</span></a>
+        <a class="nav-item" href="notifications.html"><i class="bi bi-bell"></i><span>Notifications</span></a>
+      </div>
+    </details>
+    <details class="nav-group has-active" open>
+      <summary class="nav-group-header"><i class="bi bi-life-preserver nav-group-icon"></i><span>Support</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="contact-queries.html"><i class="bi bi-envelope"></i><span>Contact Queries</span></a>
+        <a class="nav-item active" href="support-tickets.html"><i class="bi bi-chat-dots"></i><span>Support Tickets</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-badge nav-group-icon"></i><span>Staff</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="staff.html"><i class="bi bi-people"></i><span>All Staff</span></a>
+        <a class="nav-item" href="roles.html"><i class="bi bi-shield-lock"></i><span>Staff Roles</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-window-stack nav-group-icon"></i><span>Website</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="cms.html"><i class="bi bi-file-earmark-richtext"></i><span>CMS Pages</span></a>
+        <a class="nav-item" href="website-header.html"><i class="bi bi-window"></i><span>Header</span></a>
+        <a class="nav-item" href="website-footer.html"><i class="bi bi-layout-text-window-reverse"></i><span>Footer</span></a>
+        <a class="nav-item" href="website-setup.html"><i class="bi bi-palette2"></i><span>Website Setup</span></a>
+        <a class="nav-item" href="home-page-settings.html"><i class="bi bi-house-gear"></i><span>Home Page Settings</span></a>
+        <a class="nav-item" href="media-manager.html"><i class="bi bi-folder2-open"></i><span>Media Manager</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-house-door nav-group-icon"></i><span>Home Feed</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="home-collections.html"><i class="bi bi-collection"></i><span>Home Collections</span></a>
+        <a class="nav-item" href="home-video-banners.html"><i class="bi bi-camera-video"></i><span>Video Banners</span></a>
+        <a class="nav-item" href="home-dynamic-sections.html"><i class="bi bi-layout-text-window"></i><span>Dynamic Layout</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Weddings Hub</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="wedding-collections.html"><i class="bi bi-grid-3x3-gap"></i><span>Collections</span></a>
+        <a class="nav-item" href="wedding-banners.html"><i class="bi bi-image"></i><span>Banners</span></a>
+        <a class="nav-item" href="wedding-featured.html"><i class="bi bi-star"></i><span>Featured Couture</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-brush nav-group-icon"></i><span>Customise</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="customisation-studios.html"><i class="bi bi-shop-window"></i><span>Studios</span></a>
+        <a class="nav-item" href="customisation-options.html"><i class="bi bi-palette"></i><span>Options & Swatches</span></a>
+        <a class="nav-item" href="bespoke-orders.html"><i class="bi bi-scissors"></i><span>Bespoke Orders</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Jewellery Vault</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="jewellery-collections.html"><i class="bi bi-collection"></i><span>Collections</span></a>
+        <a class="nav-item" href="jewellery-categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="jewellery-products.html"><i class="bi bi-gem"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-calendar2-event nav-group-icon"></i><span>VIP Events</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="events-vip.html"><i class="bi bi-calendar-event"></i><span>Event Calendar</span></a>
+        <a class="nav-item" href="event-rsvps.html"><i class="bi bi-ticket-perforated"></i><span>RSVPs</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-rolodex nav-group-icon"></i><span>Stylist</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="stylist-bookings.html"><i class="bi bi-calendar2-check"></i><span>Bookings</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gear nav-group-icon"></i><span>Settings</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="settings.html"><i class="bi bi-sliders"></i><span>General Settings</span></a>
+        <a class="nav-item" href="payment-setup.html"><i class="bi bi-credit-card-2-front"></i><span>Payment Setup</span></a>
+        <a class="nav-item" href="currencies.html"><i class="bi bi-currency-exchange"></i><span>Currencies</span></a>
+        <a class="nav-item" href="languages.html"><i class="bi bi-translate"></i><span>Languages</span></a>
+        <a class="nav-item" href="email-templates.html"><i class="bi bi-mailbox"></i><span>Email Templates</span></a>
+      </div>
+    </details>
+  </nav>
+  <div class="sidebar-footer">
+    <a class="btn btn-ghost btn-block" href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+  </div>
+</div><div class="main-wrapper" id="mainWrapper">
+<div class="topbar">
+  <div class="topbar-left"><h2>Support Tickets</h2></div>
+  <div class="topbar-actions">
+    <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="All Modules"><i class="bi bi-grid-3x3-gap"></i></a>
+  </div>
+</div><main class="page-content-wrapper" id="pageContent">
+<div class="page-content"><div class="page-toolbar"><div><h3>Support Tickets</h3><p class="text-muted">Customer support ticket management</p></div></div><div class="stat-grid"><div class="stat-card"><div class="stat-icon gold"><i class="bi bi-life-preserver"></i></div><div class="stat-info"><p>Total Tickets</p><h3>5</h3></div></div><div class="stat-card"><div class="stat-icon blue"><i class="bi bi-exclamation-circle"></i></div><div class="stat-info"><p>Open</p><h3>3</h3></div></div><div class="stat-card"><div class="stat-icon purple"><i class="bi bi-arrow-repeat"></i></div><div class="stat-info"><p>In Progress</p><h3>1</h3></div></div><div class="stat-card"><div class="stat-icon green"><i class="bi bi-check-circle"></i></div><div class="stat-info"><p>Resolved</p><h3>1</h3></div></div></div><div class="card"><div class="card-header"><h4 class="card-title">All Support Tickets</h4></div><div class="table-wrap"><table class="admin-table" id="ticketsTable"><thead><tr><th>Ticket ID</th><th>Subject</th><th>User</th><th>Priority</th><th>Category</th><th>Status</th><th>Date</th><th>Actions</th></tr></thead><tbody><tr><td class="cell-strong">TKT001</td><td>Order not delivered</td><td><div class="cell-user"><div class="avatar" style="background:#2D6A4F">PS</div><div class="user-cell-info"><div class="user-cell-name">Priya Sharma</div><div class="user-cell-meta">priya.sharma@gmail.com</div></div></div></td><td><span class="badge badge-danger">High</span></td><td>Order Issue</td><td><span class="badge badge-danger">Open</span></td><td>25 Jul 2026</td><td><div class="table-actions"><button class="action-btn view" data-modal-open="support-tickets-v-TKT001" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="support-tickets-e-TKT001" title="Update Status"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td class="cell-strong">TKT002</td><td>Refund not received</td><td><div class="cell-user"><div class="avatar" style="background:#F4A261">RV</div><div class="user-cell-info"><div class="user-cell-name">Rahul Verma</div><div class="user-cell-meta">rahul.verma@gmail.com</div></div></div></td><td><span class="badge badge-danger">High</span></td><td>Payment Issue</td><td><span class="badge badge-danger">Open</span></td><td>23 Jul 2026</td><td><div class="table-actions"><button class="action-btn view" data-modal-open="support-tickets-v-TKT002" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="support-tickets-e-TKT002" title="Update Status"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td class="cell-strong">TKT003</td><td>Product quality issue</td><td><div class="cell-user"><div class="avatar" style="background:#F4A261">AR</div><div class="user-cell-info"><div class="user-cell-name">Anjali Reddy</div><div class="user-cell-meta">anjali.reddy@gmail.com</div></div></div></td><td><span class="badge badge-warning">Medium</span></td><td>Product Quality</td><td><span class="badge badge-warning">In Progress</span></td><td>20 Jul 2026</td><td><div class="table-actions"><button class="action-btn view" data-modal-open="support-tickets-v-TKT003" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="support-tickets-e-TKT003" title="Update Status"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td class="cell-strong">TKT004</td><td>Cannot login to account</td><td><div class="cell-user"><div class="avatar" style="background:#A72608">SP</div><div class="user-cell-info"><div class="user-cell-name">Sneha Patel</div><div class="user-cell-meta">sneha.patel@gmail.com</div></div></div></td><td><span class="badge badge-gray">Low</span></td><td>Account Issue</td><td><span class="badge badge-success">Resolved</span></td><td>18 Jul 2026</td><td><div class="table-actions"><button class="action-btn view" data-modal-open="support-tickets-v-TKT004" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="support-tickets-e-TKT004" title="Update Status"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td class="cell-strong">TKT005</td><td>Designer quotation query</td><td><div class="cell-user"><div class="avatar" style="background:#F4A261">DN</div><div class="user-cell-info"><div class="user-cell-name">Deepika Nair</div><div class="user-cell-meta">deepika.nair@gmail.com</div></div></div></td><td><span class="badge badge-warning">Medium</span></td><td>Customization</td><td><span class="badge badge-danger">Open</span></td><td>26 Jul 2026</td><td><div class="table-actions"><button class="action-btn view" data-modal-open="support-tickets-v-TKT005" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="support-tickets-e-TKT005" title="Update Status"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr></tbody></table></div></div></div>
+</main>
+</div>
+
+<script src="js/admin-design.js"></script>
+
+<!-- ===== legacy modal forms (captured from original admin) ===== -->
+<div class="design-modal" id="support-tickets-v-TKT001" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Ticket TKT001 — Order not delivered</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-section"><div class="detail-row"><span class="label">User</span><span class="value">Priya Sharma</span></div><div class="detail-row"><span class="label">Email</span><span class="value">priya.sharma@gmail.com</span></div><div class="detail-row"><span class="label">Category</span><span class="value">Order Issue</span></div><div class="detail-row"><span class="label">Priority</span><span class="value">High</span></div><div class="detail-row"><span class="label">Status</span><span class="value">open</span></div></div><h4 style="font-size:0.82rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.5px;margin:16px 0 8px">Conversation</h4><div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:var(--ivory)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--black)">Priya Sharma</strong><span style="font-size:0.72rem;color:var(--gray-400)">25 Jul 2026, 10:00 am</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">My order ORD003 has not been delivered yet. It has been 5 days.</div></div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:rgba(201,162,75,0.1)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--gold-deep)">Support Team</strong><span style="font-size:0.72rem;color:var(--gray-400)">25 Jul 2026, 02:00 pm</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">We are checking with the seller. Your order is in transit.</div></div></div><div class="form-group" style="margin-top:16px"><label>Reply as Support</label><textarea class="form-control" rows="3" id="ticketReplyText" placeholder="Type your response..."></textarea></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-send"></i> Send Reply</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-v-TKT002" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Ticket TKT002 — Refund not received</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-section"><div class="detail-row"><span class="label">User</span><span class="value">Rahul Verma</span></div><div class="detail-row"><span class="label">Email</span><span class="value">rahul.verma@gmail.com</span></div><div class="detail-row"><span class="label">Category</span><span class="value">Payment Issue</span></div><div class="detail-row"><span class="label">Priority</span><span class="value">High</span></div><div class="detail-row"><span class="label">Status</span><span class="value">open</span></div></div><h4 style="font-size:0.82rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.5px;margin:16px 0 8px">Conversation</h4><div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:var(--ivory)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--black)">Rahul Verma</strong><span style="font-size:0.72rem;color:var(--gray-400)">23 Jul 2026, 09:00 am</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">I cancelled my order but have not received the refund yet.</div></div></div><div class="form-group" style="margin-top:16px"><label>Reply as Support</label><textarea class="form-control" rows="3" id="ticketReplyText" placeholder="Type your response..."></textarea></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-send"></i> Send Reply</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-v-TKT003" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Ticket TKT003 — Product quality issue</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-section"><div class="detail-row"><span class="label">User</span><span class="value">Anjali Reddy</span></div><div class="detail-row"><span class="label">Email</span><span class="value">anjali.reddy@gmail.com</span></div><div class="detail-row"><span class="label">Category</span><span class="value">Product Quality</span></div><div class="detail-row"><span class="label">Priority</span><span class="value">Medium</span></div><div class="detail-row"><span class="label">Status</span><span class="value">in progress</span></div></div><h4 style="font-size:0.82rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.5px;margin:16px 0 8px">Conversation</h4><div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:var(--ivory)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--black)">Anjali Reddy</strong><span style="font-size:0.72rem;color:var(--gray-400)">20 Jul 2026, 11:00 am</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">The saree I received has a small tear near the border.</div></div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:rgba(201,162,75,0.1)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--gold-deep)">Support Team</strong><span style="font-size:0.72rem;color:var(--gray-400)">20 Jul 2026, 03:00 pm</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">We apologize. Please share a photo and we will arrange a replacement.</div></div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:var(--ivory)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--black)">Anjali Reddy</strong><span style="font-size:0.72rem;color:var(--gray-400)">21 Jul 2026, 08:00 am</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">Photo attached. Please process the replacement quickly.</div></div></div><div class="form-group" style="margin-top:16px"><label>Reply as Support</label><textarea class="form-control" rows="3" id="ticketReplyText" placeholder="Type your response..."></textarea></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-send"></i> Send Reply</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-v-TKT004" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Ticket TKT004 — Cannot login to account</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-section"><div class="detail-row"><span class="label">User</span><span class="value">Sneha Patel</span></div><div class="detail-row"><span class="label">Email</span><span class="value">sneha.patel@gmail.com</span></div><div class="detail-row"><span class="label">Category</span><span class="value">Account Issue</span></div><div class="detail-row"><span class="label">Priority</span><span class="value">Low</span></div><div class="detail-row"><span class="label">Status</span><span class="value">resolved</span></div></div><h4 style="font-size:0.82rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.5px;margin:16px 0 8px">Conversation</h4><div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:var(--ivory)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--black)">Sneha Patel</strong><span style="font-size:0.72rem;color:var(--gray-400)">18 Jul 2026, 10:00 am</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">I am unable to login. It says invalid credentials.</div></div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:rgba(201,162,75,0.1)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--gold-deep)">Support Team</strong><span style="font-size:0.72rem;color:var(--gray-400)">18 Jul 2026, 12:00 pm</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">We have reset your password. Please check your email.</div></div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:var(--ivory)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--black)">Sneha Patel</strong><span style="font-size:0.72rem;color:var(--gray-400)">18 Jul 2026, 02:00 pm</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">Thank you! I can login now.</div></div></div><div class="form-group" style="margin-top:16px"><label>Reply as Support</label><textarea class="form-control" rows="3" id="ticketReplyText" placeholder="Type your response..."></textarea></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-send"></i> Send Reply</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-v-TKT005" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Ticket TKT005 — Designer quotation query</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-section"><div class="detail-row"><span class="label">User</span><span class="value">Deepika Nair</span></div><div class="detail-row"><span class="label">Email</span><span class="value">deepika.nair@gmail.com</span></div><div class="detail-row"><span class="label">Category</span><span class="value">Customization</span></div><div class="detail-row"><span class="label">Priority</span><span class="value">Medium</span></div><div class="detail-row"><span class="label">Status</span><span class="value">open</span></div></div><h4 style="font-size:0.82rem;font-weight:700;color:var(--gray-500);text-transform:uppercase;letter-spacing:0.5px;margin:16px 0 8px">Conversation</h4><div><div style="margin-bottom:12px;padding:12px;border-radius:8px;background:var(--ivory)"><div style="display:flex;justify-content:space-between;margin-bottom:4px"><strong style="font-size:0.82rem;color:var(--black)">Deepika Nair</strong><span style="font-size:0.72rem;color:var(--gray-400)">26 Jul 2026, 04:00 pm</span></div><div style="font-size:0.85rem;color:var(--gray-600);line-height:1.5">I received a quotation but want to negotiate the price for my custom gown.</div></div></div><div class="form-group" style="margin-top:16px"><label>Reply as Support</label><textarea class="form-control" rows="3" id="ticketReplyText" placeholder="Type your response..."></textarea></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-send"></i> Send Reply</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-e-TKT001" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Update Ticket Status</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-row"><span class="label">Ticket</span><span class="value">TKT001 — Order not delivered</span></div><div class="detail-row"><span class="label">Current Status</span><span class="value">open</span></div><div class="form-group" style="margin-top:16px"><label>New Status</label><select class="form-control" id="ticketStatusSelect"><option value="open" selected>Open</option><option value="in_progress">In Progress</option><option value="resolved">Resolved</option><option value="closed">Closed</option></select></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Update</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-e-TKT002" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Update Ticket Status</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-row"><span class="label">Ticket</span><span class="value">TKT002 — Refund not received</span></div><div class="detail-row"><span class="label">Current Status</span><span class="value">open</span></div><div class="form-group" style="margin-top:16px"><label>New Status</label><select class="form-control" id="ticketStatusSelect"><option value="open" selected>Open</option><option value="in_progress">In Progress</option><option value="resolved">Resolved</option><option value="closed">Closed</option></select></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Update</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-e-TKT003" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Update Ticket Status</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-row"><span class="label">Ticket</span><span class="value">TKT003 — Product quality issue</span></div><div class="detail-row"><span class="label">Current Status</span><span class="value">in progress</span></div><div class="form-group" style="margin-top:16px"><label>New Status</label><select class="form-control" id="ticketStatusSelect"><option value="open">Open</option><option value="in_progress" selected>In Progress</option><option value="resolved">Resolved</option><option value="closed">Closed</option></select></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Update</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-e-TKT004" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Update Ticket Status</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-row"><span class="label">Ticket</span><span class="value">TKT004 — Cannot login to account</span></div><div class="detail-row"><span class="label">Current Status</span><span class="value">resolved</span></div><div class="form-group" style="margin-top:16px"><label>New Status</label><select class="form-control" id="ticketStatusSelect"><option value="open">Open</option><option value="in_progress">In Progress</option><option value="resolved" selected>Resolved</option><option value="closed">Closed</option></select></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Update</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-e-TKT005" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Update Ticket Status</h3><button class="modal-close" type="button" data-modal-close="support-tickets-legacy">&times;</button></div><div class="modal-body"><div class="detail-row"><span class="label">Ticket</span><span class="value">TKT005 — Designer quotation query</span></div><div class="detail-row"><span class="label">Current Status</span><span class="value">open</span></div><div class="form-group" style="margin-top:16px"><label>New Status</label><select class="form-control" id="ticketStatusSelect"><option value="open" selected>Open</option><option value="in_progress">In Progress</option><option value="resolved">Resolved</option><option value="closed">Closed</option></select></div></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="support-tickets-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Update</button></div>
+  </div>
+</div>
+
+<!-- ===== design-mode modals (admin-design.js) ===== -->
+<div class="design-modal" id="support-tickets-row-0" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — TKT001</h3><button class="modal-close" type="button" data-modal-close="support-tickets-row-0" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Ticket ID</dt><dd class="plain">TKT001</dd>
+<dt>Subject</dt><dd class="plain">Order not delivered</dd>
+<dt>User</dt><dd class="plain">PS Priya Sharma priya.sharma@gmail.com</dd>
+<dt>Priority</dt><dd class="plain">High</dd>
+<dt>Category</dt><dd class="plain">Order Issue</dd>
+<dt>Status</dt><dd class="plain">Open</dd>
+<dt>Date</dt><dd class="plain">25 Jul 2026</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="support-tickets-row-0">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-row-1" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — TKT002</h3><button class="modal-close" type="button" data-modal-close="support-tickets-row-1" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Ticket ID</dt><dd class="plain">TKT002</dd>
+<dt>Subject</dt><dd class="plain">Refund not received</dd>
+<dt>User</dt><dd class="plain">RV Rahul Verma rahul.verma@gmail.com</dd>
+<dt>Priority</dt><dd class="plain">High</dd>
+<dt>Category</dt><dd class="plain">Payment Issue</dd>
+<dt>Status</dt><dd class="plain">Open</dd>
+<dt>Date</dt><dd class="plain">23 Jul 2026</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="support-tickets-row-1">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-row-2" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — TKT003</h3><button class="modal-close" type="button" data-modal-close="support-tickets-row-2" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Ticket ID</dt><dd class="plain">TKT003</dd>
+<dt>Subject</dt><dd class="plain">Product quality issue</dd>
+<dt>User</dt><dd class="plain">AR Anjali Reddy anjali.reddy@gmail.com</dd>
+<dt>Priority</dt><dd class="plain">Medium</dd>
+<dt>Category</dt><dd class="plain">Product Quality</dd>
+<dt>Status</dt><dd class="plain">In Progress</dd>
+<dt>Date</dt><dd class="plain">20 Jul 2026</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="support-tickets-row-2">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-row-3" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — TKT004</h3><button class="modal-close" type="button" data-modal-close="support-tickets-row-3" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Ticket ID</dt><dd class="plain">TKT004</dd>
+<dt>Subject</dt><dd class="plain">Cannot login to account</dd>
+<dt>User</dt><dd class="plain">SP Sneha Patel sneha.patel@gmail.com</dd>
+<dt>Priority</dt><dd class="plain">Low</dd>
+<dt>Category</dt><dd class="plain">Account Issue</dd>
+<dt>Status</dt><dd class="plain">Resolved</dd>
+<dt>Date</dt><dd class="plain">18 Jul 2026</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="support-tickets-row-3">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="support-tickets-row-4" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — TKT005</h3><button class="modal-close" type="button" data-modal-close="support-tickets-row-4" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Ticket ID</dt><dd class="plain">TKT005</dd>
+<dt>Subject</dt><dd class="plain">Designer quotation query</dd>
+<dt>User</dt><dd class="plain">DN Deepika Nair deepika.nair@gmail.com</dd>
+<dt>Priority</dt><dd class="plain">Medium</dd>
+<dt>Category</dt><dd class="plain">Customization</dd>
+<dt>Status</dt><dd class="plain">Open</dd>
+<dt>Date</dt><dd class="plain">26 Jul 2026</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="support-tickets-row-4">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>General Settings — TATITO Admin</title>
+<link rel="icon" type="image/png" href="assets/tatito-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/modules.css">
+</head>
+<body class="admin-body">
+<!-- ============================================================
+     TATITO Admin — static design page (no JavaScript)
+     Content below = exact rendered output of the legacy admin panel
+     (MockData-driven). Sample data is illustrative; Laravel will
+     replace with real data via Blade views + API.
+     ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">
+    <div>
+      <h3 class="sidebar-brand">TATITO</h3>
+      <small class="sidebar-subtitle">Admin Panel</small>
+    </div>
+  </div>
+  <div class="sidebar-user">
+    <div class="sidebar-avatar">SA</div>
+    <div class="sidebar-user-info">
+      <div class="sidebar-user-name">Super Admin</div>
+      <div class="sidebar-user-role">Administrator</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-speedometer2 nav-group-icon"></i><span>Dashboard</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="dashboard.html"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
+        <a class="nav-item" href="reports.html"><i class="bi bi-bar-chart-line"></i><span>Reports & Analytics</span></a>
+        <a class="nav-item" href="tracking.html"><i class="bi bi-geo-alt"></i><span>Live Order Tracking</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-tags nav-group-icon"></i><span>Catalog</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="products.html"><i class="bi bi-bag"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-cart3 nav-group-icon"></i><span>Sales</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="orders.html"><i class="bi bi-receipt"></i><span>Orders</span></a>
+        <a class="nav-item" href="bookings.html"><i class="bi bi-calendar-check"></i><span>Bookings</span></a>
+        <a class="nav-item" href="payments.html"><i class="bi bi-credit-card"></i><span>Payments</span></a>
+        <a class="nav-item" href="refunds.html"><i class="bi bi-cash-coin"></i><span>Refunds</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-people nav-group-icon"></i><span>Members</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="approvals.html"><i class="bi bi-person-check"></i><span>Approvals</span></a>
+        <a class="nav-item" href="users.html"><i class="bi bi-people"></i><span>Customers</span></a>
+        <a class="nav-item" href="sellers.html"><i class="bi bi-shop"></i><span>Sellers</span></a>
+        <a class="nav-item" href="designers.html"><i class="bi bi-palette"></i><span>Designers</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-stars nav-group-icon"></i><span>Services</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="boutiques.html"><i class="bi bi-shop-window"></i><span>Boutiques</span></a>
+        <a class="nav-item" href="customizations.html"><i class="bi bi-brush"></i><span>Customizations</span></a>
+        <a class="nav-item" href="quotations.html"><i class="bi bi-file-text"></i><span>Quotations</span></a>
+        <a class="nav-item" href="consultations.html"><i class="bi bi-headset"></i><span>Consultations</span></a>
+        <a class="nav-item" href="photography.html"><i class="bi bi-camera"></i><span>Photography</span></a>
+        <a class="nav-item" href="events.html"><i class="bi bi-calendar-event"></i><span>Event Management</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-megaphone nav-group-icon"></i><span>Marketing</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="reviews.html"><i class="bi bi-star"></i><span>Reviews & Ratings</span></a>
+        <a class="nav-item" href="referrals.html"><i class="bi bi-diagram-3"></i><span>Referral Program</span></a>
+        <a class="nav-item" href="offers.html"><i class="bi bi-tag"></i><span>Offers & Coupons</span></a>
+        <a class="nav-item" href="notifications.html"><i class="bi bi-bell"></i><span>Notifications</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-life-preserver nav-group-icon"></i><span>Support</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="contact-queries.html"><i class="bi bi-envelope"></i><span>Contact Queries</span></a>
+        <a class="nav-item" href="support-tickets.html"><i class="bi bi-chat-dots"></i><span>Support Tickets</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-badge nav-group-icon"></i><span>Staff</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="staff.html"><i class="bi bi-people"></i><span>All Staff</span></a>
+        <a class="nav-item" href="roles.html"><i class="bi bi-shield-lock"></i><span>Staff Roles</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-window-stack nav-group-icon"></i><span>Website</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="cms.html"><i class="bi bi-file-earmark-richtext"></i><span>CMS Pages</span></a>
+        <a class="nav-item" href="website-header.html"><i class="bi bi-window"></i><span>Header</span></a>
+        <a class="nav-item" href="website-footer.html"><i class="bi bi-layout-text-window-reverse"></i><span>Footer</span></a>
+        <a class="nav-item" href="website-setup.html"><i class="bi bi-palette2"></i><span>Website Setup</span></a>
+        <a class="nav-item" href="home-page-settings.html"><i class="bi bi-house-gear"></i><span>Home Page Settings</span></a>
+        <a class="nav-item" href="media-manager.html"><i class="bi bi-folder2-open"></i><span>Media Manager</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-house-door nav-group-icon"></i><span>Home Feed</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="home-collections.html"><i class="bi bi-collection"></i><span>Home Collections</span></a>
+        <a class="nav-item" href="home-video-banners.html"><i class="bi bi-camera-video"></i><span>Video Banners</span></a>
+        <a class="nav-item" href="home-dynamic-sections.html"><i class="bi bi-layout-text-window"></i><span>Dynamic Layout</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Weddings Hub</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="wedding-collections.html"><i class="bi bi-grid-3x3-gap"></i><span>Collections</span></a>
+        <a class="nav-item" href="wedding-banners.html"><i class="bi bi-image"></i><span>Banners</span></a>
+        <a class="nav-item" href="wedding-featured.html"><i class="bi bi-star"></i><span>Featured Couture</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-brush nav-group-icon"></i><span>Customise</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="customisation-studios.html"><i class="bi bi-shop-window"></i><span>Studios</span></a>
+        <a class="nav-item" href="customisation-options.html"><i class="bi bi-palette"></i><span>Options & Swatches</span></a>
+        <a class="nav-item" href="bespoke-orders.html"><i class="bi bi-scissors"></i><span>Bespoke Orders</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Jewellery Vault</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="jewellery-collections.html"><i class="bi bi-collection"></i><span>Collections</span></a>
+        <a class="nav-item" href="jewellery-categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="jewellery-products.html"><i class="bi bi-gem"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-calendar2-event nav-group-icon"></i><span>VIP Events</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="events-vip.html"><i class="bi bi-calendar-event"></i><span>Event Calendar</span></a>
+        <a class="nav-item" href="event-rsvps.html"><i class="bi bi-ticket-perforated"></i><span>RSVPs</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-rolodex nav-group-icon"></i><span>Stylist</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="stylist-bookings.html"><i class="bi bi-calendar2-check"></i><span>Bookings</span></a>
+      </div>
+    </details>
+    <details class="nav-group has-active" open>
+      <summary class="nav-group-header"><i class="bi bi-gear nav-group-icon"></i><span>Settings</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item active" href="settings.html"><i class="bi bi-sliders"></i><span>General Settings</span></a>
+        <a class="nav-item" href="payment-setup.html"><i class="bi bi-credit-card-2-front"></i><span>Payment Setup</span></a>
+        <a class="nav-item" href="currencies.html"><i class="bi bi-currency-exchange"></i><span>Currencies</span></a>
+        <a class="nav-item" href="languages.html"><i class="bi bi-translate"></i><span>Languages</span></a>
+        <a class="nav-item" href="email-templates.html"><i class="bi bi-mailbox"></i><span>Email Templates</span></a>
+      </div>
+    </details>
+  </nav>
+  <div class="sidebar-footer">
+    <a class="btn btn-ghost btn-block" href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+  </div>
+</div><div class="main-wrapper" id="mainWrapper">
+<div class="topbar">
+  <div class="topbar-left"><h2>General Settings</h2></div>
+  <div class="topbar-actions">
+    <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="All Modules"><i class="bi bi-grid-3x3-gap"></i></a>
+  </div>
+</div><main class="page-content-wrapper" id="pageContent">
+<div class="page-content"><div class="page-toolbar"><div><h3>Settings</h3><p class="text-muted">Marketplace configuration</p></div></div><div class="settings-layout" data-tabs><div class="settings-sidebar"><a href="#" class="settings-tab active" data-tab-btn="general"><i class="bi bi-gear"></i> General</a><a href="#" class="settings-tab " data-tab-btn="features"><i class="bi bi-toggle-on"></i> Features</a><a href="#" class="settings-tab " data-tab-btn="activation"><i class="bi bi-shield-check"></i> Activation</a><a href="#" class="settings-tab " data-tab-btn="smtp"><i class="bi bi-server"></i> SMTP</a><a href="#" class="settings-tab " data-tab-btn="thirdparty"><i class="bi bi-cloud-arrow-up"></i> Third-Party</a><a href="#" class="settings-tab " data-tab-btn="social"><i class="bi bi-google"></i> Social Login</a><a href="#" class="settings-tab " data-tab-btn="notifications"><i class="bi bi-bell"></i> Notifications</a><a href="#" class="settings-tab " data-tab-btn="language"><i class="bi bi-translate"></i> Language</a></div><div class="settings-main"><div id="settingsTabContent">
+<div class="tab-panel" data-tab="general">
+<div class="form-section"><h4 style="font-size:0.88rem;font-weight:700;margin-bottom:16px"><i class="bi bi-gear" style="color:var(--gold)"></i> General Settings</h4><div class="form-group"><label>System Name</label><input type="text" class="form-control" id="gsSystemName" value="TATITO Fashions"></div><div class="form-group"><label>System Logo</label><div class="upload-field"><div class="upload-preview"><img src="assets/tatito-logo.png" style="max-height:60px"></div><div class="upload-info"><i class="bi bi-cloud-arrow-up"></i> <span id="gsLogoName">tatito-logo-official.jpg</span><br><small class="text-muted">PNG, JPG, SVG (max 2MB)</small></div></div><input type="file" id="gsLogo" accept="image/*" style="display:none"></div><div class="form-group"><label>System Timezone</label><select class="form-control" id="gsTimezone"><option selected>(GMT+05:30) New Delhi</option><option>(GMT+05:30) Mumbai</option><option>(GMT+05:30) Kolkata</option><option>(GMT+05:30) Chennai</option><option>(GMT+00:00) London</option><option>(GMT-05:00) New York</option><option>(GMT-08:00) Los Angeles</option><option>(GMT+01:00) Paris</option><option>(GMT+03:00) Dubai</option><option>(GMT+08:00) Singapore</option><option>(GMT+09:00) Tokyo</option></select></div><div class="form-group"><label>Admin Login Page Background</label><div class="upload-field"><div class="upload-preview"><img src="assets/tatito-logo.png" style="max-height:60px"></div><div class="upload-info"><i class="bi bi-cloud-arrow-up"></i> <span id="gsLoginBgName">tatito-logo-official.jpg</span></div></div><input type="file" id="gsLoginBg" accept="image/*" style="display:none"></div><div class="form-row"><div class="form-group"><label>Member Code Prefix</label><input type="text" class="form-control" id="gsCodePrefix" value="TTF"></div><div class="form-group"><label>Member Minimum Age</label><input type="number" class="form-control" id="gsMinAge" value="18"></div></div><div class="form-row"><div class="form-group"><label>Member Profile Picture Privacy</label><select class="form-control" id="gsProfilePrivacy"><option selected>All</option><option>Friends Only</option><option>Private</option></select></div><div class="form-group"><label>Member Gallery Image Privacy</label><select class="form-control" id="gsGalleryPrivacy"><option selected>All</option><option>Friends Only</option><option>Private</option></select></div></div><button class="btn btn-primary" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Update</button></div>
+</div>
+<div class="tab-panel" data-tab="features" style="display:none">
+<div class="feature-toggles"><div class="toggle-row"><div class="toggle-info"><strong>Marketplace</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>AI Virtual Try-On</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Fashion Customization</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Designer Quotation System</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Boutique Selection</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Call Consultation with Translator</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Photography & Videography</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Event Management</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Live Order Tracking</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>4-Level Referral Program</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Reviews & Ratings</strong><p class="text-muted">Enabled</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div></div>
+</div>
+<div class="tab-panel" data-tab="activation" style="display:none">
+<div class="form-section"><h4 style="font-size:0.88rem;font-weight:700;margin-bottom:16px"><i class="bi bi-shield-check" style="color:var(--gold)"></i> Activation</h4><div class="feature-toggles"><div class="toggle-row"><div class="toggle-info"><strong>HTTPS Activation</strong><p class="text-muted">Force HTTPS for all connections</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Maintenance Mode</strong><p class="text-muted">Take the website offline temporarily</p></div><button class="toggle-switch "><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Wallet System</strong><p class="text-muted">Enable digital wallet for users</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Email/Phone Verification</strong><p class="text-muted">Require verification on registration</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Member Approval by Admin</strong><p class="text-muted">Admin must approve new user registrations</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Seller Approval by Admin</strong><p class="text-muted">Admin must approve new seller registrations</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Only Premium Member Can See Full Profile</strong><p class="text-muted">Restricts full profile visibility to premium members</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Member Profile Picture Approval by Admin</strong><p class="text-muted">Admin must approve uploaded profile pictures</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div></div></div>
+</div>
+<div class="tab-panel" data-tab="smtp" style="display:none">
+<div style="display:grid;grid-template-columns:1fr 280px;gap:20px"><div class="form-section"><h4 style="font-size:0.88rem;font-weight:700;margin-bottom:16px"><i class="bi bi-server" style="color:var(--gold)"></i> SMTP Settings</h4><div class="form-group"><label>Type</label><select class="form-control" id="smtpType"><option selected>SMTP</option><option >sendmail</option></select></div><div class="form-group"><label>MAIL HOST</label><input type="text" class="form-control" id="smtpHost" value="smtp.gmail.com"></div><div class="form-row"><div class="form-group"><label>MAIL PORT</label><input type="number" class="form-control" id="smtpPort" value="587"></div><div class="form-group"><label>MAIL ENCRYPTION</label><input type="text" class="form-control" id="smtpEncryption" value="TLS"></div></div><div class="form-group"><label>MAIL USERNAME</label><input type="text" class="form-control" id="smtpUsername" value="noreply@tatitofashions.com"></div><div class="form-group"><label>MAIL PASSWORD</label><input type="password" class="form-control" id="smtpPassword" value=""></div><div class="form-row"><div class="form-group"><label>MAIL FROM ADDRESS</label><input type="text" class="form-control" id="smtpFromAddr" value="noreply@tatitofashions.com"></div><div class="form-group"><label>MAIL FROM NAME</label><input type="text" class="form-control" id="smtpFromName" value="TATITO Fashions"></div></div><button class="btn btn-primary" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Update</button></div><div><div style="padding:14px 16px;background:#FEF6F0;border:1px solid #F4D7C4;border-radius:10px;margin-bottom:16px"><div style="font-weight:700;font-size:0.8rem;margin-bottom:6px;color:#A0460F"><i class="bi bi-exclamation-triangle"></i> Test SMTP Configuration</div><input type="email" class="form-control" id="smtpTestEmail" placeholder="test@example.com" style="margin-bottom:8px"><button class="btn btn-outline btn-sm" style="width:100%"><i class="bi bi-send"></i> Send Test Email</button></div><div style="padding:16px;background:var(--ivory);border-radius:10px;border:1px solid var(--line)"><div style="font-weight:700;font-size:0.8rem;margin-bottom:10px"><i class="bi bi-info-circle" style="color:var(--gold)"></i> SMTP Instructions</div><p style="font-size:0.75rem;color:var(--gray-500);margin-bottom:10px">Please be careful when configuring SMTP. Incorrect settings cause errors during order placement, registrations, or newsletter sending.</p><div style="font-weight:600;font-size:0.76rem;margin-bottom:4px">For Non-SSL:</div><ul style="font-size:0.72rem;color:var(--gray-500);padding-left:16px;margin-bottom:10px"><li>Use <code>sendmail</code> if SMTP fails</li><li>Set Mail Port to <strong>587</strong></li><li>Use <code>TLS</code> encryption</li></ul><div style="font-weight:600;font-size:0.76rem;margin-bottom:4px">For SSL:</div><ul style="font-size:0.72rem;color:var(--gray-500);padding-left:16px"><li>Use <code>sendmail</code> if SMTP fails</li><li>Set Mail Port to <strong>465</strong></li><li>Use <code>SSL</code> encryption</li></ul></div></div></div>
+</div>
+<div class="tab-panel" data-tab="thirdparty" style="display:none">
+<div style="display:flex;flex-direction:column;gap:20px"><div class="card" style="padding:0"><div style="padding:14px 16px;border-bottom:1px solid var(--line);font-weight:700;font-size:0.85rem"><i class="bi bi-shield-lock" style="color:var(--gold)"></i> Google reCAPTCHA</div><div class="card-body"><div class="toggle-row" style="margin-bottom:12px"><div class="toggle-info"><strong>Activation</strong></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="form-group"><label>Site KEY</label><input type="text" class="form-control" value="6LcHcxstAAAAADV-JU3mFS5HL3NuvrqC"></div><div class="form-group"><label>SECRET KEY</label><input type="text" class="form-control" value="6LcHcxstAAAAAGGTIOTdjwnh3Bx0AkCkl"></div><button class="btn btn-primary btn-sm" data-toast="Saved (design mode)">Save</button></div></div><div class="card" style="padding:0"><div style="padding:14px 16px;border-bottom:1px solid var(--line);font-weight:700;font-size:0.85rem"><i class="bi bi-graph-up" style="color:var(--gold)"></i> Google Analytics</div><div class="card-body"><div class="toggle-row" style="margin-bottom:12px"><div class="toggle-info"><strong>Activation</strong></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="form-group"><label>Tracking ID</label><input type="text" class="form-control" value="G-4XKLMY2ZKM"></div><button class="btn btn-primary btn-sm" data-toast="Saved (design mode)">Save</button></div></div><div style="display:grid;grid-template-columns:1fr 1fr;gap:20px"><div class="card" style="padding:0"><div style="padding:14px 16px;border-bottom:1px solid var(--line);font-weight:700;font-size:0.85rem"><i class="bi bi-chat-dots" style="color:var(--gold)"></i> Facebook Chat</div><div class="card-body"><div class="toggle-row" style="margin-bottom:12px"><div class="toggle-info"><strong>Activation</strong></div><button class="toggle-switch "><span class="toggle-knob"></span></button></div><div class="form-group"><label>Facebook Page ID</label><input type="text" class="form-control" value="1088216341033351"></div><button class="btn btn-primary btn-sm" data-toast="Saved (design mode)">Save</button><div style="margin-top:12px;padding:10px;background:var(--ivory);border-radius:8px;font-size:0.72rem;color:var(--gray-500)"><strong>How to configure:</strong><ol style="padding-left:16px;margin-top:4px"><li>Login to Facebook page</li><li>Find "About" section</li><li>Locate "Facebook Page ID"</li><li>Go to "Advanced Messaging"</li><li>Add your domain to whitelist</li></ol></div></div></div><div class="card" style="padding:0"><div style="padding:14px 16px;border-bottom:1px solid var(--line);font-weight:700;font-size:0.85rem"><i class="bi bi-facebook" style="color:var(--gold)"></i> Facebook Pixel</div><div class="card-body"><div class="toggle-row" style="margin-bottom:12px"><div class="toggle-info"><strong>Activation</strong></div><button class="toggle-switch "><span class="toggle-knob"></span></button></div><div class="form-group"><label>Facebook Pixel ID</label><input type="text" class="form-control" value="920504874278286"></div><button class="btn btn-primary btn-sm" data-toast="Saved (design mode)">Save</button><div style="margin-top:12px;padding:10px;background:var(--ivory);border-radius:8px;font-size:0.72rem;color:var(--gray-500)"><strong>How to configure:</strong><ol style="padding-left:16px;margin-top:4px"><li>Login to Ads Manager</li><li>Open Events Manager</li><li>Copy Pixel ID</li></ol></div></div></div></div><div class="card" style="padding:0"><div style="padding:14px 16px;border-bottom:1px solid var(--line);font-weight:700;font-size:0.85rem"><i class="bi bi-chat-quote" style="color:var(--gold)"></i> Facebook Comment</div><div class="card-body"><div class="toggle-row" style="margin-bottom:12px"><div class="toggle-info"><strong>Activation</strong></div><button class="toggle-switch "><span class="toggle-knob"></span></button></div><div class="form-group"><label>Facebook App ID</label><input type="text" class="form-control" value="920504874278286"></div><button class="btn btn-primary btn-sm" data-toast="Saved (design mode)">Save</button><div style="margin-top:12px;padding:10px;background:var(--ivory);border-radius:8px;font-size:0.72rem;color:var(--gray-500)"><strong>How to configure:</strong><ol style="padding-left:16px;margin-top:4px"><li>Login to Facebook</li><li>Visit developers.facebook.com/apps</li><li>Create an App</li><li>Get App ID from Dashboard</li></ol></div></div></div></div>
+</div>
+<div class="tab-panel" data-tab="social" style="display:none">
+<div class="form-section"><div class="toggle-row"><div class="toggle-info"><strong>Facebook Login</strong><p class="text-muted">Allow users to login with Facebook</p></div><button class="toggle-switch "><span class="toggle-knob"></span></button></div><div class="form-group"><label>Facebook App ID</label><input type="text" class="form-control" value=""></div><div class="toggle-row"><div class="toggle-info"><strong>Google Login</strong><p class="text-muted">Allow users to login with Google</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="form-group"><label>Google Client ID</label><input type="text" class="form-control" value=""></div><button class="btn btn-primary" data-toast="Saved (design mode)">Save Settings</button></div>
+</div>
+<div class="tab-panel" data-tab="notifications" style="display:none">
+<div class="form-section"><div class="toggle-row"><div class="toggle-info"><strong>Email Alerts</strong></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>SMS Alerts</strong></div><button class="toggle-switch "><span class="toggle-knob"></span></button></div><div class="toggle-row"><div class="toggle-info"><strong>Push Notifications</strong></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div></div>
+</div>
+<div class="tab-panel" data-tab="language" style="display:none">
+<div class="form-section"><p class="text-muted" style="margin-bottom:1rem">Select your preferred language for the admin panel.</p><div class="lang-grid"><div class="lang-card active"><div class="lang-name">English</div><i class="bi bi-check-circle-fill lang-check"></i></div><div class="lang-card "><div class="lang-name">Hindi</div></div><div class="lang-card "><div class="lang-name">Marathi</div></div><div class="lang-card "><div class="lang-name">Tamil</div></div><div class="lang-card "><div class="lang-name">Telugu</div></div><div class="lang-card "><div class="lang-name">Kannada</div></div><div class="lang-card "><div class="lang-name">Arabic</div></div><div class="lang-card "><div class="lang-name">Urdu</div></div></div></div>
+</div>
+</div></div></div></div>
+</main>
+</div>
+
+<script src="js/admin-design.js"></script>
+
+<!-- ===== design-mode modals (admin-design.js) ===== -->
+</body>
+</html>

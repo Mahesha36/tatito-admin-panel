@@ -1,0 +1,398 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Event Calendar — TATITO Admin</title>
+<link rel="icon" type="image/png" href="assets/tatito-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/modules.css">
+</head>
+<body class="admin-body">
+<!-- ============================================================
+     TATITO Admin — static design page (no JavaScript)
+     Content below = exact rendered output of the legacy admin panel
+     (MockData-driven). Sample data is illustrative; Laravel will
+     replace with real data via Blade views + API.
+     ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">
+    <div>
+      <h3 class="sidebar-brand">TATITO</h3>
+      <small class="sidebar-subtitle">Admin Panel</small>
+    </div>
+  </div>
+  <div class="sidebar-user">
+    <div class="sidebar-avatar">SA</div>
+    <div class="sidebar-user-info">
+      <div class="sidebar-user-name">Super Admin</div>
+      <div class="sidebar-user-role">Administrator</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-speedometer2 nav-group-icon"></i><span>Dashboard</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="dashboard.html"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
+        <a class="nav-item" href="reports.html"><i class="bi bi-bar-chart-line"></i><span>Reports & Analytics</span></a>
+        <a class="nav-item" href="tracking.html"><i class="bi bi-geo-alt"></i><span>Live Order Tracking</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-tags nav-group-icon"></i><span>Catalog</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="products.html"><i class="bi bi-bag"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-cart3 nav-group-icon"></i><span>Sales</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="orders.html"><i class="bi bi-receipt"></i><span>Orders</span></a>
+        <a class="nav-item" href="bookings.html"><i class="bi bi-calendar-check"></i><span>Bookings</span></a>
+        <a class="nav-item" href="payments.html"><i class="bi bi-credit-card"></i><span>Payments</span></a>
+        <a class="nav-item" href="refunds.html"><i class="bi bi-cash-coin"></i><span>Refunds</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-people nav-group-icon"></i><span>Members</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="approvals.html"><i class="bi bi-person-check"></i><span>Approvals</span></a>
+        <a class="nav-item" href="users.html"><i class="bi bi-people"></i><span>Customers</span></a>
+        <a class="nav-item" href="sellers.html"><i class="bi bi-shop"></i><span>Sellers</span></a>
+        <a class="nav-item" href="designers.html"><i class="bi bi-palette"></i><span>Designers</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-stars nav-group-icon"></i><span>Services</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="boutiques.html"><i class="bi bi-shop-window"></i><span>Boutiques</span></a>
+        <a class="nav-item" href="customizations.html"><i class="bi bi-brush"></i><span>Customizations</span></a>
+        <a class="nav-item" href="quotations.html"><i class="bi bi-file-text"></i><span>Quotations</span></a>
+        <a class="nav-item" href="consultations.html"><i class="bi bi-headset"></i><span>Consultations</span></a>
+        <a class="nav-item" href="photography.html"><i class="bi bi-camera"></i><span>Photography</span></a>
+        <a class="nav-item" href="events.html"><i class="bi bi-calendar-event"></i><span>Event Management</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-megaphone nav-group-icon"></i><span>Marketing</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="reviews.html"><i class="bi bi-star"></i><span>Reviews & Ratings</span></a>
+        <a class="nav-item" href="referrals.html"><i class="bi bi-diagram-3"></i><span>Referral Program</span></a>
+        <a class="nav-item" href="offers.html"><i class="bi bi-tag"></i><span>Offers & Coupons</span></a>
+        <a class="nav-item" href="notifications.html"><i class="bi bi-bell"></i><span>Notifications</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-life-preserver nav-group-icon"></i><span>Support</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="contact-queries.html"><i class="bi bi-envelope"></i><span>Contact Queries</span></a>
+        <a class="nav-item" href="support-tickets.html"><i class="bi bi-chat-dots"></i><span>Support Tickets</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-badge nav-group-icon"></i><span>Staff</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="staff.html"><i class="bi bi-people"></i><span>All Staff</span></a>
+        <a class="nav-item" href="roles.html"><i class="bi bi-shield-lock"></i><span>Staff Roles</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-window-stack nav-group-icon"></i><span>Website</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="cms.html"><i class="bi bi-file-earmark-richtext"></i><span>CMS Pages</span></a>
+        <a class="nav-item" href="website-header.html"><i class="bi bi-window"></i><span>Header</span></a>
+        <a class="nav-item" href="website-footer.html"><i class="bi bi-layout-text-window-reverse"></i><span>Footer</span></a>
+        <a class="nav-item" href="website-setup.html"><i class="bi bi-palette2"></i><span>Website Setup</span></a>
+        <a class="nav-item" href="home-page-settings.html"><i class="bi bi-house-gear"></i><span>Home Page Settings</span></a>
+        <a class="nav-item" href="media-manager.html"><i class="bi bi-folder2-open"></i><span>Media Manager</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-house-door nav-group-icon"></i><span>Home Feed</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="home-collections.html"><i class="bi bi-collection"></i><span>Home Collections</span></a>
+        <a class="nav-item" href="home-video-banners.html"><i class="bi bi-camera-video"></i><span>Video Banners</span></a>
+        <a class="nav-item" href="home-dynamic-sections.html"><i class="bi bi-layout-text-window"></i><span>Dynamic Layout</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Weddings Hub</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="wedding-collections.html"><i class="bi bi-grid-3x3-gap"></i><span>Collections</span></a>
+        <a class="nav-item" href="wedding-banners.html"><i class="bi bi-image"></i><span>Banners</span></a>
+        <a class="nav-item" href="wedding-featured.html"><i class="bi bi-star"></i><span>Featured Couture</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-brush nav-group-icon"></i><span>Customise</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="customisation-studios.html"><i class="bi bi-shop-window"></i><span>Studios</span></a>
+        <a class="nav-item" href="customisation-options.html"><i class="bi bi-palette"></i><span>Options & Swatches</span></a>
+        <a class="nav-item" href="bespoke-orders.html"><i class="bi bi-scissors"></i><span>Bespoke Orders</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Jewellery Vault</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="jewellery-collections.html"><i class="bi bi-collection"></i><span>Collections</span></a>
+        <a class="nav-item" href="jewellery-categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="jewellery-products.html"><i class="bi bi-gem"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group has-active" open>
+      <summary class="nav-group-header"><i class="bi bi-calendar2-event nav-group-icon"></i><span>VIP Events</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item active" href="events-vip.html"><i class="bi bi-calendar-event"></i><span>Event Calendar</span></a>
+        <a class="nav-item" href="event-rsvps.html"><i class="bi bi-ticket-perforated"></i><span>RSVPs</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-rolodex nav-group-icon"></i><span>Stylist</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="stylist-bookings.html"><i class="bi bi-calendar2-check"></i><span>Bookings</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gear nav-group-icon"></i><span>Settings</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="settings.html"><i class="bi bi-sliders"></i><span>General Settings</span></a>
+        <a class="nav-item" href="payment-setup.html"><i class="bi bi-credit-card-2-front"></i><span>Payment Setup</span></a>
+        <a class="nav-item" href="currencies.html"><i class="bi bi-currency-exchange"></i><span>Currencies</span></a>
+        <a class="nav-item" href="languages.html"><i class="bi bi-translate"></i><span>Languages</span></a>
+        <a class="nav-item" href="email-templates.html"><i class="bi bi-mailbox"></i><span>Email Templates</span></a>
+      </div>
+    </details>
+  </nav>
+  <div class="sidebar-footer">
+    <a class="btn btn-ghost btn-block" href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+  </div>
+</div><div class="main-wrapper" id="mainWrapper">
+<div class="topbar">
+  <div class="topbar-left"><h2>Event Calendar</h2></div>
+  <div class="topbar-actions">
+    <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="All Modules"><i class="bi bi-grid-3x3-gap"></i></a>
+  </div>
+</div><main class="page-content-wrapper" id="pageContent">
+<div class="page-content"><div class="page-toolbar"><div><h3>Events & VIP Passbook</h3><p class="text-muted">Runway shows, trunk exhibitions & jewellery galas</p></div><div class="toolbar-actions"><button class="btn btn-primary" data-modal-open="events-vip-add"><i class="bi bi-plus-lg"></i> Add Event</button></div></div><div class="stat-grid"><div class="stat-card"><div class="stat-icon gold"><i class="bi bi-calendar-event"></i></div><div class="stat-info"><p>Total Events</p><h3>5</h3></div></div><div class="stat-card"><div class="stat-icon green"><i class="bi bi-ticket-perforated"></i></div><div class="stat-info"><p>Total Seats</p><h3>230</h3></div></div><div class="stat-card"><div class="stat-icon blue"><i class="bi bi-cash-coin"></i></div><div class="stat-info"><p>Avg Price</p><h3>₹23,000</h3></div></div></div><div class="card"><div class="card-body"><table class="table table-hover" id="evtTable"><thead><tr><th>ID</th><th>Event</th><th>Category</th><th>Date</th><th>Time</th><th>Location</th><th>Host</th><th>Pass Type</th><th>Ticket Prefix</th><th>Price</th><th>Seats</th><th>Actions</th></tr></thead><tbody><tr><td>EVT001</td><td><strong>TATITO Fashion Week — Spring/Summer 2026</strong> <i class="bi bi-camera-video" style="color:var(--gold)" title="Has trailer"></i></td><td><span class="badge badge-gold">Runway Premiere</span></td><td>15 Sept 2026</td><td>19:00</td><td>Grand Hyatt, Mumbai</td><td>TATITO Fashions</td><td><span class="badge badge-gold">FRONT ROW RUNWAY</span></td><td><code>TT-VIP-9941</code></td><td>₹25,000</td><td><span class="text-success">45</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="events-vip-v-EVT001"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="events-vip-e-EVT001"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>EVT002</td><td><strong>Bridal Trunk Show by Sabyasachi</strong></td><td><span class="badge badge-info">Trunk Show</span></td><td>22 Aug 2026</td><td>11:00</td><td>Taj Lands End, Mumbai</td><td>Sabyasachi Calcutta</td><td><span class="badge badge-gold">VIP TRUNK ACCESS</span></td><td><code>TT-TRK-2208</code></td><td>₹15,000</td><td><span class="text-success">30</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="events-vip-v-EVT002"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="events-vip-e-EVT002"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>EVT003</td><td><strong>Jewellery Gala — Diamond Night</strong> <i class="bi bi-camera-video" style="color:var(--gold)" title="Has trailer"></i></td><td><span class="badge badge-primary">Jewellery Gala</span></td><td>5 Oct 2026</td><td>20:00</td><td>The Leela Palace, Delhi</td><td>TATITO Jewellers</td><td><span class="badge badge-gold">DIAMOND ACCESS</span></td><td><code>TT-JG-0501</code></td><td>₹35,000</td><td><span class="text-success">80</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="events-vip-v-EVT003"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="events-vip-e-EVT003"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>EVT004</td><td><strong>Atelier Salon — Couture Conversations</strong></td><td><span class="badge badge-success">Atelier Salon</span></td><td>28 Sept 2026</td><td>16:00</td><td>The Oberoi, Mumbai</td><td>TATITO Atelier</td><td><span class="badge badge-gold">SALON MEMBER</span></td><td><code>TT-AS-2809</code></td><td>₹10,000</td><td><span class="text-success">25</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="events-vip-v-EVT004"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="events-vip-e-EVT004"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>EVT005</td><td><strong>Winter Wedding Couture Premiere</strong></td><td><span class="badge badge-gold">Runway Premiere</span></td><td>12 Nov 2026</td><td>19:30</td><td>ITC Grand, Bengaluru</td><td>TATITO Fashions</td><td><span class="badge badge-gold">FRONT ROW RUNWAY</span></td><td><code>TT-VIP-1211</code></td><td>₹30,000</td><td><span class="text-success">50</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="events-vip-v-EVT005"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="events-vip-e-EVT005"><i class="bi bi-pencil"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)"><i class="bi bi-trash"></i></button></div></td></tr></tbody></table></div></div></div>
+</main>
+</div>
+
+<script src="js/admin-design.js"></script>
+
+<!-- ===== legacy modal forms (captured from original admin) ===== -->
+<div class="design-modal" id="events-vip-e-EVT001" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Edit Event</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><form id="evtForm"><div class="form-group"><label>Title *</label><input type="text" class="form-control" name="title" value="TATITO Fashion Week — Spring/Summer 2026" required></div><div class="form-row"><div class="form-group"><label>Category</label><select class="form-control" name="category"><option selected>Runway Premiere</option><option >Trunk Show</option><option >Jewellery Gala</option><option >Atelier Salon</option></select></div><div class="form-group"><label>Host</label><input type="text" class="form-control" name="host" value="TATITO Fashions"></div></div><div class="form-row"><div class="form-group"><label>Date</label><input type="date" class="form-control" name="event_date" value="2026-09-15"></div><div class="form-group"><label>Time</label><input type="time" class="form-control" name="event_time" value="19:00"></div></div><div class="form-group"><label>Location</label><input type="text" class="form-control" name="location" value="Grand Hyatt, Mumbai"></div><div class="form-row"><div class="form-group"><label>Pass Type</label><input type="text" class="form-control" name="pass_type" value="FRONT ROW RUNWAY" placeholder="FRONT ROW RUNWAY"></div><div class="form-group"><label>Ticket Prefix</label><input type="text" class="form-control" name="ticket_prefix" value="TT-VIP-9941" placeholder="TT-VIP-XXXX"></div></div><div class="form-row"><div class="form-group"><label>Price (₹)</label><input type="number" class="form-control" name="price" value="25000"></div><div class="form-group"><label>Available Seats</label><input type="number" class="form-control" name="available_seats" value="45"></div></div><div class="form-group"><label>Video URL (Trailer)</label><input type="url" class="form-control" name="video_url" value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"></div><div class="form-group"><label>Event Image</label><div class="upload-zone"><i class="bi bi-cloud-arrow-up"></i><p>Upload event image</p><input type="file" id="evtImage" accept="image/*" hidden></div></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-e-EVT002" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Edit Event</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><form id="evtForm"><div class="form-group"><label>Title *</label><input type="text" class="form-control" name="title" value="Bridal Trunk Show by Sabyasachi" required></div><div class="form-row"><div class="form-group"><label>Category</label><select class="form-control" name="category"><option >Runway Premiere</option><option selected>Trunk Show</option><option >Jewellery Gala</option><option >Atelier Salon</option></select></div><div class="form-group"><label>Host</label><input type="text" class="form-control" name="host" value="Sabyasachi Calcutta"></div></div><div class="form-row"><div class="form-group"><label>Date</label><input type="date" class="form-control" name="event_date" value="2026-08-22"></div><div class="form-group"><label>Time</label><input type="time" class="form-control" name="event_time" value="11:00"></div></div><div class="form-group"><label>Location</label><input type="text" class="form-control" name="location" value="Taj Lands End, Mumbai"></div><div class="form-row"><div class="form-group"><label>Pass Type</label><input type="text" class="form-control" name="pass_type" value="VIP TRUNK ACCESS" placeholder="FRONT ROW RUNWAY"></div><div class="form-group"><label>Ticket Prefix</label><input type="text" class="form-control" name="ticket_prefix" value="TT-TRK-2208" placeholder="TT-VIP-XXXX"></div></div><div class="form-row"><div class="form-group"><label>Price (₹)</label><input type="number" class="form-control" name="price" value="15000"></div><div class="form-group"><label>Available Seats</label><input type="number" class="form-control" name="available_seats" value="30"></div></div><div class="form-group"><label>Video URL (Trailer)</label><input type="url" class="form-control" name="video_url" value=""></div><div class="form-group"><label>Event Image</label><div class="upload-zone"><i class="bi bi-cloud-arrow-up"></i><p>Upload event image</p><input type="file" id="evtImage" accept="image/*" hidden></div></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-e-EVT003" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Edit Event</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><form id="evtForm"><div class="form-group"><label>Title *</label><input type="text" class="form-control" name="title" value="Jewellery Gala — Diamond Night" required></div><div class="form-row"><div class="form-group"><label>Category</label><select class="form-control" name="category"><option >Runway Premiere</option><option >Trunk Show</option><option selected>Jewellery Gala</option><option >Atelier Salon</option></select></div><div class="form-group"><label>Host</label><input type="text" class="form-control" name="host" value="TATITO Jewellers"></div></div><div class="form-row"><div class="form-group"><label>Date</label><input type="date" class="form-control" name="event_date" value="2026-10-05"></div><div class="form-group"><label>Time</label><input type="time" class="form-control" name="event_time" value="20:00"></div></div><div class="form-group"><label>Location</label><input type="text" class="form-control" name="location" value="The Leela Palace, Delhi"></div><div class="form-row"><div class="form-group"><label>Pass Type</label><input type="text" class="form-control" name="pass_type" value="DIAMOND ACCESS" placeholder="FRONT ROW RUNWAY"></div><div class="form-group"><label>Ticket Prefix</label><input type="text" class="form-control" name="ticket_prefix" value="TT-JG-0501" placeholder="TT-VIP-XXXX"></div></div><div class="form-row"><div class="form-group"><label>Price (₹)</label><input type="number" class="form-control" name="price" value="35000"></div><div class="form-group"><label>Available Seats</label><input type="number" class="form-control" name="available_seats" value="80"></div></div><div class="form-group"><label>Video URL (Trailer)</label><input type="url" class="form-control" name="video_url" value="https://www.youtube.com/watch?v=dQw4w9WgXcQ"></div><div class="form-group"><label>Event Image</label><div class="upload-zone"><i class="bi bi-cloud-arrow-up"></i><p>Upload event image</p><input type="file" id="evtImage" accept="image/*" hidden></div></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-e-EVT004" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Edit Event</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><form id="evtForm"><div class="form-group"><label>Title *</label><input type="text" class="form-control" name="title" value="Atelier Salon — Couture Conversations" required></div><div class="form-row"><div class="form-group"><label>Category</label><select class="form-control" name="category"><option >Runway Premiere</option><option >Trunk Show</option><option >Jewellery Gala</option><option selected>Atelier Salon</option></select></div><div class="form-group"><label>Host</label><input type="text" class="form-control" name="host" value="TATITO Atelier"></div></div><div class="form-row"><div class="form-group"><label>Date</label><input type="date" class="form-control" name="event_date" value="2026-09-28"></div><div class="form-group"><label>Time</label><input type="time" class="form-control" name="event_time" value="16:00"></div></div><div class="form-group"><label>Location</label><input type="text" class="form-control" name="location" value="The Oberoi, Mumbai"></div><div class="form-row"><div class="form-group"><label>Pass Type</label><input type="text" class="form-control" name="pass_type" value="SALON MEMBER" placeholder="FRONT ROW RUNWAY"></div><div class="form-group"><label>Ticket Prefix</label><input type="text" class="form-control" name="ticket_prefix" value="TT-AS-2809" placeholder="TT-VIP-XXXX"></div></div><div class="form-row"><div class="form-group"><label>Price (₹)</label><input type="number" class="form-control" name="price" value="10000"></div><div class="form-group"><label>Available Seats</label><input type="number" class="form-control" name="available_seats" value="25"></div></div><div class="form-group"><label>Video URL (Trailer)</label><input type="url" class="form-control" name="video_url" value=""></div><div class="form-group"><label>Event Image</label><div class="upload-zone"><i class="bi bi-cloud-arrow-up"></i><p>Upload event image</p><input type="file" id="evtImage" accept="image/*" hidden></div></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-e-EVT005" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Edit Event</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><form id="evtForm"><div class="form-group"><label>Title *</label><input type="text" class="form-control" name="title" value="Winter Wedding Couture Premiere" required></div><div class="form-row"><div class="form-group"><label>Category</label><select class="form-control" name="category"><option selected>Runway Premiere</option><option >Trunk Show</option><option >Jewellery Gala</option><option >Atelier Salon</option></select></div><div class="form-group"><label>Host</label><input type="text" class="form-control" name="host" value="TATITO Fashions"></div></div><div class="form-row"><div class="form-group"><label>Date</label><input type="date" class="form-control" name="event_date" value="2026-11-12"></div><div class="form-group"><label>Time</label><input type="time" class="form-control" name="event_time" value="19:30"></div></div><div class="form-group"><label>Location</label><input type="text" class="form-control" name="location" value="ITC Grand, Bengaluru"></div><div class="form-row"><div class="form-group"><label>Pass Type</label><input type="text" class="form-control" name="pass_type" value="FRONT ROW RUNWAY" placeholder="FRONT ROW RUNWAY"></div><div class="form-group"><label>Ticket Prefix</label><input type="text" class="form-control" name="ticket_prefix" value="TT-VIP-1211" placeholder="TT-VIP-XXXX"></div></div><div class="form-row"><div class="form-group"><label>Price (₹)</label><input type="number" class="form-control" name="price" value="30000"></div><div class="form-group"><label>Available Seats</label><input type="number" class="form-control" name="available_seats" value="50"></div></div><div class="form-group"><label>Video URL (Trailer)</label><input type="url" class="form-control" name="video_url" value=""></div><div class="form-group"><label>Event Image</label><div class="upload-zone"><i class="bi bi-cloud-arrow-up"></i><p>Upload event image</p><input type="file" id="evtImage" accept="image/*" hidden></div></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-v-EVT001" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Event Details</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><table class="table table-borderless"><tr><td class="text-muted">Title</td><td><strong>TATITO Fashion Week — Spring/Summer 2026</strong></td></tr><tr><td class="text-muted">Category</td><td>Runway Premiere</td></tr><tr><td class="text-muted">Date & Time</td><td>15 Sept 2026 at 19:00</td></tr><tr><td class="text-muted">Location</td><td>Grand Hyatt, Mumbai</td></tr><tr><td class="text-muted">Host</td><td>TATITO Fashions</td></tr><tr><td class="text-muted">Pass Type</td><td><span class="badge badge-gold">FRONT ROW RUNWAY</span></td></tr><tr><td class="text-muted">Ticket Prefix</td><td><code>TT-VIP-9941</code></td></tr><tr><td class="text-muted">Price</td><td>₹25,000</td></tr><tr><td class="text-muted">Available Seats</td><td>45</td></tr></table><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-outline"><i class="bi bi-camera-video"></i> Watch Trailer</a></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Close</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-v-EVT002" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Event Details</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><table class="table table-borderless"><tr><td class="text-muted">Title</td><td><strong>Bridal Trunk Show by Sabyasachi</strong></td></tr><tr><td class="text-muted">Category</td><td>Trunk Show</td></tr><tr><td class="text-muted">Date & Time</td><td>22 Aug 2026 at 11:00</td></tr><tr><td class="text-muted">Location</td><td>Taj Lands End, Mumbai</td></tr><tr><td class="text-muted">Host</td><td>Sabyasachi Calcutta</td></tr><tr><td class="text-muted">Pass Type</td><td><span class="badge badge-gold">VIP TRUNK ACCESS</span></td></tr><tr><td class="text-muted">Ticket Prefix</td><td><code>TT-TRK-2208</code></td></tr><tr><td class="text-muted">Price</td><td>₹15,000</td></tr><tr><td class="text-muted">Available Seats</td><td>30</td></tr></table></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Close</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-v-EVT003" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Event Details</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><table class="table table-borderless"><tr><td class="text-muted">Title</td><td><strong>Jewellery Gala — Diamond Night</strong></td></tr><tr><td class="text-muted">Category</td><td>Jewellery Gala</td></tr><tr><td class="text-muted">Date & Time</td><td>5 Oct 2026 at 20:00</td></tr><tr><td class="text-muted">Location</td><td>The Leela Palace, Delhi</td></tr><tr><td class="text-muted">Host</td><td>TATITO Jewellers</td></tr><tr><td class="text-muted">Pass Type</td><td><span class="badge badge-gold">DIAMOND ACCESS</span></td></tr><tr><td class="text-muted">Ticket Prefix</td><td><code>TT-JG-0501</code></td></tr><tr><td class="text-muted">Price</td><td>₹35,000</td></tr><tr><td class="text-muted">Available Seats</td><td>80</td></tr></table><a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" target="_blank" class="btn btn-outline"><i class="bi bi-camera-video"></i> Watch Trailer</a></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Close</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-v-EVT004" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Event Details</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><table class="table table-borderless"><tr><td class="text-muted">Title</td><td><strong>Atelier Salon — Couture Conversations</strong></td></tr><tr><td class="text-muted">Category</td><td>Atelier Salon</td></tr><tr><td class="text-muted">Date & Time</td><td>28 Sept 2026 at 16:00</td></tr><tr><td class="text-muted">Location</td><td>The Oberoi, Mumbai</td></tr><tr><td class="text-muted">Host</td><td>TATITO Atelier</td></tr><tr><td class="text-muted">Pass Type</td><td><span class="badge badge-gold">SALON MEMBER</span></td></tr><tr><td class="text-muted">Ticket Prefix</td><td><code>TT-AS-2809</code></td></tr><tr><td class="text-muted">Price</td><td>₹10,000</td></tr><tr><td class="text-muted">Available Seats</td><td>25</td></tr></table></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Close</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-v-EVT005" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Event Details</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><table class="table table-borderless"><tr><td class="text-muted">Title</td><td><strong>Winter Wedding Couture Premiere</strong></td></tr><tr><td class="text-muted">Category</td><td>Runway Premiere</td></tr><tr><td class="text-muted">Date & Time</td><td>12 Nov 2026 at 19:30</td></tr><tr><td class="text-muted">Location</td><td>ITC Grand, Bengaluru</td></tr><tr><td class="text-muted">Host</td><td>TATITO Fashions</td></tr><tr><td class="text-muted">Pass Type</td><td><span class="badge badge-gold">FRONT ROW RUNWAY</span></td></tr><tr><td class="text-muted">Ticket Prefix</td><td><code>TT-VIP-1211</code></td></tr><tr><td class="text-muted">Price</td><td>₹30,000</td></tr><tr><td class="text-muted">Available Seats</td><td>50</td></tr></table></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Close</button></div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-legacy-add" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Add Event</h3><button class="modal-close" type="button" data-modal-close="events-vip-legacy">&times;</button></div><div class="modal-body"><form id="evtForm"><div class="form-group"><label>Title *</label><input type="text" class="form-control" name="title" value="" required></div><div class="form-row"><div class="form-group"><label>Category</label><select class="form-control" name="category"><option >Runway Premiere</option><option >Trunk Show</option><option >Jewellery Gala</option><option >Atelier Salon</option></select></div><div class="form-group"><label>Host</label><input type="text" class="form-control" name="host" value=""></div></div><div class="form-row"><div class="form-group"><label>Date</label><input type="date" class="form-control" name="event_date" value=""></div><div class="form-group"><label>Time</label><input type="time" class="form-control" name="event_time" value=""></div></div><div class="form-group"><label>Location</label><input type="text" class="form-control" name="location" value=""></div><div class="form-row"><div class="form-group"><label>Pass Type</label><input type="text" class="form-control" name="pass_type" value="" placeholder="FRONT ROW RUNWAY"></div><div class="form-group"><label>Ticket Prefix</label><input type="text" class="form-control" name="ticket_prefix" value="" placeholder="TT-VIP-XXXX"></div></div><div class="form-row"><div class="form-group"><label>Price (₹)</label><input type="number" class="form-control" name="price" value="0"></div><div class="form-group"><label>Available Seats</label><input type="number" class="form-control" name="available_seats" value="0"></div></div><div class="form-group"><label>Video URL (Trailer)</label><input type="url" class="form-control" name="video_url" value=""></div><div class="form-group"><label>Event Image</label><div class="upload-zone"><i class="bi bi-cloud-arrow-up"></i><p>Upload event image</p><input type="file" id="evtImage" accept="image/*" hidden></div></div></form></div><div class="modal-footer"><button class="btn btn-outline" type="button" data-modal-close="events-vip-legacy">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save</button></div>
+  </div>
+</div>
+
+<!-- ===== design-mode modals (admin-design.js) ===== -->
+<div class="design-modal" id="events-vip-row-0" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — EVT001</h3><button class="modal-close" type="button" data-modal-close="events-vip-row-0" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">EVT001</dd>
+<dt>Event</dt><dd class="plain">TATITO Fashion Week — Spring/Summer 2026</dd>
+<dt>Category</dt><dd class="plain">Runway Premiere</dd>
+<dt>Date</dt><dd class="plain">15 Sept 2026</dd>
+<dt>Time</dt><dd class="plain">19:00</dd>
+<dt>Location</dt><dd class="plain">Grand Hyatt, Mumbai</dd>
+<dt>Host</dt><dd class="plain">TATITO Fashions</dd>
+<dt>Pass Type</dt><dd class="plain">FRONT ROW RUNWAY</dd>
+<dt>Ticket Prefix</dt><dd class="plain">TT-VIP-9941</dd>
+<dt>Price</dt><dd class="plain">₹25,000</dd>
+<dt>Seats</dt><dd class="plain">45</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="events-vip-row-0">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-row-1" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — EVT002</h3><button class="modal-close" type="button" data-modal-close="events-vip-row-1" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">EVT002</dd>
+<dt>Event</dt><dd class="plain">Bridal Trunk Show by Sabyasachi</dd>
+<dt>Category</dt><dd class="plain">Trunk Show</dd>
+<dt>Date</dt><dd class="plain">22 Aug 2026</dd>
+<dt>Time</dt><dd class="plain">11:00</dd>
+<dt>Location</dt><dd class="plain">Taj Lands End, Mumbai</dd>
+<dt>Host</dt><dd class="plain">Sabyasachi Calcutta</dd>
+<dt>Pass Type</dt><dd class="plain">VIP TRUNK ACCESS</dd>
+<dt>Ticket Prefix</dt><dd class="plain">TT-TRK-2208</dd>
+<dt>Price</dt><dd class="plain">₹15,000</dd>
+<dt>Seats</dt><dd class="plain">30</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="events-vip-row-1">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-row-2" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — EVT003</h3><button class="modal-close" type="button" data-modal-close="events-vip-row-2" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">EVT003</dd>
+<dt>Event</dt><dd class="plain">Jewellery Gala — Diamond Night</dd>
+<dt>Category</dt><dd class="plain">Jewellery Gala</dd>
+<dt>Date</dt><dd class="plain">5 Oct 2026</dd>
+<dt>Time</dt><dd class="plain">20:00</dd>
+<dt>Location</dt><dd class="plain">The Leela Palace, Delhi</dd>
+<dt>Host</dt><dd class="plain">TATITO Jewellers</dd>
+<dt>Pass Type</dt><dd class="plain">DIAMOND ACCESS</dd>
+<dt>Ticket Prefix</dt><dd class="plain">TT-JG-0501</dd>
+<dt>Price</dt><dd class="plain">₹35,000</dd>
+<dt>Seats</dt><dd class="plain">80</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="events-vip-row-2">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-row-3" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — EVT004</h3><button class="modal-close" type="button" data-modal-close="events-vip-row-3" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">EVT004</dd>
+<dt>Event</dt><dd class="plain">Atelier Salon — Couture Conversations</dd>
+<dt>Category</dt><dd class="plain">Atelier Salon</dd>
+<dt>Date</dt><dd class="plain">28 Sept 2026</dd>
+<dt>Time</dt><dd class="plain">16:00</dd>
+<dt>Location</dt><dd class="plain">The Oberoi, Mumbai</dd>
+<dt>Host</dt><dd class="plain">TATITO Atelier</dd>
+<dt>Pass Type</dt><dd class="plain">SALON MEMBER</dd>
+<dt>Ticket Prefix</dt><dd class="plain">TT-AS-2809</dd>
+<dt>Price</dt><dd class="plain">₹10,000</dd>
+<dt>Seats</dt><dd class="plain">25</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="events-vip-row-3">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-row-4" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — EVT005</h3><button class="modal-close" type="button" data-modal-close="events-vip-row-4" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">EVT005</dd>
+<dt>Event</dt><dd class="plain">Winter Wedding Couture Premiere</dd>
+<dt>Category</dt><dd class="plain">Runway Premiere</dd>
+<dt>Date</dt><dd class="plain">12 Nov 2026</dd>
+<dt>Time</dt><dd class="plain">19:30</dd>
+<dt>Location</dt><dd class="plain">ITC Grand, Bengaluru</dd>
+<dt>Host</dt><dd class="plain">TATITO Fashions</dd>
+<dt>Pass Type</dt><dd class="plain">FRONT ROW RUNWAY</dd>
+<dt>Ticket Prefix</dt><dd class="plain">TT-VIP-1211</dd>
+<dt>Price</dt><dd class="plain">₹30,000</dd>
+<dt>Seats</dt><dd class="plain">50</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="events-vip-row-4">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="events-vip-add" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Add new record</h3><button class="modal-close" type="button" data-modal-close="events-vip-add" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<form>
+  <div class="form-group"><label>Name</label><input type="text" class="form-control" placeholder="Enter name"></div>
+  <div class="form-group"><label>Description</label><textarea class="form-control" rows="3" placeholder="Short description"></textarea></div>
+  <div class="form-row">
+    <div class="form-group"><label>Status</label><select class="form-control"><option>Active</option><option>Inactive</option><option>Pending</option></select></div>
+    <div class="form-group"><label>Priority</label><select class="form-control"><option>High</option><option selected>Normal</option><option>Low</option></select></div>
+  </div>
+  <div class="toggle-row"><div class="toggle-info"><strong>Enabled</strong><p class="text-muted">Show this record on the storefront</p></div><span class="toggle-switch on"><span class="toggle-knob"></span></span></div>
+</form>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="events-vip-add">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+</body>
+</html>
