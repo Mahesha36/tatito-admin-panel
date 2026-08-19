@@ -136,6 +136,7 @@ def process_page(path):
             if not label:
                 texts = re.findall(r'>([A-Za-z][A-Za-z0-9 &\u2014\u2013-]{3,60})<', back)
                 label = texts[-1] if texts else None
+            label = H.unescape(label) if label else None
             btn_ctx.append((idx, label or f'Item {idx+1}'))
         seen = {i for i in range(built)}
         for idx, label in btn_ctx:
