@@ -54,7 +54,7 @@ def detail_body_from_row(cells, headers=None):
     rows.append('<dt>Last updated</dt><dd>18 Aug 2026</dd>')
     return '<dl class="detail-grid">\n' + '\n'.join(rows) + '\n</dl>'
 
-ADD_FORM = ('<form onsubmit="return false">\n'
+ADD_FORM = ('<form>\n'
             '  <div class="form-group"><label>Name</label><input type="text" class="form-control" placeholder="Enter name"></div>\n'
             '  <div class="form-group"><label>Description</label><textarea class="form-control" rows="3" placeholder="Short description"></textarea></div>\n'
             '  <div class="form-row">\n'
@@ -70,7 +70,7 @@ EDIT_BTN = re.compile(r'(<button[^>]*class="[^"]*action-btn[^"]*edit[^"]*")((?:[
 DEL_BTN  = re.compile(r'(<button[^>]*class="[^"]*action-btn[^"]*del[^"]*")((?:[^>])*?)(/?>)', re.I)
 ROW_RE   = re.compile(r'<tr[^>]*>(.*?)</tr>', re.S | re.I)
 CELL_RE  = re.compile(r'<t[hd][^>]*>(.*?)</t[hd]>', re.S | re.I)
-ONCLICK_LEFT = re.compile(r'\s+on(click|change|submit)="[^"]*"')
+ONCLICK_LEFT = re.compile(r'\s+on(click|change|submit|error|load|input|focus|blur)="[^"]*"')
 
 def process_page(path):
     page_id = path.stem
@@ -108,14 +108,46 @@ def process_page(path):
     s = EDIT_BTN.sub(rewire_edit, s)
     s = DEL_BTN.sub(rewire_del, s)
 
-    # build detail modals for as many rows as we have view buttons
-    n_modals = btn_index['view']
+    # build detail modals for as many rows as have EITHER a view or edit button
+    n_modals = max(btn_index['view'], btn_index['edit'])
+    built = 0
     for i in range(min(n_modals, len(rows_data))):
         cells = rows_data[i]
         title = cells[0] if cells else page_id
         # use headers, trimmed to the cell count
         hdr = [h for h in headers][:len(cells)] if headers else None
         modals.append(modal_shell(f'{page_id}-row-{i}', f'Details — {title}', detail_body_from_row(cells, hdr)))
+        built += 1
+    # FALLBACK for non-table pages: no <tr> rows but buttons were rewired →
+    # derive a label from the markup nearest each button (cat-badge / card title).
+    if built < n_modals:
+        # gather candidate labels: nearest preceding text of each action-btn container
+        btn_ctx = []
+        for m in re.finditer(r'action-btn (?:edit|view)"[^>]*data-modal-open="' + re.escape(page_id) + r'-row-(\d+)"', s):
+            idx = int(m.group(1))
+            # look backwards up to 500 chars for a title-ish snippet
+            back = s[max(0, m.start()-500):m.start()]
+            # prefer semantic containers first: .cat-name, .card-title, h3/h4/h5, strong
+            label = None
+            for pat in (r'class="cat-name">([^<]{3,60})<', r'class="[^"]*(?:card-title|item-title|row-title)[^"]*">([^<]{3,60})<',
+                        r'<h[345][^>]*>([^<]{3,60})</h[345]>', r'<strong>([^<]{3,60})</strong>'):
+                mm = re.findall(pat, back)
+                if mm: label = mm[-1]; break
+            if not label:
+                texts = re.findall(r'>([A-Za-z][A-Za-z0-9 &\u2014\u2013-]{3,60})<', back)
+                label = texts[-1] if texts else None
+            btn_ctx.append((idx, label or f'Item {idx+1}'))
+        seen = {i for i in range(built)}
+        for idx, label in btn_ctx:
+            if idx in seen:
+                continue
+            body = ('<dl class="detail-grid">\n'
+                    f'<dt>Name</dt><dd class="plain">{H.escape(label)}</dd>\n'
+                    '<dt>Status</dt><dd class="plain">Active</dd>\n'
+                    '<dt>Created</dt><dd>18 Aug 2026</dd>\n'
+                    '<dt>Last updated</dt><dd>18 Aug 2026</dd>\n</dl>')
+            modals.append(modal_shell(f'{page_id}-row-{idx}', f'Details — {label}', body))
+            seen.add(idx)
 
     # ---------- 2. generic Add modal + wire Add buttons ----------
     add_re = re.compile(r'(<button[^>]*?class="[^"]*\bbtn-primary\b[^"]*"[^>]*?)(/?>)(\s*(?:<i[^>]*></i>\s*)?(?:Add|Create|New)\s)', re.I)

@@ -123,7 +123,10 @@
         }
         var el = document.createElement('div');
         el.className = 'design-toast ' + (type || 'success');
-        el.innerHTML = '<i class="bi ' + (type === 'error' ? 'bi-x-circle' : 'bi-check-circle') + '"></i><span>' + msg + '</span>';
+        el.innerHTML = '<i class="bi ' + (type === 'error' ? 'bi-x-circle' : 'bi-check-circle') + '"></i>';
+        var span = document.createElement('span');
+        span.textContent = msg;
+        el.appendChild(span);
         wrap.appendChild(el);
         setTimeout(function () { el.classList.add('show'); }, 10);
         setTimeout(function () {
