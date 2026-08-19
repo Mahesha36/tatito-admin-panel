@@ -199,6 +199,95 @@
         });
     };
 
+    /* ---------- Round 2: page-level controls ---------- */
+
+    /* Categories tree: Expand All / Collapse All */
+    Design.initTree = function () {
+        Design._wireOnce('_treeWired', function () {
+            document.addEventListener('click', function (e) {
+                var ex = e.target.closest('[data-tree-expand]');
+                var co = e.target.closest('[data-tree-collapse]');
+                if (!ex && !co) return;
+                var expanding = !!ex;
+                document.querySelectorAll('.cat-tree-item').forEach(function (it) {
+                    it.classList.toggle('collapsed', !expanding);
+                });
+            });
+        });
+    };
+
+    /* Generic tab switchers: [data-tab-switch] activate among siblings */
+    Design.initTabSwitch = function () {
+        Design._wireOnce('_tabSwitchWired', function () {
+            document.addEventListener('click', function (e) {
+                var b = e.target.closest('[data-tab-switch]');
+                if (!b) return;
+                var sibs = b.parentElement.querySelectorAll('[data-tab-switch]');
+                sibs.forEach(function (x) { x.classList.remove('active'); });
+                b.classList.add('active');
+            });
+        });
+    };
+
+    /* Filter pills (tracking/notifications): click = active */
+    Design.initPills = function () {
+        Design._wireOnce('_pillsWired', function () {
+            document.addEventListener('click', function (e) {
+                var p = e.target.closest('[data-pill]');
+                if (!p) return;
+                var sibs = p.parentElement.querySelectorAll('[data-pill]');
+                sibs.forEach(function (x) { x.classList.remove('active'); });
+                p.classList.add('active');
+            });
+        });
+    };
+
+    /* Roles sidebar list: click to select */
+    Design.initRoleSelect = function () {
+        Design._wireOnce('_roleWired', function () {
+            document.addEventListener('click', function (e) {
+                var r = e.target.closest('[data-role-select]');
+                if (!r) return;
+                document.querySelectorAll('[data-role-select]').forEach(function (x) {
+                    x.classList.remove('active');
+                    x.style.background = 'transparent';
+                    x.style.border = '1px solid transparent';
+                });
+                r.classList.add('active');
+                r.style.background = 'var(--ivory)';
+                r.style.border = '1px solid var(--line)';
+            });
+        });
+    };
+
+    /* Clickable list items: templates list + notifications */
+    Design.initListItems = function () {
+        Design._wireOnce('_listWired', function () {
+            document.addEventListener('click', function (e) {
+                var li = e.target.closest('[data-list-item]');
+                if (li) {
+                    Design.toast('Template editor opens when backend is connected', 'info');
+                    return;
+                }
+                var ni = e.target.closest('[data-notif]');
+                if (ni) {
+                    Design.toast('Notification details (design mode)', 'info');
+                }
+            });
+        });
+    };
+
+    /* Copy buttons (tracking) */
+    Design.initCopy = function () {
+        Design._wireOnce('_copyWired', function () {
+            document.addEventListener('click', function (e) {
+                var c = e.target.closest('[data-copy]');
+                if (!c) return;
+                Design.toast('Copied (design mode)', 'success');
+            });
+        });
+    };
+
     document.addEventListener('DOMContentLoaded', function () {
         Design.initTabs();
         Design.initModals();
@@ -207,6 +296,12 @@
         Design.initConfirm();
         Design.initDropdowns();
         Design.initUploads();
+        Design.initTree();
+        Design.initTabSwitch();
+        Design.initPills();
+        Design.initRoleSelect();
+        Design.initListItems();
+        Design.initCopy();
     });
 
     window.Design = Design;

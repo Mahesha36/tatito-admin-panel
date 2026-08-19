@@ -40,12 +40,12 @@ def fname(pid):
 def page_path(section, pid):
     return f"{folder_for(section)}/{fname(pid)}"
 
-LOGOUT = '../../index.html'   # admin root index redirects to frontend login
+LOGOUT = 'index.html'   # admin root index redirects to frontend login
 
 def build_sidebar(active_section, active_pid):
     out = ['<div class="sidebar" id="sidebar">']
     out.append('  <div class="sidebar-header">')
-    out.append('    <img src="../../assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">')
+    out.append('    <img src="assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">')
     out.append('    <div>')
     out.append('      <h3 class="sidebar-brand">TATITO</h3>')
     out.append('      <small class="sidebar-subtitle">Admin Panel</small>')
@@ -72,7 +72,7 @@ def build_sidebar(active_section, active_pid):
         out.append('    </details>')
     out.append('  </nav>')
     out.append('  <div class="sidebar-footer">')
-    out.append('    <a class="btn btn-ghost btn-block" href="../index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>')
+    out.append('    <a class="btn btn-ghost btn-block" href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>')
     out.append('  </div>')
     out.append('</div>')
     return '\n'.join(out)
@@ -82,7 +82,6 @@ def build_topbar(section_label, page_label):
   <div class="topbar-left"><h2>{page_label}</h2></div>
   <div class="topbar-actions">
     <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
-    <a href="../index.html" class="topbar-icon-btn" title="All Modules"><i class="bi bi-grid-3x3-gap"></i></a>
   </div>
 </div>"""
 
@@ -93,16 +92,16 @@ HEAD = '''<!DOCTYPE html>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>{title} — TATITO Admin</title>
-<link rel="icon" type="image/png" href="../../assets/tatito-logo.png">
+<link rel="icon" type="image/png" href="assets/tatito-logo.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="../../css/theme.css">
-<link rel="stylesheet" href="../../css/layout.css">
-<link rel="stylesheet" href="../../css/components.css">
-<link rel="stylesheet" href="../../css/pages.css">
-<link rel="stylesheet" href="../../css/modules.css">
+<link rel="stylesheet" href="css/theme.css">
+<link rel="stylesheet" href="css/layout.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/pages.css">
+<link rel="stylesheet" href="css/modules.css">
 </head>
 <body class="admin-body">
 <!-- ============================================================
@@ -114,7 +113,7 @@ HEAD = '''<!DOCTYPE html>
 '''
 
 FOOT = '''
-<script src="../../assets/admin-design.js"></script>
+<script src="js/admin-design.js"></script>
 </body>
 </html>
 '''
@@ -148,7 +147,7 @@ def main():
                     + content
                     + '\n</main>\n</div>\n'
                     + FOOT)
-            out = os.path.join(ROOT, 'modules', folder_for(sec['section']), fname(pid))
+            out = os.path.join(ROOT, fname(pid))
             os.makedirs(os.path.dirname(out), exist_ok=True)
             open(out, 'w').write(page)
             made.append(out)
@@ -163,7 +162,7 @@ def main():
         (re.compile(r'src="assets/'), 'src="../../assets/'),
     ]
     n = 0
-    for p in pathlib.Path(os.path.join(ROOT, 'modules')).rglob('*.html'):
+    for p in pathlib.Path(ROOT).glob('*.html'):
         t = p.read_text(); o = t
         for rx, repl in pats: t = rx.sub(repl, t)
         if t != o: p.write_text(t); n += 1
@@ -171,7 +170,6 @@ def main():
 
     # Refunds page has no legacy renderer — build minimal from payments capture
     build_refunds()
-    build_modules_index()
 
 def build_refunds():
     page = (HEAD.format(title='Refunds')
@@ -180,45 +178,10 @@ def build_refunds():
             + '<main class="page-content-wrapper" id="pageContent">\n<!-- Legacy panel had no separate refunds renderer; refunds appear under Payments. Design placeholder: -->\n'
             + '<div class="card"><div class="card-header"><h3 class="card-title">Refunds</h3><p class="text-muted">Refund requests and history (legacy panel listed refunds within Payments)</p></div><div class="card-body"><p class="text-muted">All refund records from the payments module are shown here once Laravel data is connected.</p></div></div>'
             + '\n</main>\n</div>\n' + FOOT)
-    out = os.path.join(ROOT, 'modules/sales/refunds.html')
+    out = os.path.join(ROOT, 'refunds.html')
     open(out, 'w').write(page)
     print('wrote refunds placeholder')
 
-def build_modules_index():
-    out = ['''<!DOCTYPE html>
-<html lang="en" dir="ltr">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>All Modules — TATITO Admin</title>
-<link rel="icon" type="image/png" href="../assets/tatito-logo.png">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="../css/theme.css">
-<link rel="stylesheet" href="../css/layout.css">
-<link rel="stylesheet" href="../css/components.css">
-<link rel="stylesheet" href="../css/pages.css">
-<link rel="stylesheet" href="../css/modules.css">
-</head>
-<body class="admin-body modules-index-body">
-<div class="modules-index">
-<header class="modules-index-header">
-  <a href="../index.html" class="brand-link"><img src="../assets/tatito-logo.png" alt="Tatito logo" class="brand-logo"><span class="brand-name">TATITO <small>Fashions Admin</small></span></a>
-  <div>
-    <h1>TATITO Admin — Module Pages</h1>
-    <p class="text-muted">53 static design files · one per admin module · content captured from the working panel · ready for Laravel Blade conversion</p>
-  </div>
-</header>''']
-    for sec in NAV:
-        out.append(f'<section class="module-group"><h2><i class="bi {sec["icon"]}"></i> {sec["section"]} <span class="pill-count">{len(sec["items"])}</span></h2><div class="module-cards">')
-        for item in sec['items']:
-            out.append(f'  <a class="module-card" href="{page_path(sec["section"], item["id"])}"><i class="bi {item["icon"]}"></i><div><strong>{item["label"]}</strong><span>{page_path(sec["section"], item["id"])}</span></div></a>')
-        out.append('</div></section>')
-    out.append('</div></body></html>')
-    open(os.path.join(ROOT, 'modules/index.html'), 'w').write('\n'.join(out))
-    print('wrote modules/index.html')
 
 if __name__ == '__main__':
     main()
