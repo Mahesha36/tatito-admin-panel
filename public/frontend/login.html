@@ -127,8 +127,9 @@
     </div>
   </div>
   <!-- NEW: Admin login bridge loaded before auth.js so it can detect admin accounts -->
-  <script src="/admin/js/bridge.js?v=1"></script>
-  <script src="/admin/js/data.js?v=1"></script>
+  <!-- CHANGED: /admin/js/bridge.js + /admin/js/data.js removed (admin panel is now
+       design-only, no JS). Centralized login keeps working with its own data;
+       admin autologin is handled by Laravel when the backend is connected. -->
   <script src="js/data.js?v=53"></script>
   <script src="js/translations.js?v=53"></script>
   <!-- NEW: Admin bridge for reading admin-managed data -->

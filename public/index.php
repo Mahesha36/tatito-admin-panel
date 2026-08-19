@@ -32,6 +32,16 @@ $path = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH);
 
 // Serve existing files in public/ directly (admin, frontend, assets, etc.)
 if ($path !== '/' && $path !== '' && file_exists(__DIR__ . $path)) {
+    // Directory URL (e.g. /admin/, /admin/modules/) → serve its index.html.
+    // The old `return false;` produced an empty 200 response because the
+    // built-in router has no directory index configured.
+    if (is_dir(__DIR__ . $path)) {
+        $dirIndex = __DIR__ . rtrim($path, '/') . '/index.html';
+        if (file_exists($dirIndex)) {
+            readfile($dirIndex);
+            exit;
+        }
+    }
     return false; // Let the web server handle existing static files
 }
 

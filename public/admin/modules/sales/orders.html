@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Orders — TATITO Admin</title>
+<link rel="icon" type="image/png" href="../../assets/tatito-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="../../css/theme.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/pages.css">
+<link rel="stylesheet" href="../../css/modules.css">
+</head>
+<body class="admin-body">
+<!-- ============================================================
+     TATITO Admin — static design page (no JavaScript)
+     Content below = exact rendered output of the legacy admin panel
+     (MockData-driven). Sample data is illustrative; Laravel will
+     replace with real data via Blade views + API.
+     ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="../../assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">
+    <div>
+      <h3 class="sidebar-brand">TATITO</h3>
+      <small class="sidebar-subtitle">Admin Panel</small>
+    </div>
+  </div>
+  <div class="sidebar-user">
+    <div class="sidebar-avatar">SA</div>
+    <div class="sidebar-user-info">
+      <div class="sidebar-user-name">Super Admin</div>
+      <div class="sidebar-user-role">Administrator</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-speedometer2 nav-group-icon"></i><span>Dashboard</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../dashboard/dashboard.html"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
+        <a class="nav-item" href="../dashboard/reports.html"><i class="bi bi-bar-chart-line"></i><span>Reports & Analytics</span></a>
+        <a class="nav-item" href="../dashboard/tracking.html"><i class="bi bi-geo-alt"></i><span>Live Order Tracking</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-tags nav-group-icon"></i><span>Catalog</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../catalog/categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="../catalog/products.html"><i class="bi bi-bag"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group has-active" open>
+      <summary class="nav-group-header"><i class="bi bi-cart3 nav-group-icon"></i><span>Sales</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item active" href="../sales/orders.html"><i class="bi bi-receipt"></i><span>Orders</span></a>
+        <a class="nav-item" href="../sales/bookings.html"><i class="bi bi-calendar-check"></i><span>Bookings</span></a>
+        <a class="nav-item" href="../sales/payments.html"><i class="bi bi-credit-card"></i><span>Payments</span></a>
+        <a class="nav-item" href="../sales/refunds.html"><i class="bi bi-cash-coin"></i><span>Refunds</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-people nav-group-icon"></i><span>Members</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../members/approvals.html"><i class="bi bi-person-check"></i><span>Approvals</span></a>
+        <a class="nav-item" href="../members/users.html"><i class="bi bi-people"></i><span>Customers</span></a>
+        <a class="nav-item" href="../members/sellers.html"><i class="bi bi-shop"></i><span>Sellers</span></a>
+        <a class="nav-item" href="../members/designers.html"><i class="bi bi-palette"></i><span>Designers</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-stars nav-group-icon"></i><span>Services</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../services/boutiques.html"><i class="bi bi-shop-window"></i><span>Boutiques</span></a>
+        <a class="nav-item" href="../services/customizations.html"><i class="bi bi-brush"></i><span>Customizations</span></a>
+        <a class="nav-item" href="../services/quotations.html"><i class="bi bi-file-text"></i><span>Quotations</span></a>
+        <a class="nav-item" href="../services/consultations.html"><i class="bi bi-headset"></i><span>Consultations</span></a>
+        <a class="nav-item" href="../services/photography.html"><i class="bi bi-camera"></i><span>Photography</span></a>
+        <a class="nav-item" href="../services/events.html"><i class="bi bi-calendar-event"></i><span>Event Management</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-megaphone nav-group-icon"></i><span>Marketing</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../marketing/reviews.html"><i class="bi bi-star"></i><span>Reviews & Ratings</span></a>
+        <a class="nav-item" href="../marketing/referrals.html"><i class="bi bi-diagram-3"></i><span>Referral Program</span></a>
+        <a class="nav-item" href="../marketing/offers.html"><i class="bi bi-tag"></i><span>Offers & Coupons</span></a>
+        <a class="nav-item" href="../marketing/notifications.html"><i class="bi bi-bell"></i><span>Notifications</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-life-preserver nav-group-icon"></i><span>Support</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../support/contact-queries.html"><i class="bi bi-envelope"></i><span>Contact Queries</span></a>
+        <a class="nav-item" href="../support/support-tickets.html"><i class="bi bi-chat-dots"></i><span>Support Tickets</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-badge nav-group-icon"></i><span>Staff</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../staff/staff.html"><i class="bi bi-people"></i><span>All Staff</span></a>
+        <a class="nav-item" href="../staff/roles.html"><i class="bi bi-shield-lock"></i><span>Staff Roles</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-window-stack nav-group-icon"></i><span>Website</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../website/cms.html"><i class="bi bi-file-earmark-richtext"></i><span>CMS Pages</span></a>
+        <a class="nav-item" href="../website/website-header.html"><i class="bi bi-window"></i><span>Header</span></a>
+        <a class="nav-item" href="../website/website-footer.html"><i class="bi bi-layout-text-window-reverse"></i><span>Footer</span></a>
+        <a class="nav-item" href="../website/website-setup.html"><i class="bi bi-palette2"></i><span>Website Setup</span></a>
+        <a class="nav-item" href="../website/home-page-settings.html"><i class="bi bi-house-gear"></i><span>Home Page Settings</span></a>
+        <a class="nav-item" href="../website/media-manager.html"><i class="bi bi-folder2-open"></i><span>Media Manager</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-house-door nav-group-icon"></i><span>Home Feed</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../home-feed/home-collections.html"><i class="bi bi-collection"></i><span>Home Collections</span></a>
+        <a class="nav-item" href="../home-feed/home-video-banners.html"><i class="bi bi-camera-video"></i><span>Video Banners</span></a>
+        <a class="nav-item" href="../home-feed/home-dynamic-sections.html"><i class="bi bi-layout-text-window"></i><span>Dynamic Layout</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Weddings Hub</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../weddings/wedding-collections.html"><i class="bi bi-grid-3x3-gap"></i><span>Collections</span></a>
+        <a class="nav-item" href="../weddings/wedding-banners.html"><i class="bi bi-image"></i><span>Banners</span></a>
+        <a class="nav-item" href="../weddings/wedding-featured.html"><i class="bi bi-star"></i><span>Featured Couture</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-brush nav-group-icon"></i><span>Customise</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../customise/customisation-studios.html"><i class="bi bi-shop-window"></i><span>Studios</span></a>
+        <a class="nav-item" href="../customise/customisation-options.html"><i class="bi bi-palette"></i><span>Options & Swatches</span></a>
+        <a class="nav-item" href="../customise/bespoke-orders.html"><i class="bi bi-scissors"></i><span>Bespoke Orders</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Jewellery Vault</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../jewellery/jewellery-collections.html"><i class="bi bi-collection"></i><span>Collections</span></a>
+        <a class="nav-item" href="../jewellery/jewellery-categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="../jewellery/jewellery-products.html"><i class="bi bi-gem"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-calendar2-event nav-group-icon"></i><span>VIP Events</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../vip-events/events-vip.html"><i class="bi bi-calendar-event"></i><span>Event Calendar</span></a>
+        <a class="nav-item" href="../vip-events/event-rsvps.html"><i class="bi bi-ticket-perforated"></i><span>RSVPs</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-rolodex nav-group-icon"></i><span>Stylist</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../stylist/stylist-bookings.html"><i class="bi bi-calendar2-check"></i><span>Bookings</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gear nav-group-icon"></i><span>Settings</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../settings/settings.html"><i class="bi bi-sliders"></i><span>General Settings</span></a>
+        <a class="nav-item" href="../settings/payment-setup.html"><i class="bi bi-credit-card-2-front"></i><span>Payment Setup</span></a>
+        <a class="nav-item" href="../settings/currencies.html"><i class="bi bi-currency-exchange"></i><span>Currencies</span></a>
+        <a class="nav-item" href="../settings/languages.html"><i class="bi bi-translate"></i><span>Languages</span></a>
+        <a class="nav-item" href="../settings/email-templates.html"><i class="bi bi-mailbox"></i><span>Email Templates</span></a>
+      </div>
+    </details>
+  </nav>
+  <div class="sidebar-footer">
+    <a class="btn btn-ghost btn-block" href="../index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+  </div>
+</div><div class="main-wrapper" id="mainWrapper">
+<div class="topbar">
+  <div class="topbar-left"><h2>Orders</h2></div>
+  <div class="topbar-actions">
+    <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <a href="../index.html" class="topbar-icon-btn" title="All Modules"><i class="bi bi-grid-3x3-gap"></i></a>
+  </div>
+</div><main class="page-content-wrapper" id="pageContent">
+<div class="page-content"><div class="page-toolbar"><div><h3>Orders</h3><p class="text-muted">All marketplace orders</p></div><div class="toolbar-actions"><button class="btn btn-ghost"><i class="bi bi-download"></i> Export</button></div></div><div class="card"><div class="card-body"><table class="table table-hover" id="ordersTable"><thead><tr><th>Order ID</th><th>Customer</th><th>Product</th><th>Seller</th><th>Date</th><th>Amount</th><th>Payment</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td><strong>ORD001</strong></td><td>Priya Sharma</td><td>Kanchipuram Silk Saree — Royal Blue</td><td>Rajesh Silk Sarees</td><td>15 Feb 2026</td><td>₹25,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-0" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-0" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD002</strong></td><td>Rahul Verma</td><td>Bridal Kanjivaram Saree — Maroon Gold</td><td>Rajesh Silk Sarees</td><td>1 Mar 2026</td><td>₹45,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Shipped</span></td><td><button class="action-btn view" data-modal-open="orders-row-1" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-1" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD003</strong></td><td>Anjali Reddy</td><td>Floral Summer Dress</td><td>Fashion Hub Boutique</td><td>20 Feb 2026</td><td>₹7,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-2" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-2" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD004</strong></td><td>Priya Sharma</td><td>Designer Party Gown</td><td>Fashion Hub Boutique</td><td>25 Feb 2026</td><td>₹12,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-3" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-3" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD005</strong></td><td>Deepika Nair</td><td>Casual Cotton Top</td><td>Fashion Hub Boutique</td><td>28 Feb 2026</td><td>₹4,500</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-4" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-4" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD006</strong></td><td>Meera Joshi</td><td>Slim Fit Jeans</td><td>Fashion Hub Boutique</td><td>5 Mar 2026</td><td>₹2,800</td><td><span class="badge badge-warning">Refunded</span></td><td><span class="badge badge-danger">Cancelled</span></td><td><button class="action-btn view" data-modal-open="orders-row-5" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-5" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD007</strong></td><td>Sneha Patel</td><td>Designer Party Gown</td><td>Fashion Hub Boutique</td><td>10 Mar 2026</td><td>₹12,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Processing</span></td><td><button class="action-btn view" data-modal-open="orders-row-6" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-6" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD008</strong></td><td>Anjali Reddy</td><td>Slim Fit Jeans</td><td>Fashion Hub Boutique</td><td>12 Mar 2026</td><td>₹5,600</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-7" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-7" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD009</strong></td><td>Vikram Singh</td><td>22K Gold Temple Necklace</td><td>Royal Diamond Jewellery</td><td>1 Feb 2026</td><td>₹1,85,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-8" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-8" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD010</strong></td><td>Lakshmi Krishnan</td><td>Kundan Earring Set</td><td>Royal Diamond Jewellery</td><td>14 Feb 2026</td><td>₹25,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-9" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-9" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD011</strong></td><td>Karthik Iyer</td><td>Diamond Bridal Set</td><td>Royal Diamond Jewellery</td><td>15 Mar 2026</td><td>₹4,85,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Processing</span></td><td><button class="action-btn view" data-modal-open="orders-row-10" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-10" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD012</strong></td><td>Divya Menon</td><td>Premium Wedding Stage Decoration</td><td>Wedding Bells Event Decorators</td><td>10 Feb 2026</td><td>₹1,50,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-11" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-11" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD013</strong></td><td>Priya Sharma</td><td>Reception Hall Decor Package</td><td>Wedding Bells Event Decorators</td><td>18 Feb 2026</td><td>₹85,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-12" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-12" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD014</strong></td><td>Rahul Verma</td><td>Complete Wedding Photography Package</td><td>Click Studio Photography</td><td>22 Feb 2026</td><td>₹75,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-13" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-13" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD015</strong></td><td>Sneha Patel</td><td>Pre-Wedding Photoshoot</td><td>Click Studio Photography</td><td>1 Mar 2026</td><td>₹25,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-14" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-14" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD016</strong></td><td>Vikram Singh</td><td>Full Wedding Planning Service</td><td>Dream Day Wedding Planners</td><td>5 Feb 2026</td><td>₹3,50,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Processing</span></td><td><button class="action-btn view" data-modal-open="orders-row-15" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-15" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD017</strong></td><td>Deepika Nair</td><td>Reception Event Management</td><td>Dream Day Wedding Planners</td><td>28 Feb 2026</td><td>₹1,80,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-16" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-16" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD018</strong></td><td>Meera Joshi</td><td>Premium Veg Catering (per plate)</td><td>Swaad Pure Veg Catering</td><td>2 Mar 2026</td><td>₹2,25,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-17" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-17" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD019</strong></td><td>Divya Menon</td><td>Live Counter Catering Service</td><td>Swaad Pure Veg Catering</td><td>8 Mar 2026</td><td>₹1,60,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-18" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-18" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD020</strong></td><td>Anjali Reddy</td><td>Designer Sherwani — Cream Gold</td><td>Elegant Threads Designer Wear</td><td>4 Mar 2026</td><td>₹35,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-19" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-19" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD021</strong></td><td>Karthik Iyer</td><td>Indo-Western Suit — Navy</td><td>Elegant Threads Designer Wear</td><td>10 Mar 2026</td><td>₹22,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Shipped</span></td><td><button class="action-btn view" data-modal-open="orders-row-20" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-20" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD022</strong></td><td>Priya Sharma</td><td>Bridal Makeup Package</td><td>Golden Touch Makeup Artists</td><td>12 Feb 2026</td><td>₹25,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-21" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-21" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD023</strong></td><td>Lakshmi Krishnan</td><td>Engagement Makeup Service</td><td>Golden Touch Makeup Artists</td><td>1 Mar 2026</td><td>₹12,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-22" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-22" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD024</strong></td><td>Sneha Patel</td><td>AC Wedding Hall (per day)</td><td>Shanti Marriage Mandapam</td><td>15 Mar 2026</td><td>₹1,30,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Confirmed</span></td><td><button class="action-btn view" data-modal-open="orders-row-23" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-23" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD025</strong></td><td>Rahul Verma</td><td>Dining Hall with Kitchen</td><td>Shanti Marriage Mandapam</td><td>20 Mar 2026</td><td>₹35,000</td><td><span class="badge badge-warning">Pending</span></td><td><span class="badge badge-warning">Pending</span></td><td><button class="action-btn view" data-modal-open="orders-row-24" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-24" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD026</strong></td><td>Deepika Nair</td><td>Cinematic Wedding Film</td><td>Bright Lens Videography</td><td>8 Mar 2026</td><td>₹95,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Processing</span></td><td><button class="action-btn view" data-modal-open="orders-row-25" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-25" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD027</strong></td><td>Meera Joshi</td><td>Drone Videography Add-on</td><td>Bright Lens Videography</td><td>10 Mar 2026</td><td>₹20,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-26" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-26" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD028</strong></td><td>Vikram Singh</td><td>Bridal Mehendi Design</td><td>Mehendi Art by Reshma</td><td>12 Mar 2026</td><td>₹8,500</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-27" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-27" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD029</strong></td><td>Anjali Reddy</td><td>Guest Mehendi Service (per person)</td><td>Mehendi Art by Reshma</td><td>14 Mar 2026</td><td>₹25,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Completed</span></td><td><button class="action-btn view" data-modal-open="orders-row-28" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-28" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD030</strong></td><td>Priya Sharma</td><td>Custom Bridal Sherwani — Ivory Gold</td><td>Vikram Modi Couture</td><td>1 Feb 2026</td><td>₹1,25,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Processing</span></td><td><button class="action-btn view" data-modal-open="orders-row-29" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-29" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD031</strong></td><td>Sneha Patel</td><td>Groom Tuxedo — Classic Black</td><td>Vikram Modi Couture</td><td>15 Feb 2026</td><td>₹85,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-30" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-30" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD032</strong></td><td>Rahul Verma</td><td>Designer Anarkali Suit — Emerald</td><td>Anita Designs</td><td>20 Feb 2026</td><td>₹38,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-31" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-31" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD033</strong></td><td>Deepika Nair</td><td>Silk Kurta Set — Mustard</td><td>Anita Designs</td><td>25 Feb 2026</td><td>₹22,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-32" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-32" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD034</strong></td><td>Vikram Singh</td><td>Couple Sherwani &amp; Lehenga Set — Maroon</td><td>Royal Weaves</td><td>8 Feb 2026</td><td>₹2,85,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Processing</span></td><td><button class="action-btn view" data-modal-open="orders-row-33" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-33" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD035</strong></td><td>Divya Menon</td><td>Reception Couple Suit Set — Navy</td><td>Royal Weaves</td><td>22 Feb 2026</td><td>₹1,95,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Shipped</span></td><td><button class="action-btn view" data-modal-open="orders-row-34" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-34" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD036</strong></td><td>Meera Joshi</td><td>Bridal Lehenga — Red Gold Zari</td><td>Ritu Designs</td><td>15 Feb 2026</td><td>₹1,65,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Processing</span></td><td><button class="action-btn view" data-modal-open="orders-row-35" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-35" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD037</strong></td><td>Anjali Reddy</td><td>Sangeet Lehenga — Teal Pink</td><td>Ritu Designs</td><td>28 Feb 2026</td><td>₹95,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-36" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-36" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD038</strong></td><td>Karthik Iyer</td><td>Designer Sherwani — Royal Blue</td><td>MM Studio</td><td>10 Mar 2026</td><td>₹55,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-37" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-37" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD039</strong></td><td>Lakshmi Krishnan</td><td>Pathani Suit — Olive Green</td><td>MM Studio</td><td>12 Mar 2026</td><td>₹32,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Shipped</span></td><td><button class="action-btn view" data-modal-open="orders-row-38" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-38" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD040</strong></td><td>Priya Sharma</td><td>Bridal Gown — Ivory Lace</td><td>Neeta Couture</td><td>5 Feb 2026</td><td>₹2,25,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-info">Processing</span></td><td><button class="action-btn view" data-modal-open="orders-row-39" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-39" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr><tr><td><strong>ORD041</strong></td><td>Deepika Nair</td><td>Reception Gown — Champagne Gold</td><td>Neeta Couture</td><td>20 Feb 2026</td><td>₹1,45,000</td><td><span class="badge badge-success">Paid</span></td><td><span class="badge badge-success">Delivered</span></td><td><button class="action-btn view" data-modal-open="orders-row-40" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="orders-row-40" title="Change Status"><i class="bi bi-arrow-left-right"></i></button></td></tr></tbody></table></div></div></div>
+</main>
+</div>
+
+
+<!-- ===== design-mode modals (admin-design.js) ===== -->
+<div class="design-modal" id="orders-row-0" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD001</h3><button class="modal-close" type="button" data-modal-close="orders-row-0" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD001</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Product</dt><dd class="plain">Kanchipuram Silk Saree — Royal Blue</dd>
+<dt>Seller</dt><dd class="plain">Rajesh Silk Sarees</dd>
+<dt>Date</dt><dd class="plain">15 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹25,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-0">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-1" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD002</h3><button class="modal-close" type="button" data-modal-close="orders-row-1" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD002</dd>
+<dt>Customer</dt><dd class="plain">Rahul Verma</dd>
+<dt>Product</dt><dd class="plain">Bridal Kanjivaram Saree — Maroon Gold</dd>
+<dt>Seller</dt><dd class="plain">Rajesh Silk Sarees</dd>
+<dt>Date</dt><dd class="plain">1 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹45,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Shipped</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-1">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-2" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD003</h3><button class="modal-close" type="button" data-modal-close="orders-row-2" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD003</dd>
+<dt>Customer</dt><dd class="plain">Anjali Reddy</dd>
+<dt>Product</dt><dd class="plain">Floral Summer Dress</dd>
+<dt>Seller</dt><dd class="plain">Fashion Hub Boutique</dd>
+<dt>Date</dt><dd class="plain">20 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹7,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-2">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-3" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD004</h3><button class="modal-close" type="button" data-modal-close="orders-row-3" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD004</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Product</dt><dd class="plain">Designer Party Gown</dd>
+<dt>Seller</dt><dd class="plain">Fashion Hub Boutique</dd>
+<dt>Date</dt><dd class="plain">25 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹12,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-3">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-4" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD005</h3><button class="modal-close" type="button" data-modal-close="orders-row-4" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD005</dd>
+<dt>Customer</dt><dd class="plain">Deepika Nair</dd>
+<dt>Product</dt><dd class="plain">Casual Cotton Top</dd>
+<dt>Seller</dt><dd class="plain">Fashion Hub Boutique</dd>
+<dt>Date</dt><dd class="plain">28 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹4,500</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-4">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-5" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD006</h3><button class="modal-close" type="button" data-modal-close="orders-row-5" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD006</dd>
+<dt>Customer</dt><dd class="plain">Meera Joshi</dd>
+<dt>Product</dt><dd class="plain">Slim Fit Jeans</dd>
+<dt>Seller</dt><dd class="plain">Fashion Hub Boutique</dd>
+<dt>Date</dt><dd class="plain">5 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹2,800</dd>
+<dt>Payment</dt><dd class="plain">Refunded</dd>
+<dt>Status</dt><dd class="plain">Cancelled</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-5">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-6" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD007</h3><button class="modal-close" type="button" data-modal-close="orders-row-6" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD007</dd>
+<dt>Customer</dt><dd class="plain">Sneha Patel</dd>
+<dt>Product</dt><dd class="plain">Designer Party Gown</dd>
+<dt>Seller</dt><dd class="plain">Fashion Hub Boutique</dd>
+<dt>Date</dt><dd class="plain">10 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹12,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Processing</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-6">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-7" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD008</h3><button class="modal-close" type="button" data-modal-close="orders-row-7" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD008</dd>
+<dt>Customer</dt><dd class="plain">Anjali Reddy</dd>
+<dt>Product</dt><dd class="plain">Slim Fit Jeans</dd>
+<dt>Seller</dt><dd class="plain">Fashion Hub Boutique</dd>
+<dt>Date</dt><dd class="plain">12 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹5,600</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-7">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-8" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD009</h3><button class="modal-close" type="button" data-modal-close="orders-row-8" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD009</dd>
+<dt>Customer</dt><dd class="plain">Vikram Singh</dd>
+<dt>Product</dt><dd class="plain">22K Gold Temple Necklace</dd>
+<dt>Seller</dt><dd class="plain">Royal Diamond Jewellery</dd>
+<dt>Date</dt><dd class="plain">1 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹1,85,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-8">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-9" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD010</h3><button class="modal-close" type="button" data-modal-close="orders-row-9" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD010</dd>
+<dt>Customer</dt><dd class="plain">Lakshmi Krishnan</dd>
+<dt>Product</dt><dd class="plain">Kundan Earring Set</dd>
+<dt>Seller</dt><dd class="plain">Royal Diamond Jewellery</dd>
+<dt>Date</dt><dd class="plain">14 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹25,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-9">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-10" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD011</h3><button class="modal-close" type="button" data-modal-close="orders-row-10" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD011</dd>
+<dt>Customer</dt><dd class="plain">Karthik Iyer</dd>
+<dt>Product</dt><dd class="plain">Diamond Bridal Set</dd>
+<dt>Seller</dt><dd class="plain">Royal Diamond Jewellery</dd>
+<dt>Date</dt><dd class="plain">15 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹4,85,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Processing</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-10">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-11" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD012</h3><button class="modal-close" type="button" data-modal-close="orders-row-11" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD012</dd>
+<dt>Customer</dt><dd class="plain">Divya Menon</dd>
+<dt>Product</dt><dd class="plain">Premium Wedding Stage Decoration</dd>
+<dt>Seller</dt><dd class="plain">Wedding Bells Event Decorators</dd>
+<dt>Date</dt><dd class="plain">10 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹1,50,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-11">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-12" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD013</h3><button class="modal-close" type="button" data-modal-close="orders-row-12" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD013</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Product</dt><dd class="plain">Reception Hall Decor Package</dd>
+<dt>Seller</dt><dd class="plain">Wedding Bells Event Decorators</dd>
+<dt>Date</dt><dd class="plain">18 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹85,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-12">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-13" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD014</h3><button class="modal-close" type="button" data-modal-close="orders-row-13" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD014</dd>
+<dt>Customer</dt><dd class="plain">Rahul Verma</dd>
+<dt>Product</dt><dd class="plain">Complete Wedding Photography Package</dd>
+<dt>Seller</dt><dd class="plain">Click Studio Photography</dd>
+<dt>Date</dt><dd class="plain">22 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹75,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-13">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-14" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD015</h3><button class="modal-close" type="button" data-modal-close="orders-row-14" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD015</dd>
+<dt>Customer</dt><dd class="plain">Sneha Patel</dd>
+<dt>Product</dt><dd class="plain">Pre-Wedding Photoshoot</dd>
+<dt>Seller</dt><dd class="plain">Click Studio Photography</dd>
+<dt>Date</dt><dd class="plain">1 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹25,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-14">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-15" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD016</h3><button class="modal-close" type="button" data-modal-close="orders-row-15" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD016</dd>
+<dt>Customer</dt><dd class="plain">Vikram Singh</dd>
+<dt>Product</dt><dd class="plain">Full Wedding Planning Service</dd>
+<dt>Seller</dt><dd class="plain">Dream Day Wedding Planners</dd>
+<dt>Date</dt><dd class="plain">5 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹3,50,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Processing</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-15">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-16" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD017</h3><button class="modal-close" type="button" data-modal-close="orders-row-16" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD017</dd>
+<dt>Customer</dt><dd class="plain">Deepika Nair</dd>
+<dt>Product</dt><dd class="plain">Reception Event Management</dd>
+<dt>Seller</dt><dd class="plain">Dream Day Wedding Planners</dd>
+<dt>Date</dt><dd class="plain">28 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹1,80,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-16">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-17" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD018</h3><button class="modal-close" type="button" data-modal-close="orders-row-17" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD018</dd>
+<dt>Customer</dt><dd class="plain">Meera Joshi</dd>
+<dt>Product</dt><dd class="plain">Premium Veg Catering (per plate)</dd>
+<dt>Seller</dt><dd class="plain">Swaad Pure Veg Catering</dd>
+<dt>Date</dt><dd class="plain">2 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹2,25,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-17">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-18" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD019</h3><button class="modal-close" type="button" data-modal-close="orders-row-18" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD019</dd>
+<dt>Customer</dt><dd class="plain">Divya Menon</dd>
+<dt>Product</dt><dd class="plain">Live Counter Catering Service</dd>
+<dt>Seller</dt><dd class="plain">Swaad Pure Veg Catering</dd>
+<dt>Date</dt><dd class="plain">8 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹1,60,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-18">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-19" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD020</h3><button class="modal-close" type="button" data-modal-close="orders-row-19" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD020</dd>
+<dt>Customer</dt><dd class="plain">Anjali Reddy</dd>
+<dt>Product</dt><dd class="plain">Designer Sherwani — Cream Gold</dd>
+<dt>Seller</dt><dd class="plain">Elegant Threads Designer Wear</dd>
+<dt>Date</dt><dd class="plain">4 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹35,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-19">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-20" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD021</h3><button class="modal-close" type="button" data-modal-close="orders-row-20" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD021</dd>
+<dt>Customer</dt><dd class="plain">Karthik Iyer</dd>
+<dt>Product</dt><dd class="plain">Indo-Western Suit — Navy</dd>
+<dt>Seller</dt><dd class="plain">Elegant Threads Designer Wear</dd>
+<dt>Date</dt><dd class="plain">10 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹22,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Shipped</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-20">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-21" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD022</h3><button class="modal-close" type="button" data-modal-close="orders-row-21" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD022</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Product</dt><dd class="plain">Bridal Makeup Package</dd>
+<dt>Seller</dt><dd class="plain">Golden Touch Makeup Artists</dd>
+<dt>Date</dt><dd class="plain">12 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹25,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-21">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-22" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD023</h3><button class="modal-close" type="button" data-modal-close="orders-row-22" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD023</dd>
+<dt>Customer</dt><dd class="plain">Lakshmi Krishnan</dd>
+<dt>Product</dt><dd class="plain">Engagement Makeup Service</dd>
+<dt>Seller</dt><dd class="plain">Golden Touch Makeup Artists</dd>
+<dt>Date</dt><dd class="plain">1 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹12,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-22">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-23" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD024</h3><button class="modal-close" type="button" data-modal-close="orders-row-23" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD024</dd>
+<dt>Customer</dt><dd class="plain">Sneha Patel</dd>
+<dt>Product</dt><dd class="plain">AC Wedding Hall (per day)</dd>
+<dt>Seller</dt><dd class="plain">Shanti Marriage Mandapam</dd>
+<dt>Date</dt><dd class="plain">15 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹1,30,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Confirmed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-23">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-24" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD025</h3><button class="modal-close" type="button" data-modal-close="orders-row-24" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD025</dd>
+<dt>Customer</dt><dd class="plain">Rahul Verma</dd>
+<dt>Product</dt><dd class="plain">Dining Hall with Kitchen</dd>
+<dt>Seller</dt><dd class="plain">Shanti Marriage Mandapam</dd>
+<dt>Date</dt><dd class="plain">20 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹35,000</dd>
+<dt>Payment</dt><dd class="plain">Pending</dd>
+<dt>Status</dt><dd class="plain">Pending</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-24">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-25" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD026</h3><button class="modal-close" type="button" data-modal-close="orders-row-25" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD026</dd>
+<dt>Customer</dt><dd class="plain">Deepika Nair</dd>
+<dt>Product</dt><dd class="plain">Cinematic Wedding Film</dd>
+<dt>Seller</dt><dd class="plain">Bright Lens Videography</dd>
+<dt>Date</dt><dd class="plain">8 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹95,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Processing</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-25">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-26" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD027</h3><button class="modal-close" type="button" data-modal-close="orders-row-26" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD027</dd>
+<dt>Customer</dt><dd class="plain">Meera Joshi</dd>
+<dt>Product</dt><dd class="plain">Drone Videography Add-on</dd>
+<dt>Seller</dt><dd class="plain">Bright Lens Videography</dd>
+<dt>Date</dt><dd class="plain">10 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹20,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-26">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-27" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD028</h3><button class="modal-close" type="button" data-modal-close="orders-row-27" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD028</dd>
+<dt>Customer</dt><dd class="plain">Vikram Singh</dd>
+<dt>Product</dt><dd class="plain">Bridal Mehendi Design</dd>
+<dt>Seller</dt><dd class="plain">Mehendi Art by Reshma</dd>
+<dt>Date</dt><dd class="plain">12 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹8,500</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-27">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-28" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD029</h3><button class="modal-close" type="button" data-modal-close="orders-row-28" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD029</dd>
+<dt>Customer</dt><dd class="plain">Anjali Reddy</dd>
+<dt>Product</dt><dd class="plain">Guest Mehendi Service (per person)</dd>
+<dt>Seller</dt><dd class="plain">Mehendi Art by Reshma</dd>
+<dt>Date</dt><dd class="plain">14 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹25,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Completed</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-28">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-29" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD030</h3><button class="modal-close" type="button" data-modal-close="orders-row-29" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD030</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Product</dt><dd class="plain">Custom Bridal Sherwani — Ivory Gold</dd>
+<dt>Seller</dt><dd class="plain">Vikram Modi Couture</dd>
+<dt>Date</dt><dd class="plain">1 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹1,25,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Processing</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-29">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-30" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD031</h3><button class="modal-close" type="button" data-modal-close="orders-row-30" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD031</dd>
+<dt>Customer</dt><dd class="plain">Sneha Patel</dd>
+<dt>Product</dt><dd class="plain">Groom Tuxedo — Classic Black</dd>
+<dt>Seller</dt><dd class="plain">Vikram Modi Couture</dd>
+<dt>Date</dt><dd class="plain">15 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹85,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-30">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-31" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD032</h3><button class="modal-close" type="button" data-modal-close="orders-row-31" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD032</dd>
+<dt>Customer</dt><dd class="plain">Rahul Verma</dd>
+<dt>Product</dt><dd class="plain">Designer Anarkali Suit — Emerald</dd>
+<dt>Seller</dt><dd class="plain">Anita Designs</dd>
+<dt>Date</dt><dd class="plain">20 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹38,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-31">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-32" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD033</h3><button class="modal-close" type="button" data-modal-close="orders-row-32" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD033</dd>
+<dt>Customer</dt><dd class="plain">Deepika Nair</dd>
+<dt>Product</dt><dd class="plain">Silk Kurta Set — Mustard</dd>
+<dt>Seller</dt><dd class="plain">Anita Designs</dd>
+<dt>Date</dt><dd class="plain">25 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹22,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-32">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-33" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD034</h3><button class="modal-close" type="button" data-modal-close="orders-row-33" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD034</dd>
+<dt>Customer</dt><dd class="plain">Vikram Singh</dd>
+<dt>Product</dt><dd class="plain">Couple Sherwani &amp; Lehenga Set — Maroon</dd>
+<dt>Seller</dt><dd class="plain">Royal Weaves</dd>
+<dt>Date</dt><dd class="plain">8 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹2,85,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Processing</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-33">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-34" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD035</h3><button class="modal-close" type="button" data-modal-close="orders-row-34" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD035</dd>
+<dt>Customer</dt><dd class="plain">Divya Menon</dd>
+<dt>Product</dt><dd class="plain">Reception Couple Suit Set — Navy</dd>
+<dt>Seller</dt><dd class="plain">Royal Weaves</dd>
+<dt>Date</dt><dd class="plain">22 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹1,95,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Shipped</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-34">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-35" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD036</h3><button class="modal-close" type="button" data-modal-close="orders-row-35" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD036</dd>
+<dt>Customer</dt><dd class="plain">Meera Joshi</dd>
+<dt>Product</dt><dd class="plain">Bridal Lehenga — Red Gold Zari</dd>
+<dt>Seller</dt><dd class="plain">Ritu Designs</dd>
+<dt>Date</dt><dd class="plain">15 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹1,65,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Processing</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-35">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-36" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD037</h3><button class="modal-close" type="button" data-modal-close="orders-row-36" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD037</dd>
+<dt>Customer</dt><dd class="plain">Anjali Reddy</dd>
+<dt>Product</dt><dd class="plain">Sangeet Lehenga — Teal Pink</dd>
+<dt>Seller</dt><dd class="plain">Ritu Designs</dd>
+<dt>Date</dt><dd class="plain">28 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹95,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-36">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-37" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD038</h3><button class="modal-close" type="button" data-modal-close="orders-row-37" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD038</dd>
+<dt>Customer</dt><dd class="plain">Karthik Iyer</dd>
+<dt>Product</dt><dd class="plain">Designer Sherwani — Royal Blue</dd>
+<dt>Seller</dt><dd class="plain">MM Studio</dd>
+<dt>Date</dt><dd class="plain">10 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹55,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-37">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-38" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD039</h3><button class="modal-close" type="button" data-modal-close="orders-row-38" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD039</dd>
+<dt>Customer</dt><dd class="plain">Lakshmi Krishnan</dd>
+<dt>Product</dt><dd class="plain">Pathani Suit — Olive Green</dd>
+<dt>Seller</dt><dd class="plain">MM Studio</dd>
+<dt>Date</dt><dd class="plain">12 Mar 2026</dd>
+<dt>Amount</dt><dd class="plain">₹32,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Shipped</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-38">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-39" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD040</h3><button class="modal-close" type="button" data-modal-close="orders-row-39" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD040</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Product</dt><dd class="plain">Bridal Gown — Ivory Lace</dd>
+<dt>Seller</dt><dd class="plain">Neeta Couture</dd>
+<dt>Date</dt><dd class="plain">5 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹2,25,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Processing</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-39">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="orders-row-40" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — ORD041</h3><button class="modal-close" type="button" data-modal-close="orders-row-40" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>Order ID</dt><dd class="plain">ORD041</dd>
+<dt>Customer</dt><dd class="plain">Deepika Nair</dd>
+<dt>Product</dt><dd class="plain">Reception Gown — Champagne Gold</dd>
+<dt>Seller</dt><dd class="plain">Neeta Couture</dd>
+<dt>Date</dt><dd class="plain">20 Feb 2026</dd>
+<dt>Amount</dt><dd class="plain">₹1,45,000</dd>
+<dt>Payment</dt><dd class="plain">Paid</dd>
+<dt>Status</dt><dd class="plain">Delivered</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="orders-row-40">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<script src="../../assets/admin-design.js"></script>
+</body>
+</html>

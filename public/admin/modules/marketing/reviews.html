@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reviews & Ratings — TATITO Admin</title>
+<link rel="icon" type="image/png" href="../../assets/tatito-logo.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="../../css/theme.css">
+<link rel="stylesheet" href="../../css/layout.css">
+<link rel="stylesheet" href="../../css/components.css">
+<link rel="stylesheet" href="../../css/pages.css">
+<link rel="stylesheet" href="../../css/modules.css">
+</head>
+<body class="admin-body">
+<!-- ============================================================
+     TATITO Admin — static design page (no JavaScript)
+     Content below = exact rendered output of the legacy admin panel
+     (MockData-driven). Sample data is illustrative; Laravel will
+     replace with real data via Blade views + API.
+     ============================================================ -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-header">
+    <img src="../../assets/tatito-logo.png" alt="TATITO" class="sidebar-logo">
+    <div>
+      <h3 class="sidebar-brand">TATITO</h3>
+      <small class="sidebar-subtitle">Admin Panel</small>
+    </div>
+  </div>
+  <div class="sidebar-user">
+    <div class="sidebar-avatar">SA</div>
+    <div class="sidebar-user-info">
+      <div class="sidebar-user-name">Super Admin</div>
+      <div class="sidebar-user-role">Administrator</div>
+    </div>
+  </div>
+  <nav class="sidebar-nav" id="sidebarNav">
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-speedometer2 nav-group-icon"></i><span>Dashboard</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../dashboard/dashboard.html"><i class="bi bi-house-door"></i><span>Dashboard</span></a>
+        <a class="nav-item" href="../dashboard/reports.html"><i class="bi bi-bar-chart-line"></i><span>Reports & Analytics</span></a>
+        <a class="nav-item" href="../dashboard/tracking.html"><i class="bi bi-geo-alt"></i><span>Live Order Tracking</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-tags nav-group-icon"></i><span>Catalog</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../catalog/categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="../catalog/products.html"><i class="bi bi-bag"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-cart3 nav-group-icon"></i><span>Sales</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../sales/orders.html"><i class="bi bi-receipt"></i><span>Orders</span></a>
+        <a class="nav-item" href="../sales/bookings.html"><i class="bi bi-calendar-check"></i><span>Bookings</span></a>
+        <a class="nav-item" href="../sales/payments.html"><i class="bi bi-credit-card"></i><span>Payments</span></a>
+        <a class="nav-item" href="../sales/refunds.html"><i class="bi bi-cash-coin"></i><span>Refunds</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-people nav-group-icon"></i><span>Members</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../members/approvals.html"><i class="bi bi-person-check"></i><span>Approvals</span></a>
+        <a class="nav-item" href="../members/users.html"><i class="bi bi-people"></i><span>Customers</span></a>
+        <a class="nav-item" href="../members/sellers.html"><i class="bi bi-shop"></i><span>Sellers</span></a>
+        <a class="nav-item" href="../members/designers.html"><i class="bi bi-palette"></i><span>Designers</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-stars nav-group-icon"></i><span>Services</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../services/boutiques.html"><i class="bi bi-shop-window"></i><span>Boutiques</span></a>
+        <a class="nav-item" href="../services/customizations.html"><i class="bi bi-brush"></i><span>Customizations</span></a>
+        <a class="nav-item" href="../services/quotations.html"><i class="bi bi-file-text"></i><span>Quotations</span></a>
+        <a class="nav-item" href="../services/consultations.html"><i class="bi bi-headset"></i><span>Consultations</span></a>
+        <a class="nav-item" href="../services/photography.html"><i class="bi bi-camera"></i><span>Photography</span></a>
+        <a class="nav-item" href="../services/events.html"><i class="bi bi-calendar-event"></i><span>Event Management</span></a>
+      </div>
+    </details>
+    <details class="nav-group has-active" open>
+      <summary class="nav-group-header"><i class="bi bi-megaphone nav-group-icon"></i><span>Marketing</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item active" href="../marketing/reviews.html"><i class="bi bi-star"></i><span>Reviews & Ratings</span></a>
+        <a class="nav-item" href="../marketing/referrals.html"><i class="bi bi-diagram-3"></i><span>Referral Program</span></a>
+        <a class="nav-item" href="../marketing/offers.html"><i class="bi bi-tag"></i><span>Offers & Coupons</span></a>
+        <a class="nav-item" href="../marketing/notifications.html"><i class="bi bi-bell"></i><span>Notifications</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-life-preserver nav-group-icon"></i><span>Support</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../support/contact-queries.html"><i class="bi bi-envelope"></i><span>Contact Queries</span></a>
+        <a class="nav-item" href="../support/support-tickets.html"><i class="bi bi-chat-dots"></i><span>Support Tickets</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-badge nav-group-icon"></i><span>Staff</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../staff/staff.html"><i class="bi bi-people"></i><span>All Staff</span></a>
+        <a class="nav-item" href="../staff/roles.html"><i class="bi bi-shield-lock"></i><span>Staff Roles</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-window-stack nav-group-icon"></i><span>Website</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../website/cms.html"><i class="bi bi-file-earmark-richtext"></i><span>CMS Pages</span></a>
+        <a class="nav-item" href="../website/website-header.html"><i class="bi bi-window"></i><span>Header</span></a>
+        <a class="nav-item" href="../website/website-footer.html"><i class="bi bi-layout-text-window-reverse"></i><span>Footer</span></a>
+        <a class="nav-item" href="../website/website-setup.html"><i class="bi bi-palette2"></i><span>Website Setup</span></a>
+        <a class="nav-item" href="../website/home-page-settings.html"><i class="bi bi-house-gear"></i><span>Home Page Settings</span></a>
+        <a class="nav-item" href="../website/media-manager.html"><i class="bi bi-folder2-open"></i><span>Media Manager</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-house-door nav-group-icon"></i><span>Home Feed</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../home-feed/home-collections.html"><i class="bi bi-collection"></i><span>Home Collections</span></a>
+        <a class="nav-item" href="../home-feed/home-video-banners.html"><i class="bi bi-camera-video"></i><span>Video Banners</span></a>
+        <a class="nav-item" href="../home-feed/home-dynamic-sections.html"><i class="bi bi-layout-text-window"></i><span>Dynamic Layout</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Weddings Hub</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../weddings/wedding-collections.html"><i class="bi bi-grid-3x3-gap"></i><span>Collections</span></a>
+        <a class="nav-item" href="../weddings/wedding-banners.html"><i class="bi bi-image"></i><span>Banners</span></a>
+        <a class="nav-item" href="../weddings/wedding-featured.html"><i class="bi bi-star"></i><span>Featured Couture</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-brush nav-group-icon"></i><span>Customise</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../customise/customisation-studios.html"><i class="bi bi-shop-window"></i><span>Studios</span></a>
+        <a class="nav-item" href="../customise/customisation-options.html"><i class="bi bi-palette"></i><span>Options & Swatches</span></a>
+        <a class="nav-item" href="../customise/bespoke-orders.html"><i class="bi bi-scissors"></i><span>Bespoke Orders</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gem nav-group-icon"></i><span>Jewellery Vault</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../jewellery/jewellery-collections.html"><i class="bi bi-collection"></i><span>Collections</span></a>
+        <a class="nav-item" href="../jewellery/jewellery-categories.html"><i class="bi bi-grid"></i><span>Categories</span></a>
+        <a class="nav-item" href="../jewellery/jewellery-products.html"><i class="bi bi-gem"></i><span>Products</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-calendar2-event nav-group-icon"></i><span>VIP Events</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../vip-events/events-vip.html"><i class="bi bi-calendar-event"></i><span>Event Calendar</span></a>
+        <a class="nav-item" href="../vip-events/event-rsvps.html"><i class="bi bi-ticket-perforated"></i><span>RSVPs</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-person-rolodex nav-group-icon"></i><span>Stylist</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../stylist/stylist-bookings.html"><i class="bi bi-calendar2-check"></i><span>Bookings</span></a>
+      </div>
+    </details>
+    <details class="nav-group">
+      <summary class="nav-group-header"><i class="bi bi-gear nav-group-icon"></i><span>Settings</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>
+      <div class="nav-group-items">
+        <a class="nav-item" href="../settings/settings.html"><i class="bi bi-sliders"></i><span>General Settings</span></a>
+        <a class="nav-item" href="../settings/payment-setup.html"><i class="bi bi-credit-card-2-front"></i><span>Payment Setup</span></a>
+        <a class="nav-item" href="../settings/currencies.html"><i class="bi bi-currency-exchange"></i><span>Currencies</span></a>
+        <a class="nav-item" href="../settings/languages.html"><i class="bi bi-translate"></i><span>Languages</span></a>
+        <a class="nav-item" href="../settings/email-templates.html"><i class="bi bi-mailbox"></i><span>Email Templates</span></a>
+      </div>
+    </details>
+  </nav>
+  <div class="sidebar-footer">
+    <a class="btn btn-ghost btn-block" href="../index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+  </div>
+</div><div class="main-wrapper" id="mainWrapper">
+<div class="topbar">
+  <div class="topbar-left"><h2>Reviews & Ratings</h2></div>
+  <div class="topbar-actions">
+    <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <a href="../index.html" class="topbar-icon-btn" title="All Modules"><i class="bi bi-grid-3x3-gap"></i></a>
+  </div>
+</div><main class="page-content-wrapper" id="pageContent">
+<div class="page-content"><div class="page-toolbar"><div><h3>Reviews & Ratings</h3><p class="text-muted">Customer reviews across products</p></div></div><div class="card"><div class="card-body"><table class="table table-hover" id="reviewsTable"><thead><tr><th>ID</th><th>Product</th><th>Customer</th><th>Rating</th><th>Comment</th><th>Date</th><th>Status</th><th>Actions</th></tr></thead><tbody><tr><td>REV001</td><td><strong>Kanchipuram Silk Saree — Royal Blue</strong></td><td>Priya Sharma</td><td>★★★★★</td><td style="max-width:300px">The silk quality is outstanding. Perfect for my wedding.</td><td>20 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-0" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-0" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV002</td><td><strong>Bridal Kanjivaram Saree — Maroon Gold</strong></td><td>Rahul Verma</td><td>★★★★★</td><td style="max-width:300px">Worth every rupee. The gold zari work is incredible.</td><td>5 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-1" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-1" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV003</td><td><strong>Floral Summer Dress</strong></td><td>Anjali Reddy</td><td>★★★★☆</td><td style="max-width:300px">Good quality fabric, fits well. Color slightly different from photo.</td><td>25 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-2" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-2" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV004</td><td><strong>Designer Party Gown</strong></td><td>Priya Sharma</td><td>★★★★★</td><td style="max-width:300px">Got so many compliments at the party!</td><td>1 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-3" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-3" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV005</td><td><strong>Casual Cotton Top</strong></td><td>Deepika Nair</td><td>★★★☆☆</td><td style="max-width:300px">Material is thinner than expected but design is nice.</td><td>3 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-4" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-4" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV006</td><td><strong>22K Gold Temple Necklace</strong></td><td>Vikram Singh</td><td>★★★★★</td><td style="max-width:300px">Intricate craftsmanship. My wife absolutely loves it.</td><td>5 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-5" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-5" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV007</td><td><strong>Kundan Earring Set</strong></td><td>Lakshmi Krishnan</td><td>★★★★☆</td><td style="max-width:300px">Very elegant for traditional occasions.</td><td>18 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-6" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-6" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV008</td><td><strong>Premium Wedding Stage Decoration</strong></td><td>Divya Menon</td><td>★★★★★</td><td style="max-width:300px">The decor was breathtaking. Professional team.</td><td>12 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-7" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-7" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV009</td><td><strong>Complete Wedding Photography Package</strong></td><td>Rahul Verma</td><td>★★★★★</td><td style="max-width:300px">Captured every moment perfectly. Highly recommend!</td><td>25 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-8" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-8" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV010</td><td><strong>Pre-Wedding Photoshoot</strong></td><td>Sneha Patel</td><td>★★★★☆</td><td style="max-width:300px">Photographer was patient and creative.</td><td>3 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-9" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-9" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV011</td><td><strong>Reception Event Management</strong></td><td>Deepika Nair</td><td>★★★★★</td><td style="max-width:300px">Everything was perfectly organized. Thank you!</td><td>1 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-10" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-10" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV012</td><td><strong>Premium Veg Catering (per plate)</strong></td><td>Meera Joshi</td><td>★★★★☆</td><td style="max-width:300px">Guests loved the variety and taste.</td><td>4 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-11" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-11" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV013</td><td><strong>Designer Sherwani — Cream Gold</strong></td><td>Anjali Reddy</td><td>★★★★☆</td><td style="max-width:300px">My brother looked dashing in this sherwani.</td><td>8 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-12" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-12" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV014</td><td><strong>Bridal Makeup Package</strong></td><td>Priya Sharma</td><td>★★★★★</td><td style="max-width:300px">The makeup lasted all day and looked natural.</td><td>14 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-13" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-13" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV015</td><td><strong>Bridal Mehendi Design</strong></td><td>Vikram Singh</td><td>★★★★★</td><td style="max-width:300px">The mehendi design was intricate and lasted long.</td><td>13 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-14" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-14" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV016</td><td><strong>Groom Tuxedo — Classic Black</strong></td><td>Sneha Patel</td><td>★★★★★</td><td style="max-width:300px">The tailoring was impeccable. Felt like a movie star.</td><td>18 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-15" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-15" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV017</td><td><strong>Designer Anarkali Suit — Emerald</strong></td><td>Rahul Verma</td><td>★★★★☆</td><td style="max-width:300px">Beautiful color and embroidery. Minor fitting issue.</td><td>23 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-16" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-16" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV018</td><td><strong>Reception Couple Suit Set — Navy</strong></td><td>Divya Menon</td><td>★★★★★</td><td style="max-width:300px">Coordinated perfectly. Premium quality fabric.</td><td>25 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-17" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-17" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV019</td><td><strong>Sangeet Lehenga — Teal Pink</strong></td><td>Anjali Reddy</td><td>★★★★☆</td><td style="max-width:300px">Color combination is unique and beautiful.</td><td>2 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-18" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-18" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV020</td><td><strong>Designer Sherwani — Royal Blue</strong></td><td>Karthik Iyer</td><td>★★★★☆</td><td style="max-width:300px">Great design and fit for the price.</td><td>13 Mar 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-19" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-19" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV021</td><td><strong>Reception Gown — Champagne Gold</strong></td><td>Deepika Nair</td><td>★★★★★</td><td style="max-width:300px">The detailing was couture-level perfection.</td><td>23 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-20" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-20" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr><tr><td>REV022</td><td><strong>Bridal Gown — Ivory Lace</strong></td><td>Priya Sharma</td><td>★★★★★</td><td style="max-width:300px">I felt like a princess. Neeta understood exactly what I wanted.</td><td>8 Feb 2026</td><td><span class="badge badge-warning">Published</span></td><td><div class="table-actions"><button class="action-btn view" data-modal-open="reviews-row-21" title="View"><i class="bi bi-eye"></i></button><button class="action-btn edit" data-modal-open="reviews-row-21" title="Approve"><i class="bi bi-check-circle"></i></button><button class="action-btn delete" data-confirm="Delete this record? (design mode)" title="Delete"><i class="bi bi-trash"></i></button></div></td></tr></tbody></table></div></div></div>
+</main>
+</div>
+
+
+<!-- ===== design-mode modals (admin-design.js) ===== -->
+<div class="design-modal" id="reviews-row-0" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV001</h3><button class="modal-close" type="button" data-modal-close="reviews-row-0" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV001</dd>
+<dt>Product</dt><dd class="plain">Kanchipuram Silk Saree — Royal Blue</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">The silk quality is outstanding. Perfect for my wedding.</dd>
+<dt>Date</dt><dd class="plain">20 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-0">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-1" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV002</h3><button class="modal-close" type="button" data-modal-close="reviews-row-1" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV002</dd>
+<dt>Product</dt><dd class="plain">Bridal Kanjivaram Saree — Maroon Gold</dd>
+<dt>Customer</dt><dd class="plain">Rahul Verma</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">Worth every rupee. The gold zari work is incredible.</dd>
+<dt>Date</dt><dd class="plain">5 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-1">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-2" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV003</h3><button class="modal-close" type="button" data-modal-close="reviews-row-2" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV003</dd>
+<dt>Product</dt><dd class="plain">Floral Summer Dress</dd>
+<dt>Customer</dt><dd class="plain">Anjali Reddy</dd>
+<dt>Rating</dt><dd class="plain">★★★★☆</dd>
+<dt>Comment</dt><dd class="plain">Good quality fabric, fits well. Color slightly different from photo.</dd>
+<dt>Date</dt><dd class="plain">25 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-2">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-3" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV004</h3><button class="modal-close" type="button" data-modal-close="reviews-row-3" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV004</dd>
+<dt>Product</dt><dd class="plain">Designer Party Gown</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">Got so many compliments at the party!</dd>
+<dt>Date</dt><dd class="plain">1 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-3">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-4" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV005</h3><button class="modal-close" type="button" data-modal-close="reviews-row-4" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV005</dd>
+<dt>Product</dt><dd class="plain">Casual Cotton Top</dd>
+<dt>Customer</dt><dd class="plain">Deepika Nair</dd>
+<dt>Rating</dt><dd class="plain">★★★☆☆</dd>
+<dt>Comment</dt><dd class="plain">Material is thinner than expected but design is nice.</dd>
+<dt>Date</dt><dd class="plain">3 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-4">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-5" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV006</h3><button class="modal-close" type="button" data-modal-close="reviews-row-5" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV006</dd>
+<dt>Product</dt><dd class="plain">22K Gold Temple Necklace</dd>
+<dt>Customer</dt><dd class="plain">Vikram Singh</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">Intricate craftsmanship. My wife absolutely loves it.</dd>
+<dt>Date</dt><dd class="plain">5 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-5">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-6" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV007</h3><button class="modal-close" type="button" data-modal-close="reviews-row-6" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV007</dd>
+<dt>Product</dt><dd class="plain">Kundan Earring Set</dd>
+<dt>Customer</dt><dd class="plain">Lakshmi Krishnan</dd>
+<dt>Rating</dt><dd class="plain">★★★★☆</dd>
+<dt>Comment</dt><dd class="plain">Very elegant for traditional occasions.</dd>
+<dt>Date</dt><dd class="plain">18 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-6">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-7" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV008</h3><button class="modal-close" type="button" data-modal-close="reviews-row-7" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV008</dd>
+<dt>Product</dt><dd class="plain">Premium Wedding Stage Decoration</dd>
+<dt>Customer</dt><dd class="plain">Divya Menon</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">The decor was breathtaking. Professional team.</dd>
+<dt>Date</dt><dd class="plain">12 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-7">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-8" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV009</h3><button class="modal-close" type="button" data-modal-close="reviews-row-8" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV009</dd>
+<dt>Product</dt><dd class="plain">Complete Wedding Photography Package</dd>
+<dt>Customer</dt><dd class="plain">Rahul Verma</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">Captured every moment perfectly. Highly recommend!</dd>
+<dt>Date</dt><dd class="plain">25 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-8">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-9" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV010</h3><button class="modal-close" type="button" data-modal-close="reviews-row-9" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV010</dd>
+<dt>Product</dt><dd class="plain">Pre-Wedding Photoshoot</dd>
+<dt>Customer</dt><dd class="plain">Sneha Patel</dd>
+<dt>Rating</dt><dd class="plain">★★★★☆</dd>
+<dt>Comment</dt><dd class="plain">Photographer was patient and creative.</dd>
+<dt>Date</dt><dd class="plain">3 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-9">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-10" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV011</h3><button class="modal-close" type="button" data-modal-close="reviews-row-10" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV011</dd>
+<dt>Product</dt><dd class="plain">Reception Event Management</dd>
+<dt>Customer</dt><dd class="plain">Deepika Nair</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">Everything was perfectly organized. Thank you!</dd>
+<dt>Date</dt><dd class="plain">1 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-10">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-11" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV012</h3><button class="modal-close" type="button" data-modal-close="reviews-row-11" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV012</dd>
+<dt>Product</dt><dd class="plain">Premium Veg Catering (per plate)</dd>
+<dt>Customer</dt><dd class="plain">Meera Joshi</dd>
+<dt>Rating</dt><dd class="plain">★★★★☆</dd>
+<dt>Comment</dt><dd class="plain">Guests loved the variety and taste.</dd>
+<dt>Date</dt><dd class="plain">4 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-11">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-12" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV013</h3><button class="modal-close" type="button" data-modal-close="reviews-row-12" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV013</dd>
+<dt>Product</dt><dd class="plain">Designer Sherwani — Cream Gold</dd>
+<dt>Customer</dt><dd class="plain">Anjali Reddy</dd>
+<dt>Rating</dt><dd class="plain">★★★★☆</dd>
+<dt>Comment</dt><dd class="plain">My brother looked dashing in this sherwani.</dd>
+<dt>Date</dt><dd class="plain">8 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-12">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-13" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV014</h3><button class="modal-close" type="button" data-modal-close="reviews-row-13" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV014</dd>
+<dt>Product</dt><dd class="plain">Bridal Makeup Package</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">The makeup lasted all day and looked natural.</dd>
+<dt>Date</dt><dd class="plain">14 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-13">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-14" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV015</h3><button class="modal-close" type="button" data-modal-close="reviews-row-14" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV015</dd>
+<dt>Product</dt><dd class="plain">Bridal Mehendi Design</dd>
+<dt>Customer</dt><dd class="plain">Vikram Singh</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">The mehendi design was intricate and lasted long.</dd>
+<dt>Date</dt><dd class="plain">13 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-14">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-15" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV016</h3><button class="modal-close" type="button" data-modal-close="reviews-row-15" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV016</dd>
+<dt>Product</dt><dd class="plain">Groom Tuxedo — Classic Black</dd>
+<dt>Customer</dt><dd class="plain">Sneha Patel</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">The tailoring was impeccable. Felt like a movie star.</dd>
+<dt>Date</dt><dd class="plain">18 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-15">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-16" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV017</h3><button class="modal-close" type="button" data-modal-close="reviews-row-16" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV017</dd>
+<dt>Product</dt><dd class="plain">Designer Anarkali Suit — Emerald</dd>
+<dt>Customer</dt><dd class="plain">Rahul Verma</dd>
+<dt>Rating</dt><dd class="plain">★★★★☆</dd>
+<dt>Comment</dt><dd class="plain">Beautiful color and embroidery. Minor fitting issue.</dd>
+<dt>Date</dt><dd class="plain">23 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-16">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-17" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV018</h3><button class="modal-close" type="button" data-modal-close="reviews-row-17" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV018</dd>
+<dt>Product</dt><dd class="plain">Reception Couple Suit Set — Navy</dd>
+<dt>Customer</dt><dd class="plain">Divya Menon</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">Coordinated perfectly. Premium quality fabric.</dd>
+<dt>Date</dt><dd class="plain">25 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-17">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-18" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV019</h3><button class="modal-close" type="button" data-modal-close="reviews-row-18" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV019</dd>
+<dt>Product</dt><dd class="plain">Sangeet Lehenga — Teal Pink</dd>
+<dt>Customer</dt><dd class="plain">Anjali Reddy</dd>
+<dt>Rating</dt><dd class="plain">★★★★☆</dd>
+<dt>Comment</dt><dd class="plain">Color combination is unique and beautiful.</dd>
+<dt>Date</dt><dd class="plain">2 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-18">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-19" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV020</h3><button class="modal-close" type="button" data-modal-close="reviews-row-19" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV020</dd>
+<dt>Product</dt><dd class="plain">Designer Sherwani — Royal Blue</dd>
+<dt>Customer</dt><dd class="plain">Karthik Iyer</dd>
+<dt>Rating</dt><dd class="plain">★★★★☆</dd>
+<dt>Comment</dt><dd class="plain">Great design and fit for the price.</dd>
+<dt>Date</dt><dd class="plain">13 Mar 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-19">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-20" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV021</h3><button class="modal-close" type="button" data-modal-close="reviews-row-20" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV021</dd>
+<dt>Product</dt><dd class="plain">Reception Gown — Champagne Gold</dd>
+<dt>Customer</dt><dd class="plain">Deepika Nair</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">The detailing was couture-level perfection.</dd>
+<dt>Date</dt><dd class="plain">23 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-20">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<div class="design-modal" id="reviews-row-21" role="dialog" aria-modal="true">
+  <div class="modal-box">
+    <div class="modal-header"><h3>Details — REV022</h3><button class="modal-close" type="button" data-modal-close="reviews-row-21" aria-label="Close">&times;</button></div>
+    <div class="modal-body">
+<dl class="detail-grid">
+<dt>ID</dt><dd class="plain">REV022</dd>
+<dt>Product</dt><dd class="plain">Bridal Gown — Ivory Lace</dd>
+<dt>Customer</dt><dd class="plain">Priya Sharma</dd>
+<dt>Rating</dt><dd class="plain">★★★★★</dd>
+<dt>Comment</dt><dd class="plain">I felt like a princess. Neeta understood exactly what I wanted.</dd>
+<dt>Date</dt><dd class="plain">8 Feb 2026</dd>
+<dt>Status</dt><dd class="plain">Published</dd>
+<dt>Created</dt><dd>18 Aug 2026</dd>
+<dt>Last updated</dt><dd>18 Aug 2026</dd>
+</dl>
+    </div>
+    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="reviews-row-21">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
+  </div>
+</div>
+
+<script src="../../assets/admin-design.js"></script>
+</body>
+</html>
