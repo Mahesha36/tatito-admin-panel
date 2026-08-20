@@ -7,11 +7,14 @@
    add / edit), toggle switches, toasts, confirm dialogs.
    No data is saved, no API is called — visual behavior only.
 
-   Loaded by every page under /admin/modules/. Keep this file small;
-   the Laravel rewrite will replace all of this with real controllers.
+   Per-module JS: each module may ship js/modules/<page>.js which is
+   executed once its page loads (registration at the bottom). The
+   shared runtime stays tiny; module files hold page-specific wiring
+   only if a page truly needs it.
    ================================================================ */
 (function () {
     var Design = {};
+    Design.modules = {};   // name -> init fn, called on DOMContentLoaded
 
     /* one-time binding guard (protects against double script loads) */
     Design._wireOnce = function (key, fn) {
@@ -307,7 +310,30 @@
         });
     };
 
-    /* Clickable list items: templates list + notifications */
+    /* Notifications: check button marks item read (and must NOT open the modal).
+       The item itself is a data-modal-open trigger handled by initModals. */
+    Design.initNotifs = function () {
+        Design._wireOnce('_notifWired', function () {
+            document.addEventListener('click', function (e) {
+                var mk = e.target.closest('[data-mark-read]');
+                if (mk) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    var item = mk.closest('.notif-item');
+                    if (item) {
+                        item.classList.remove('unread');
+                        item.classList.add('read');
+                        var dot = item.querySelector('.notif-dot');
+                        if (dot) dot.remove();
+                        mk.remove();
+                    }
+                    Design.toast('Marked as read', 'success');
+                }
+            }, true);   // capture: runs before the modal-open delegated handler
+        });
+    };
+
+    /* Clickable list items: templates list (notifications now via modals) */
     Design.initListItems = function () {
         Design._wireOnce('_listWired', function () {
             document.addEventListener('click', function (e) {
@@ -315,10 +341,6 @@
                 if (li) {
                     Design.toast('Template editor opens when backend is connected', 'info');
                     return;
-                }
-                var ni = e.target.closest('[data-notif]');
-                if (ni) {
-                    Design.toast('Notification details (design mode)', 'info');
                 }
             });
         });
@@ -349,9 +371,17 @@
         Design.initTabSwitch();
         Design.initPills();
         Design.initRoleSelect();
+        Design.initNotifs();
         Design.initListItems();
         Design.initCopy();
+        /* run any registered page module for this document */
+        var path = location.pathname.split('/').pop() || 'index.html';
+        var key = path.replace('.html', '');
+        if (Design.modules[key]) {
+            try { Design.modules[key](Design); } catch (err) { /* design-only */ }
+        }
     });
 
     window.Design = Design;
+Design.register = function (name, init) { Design.modules[name] = init; };
 })();
