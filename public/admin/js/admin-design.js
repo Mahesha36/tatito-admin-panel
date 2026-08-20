@@ -201,6 +201,27 @@
 
     /* ---------- Round 2: page-level controls ---------- */
 
+    /* Sidebar nav groups: click header to expand/collapse (legacy toggleSection).
+       The active section ships expanded via inline display; JS only toggles
+       groups — stays inert if markup is plain <details>. */
+    Design.initNavGroups = function () {
+        Design._wireOnce('_navWired', function () {
+            document.addEventListener('click', function (e) {
+                var h = e.target.closest('a.nav-group-header');
+                if (!h) return;
+                var group = h.closest('.nav-group');
+                var items = group ? group.querySelector('.nav-group-items') : null;
+                var chev = h.querySelector('.nav-group-chevron');
+                if (!items) return;
+                e.preventDefault();
+                var collapsed = items.style.display === 'none';
+                items.style.display = collapsed ? 'block' : 'none';
+                if (chev) chev.classList.toggle('rotated', collapsed);
+                if (group) group.classList.toggle('expanded', collapsed);
+            });
+        });
+    };
+
     /* Categories tree: Expand All / Collapse All */
     Design.initTree = function () {
         Design._wireOnce('_treeWired', function () {
@@ -296,6 +317,7 @@
         Design.initConfirm();
         Design.initDropdowns();
         Design.initUploads();
+        Design.initNavGroups();
         Design.initTree();
         Design.initTabSwitch();
         Design.initPills();

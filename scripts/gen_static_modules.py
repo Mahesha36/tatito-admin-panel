@@ -61,15 +61,19 @@ def build_sidebar(active_section, active_pid):
     out.append('  <nav class="sidebar-nav" id="sidebarNav">')
     for sec in NAV:
         has_active = any(it['id'] == active_pid for it in sec['items'])
-        classes = 'nav-group' + (' has-active' if has_active else '')
-        out.append(f'    <details class="{classes}"{" open" if has_active else ""}>')
-        out.append(f'      <summary class="nav-group-header"><i class="bi {sec["icon"]} nav-group-icon"></i><span>{sec["section"]}</span><i class="bi bi-chevron-down nav-group-chevron"></i></summary>')
-        out.append('      <div class="nav-group-items">')
+        # legacy markup: div.nav-group (+expanded/+has-active) > a.nav-group-header
+        # + div.nav-group-items > a.nav-item — matches legacy CSS (gold active
+        # highlight, rotated chevron). `open` attr keeps it working without JS.
+        gcls = 'nav-group' + (' expanded has-active' if has_active else '')
+        style = '' if has_active else ' style="display:none"'
+        out.append(f'    <div class="{gcls}">')
+        out.append(f'      <a class="nav-group-header" href="{fname(active_pid)}#sec-{sec["section"].lower().replace(" ", "-")}"><i class="bi {sec["icon"]} nav-group-icon"></i><span>{sec["section"]}</span><i class="bi bi-chevron-down nav-group-chevron{" rotated" if has_active else ""}"></i></a>')
+        out.append(f'      <div class="nav-group-items"{style}>')
         for item in sec['items']:
             cls = 'nav-item active' if item['id'] == active_pid else 'nav-item'
-            out.append(f'        <a class="{cls}" href="../{folder_for(sec["section"])}/{fname(item["id"])}"><i class="bi {item["icon"]}"></i><span>{item["label"]}</span></a>')
+            out.append(f'        <a class="{cls}" href="{fname(item["id"])}"><i class="bi {item["icon"]}"></i><span>{item["label"]}</span></a>')
         out.append('      </div>')
-        out.append('    </details>')
+        out.append('    </div>')
     out.append('  </nav>')
     out.append('  <div class="sidebar-footer">')
     out.append('    <a class="btn btn-ghost btn-block" href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>')
