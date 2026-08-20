@@ -177,11 +177,16 @@
   </div>
 </div><div class="main-wrapper" id="mainWrapper">
 <div class="topbar">
-  <div class="topbar-left"><h2>Event Management</h2></div>
+  <button class="topbar-toggle" title="Toggle sidebar"><i class="bi bi-list"></i></button>
+  <h2>Event Management</h2>
   <div class="topbar-actions">
     <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <button class="topbar-icon-btn" data-clear-cache="1" title="Clear Cache"><i class="bi bi-arrow-clockwise"></i></button>
+    <a href="notifications.html" class="topbar-icon-btn" title="Notifications"><i class="bi bi-bell"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="Logout"><i class="bi bi-box-arrow-right"></i></a>
   </div>
-</div><main class="page-content-wrapper" id="pageContent">
+</div>
+<div class="sidebar-overlay"></div><main class="page-content-wrapper" id="pageContent">
 <div class="page-content"><div class="page-toolbar"><div><h3>Events</h3><p class="text-muted">Fashion events and showcases</p></div><div class="toolbar-actions"><button class="btn btn-primary" data-modal-open="events-add"><i class="bi bi-plus-lg"></i> Add Event</button></div></div><div class="card"><div class="card-body"><table class="table table-hover" id="eventsTable"><thead><tr><th>ID</th><th>Title</th><th>Date</th><th>City</th><th>Attendees</th><th>Status</th><th></th></tr></thead><tbody><tr><td>EVT1</td><td><strong>Winter Wedding Expo 2024</strong></td><td>15 Dec 2024</td><td>Mumbai</td><td>250</td><td><span class="badge badge-warning">Upcoming</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr><tr><td>EVT2</td><td><strong>Fashion Week Showcase</strong></td><td>20 Nov 2024</td><td>Delhi</td><td>500</td><td><span class="badge badge-info">Confirmed</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr><tr><td>EVT3</td><td><strong>Diwali Collection Launch</strong></td><td>28 Oct 2024</td><td>Pune</td><td>180</td><td><span class="badge badge-success">Completed</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr><tr><td>EVT4</td><td><strong>Bridal Couture Night</strong></td><td>10 Jan 2025</td><td>Jaipur</td><td>0</td><td><span class="badge badge-warning">Pending</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr><tr><td>EVT5</td><td><strong>Summer Trend Showcase</strong></td><td>15 Feb 2025</td><td>Bangalore</td><td>0</td><td><span class="badge badge-warning">Pending</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr></tbody></table></div></div></div>
 </main>
 </div>

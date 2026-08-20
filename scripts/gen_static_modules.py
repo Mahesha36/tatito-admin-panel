@@ -82,12 +82,19 @@ def build_sidebar(active_section, active_pid):
     return '\n'.join(out)
 
 def build_topbar(section_label, page_label):
+    """Legacy topbar: hamburger toggle + title on the left; globe, clear-cache,
+    notifications bell, logout on the right (language dropdown omitted on purpose)."""
     return f"""<div class="topbar">
-  <div class="topbar-left"><h2>{page_label}</h2></div>
+  <button class="topbar-toggle" title="Toggle sidebar"><i class="bi bi-list"></i></button>
+  <h2>{page_label}</h2>
   <div class="topbar-actions">
     <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <button class="topbar-icon-btn" data-clear-cache="1" title="Clear Cache"><i class="bi bi-arrow-clockwise"></i></button>
+    <a href="notifications.html" class="topbar-icon-btn" title="Notifications"><i class="bi bi-bell"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="Logout"><i class="bi bi-box-arrow-right"></i></a>
   </div>
-</div>"""
+</div>
+<div class="sidebar-overlay"></div>"""
 
 
 HEAD = '''<!DOCTYPE html>

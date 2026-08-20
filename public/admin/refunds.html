@@ -177,11 +177,16 @@
   </div>
 </div><div class="main-wrapper" id="mainWrapper">
 <div class="topbar">
-  <div class="topbar-left"><h2>Refunds</h2></div>
+  <button class="topbar-toggle" title="Toggle sidebar"><i class="bi bi-list"></i></button>
+  <h2>Refunds</h2>
   <div class="topbar-actions">
     <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <button class="topbar-icon-btn" data-clear-cache="1" title="Clear Cache"><i class="bi bi-arrow-clockwise"></i></button>
+    <a href="notifications.html" class="topbar-icon-btn" title="Notifications"><i class="bi bi-bell"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="Logout"><i class="bi bi-box-arrow-right"></i></a>
   </div>
-</div><main class="page-content-wrapper" id="pageContent">
+</div>
+<div class="sidebar-overlay"></div><main class="page-content-wrapper" id="pageContent">
 <!-- Legacy panel had no separate refunds renderer; refunds appear under Payments. Design placeholder: -->
 <div class="card"><div class="card-header"><h3 class="card-title">Refunds</h3><p class="text-muted">Refund requests and history (legacy panel listed refunds within Payments)</p></div><div class="card-body"><p class="text-muted">All refund records from the payments module are shown here once Laravel data is connected.</p></div></div>
 </main>

@@ -177,11 +177,16 @@
   </div>
 </div><div class="main-wrapper" id="mainWrapper">
 <div class="topbar">
-  <div class="topbar-left"><h2>Home Collections</h2></div>
+  <button class="topbar-toggle" title="Toggle sidebar"><i class="bi bi-list"></i></button>
+  <h2>Home Collections</h2>
   <div class="topbar-actions">
     <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <button class="topbar-icon-btn" data-clear-cache="1" title="Clear Cache"><i class="bi bi-arrow-clockwise"></i></button>
+    <a href="notifications.html" class="topbar-icon-btn" title="Notifications"><i class="bi bi-bell"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="Logout"><i class="bi bi-box-arrow-right"></i></a>
   </div>
-</div><main class="page-content-wrapper" id="pageContent">
+</div>
+<div class="sidebar-overlay"></div><main class="page-content-wrapper" id="pageContent">
 <div class="page-content"><div class="page-toolbar"><div><h3>Home Collections</h3><p class="text-muted">Storefront categories & collections — sourced from frontend data</p></div><div class="toolbar-actions"><button class="btn btn-outline btn-sm"><i class="bi bi-arrow-clockwise"></i> Reset to Defaults</button></div></div><div class="stats-row" style="display:flex;gap:16px;margin-bottom:20px;flex-wrap:wrap"><div style="flex:1;min-width:120px;padding:14px;border-radius:10px;background:var(--card-bg);border:1px solid var(--line)"><div style="display:flex;align-items:center;gap:8px"><i class="bi bi-grid" style="font-size:1.2rem;color:var(--gold)"></i><div><div style="font-size:1.3rem;font-weight:700">0</div><div style="font-size:0.72rem;color:var(--gray-500)">Categories</div></div></div></div><div style="flex:1;min-width:120px;padding:14px;border-radius:10px;background:var(--card-bg);border:1px solid var(--line)"><div style="display:flex;align-items:center;gap:8px"><i class="bi bi-list-nested" style="font-size:1.2rem;color:var(--gold)"></i><div><div style="font-size:1.3rem;font-weight:700">0</div><div style="font-size:0.72rem;color:var(--gray-500)">Nav Verticals</div></div></div></div><div style="flex:1;min-width:120px;padding:14px;border-radius:10px;background:var(--card-bg);border:1px solid var(--line)"><div style="display:flex;align-items:center;gap:8px"><i class="bi bi-collection" style="font-size:1.2rem;color:var(--gold)"></i><div><div style="font-size:1.3rem;font-weight:700">0</div><div style="font-size:0.72rem;color:var(--gray-500)">Collection Sections</div></div></div></div><div style="flex:1;min-width:120px;padding:14px;border-radius:10px;background:var(--card-bg);border:1px solid var(--line)"><div style="display:flex;align-items:center;gap:8px"><i class="bi bi-shop" style="font-size:1.2rem;color:var(--gold)"></i><div><div style="font-size:1.3rem;font-weight:700">0</div><div style="font-size:0.72rem;color:var(--gray-500)">Stores</div></div></div></div></div><div class="card"><div class="card-body"><h5 style="margin-bottom:12px"><i class="bi bi-grid-3x3-gap-fill" style="color:var(--gold)"></i> Storefront Categories <span class="text-muted" style="font-size:0.8rem;font-weight:normal">(from frontend data.js)</span></h5><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:12px"></div></div></div><div class="card" style="margin-top:16px"><div class="card-body"><h5 style="margin-bottom:12px"><i class="bi bi-shop-window" style="color:var(--gold)"></i> Storefront Stores <span class="text-muted" style="font-size:0.8rem;font-weight:normal">(from frontend data.js — 0 stores)</span></h5><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;max-height:500px;overflow-y:auto"></div></div></div></div>
 </main>
 </div>

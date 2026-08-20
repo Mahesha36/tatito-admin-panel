@@ -201,6 +201,32 @@
 
     /* ---------- Round 2: page-level controls ---------- */
 
+    /* Topbar: hamburger toggle (legacy toggleSidebar) + clear cache */
+    Design.initTopbar = function () {
+        Design._wireOnce('_topbarWired', function () {
+            document.addEventListener('click', function (e) {
+                var t = e.target.closest('.topbar-toggle');
+                if (t) {
+                    var sb = document.getElementById('sidebar');
+                    var ov = document.querySelector('.sidebar-overlay');
+                    if (sb) sb.classList.toggle('open');
+                    if (ov) ov.classList.toggle('show');
+                    return;
+                }
+                if (e.target.closest('.sidebar-overlay')) {
+                    var sb2 = document.getElementById('sidebar');
+                    var ov2 = document.querySelector('.sidebar-overlay');
+                    if (sb2) sb2.classList.remove('open');
+                    if (ov2) ov2.classList.remove('show');
+                    return;
+                }
+                if (e.target.closest('[data-clear-cache]')) {
+                    Design.toast('Cache cleared successfully', 'success');
+                }
+            });
+        });
+    };
+
     /* Sidebar nav groups: click header to expand/collapse (legacy toggleSection).
        The active section ships expanded via inline display; JS only toggles
        groups — stays inert if markup is plain <details>. */
@@ -317,6 +343,7 @@
         Design.initConfirm();
         Design.initDropdowns();
         Design.initUploads();
+        Design.initTopbar();
         Design.initNavGroups();
         Design.initTree();
         Design.initTabSwitch();

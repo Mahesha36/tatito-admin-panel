@@ -177,11 +177,16 @@
   </div>
 </div><div class="main-wrapper" id="mainWrapper">
 <div class="topbar">
-  <div class="topbar-left"><h2>Header</h2></div>
+  <button class="topbar-toggle" title="Toggle sidebar"><i class="bi bi-list"></i></button>
+  <h2>Header</h2>
   <div class="topbar-actions">
     <a href="/frontend/index.html" target="_blank" class="topbar-icon-btn" title="Visit Site"><i class="bi bi-globe"></i></a>
+    <button class="topbar-icon-btn" data-clear-cache="1" title="Clear Cache"><i class="bi bi-arrow-clockwise"></i></button>
+    <a href="notifications.html" class="topbar-icon-btn" title="Notifications"><i class="bi bi-bell"></i></a>
+    <a href="index.html" class="topbar-icon-btn" title="Logout"><i class="bi bi-box-arrow-right"></i></a>
   </div>
-</div><main class="page-content-wrapper" id="pageContent">
+</div>
+<div class="sidebar-overlay"></div><main class="page-content-wrapper" id="pageContent">
 <div class="page-content"><div class="page-toolbar"><div><h3>Website Header</h3><p class="text-muted">Header Setting</p></div></div><div class="card" style="max-width:700px"><div class="card-body"><div class="form-group"><label>Header Logo</label><div class="upload-field" style="cursor:pointer;display:flex;align-items:center;gap:12px;padding:14px;border:2px dashed var(--line);border-radius:8px"><div class="upload-preview"><img src="../../assets/tatito-logo.png" style="max-height:40px"></div><div class="upload-info"><button type="button" class="btn btn-outline btn-sm">Browse</button> <span style="font-size:0.78rem;color:var(--gray-500)">tatito-logo-official.jpg</span></div></div><input type="file" id="headerLogoInput" accept="image/*" style="display:none"></div><div class="form-group"><label>Header Left Quick Link</label><div class="form-row" style="margin-bottom:8px"><input type="text" class="form-control" id="quickLinkText" placeholder="Text" value=""><input type="text" class="form-control" id="quickLinkUrl" placeholder="Link" value=""></div></div><div class="form-group"><label>Helpline Number</label><input type="text" class="form-control" id="helplineNumber" value="" placeholder="0000000000"></div><div class="toggle-row"><div class="toggle-info"><strong>Enable Sticky Header?</strong><p class="text-muted">Keep header fixed when scrolling</p></div><button class="toggle-switch on"><span class="toggle-knob"></span></button></div><button class="btn btn-primary" data-toast="Saved (design mode)"><i class="bi bi-check-lg"></i> Update</button></div></div></div>
 </main>
 </div>
