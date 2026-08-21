@@ -10,7 +10,7 @@ import glob, os, re, sys
 ROOT = os.environ.get('ADMIN_ROOT', '/workspace/laravel-clean/public/admin')
 VERSION = os.environ.get('SCRIPT_VERSION', '1')
 
-SHELL_MAIN = '<main class="page-content" id="pageContent">\n</main>'
+SHELL_MAIN = '<main class="page-content-wrapper" id="pageContent">\n</main>'
 
 def slim(f):
     s = open(f).read()
