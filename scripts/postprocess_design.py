@@ -1,0 +1,569 @@
+#!/usr/bin/env python3
+"""Post-process generated static module pages:
+
+1. Inject all captured tab panels into Settings + Website Setup pages
+   (Settings: 8 tabs, Website Setup: 4 tabs), with data-tab panels so
+   admin-design.js can switch them.
+2. Parse every table row, extract its visible cell data, and append a
+   per-row detail modal (id=<page>-row-N) after the content.
+3. Rewire action buttons that were stripped during JS cleanup:
+   - View (eye)           → data-modal-open="<page>-row-N"
+   - Edit (pencil)        → data-modal-open="<page>-row-N" (prefilled look)
+   - Delete (trash)       → data-confirm="Delete this record? (design mode)"
+   - Add <something>      → data-modal-open="<page>-add" generic form modal
+   - Save/Update/submit   → data-toast="Saved (design mode)"
+   - Export/Download      → data-toast="Export would run here (design mode)"
+4. Add a per-page generic Add modal + <script admin-design.js> tag.
+"""
+import re, os, json, html as H
+from pathlib import Path
+
+ROOT = Path('/workspace/laravel-clean/public/admin')
+FORMS = json.load(open('/tmp/captured/_modal_forms.json')) if Path('/tmp/captured/_modal_forms.json').exists() else {}
+
+INLINE_JS = re.compile(r'\son(click|change|submit|error|load|input|focus|blur|mouseover|mouseout|keyup|keydown)="[^"]*"')
+
+def legacy_modal_html(page_id, key):
+    """Return cleaned legacy modal HTML (inline handlers stripped, assets fixed,
+    buttons rewired to design-mode attributes)."""
+    h = (FORMS.get(page_id, {}) or {}).get(key)
+    if not h:
+        return None
+    mid = {'view': 'v', 'member-view': 'mv', 'edit': 'e', 'member-edit': 'me'}.get(key.split('-')[0] if key.startswith('member-') else key.split('-')[0], 'x')
+    h = INLINE_JS.sub('', h)
+    h = h.replace('href="javascript:void(0)"', 'href="#"')
+    h = h.replace('src="assets/', 'src="../../assets/')
+    h = h.replace('<script>', '&lt;script&gt;').replace('</script>', '&lt;/script&gt;')
+    # close / cancel buttons that lost onclick → data-modal-close="<page>-legacy"
+    full_id = f'{page_id}-legacy'
+    h = h.replace('<button class="modal-close">&times;</button>',
+                  f'<button class="modal-close" type="button" data-modal-close="{full_id}">&times;</button>')
+    h = h.replace('<button class="btn btn-outline">Cancel</button>',
+                  f'<button class="btn btn-outline" type="button" data-modal-close="{full_id}">Cancel</button>')
+    h = h.replace('<button class="btn btn-outline">Close</button>',
+                  f'<button class="btn btn-outline" type="button" data-modal-close="{full_id}">Close</button>')
+    # any other btn-primary whose onclick was stripped → toast (catch-all)
+    h = re.sub(r'<button class="btn btn-primary"(?![^>]*data-toast)([^>]*)>',
+               r'<button class="btn btn-primary"\1 type="button" data-toast="Saved (design mode)">', h)
+    # save/primary buttons that lost onclick → toast
+    h = re.sub(r'<button class="btn btn-primary">(\s*<i [^>]*></i>\s*[^<]*)</button>',
+               r'<button class="btn btn-primary" type="button" data-toast="Saved (design mode)">\1</button>', h)
+    return h
+
+# ================= round 2: page-level controls =================
+# Wire controls the legacy panel had that the static pages lost:
+# payments eyes, approvals ✓/✗, reports export, tracking copy/filter,
+# categories expand/collapse, staff tabs, video-banner slide buttons,
+# dynamic-section arrows/toggles, roles list, email-templates list,
+# notifications list/filters.
+
+def _open_btns(s, cls_sub=None, title=None, icon=None, text=None):
+    """Return list of open-tag matches for buttons filtered by class substring,
+    exact title attr, icon class, or visible text after the tag."""
+    out = []
+    for m in re.finditer(r'<button\b[^>]*>', s):
+        tag = m.group(0)
+        if cls_sub and cls_sub not in tag: continue
+        if title and f'title="{title}"' not in tag: continue
+        if icon and f'<i class="bi bi-{icon}"' not in s[m.end():m.end()+80]: continue
+        out.append(m)
+    return out
+
+def _set_attr(tag, name, value):
+    if f'{name}="' in tag:
+        return re.sub(f'{name}="[^"]*"', f'{name}="{value}"', tag)
+    return tag[:-1] + f' {name}="{value}">' if tag.endswith('>') else tag
+
+def _wire(s, matches, attr, value, skip_disabled=True):
+    for m in reversed(matches):
+        tag = m.group(0)
+        if skip_disabled and ' disabled' in tag: continue
+        if f'{attr}=' in tag: continue          # already wired
+        s = s[:m.start()] + _set_attr(tag, attr, value) + s[m.end():]
+    return s
+
+def round2_wire(s, page_id):
+    P = page_id
+    # ---- A. dead row buttons ----
+    if P == 'payments':
+        s = _wire(s, _open_btns(s, cls_sub='btn btn-sm btn-ghost'), 'data-modal-open', 'payments-invoice')
+    if P == 'approvals':
+        s = _wire(s, _open_btns(s, cls_sub='btn-success'), 'data-toast', 'Approved (design mode)')
+        s = _wire(s, _open_btns(s, cls_sub='btn-danger'), 'data-toast', 'Rejected (design mode)')
+    if P == 'reports':
+        ms = _open_btns(s, cls_sub='btn', text='Export') or _open_btns(s, cls_sub='btn', icon='download')
+        s = _wire(s, ms, 'data-toast', 'Report export queued (design mode)')
+    if P == 'tracking':
+        # Copy id buttons
+        s = _wire(s, _open_btns(s, cls_sub='btn btn-sm btn-ghost', title='Copy'), 'data-copy', 'yes')
+        # Track buttons (btn-sm btn-ghost without title, one per row) -> detail modal
+        ms = [m for m in _open_btns(s, cls_sub='btn btn-sm btn-ghost') if 'title=' not in m.group(0)]
+        s = _wire(s, ms, 'data-modal-open', 'tracking-legacy')
+    # ---- B. tree / tabs / pills ----
+    if P == 'categories':
+        for m in reversed(list(re.finditer(r'<button class="btn btn-sm btn-outline">(?:<i[^>]*></i>\s*)?(Expand|Collapse) All</button>', s))):
+            act = m.group(1).lower()
+            s = s[:m.start()] + m.group(0).replace('<button class="btn btn-sm btn-outline">',
+                    f'<button class="btn btn-sm btn-outline" data-tree-{act}="1">') + s[m.end():]
+    if P == 'staff':
+        # legacy tab-bar: <button class="tab-btn[ active]| "> — wire ALL of them
+        s = re.sub(r'(<button class="tab-btn(?: active)?\s*")', r'\1 data-tab-switch="1"', s)
+        # notifications-style filter buttons (btn-sm btn-primary/btn-ghost inside .filter-tabs)
+        def _tabbed(m):
+            seg = m.group(0)
+            return re.sub(r'(<button[^>]*class="btn btn-sm btn-(?:primary|ghost)")', r'\1 data-tab-switch="1"', seg)
+        s = re.sub(r'<div class="filter-tabs"[^>]*>.*?</div>', _tabbed, s, flags=re.S)
+    # ---- notifications filter tabs ----
+    if P == 'notifications':
+        def _tabbed(m):
+            seg = m.group(0)
+            return re.sub(r'(<button[^>]*class="btn btn-sm btn-(?:primary|ghost)")(?! data-tab-switch)', r'\1 data-tab-switch="1"', seg)
+        s = re.sub(r'<div class="filter-tabs"[^>]*>.*?</div>', _tabbed, s, flags=re.S)
+        # pills (if any) + items + Mark All Read
+        s = re.sub(r'(<button[^>]*class="filter-pill[^"]*)(")', r'\1\2 data-pill="1"', s)
+        # per-notif: clickable item -> detail modal; check button -> mark read
+        extra_notif_modals = _wire_notifs(s)
+        s = re.sub(r'(<div[^>]*class="notif-item[^"]*)(")', r'\1\2 data-modal-open="notifications-item-N"', s)
+        # fix: replace the placeholder with real ids in order
+        _seq = iter(range(1, 100))
+        s = re.sub(r'data-modal-open="notifications-item-N"', lambda m: f'data-modal-open="notifications-item-{next(_seq)}"', s)
+        # check buttons mark read (stopPropagation handled by Design.initNotifs)
+        s = re.sub(r'(<button class="btn btn-sm btn-ghost" title="Mark as read")', r'\1 data-mark-read="1"', s)
+        s = re.sub(r'(<button[^>]*class="[^"]*)(")([^>]*>\s*(?:<i[^>]*></i>\s*)?Mark All Read)',
+                   r'\1\2 data-toast="All notifications marked as read (design mode)"\3', s)
+        notif_modals.extend(extra_notif_modals)
+    # ---- tracking ----
+    if P == 'tracking':
+        s = re.sub(r'(<button class="btn btn-sm btn-ghost" title="Copy Tracking ID")', r'\1 data-copy="1"', s)
+        s = re.sub(r'(<button class="btn btn-sm btn-ghost" title="Track")', r'\1 data-modal-open="tracking-legacy"', s)
+        s = re.sub(r'(<button[^>]*class="filter-pill[^"]*)(")', r'\1\2 data-pill="1"', s)
+    # ---- C. card controls ----
+    if P == 'home-video-banners':
+        # Edit per slide → inline edit-slide modal (built here, real legacy fields)
+        s = re.sub(r'<button class="btn btn-outline btn-sm"(?=[^>]*>\s*<i class="bi bi-pencil"></i>\s*Edit\s*</button>)',
+                   '<button class="btn btn-outline btn-sm" data-modal-open="home-video-banners-edit-slide"', s)
+        edit_slide_body = ('<form>'
+            '<div class="form-group"><label>Tag / Badge</label><input type="text" class="form-control" value="New Arrival"></div>'
+            '<div class="form-group"><label>Title *</label><input type="text" class="form-control" value="Royal Wedding Collection 2026" required></div>'
+            '<div class="form-group"><label>Description</label><textarea class="form-control" rows="2">Handwoven Kanchipuram silks for the big day</textarea></div>'
+            '<div class="form-group"><label>Background Image URL *</label><input type="url" class="form-control" value="https://images.unsplash.com/photo-1610030469983-98e550d6193c?w=1600" required></div>'
+            '<div class="form-row"><div class="form-group"><label>CTA Button Text</label><input type="text" class="form-control" value="Shop Now"></div>'
+            '<div class="form-group"><label>CTA Link</label><input type="text" class="form-control" value="/frontend/wedding.html"></div></div>'
+            '</form>')
+        s, _ex = _inject_modals(s, [modal_shell('home-video-banners-edit-slide', 'Edit Hero Slide', edit_slide_body)])
+        s = re.sub(r'<button class="btn btn-outline btn-sm" (?=[^>]*>\s*<i class="bi bi-arrow-(?:left|right)"></i>)',
+                   '<button class="btn btn-outline btn-sm" data-toast="Slide moved (design mode)" ', s)
+        s = re.sub(r'<button class="btn btn-outline btn-sm" style="color:var\(--ruby\);border-color:var\(--ruby\)"(?=[^>]*>\s*<i class="bi bi-trash"></i>)',
+                   '<button class="btn btn-outline btn-sm" style="color:var(--ruby);border-color:var(--ruby)" data-confirm="Delete this slide? (design mode)"', s)
+        # Add Slide button (btn-primary) already gets -add modal via generic Add wiring
+    if P in ('home-dynamic-sections', 'home-page-settings'):
+        # up/down arrows → toast (title-edit handled in 1c-early before generic wiring)
+        s = re.sub(r'(<button[^>]*?title="Move up")', r'\1 data-toast="Section moved up (design mode)"', s)
+        s = re.sub(r'(<button[^>]*?title="Move down")', r'\1 data-toast="Section moved down (design mode)"', s)
+    # ---- D. master lists ----
+    if P == 'roles':
+        s = re.sub(r'(<div[^>]*class="role-item[^"]*)(")', r'\1\2 data-role-select="1"', s)
+    if P == 'email-templates':
+        s = _wire_template_list(s)
+    if P == 'notifications':
+        # items clickable + Mark All Read
+        s = re.sub(r'(<div[^>]*class="notif-item[^"]*)(")', r'\1\2 data-notif="1"', s)
+        s = re.sub(r'(<button[^>]*class="[^"]*)(")([^>]*>\s*(?:<i[^>]*></i>\s*)?Mark All Read)',
+                   r'\1\2 data-toast="All notifications marked read (design mode)"\3', s)
+    return s
+
+_ROUND2_EXTRA = []   # extra modals collected by round2_wire for this page
+notif_modals = []    # per-notification detail modals (notifications page)
+
+def _wire_notifs(s):
+    """Build one legacy-style detail modal per notif item, from the item's own
+    markup (title / message / date) — same content the old openNotif showed."""
+    out = []
+    items = re.findall(r'<div class="notif-item[^">]*"[^>]*>.*?(?=<div class="notif-item |$)', s, re.S)
+    items = [x.split('</div></div></div>')[0] + '</div></div></div>' for x in items]
+    for i, it in enumerate(items, 1):
+        title = re.search(r'<strong>([^<]+)</strong>', it)
+        msg = re.search(r'<p>([^<]*)</p>', it)
+        date = re.search(r'<small class="text-muted">([^<]+)</small>', it)
+        t = (title.group(1) if title else 'Notification').strip()
+        m_ = (msg.group(1) if msg else '').strip()
+        d = (date.group(1) if date else '').strip()
+        body = (f'<p style="margin:0 0 14px;font-size:0.95rem">{m_}</p>'
+                f'<hr><small class="text-muted">{d}</small>')
+        out.append(modal_shell(f'notifications-item-{i}', t, body))
+    return out
+
+def _inject_modals(s, modals_extra):
+    _ROUND2_EXTRA.extend(modals_extra)
+    return s, modals_extra
+
+def _wire_template_list(s):
+    """email-templates: legacy rows carry onclick="App.selectTemplate('ETPx')".
+    Convert to data-list-item before the generic on*-strip pass (which runs later
+    in gen_static_modules, but postprocess re-reads generated files that already
+    had onclick stripped — the cleanup left the div intact, so match the bare div)."""
+    n = 0
+    # a) if onclick still present (fresh capture path)
+    for m in reversed(list(re.finditer(r'<div onclick="App\.selectTemplate\(\'[^\']+\)\'" style="([^"]*)"', s))):
+        s = s[:m.start()] + f'<div data-list-item="1" style="{m.group(1)}"' + s[m.end():]
+        n += 1
+    # b) generated path: onclick already stripped, style starts with padding:10px 16px;cursor:pointer
+    if not n:
+        for m in reversed(list(re.finditer(r'<div style="(padding:10px 16px;cursor:pointer;[^"]*)"', s))):
+            if 'data-list-item' in m.group(0): continue
+            s = s[:m.start()] + f'<div data-list-item="1" style="{m.group(1)}"' + s[m.end():]
+            n += 1
+    return s
+
+# ---------------- helpers ----------------
+
+def attr_safe(s):
+    return s.replace('"', '&quot;')
+
+def clean(s):
+    s = re.sub(r'<[^>]+>', ' ', s)          # strip tags
+    s = H.unescape(s)
+    s = re.sub(r'\s+', ' ', s).strip()
+    return s
+
+def modal_shell(mid, title, body):
+    return (f'<div class="design-modal" id="{mid}" role="dialog" aria-modal="true">\n'
+            f'  <div class="modal-box">\n'
+            f'    <div class="modal-header"><h3>{H.escape(title)}</h3>'
+            f'<button class="modal-close" type="button" data-modal-close="{mid}" aria-label="Close">&times;</button></div>\n'
+            f'    <div class="modal-body">\n{body}\n    </div>\n'
+            f'    <div class="modal-footer">'
+            f'<button class="btn btn-ghost" type="button" data-modal-close="{mid}">Close</button>'
+            f'<button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>'
+            f'    </div>\n  </div>\n</div>\n')
+
+def detail_body_from_row(cells, headers=None):
+    """cells: list of cleaned row strings; headers: table column labels."""
+    rows = []
+    for i, c in enumerate(cells):
+        label = (headers[i] if headers and i < len(headers) and headers[i] else ('Name / ID' if i == 0 else f'Detail {i+1}'))
+        if c == '':
+            continue
+        rows.append(f'<dt>{H.escape(label)}</dt><dd class="plain">{H.escape(c[:160])}</dd>')
+    rows.append('<dt>Created</dt><dd>18 Aug 2026</dd>')
+    rows.append('<dt>Last updated</dt><dd>18 Aug 2026</dd>')
+    return '<dl class="detail-grid">\n' + '\n'.join(rows) + '\n</dl>'
+
+ADD_FORM = ('<form>\n'
+            '  <div class="form-group"><label>Name</label><input type="text" class="form-control" placeholder="Enter name"></div>\n'
+            '  <div class="form-group"><label>Description</label><textarea class="form-control" rows="3" placeholder="Short description"></textarea></div>\n'
+            '  <div class="form-row">\n'
+            '    <div class="form-group"><label>Status</label><select class="form-control"><option>Active</option><option>Inactive</option><option>Pending</option></select></div>\n'
+            '    <div class="form-group"><label>Priority</label><select class="form-control"><option>High</option><option selected>Normal</option><option>Low</option></select></div>\n'
+            '  </div>\n'
+            '  <div class="toggle-row"><div class="toggle-info"><strong>Enabled</strong><p class="text-muted">Show this record on the storefront</p></div>'
+            '<span class="toggle-switch on"><span class="toggle-knob"></span></span></div>\n'
+            '</form>')
+
+VIEW_BTN = re.compile(r'(<button[^>]*class="[^"]*action-btn[^"]*view[^"]*")((?:[^>])*?)(/?>)', re.I)
+EDIT_BTN = re.compile(r'(<button[^>]*class="[^"]*action-btn[^"]*edit[^"]*")((?:[^>])*?)(/?>)', re.I)
+DEL_BTN  = re.compile(r'(<button[^>]*class="[^"]*action-btn[^"]*del[^"]*")((?:[^>])*?)(/?>)', re.I)
+
+def _skip_if_wired(fn):
+    """wrap a rewire fn so buttons that already have data-modal-open keep it"""
+    def wrapped(m):
+        tag = m.group(1) + m.group(2)
+        if 'data-modal-open=' in tag or 'data-toast=' in tag or 'data-confirm=' in tag or 'data-copy=' in tag:
+            return m.group(0)
+        return fn(m)
+    return wrapped
+ROW_RE   = re.compile(r'<tr[^>]*>(.*?)</tr>', re.S | re.I)
+CELL_RE  = re.compile(r'<t[hd][^>]*>(.*?)</t[hd]>', re.S | re.I)
+ONCLICK_LEFT = re.compile(r'\s+on(click|change|submit|error|load|input|focus|blur)="[^"]*"')
+
+def wire_member_dropdowns(s, page_id):
+    """Wire legacy three-dot member dropdown items to captured member modals
+    + design-mode confirms. The dropdown itself is opened by admin-design.js."""
+    ids = [k[12:] for k in (FORMS.get(page_id) or {}) if k.startswith('member-edit-')]
+    vidx = [0]
+    eidx = [0]
+
+    def wire_item(m):
+        cls, inner = m.group(1), m.group(2)
+        if 'view' in cls:
+            i = vidx[0]; vidx[0] += 1
+            if i < len(ids):
+                return f'<button type="button" class="{cls}" data-modal-open="{page_id}-mv-{ids[i]}" data-modal-title="Details">{inner}</button>'
+        elif 'edit' in cls:
+            i = eidx[0]; eidx[0] += 1
+            if i < len(ids):
+                return f'<button type="button" class="{cls}" data-modal-open="{page_id}-me-{ids[i]}" data-modal-title="Edit">{inner}</button>'
+        elif 'block' in cls or 'unblock' in cls:
+            return f'<button type="button" class="{cls}" data-confirm="Change block status? (design mode)">{inner}</button>'
+        elif 'login' in cls:
+            return f'<button type="button" class="{cls}" data-toast="Member portal login (design mode)">{inner}</button>'
+        elif 'delete' in cls:
+            return f'<button type="button" class="{cls}" data-confirm="Delete this member? (design mode — nothing is deleted)">{inner}</button>'
+        return m.group(0)
+
+    s = re.sub(r'<button class="(member-dropdown-item[^"]*)"[^>]*>(.*?)</button>', wire_item, s, flags=re.S)
+    return s
+
+def process_page(path):
+    page_id = path.stem
+    s = path.read_text()
+    orig = s
+    modals = []
+
+    # ---------- 1. find rows & build detail modals + rewire buttons ----------
+    # Legacy per-entity forms: rows carry an entity id in cell 0 (PRD001 etc).
+    # eye → view-<ID>, pencil → edit-<ID>, both from captured legacy modal HTML.
+    legacy_ids = [k.split('-', 1)[1] for k in (FORMS.get(page_id) or {}) if k.startswith(('edit-', 'view-'))]
+    member_ids = [k.split('-', 1)[1] for k in (FORMS.get(page_id) or {}) if k.startswith('member-edit-')]
+
+    def row_entity_id(cells):
+        """First cell that looks like an entity id (>=3 chars, has digits)."""
+        for c in cells[:3]:
+            m = re.search(r'\b([A-Z]{2,}[0-9]{2,}[A-Z0-9]*)\b', c)
+            if m:
+                return m.group(1)
+        return None
+
+    # map entity id → row index for pages with table rows
+    rows_data = []
+    headers = []
+    for m in ROW_RE.finditer(s):
+        cells = [clean(c) for c in CELL_RE.findall(m.group(1))]
+        if not cells or all(c == '' for c in cells):
+            continue
+        if not headers and ('<th' in m.group(1)):
+            headers = cells
+            continue
+        rows_data.append(cells)
+
+    # assign modals to view/edit buttons in order of appearance.
+    # Prefer legacy per-entity forms: nth button ↔ nth entity id (row order == MockData order)
+    view_ids = [k[5:] for k in (FORMS.get(page_id) or {}) if k.startswith('view-')]
+    edit_ids = [k[5:] for k in (FORMS.get(page_id) or {}) if k.startswith('edit-')]
+    btn_index = {'view': 0, 'edit': 0}
+
+    def rewire_view(m):
+        idx = btn_index['view']; btn_index['view'] += 1
+        if idx < len(view_ids):
+            mid = f'{page_id}-v-{view_ids[idx]}'
+        else:
+            mid = f'{page_id}-row-{idx}'
+        return m.group(1) + f' data-modal-open="{mid}"' + m.group(2) + m.group(3)
+    def rewire_edit(m):
+        idx = btn_index['edit']; btn_index['edit'] += 1
+        if idx < len(edit_ids):
+            mid = f'{page_id}-e-{edit_ids[idx]}'
+        else:
+            mid = f'{page_id}-row-{idx}'
+        return m.group(1) + f' data-modal-open="{mid}"' + m.group(2) + m.group(3)
+    def rewire_del(m):
+        return m.group(1) + ' data-confirm="Delete this record? (design mode)"' + m.group(2) + m.group(3)
+
+    # ---------- 1c-early. round 2 controls whose buttons overlap generic wiring:
+    # title-edit pencils must get their edit-title modal BEFORE VIEW/EDIT_BTN.sub
+    # would genericize them. (Full round2 pass runs after.) ----------
+    if page_id in ('home-dynamic-sections', 'home-page-settings'):
+        s = re.sub(r'(<button[^>]*?title="Edit title")',
+                   r'\1 data-modal-open="' + page_id + '-title-edit"', s)
+        title_body = ('<form><div class="form-group"><label>Section title</label>'
+                      '<input type="text" class="form-control" value="Featured Products"></div>'
+                      '<div class="form-group"><label>Subtitle (optional)</label>'
+                      '<input type="text" class="form-control" placeholder="Shown below the title"></div></form>')
+        modals.append(modal_shell(page_id + '-title-edit', 'Edit section title', title_body))
+
+    s = VIEW_BTN.sub(_skip_if_wired(rewire_view), s)
+    s = EDIT_BTN.sub(_skip_if_wired(rewire_edit), s)
+    s = DEL_BTN.sub(rewire_del, s)
+
+    # build detail modals for as many rows as have EITHER a view or edit button
+    n_modals = max(btn_index['view'], btn_index['edit'])
+    built = 0
+    for i in range(min(n_modals, len(rows_data))):
+        cells = rows_data[i]
+        title = cells[0] if cells else page_id
+        # use headers, trimmed to the cell count
+        hdr = [h for h in headers][:len(cells)] if headers else None
+        modals.append(modal_shell(f'{page_id}-row-{i}', f'Details — {title}', detail_body_from_row(cells, hdr)))
+        built += 1
+    # FALLBACK for non-table pages: no <tr> rows but buttons were rewired →
+    # derive a label from the markup nearest each button (cat-badge / card title).
+    if built < n_modals:
+        # gather candidate labels: nearest preceding text of each action-btn container
+        btn_ctx = []
+        for m in re.finditer(r'action-btn (?:edit|view)"[^>]*data-modal-open="' + re.escape(page_id) + r'-row-(\d+)"', s):
+            idx = int(m.group(1))
+            # look backwards up to 500 chars for a title-ish snippet
+            back = s[max(0, m.start()-500):m.start()]
+            # prefer semantic containers first: .cat-name, .card-title, h3/h4/h5, strong
+            label = None
+            for pat in (r'class="cat-name">([^<]{3,60})<', r'class="[^"]*(?:card-title|item-title|row-title)[^"]*">([^<]{3,60})<',
+                        r'<h[345][^>]*>([^<]{3,60})</h[345]>', r'<strong>([^<]{3,60})</strong>'):
+                mm = re.findall(pat, back)
+                if mm: label = mm[-1]; break
+            if not label:
+                texts = re.findall(r'>([A-Za-z][A-Za-z0-9 &\u2014\u2013-]{3,60})<', back)
+                label = texts[-1] if texts else None
+            label = H.unescape(label) if label else None
+            btn_ctx.append((idx, label or f'Item {idx+1}'))
+        seen = {i for i in range(built)}
+        for idx, label in btn_ctx:
+            if idx in seen:
+                continue
+            body = ('<dl class="detail-grid">\n'
+                    f'<dt>Name</dt><dd class="plain">{H.escape(label)}</dd>\n'
+                    '<dt>Status</dt><dd class="plain">Active</dd>\n'
+                    '<dt>Created</dt><dd>18 Aug 2026</dd>\n'
+                    '<dt>Last updated</dt><dd>18 Aug 2026</dd>\n</dl>')
+            modals.append(modal_shell(f'{page_id}-row-{idx}', f'Details — {label}', body))
+            seen.add(idx)
+
+    # ---------- 1b. legacy per-entity modals (edit forms + view details) ----------
+    legacy_modals = []
+    for k in (FORMS.get(page_id) or {}):
+        body = None
+        mid = None
+        if k.startswith('view-'):
+            mid = f'{page_id}-v-{k[5:]}'; body = legacy_modal_html(page_id, k)
+        elif k.startswith('member-view-'):
+            mid = f'{page_id}-mv-{k[12:]}'; body = legacy_modal_html(page_id, k)
+        elif k.startswith('edit-'):
+            mid = f'{page_id}-e-{k[5:]}'; body = legacy_modal_html(page_id, k)
+        elif k.startswith('member-edit-'):
+            mid = f'{page_id}-me-{k[12:]}'; body = legacy_modal_html(page_id, k)
+        elif k == 'add':
+            mid = f'{page_id}-legacy-add'; body = legacy_modal_html(page_id, k)
+        if mid and body:
+            legacy_modals.append(f'<div class="design-modal" id="{mid}" role="dialog" aria-modal="true">\n  <div class="modal-box">\n{body}\n  </div>\n</div>\n')
+
+    # member pages: wire the three-dot dropdown items
+    if page_id in ('users', 'sellers', 'designers', 'staff'):
+        s = wire_member_dropdowns(s, page_id)
+
+    # ---------- 1c. round 2: page-level controls (tabs/pills/cards/lists) ----------
+    extra_modals = []
+    _ROUND2_EXTRA.clear()
+    notif_modals.clear()
+    s = round2_wire(s, page_id)
+    extra_modals.extend(_ROUND2_EXTRA)
+    extra_modals.extend(notif_modals)
+    if page_id == 'payments':
+        extra_modals.append(modal_shell('payments-invoice', 'Invoice — ORD001',
+            '<dl class="detail-grid"><dt>Order</dt><dd class="plain">ORD001</dd>'
+            '<dt>Customer</dt><dd class="plain">Priya Sharma</dd>'
+            '<dt>Product</dt><dd class="plain">Kanchipuram Silk Saree — Royal Blue</dd>'
+            '<dt>Amount</dt><dd class="plain">₹25,000</dd>'
+            '<dt>Method</dt><dd class="plain">UPI</dd>'
+            '<dt>Status</dt><dd class="plain">Paid</dd></dl>'))
+    if page_id == 'tracking':
+        extra_modals.append(modal_shell('tracking-legacy', 'Tracking — ORD001',
+            '<dl class="detail-grid"><dt>Order ID</dt><dd class="plain">ORD001</dd>'
+            '<dt>Courier</dt><dd class="plain">BlueDart</dd>'
+            '<dt>Tracking No.</dt><dd class="plain">BD77340012</dd>'
+            '<dt>Status</dt><dd class="plain">In transit — Mumbai hub</dd>'
+            '<dt>ETA</dt><dd class="plain">20 Feb 2026</dd></dl>'))
+    modals.extend(extra_modals)
+
+    # ---------- 2. generic Add modal + wire Add buttons ----------
+    add_re = re.compile(r'(<button[^>]*?class="[^"]*\bbtn-primary\b[^"]*"[^>]*?)(/?>)(\s*(?:<i[^>]*></i>\s*)?(?:Add|Create|New)\s)', re.I)
+    has_add = bool(add_re.search(s))
+    if has_add:
+        s = add_re.sub(lambda m: m.group(1) + f' data-modal-open="{page_id}-add"' + m.group(2) + m.group(3), s)
+        modals.append(modal_shell(f'{page_id}-add', 'Add new record', ADD_FORM))
+
+    # ---------- 3. save buttons → toast ----------
+    s = re.sub(r'(<button[^>]*?class="[^"]*\bbtn-primary\b[^"]*")(?=[^>]*>\s*(?:<i[^>]*></i>\s*)?(?:Save|Update|Publish|Send|Approve|Reject))',
+               r'\1 data-toast="Saved (design mode)"', s)
+    s = re.sub(r'(<button[^>]*?class="[^"]*\bbtn-(?:success|danger)\b[^"]*")(?=[^>]*>\s*(?:<i[^>]*></i>\s*)?(?:Approve|Reject|Delete|Block|Unblock))',
+               r'\1 data-confirm="Confirm this action? (design mode)"', s)
+
+    # ---------- 4. append modals + script before </body> ----------
+    if legacy_modals:
+        block = '\n<!-- ===== legacy modal forms (captured from original admin) ===== -->\n' + '\n'.join(legacy_modals)
+        s = s.replace('</body>', block + '</body>')
+    if modals or page_id in ('settings', 'website-setup') or legacy_modals:
+        block = '\n<!-- ===== design-mode modals (admin-design.js) ===== -->\n' + '\n'.join(modals)
+        if 'admin-design.js' not in s:
+            s = s.replace('</body>', block + '\n<script src="../../assets/admin-design.js"></script>\n</body>')
+        else:
+            s = s.replace('</body>', block + '</body>')
+
+    if s != orig:
+        path.write_text(s)
+        return True, n_modals, int(has_add), len(legacy_modals)
+    return False, 0, 0, 0
+
+def inject_tab_panels():
+    """Settings + Website Setup: replace empty content div with full tab panels."""
+    sp = json.load(open('/tmp/captured/_settings_panels.json'))
+    ws = json.load(open('/tmp/captured/_ws_panels.json'))
+
+    def build_panels(panels, container_id):
+        out = []
+        for i, (tid, html) in enumerate(panels.items()):
+            disp = '' if i == 0 else ' style="display:none"'
+            # strip legacy inline onclick handlers from panel html
+            h = ONCLICK_LEFT.sub('', html)
+            h = h.replace('href="javascript:void(0)"', 'href="#"')
+            out.append(f'<div class="tab-panel" data-tab="{tid}"{disp}>\n{h}\n</div>')
+        return '\n'.join(out)
+
+    st = ROOT / 'settings.html'
+    s = st.read_text()
+    panels = build_panels(sp['panels'], 'settingsTabContent')
+    s = s.replace('<div id="settingsTabContent"></div>',
+                  f'<div id="settingsTabContent">\n{panels}\n</div>')
+    # wrap settings layout in a [data-tabs] host for admin-design.js
+    if 'data-tabs' not in s:
+        s = s.replace('<div class="settings-layout"', '<div class="settings-layout" data-tabs', 1)
+    # sequential pass: assign each tab button its own tid in order
+    order = list(sp['panels'].keys())
+    it = iter(order)
+    def sub_tab(m):
+        try: tid = next(it)
+        except StopIteration: tid = order[-1]
+        return m.group(1) + f' data-tab-btn="{tid}">'
+    s = re.sub(r'(class="settings-tab[ ]?(?:active)?"[^>]*?)(>)', sub_tab, s)
+    # add script
+    if 'admin-design.js' not in s:
+        s = s.replace('</body>', '\n<script src="../../assets/admin-design.js"></script>\n</body>')
+    st.write_text(s)
+    # asset paths inside injected panels
+    s2 = st.read_text().replace('src="assets/', 'src="../../assets/')
+    st.write_text(s2)
+
+    wp = ROOT / 'website-setup.html'
+    s = wp.read_text()
+    panels = build_panels(ws['panels'], 'wsTabContent')
+    s = s.replace('<div id="wsTabContent"></div>',
+                  f'<div id="wsTabContent">\n{panels}\n</div>')
+    # wrap tab bar + content in a [data-tabs] host
+    if 'data-tabs' not in s:
+        s = s.replace('<div class="tab-bar"', '<div class="tab-bar" data-tabs', 1)
+    # website-setup uses .tab-btn buttons with onclick stripped → wire sequentially
+    order = list(ws['panels'].keys())
+    it = iter(order)
+    def sub_wtab(m):
+        try: tid = next(it)
+        except StopIteration: tid = order[-1]
+        return m.group(1) + f' data-tab-btn="{tid}">'
+    s = re.sub(r'(class="tab-btn[ ]?(?:active)?"[^>]*?)(>)', sub_wtab, s)
+    if 'admin-design.js' not in s:
+        s = s.replace('</body>', '\n<script src="../../assets/admin-design.js"></script>\n</body>')
+    wp.write_text(s)
+    s2 = wp.read_text().replace('src="assets/', 'src="../../assets/')
+    wp.write_text(s2)
+    print('tab panels injected: settings (8 tabs), website-setup (4 tabs)')
+
+def main():
+    inject_tab_panels()
+    total = 0; modals = 0; adds = 0; legacy = 0
+    for p in sorted(ROOT.rglob('*.html')):
+        if p.name == 'index.html':
+            continue
+        changed, n, a, l = process_page(p)
+        if changed:
+            total += 1; modals += n; adds += a; legacy += l
+    print(f'post-processed {total} pages; {modals} generic modals; {adds} add-forms; {legacy} legacy modal forms')
+
+if __name__ == '__main__':
+    main()
