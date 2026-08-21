@@ -186,38 +186,11 @@
     <a href="index.html" class="topbar-icon-btn" title="Logout"><i class="bi bi-box-arrow-right"></i></a>
   </div>
 </div>
-<div class="sidebar-overlay"></div><main class="page-content-wrapper" id="pageContent">
-<div class="page-content"><div class="page-toolbar"><div><h3>Boutiques</h3><p class="text-muted">Partner boutique studios</p></div><div class="toolbar-actions"><button class="btn btn-primary" data-modal-open="boutiques-add"><i class="bi bi-plus-lg"></i> Add Boutique</button></div></div><div class="card"><div class="card-body"><table class="table table-hover" id="boutiquesTable"><thead><tr><th>ID</th><th>Name</th><th>City</th><th>Services</th><th>Rating</th><th>Status</th><th></th></tr></thead><tbody><tr><td>BT1</td><td><strong>Royal Threads Boutique</strong></td><td>Mumbai</td><td>Bridal, Sarees, Lehengas</td><td>★★★★★</td><td><span class="badge badge-success">Active</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr><tr><td>BT2</td><td><strong>Elegance Couture</strong></td><td>Delhi</td><td>Designer Wear, Gowns</td><td>★★★★★</td><td><span class="badge badge-success">Active</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr><tr><td>BT3</td><td><strong>Pearl Fashions</strong></td><td>Pune</td><td>Ethnic, Western</td><td>★★★★☆</td><td><span class="badge badge-success">Active</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr><tr><td>BT4</td><td><strong>Saffron Studio</strong></td><td>Jaipur</td><td>Wedding, Festive</td><td>★★★★★</td><td><span class="badge badge-warning">Pending</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr><tr><td>BT5</td><td><strong>Velvet Vogue</strong></td><td>Bangalore</td><td>Party Wear, Casuals</td><td>★★★★☆</td><td><span class="badge badge-success">Active</span></td><td><button class="btn btn-sm btn-ghost"><i class="bi bi-eye"></i></button></td></tr></tbody></table></div></div></div>
+<div class="sidebar-overlay"></div><main class="page-content" id="pageContent">
 </main>
 </div>
 
-<script src="js/admin-design.js"></script>
-<script src="js/modules/boutiques.js"></script>
-
-<!-- ===== legacy modal forms (captured from original admin) ===== -->
-<div class="design-modal" id="boutiques-legacy-add" role="dialog" aria-modal="true">
-  <div class="modal-box">
-<div class="modal-header"><h3>Add Boutique</h3><button class="btn-close">×</button></div><div class="modal-body"><form><div class="form-group"><label>Name</label><input type="text" class="form-control" id="newBoutiqueName" required></div><div class="form-group"><label>City</label><input type="text" class="form-control" id="newBoutiqueCity"></div><div class="form-group"><label>Services</label><input type="text" class="form-control" id="newBoutiqueServices"></div></form></div><div class="modal-footer"><button class="btn">Cancel</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save</button></div>
-  </div>
-</div>
-
-<!-- ===== design-mode modals (admin-design.js) ===== -->
-<div class="design-modal" id="boutiques-add" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <div class="modal-header"><h3>Add new record</h3><button class="modal-close" type="button" data-modal-close="boutiques-add" aria-label="Close">&times;</button></div>
-    <div class="modal-body">
-<form>
-  <div class="form-group"><label>Name</label><input type="text" class="form-control" placeholder="Enter name"></div>
-  <div class="form-group"><label>Description</label><textarea class="form-control" rows="3" placeholder="Short description"></textarea></div>
-  <div class="form-row">
-    <div class="form-group"><label>Status</label><select class="form-control"><option>Active</option><option>Inactive</option><option>Pending</option></select></div>
-    <div class="form-group"><label>Priority</label><select class="form-control"><option>High</option><option selected>Normal</option><option>Low</option></select></div>
-  </div>
-  <div class="toggle-row"><div class="toggle-info"><strong>Enabled</strong><p class="text-muted">Show this record on the storefront</p></div><span class="toggle-switch on"><span class="toggle-knob"></span></span></div>
-</form>
-    </div>
-    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="boutiques-add">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
-  </div>
-</div>
+<script src="js/data.js?v=1"></script>
+<script src="js/admin-design.js?v=2"></script>
 </body>
 </html>

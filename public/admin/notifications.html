@@ -186,73 +186,11 @@
     <a href="index.html" class="topbar-icon-btn" title="Logout"><i class="bi bi-box-arrow-right"></i></a>
   </div>
 </div>
-<div class="sidebar-overlay"></div><main class="page-content-wrapper" id="pageContent">
-<div class="page-content"><div class="page-toolbar"><div><h3>Notifications</h3><p class="text-muted">System and transaction notifications</p></div><div class="toolbar-actions"><button class="btn btn-ghost" data-toast="All notifications marked read (design mode)" data-toast="All notifications marked as read (design mode)"><i class="bi bi-check2-all"></i> Mark All Read</button></div></div><div class="filter-tabs" style="display:flex;gap:.5rem;margin-bottom:1rem;flex-wrap:wrap"><button class="btn btn-sm btn-primary" data-tab-switch="1" style="text-transform:capitalize">all</button><button class="btn btn-sm btn-ghost" data-tab-switch="1" style="text-transform:capitalize">order</button><button class="btn btn-sm btn-ghost" data-tab-switch="1" style="text-transform:capitalize">payment</button><button class="btn btn-sm btn-ghost" data-tab-switch="1" style="text-transform:capitalize">system</button><button class="btn btn-sm btn-ghost" data-tab-switch="1" style="text-transform:capitalize">review</button><button class="btn btn-sm btn-ghost" data-tab-switch="1" style="text-transform:capitalize">user</button></div><div class="notif-list"><div class="notif-item unread" data-notif="1" data-modal-open="notifications-item-1"><div class="notif-icon type-primary"><i class="bi bi-bag-check"></i></div><div class="notif-body"><div class="notif-header"><strong>New Order Received</strong><span class="notif-dot"></span></div><p>ORD041 from Deepika Nair — ₹1,45,000</p><small class="text-muted">20 Mar 2026, 10:30 am</small></div><button class="btn btn-sm btn-ghost" title="Mark as read" data-mark-read="1"><i class="bi bi-check2"></i></button></div><div class="notif-item unread" data-notif="1" data-modal-open="notifications-item-2"><div class="notif-icon type-info"><i class="bi bi-bell"></i></div><div class="notif-body"><div class="notif-header"><strong>New Seller Registration</strong><span class="notif-dot"></span></div><p>Shanti Marriage Mandapam requested approval</p><small class="text-muted">20 Mar 2026, 09:15 am</small></div><button class="btn btn-sm btn-ghost" title="Mark as read" data-mark-read="1"><i class="bi bi-check2"></i></button></div><div class="notif-item unread" data-notif="1" data-modal-open="notifications-item-3"><div class="notif-icon type-success"><i class="bi bi-credit-card"></i></div><div class="notif-body"><div class="notif-header"><strong>Payment Received</strong><span class="notif-dot"></span></div><p>PAY008 — ₹2,85,000 via Razorpay</p><small class="text-muted">19 Mar 2026, 04:45 pm</small></div><button class="btn btn-sm btn-ghost" title="Mark as read" data-mark-read="1"><i class="bi bi-check2"></i></button></div><div class="notif-item unread" data-notif="1" data-modal-open="notifications-item-4"><div class="notif-icon type-warning"><i class="bi bi-star"></i></div><div class="notif-body"><div class="notif-header"><strong>New Review</strong><span class="notif-dot"></span></div><p>Priya Sharma reviewed Bridal Gown — Ivory Lace (5★)</p><small class="text-muted">19 Mar 2026, 02:20 pm</small></div><button class="btn btn-sm btn-ghost" title="Mark as read" data-mark-read="1"><i class="bi bi-check2"></i></button></div><div class="notif-item unread" data-notif="1" data-modal-open="notifications-item-5"><div class="notif-icon type-info"><i class="bi bi-gear"></i></div><div class="notif-body"><div class="notif-header"><strong>System Update</strong><span class="notif-dot"></span></div><p>AI Virtual Try-On service updated to v2.0</p><small class="text-muted">18 Mar 2026, 11:00 am</small></div><button class="btn btn-sm btn-ghost" title="Mark as read" data-mark-read="1"><i class="bi bi-check2"></i></button></div><div class="notif-item unread" data-notif="1" data-modal-open="notifications-item-6"><div class="notif-icon type-primary"><i class="bi bi-bag-check"></i></div><div class="notif-body"><div class="notif-header"><strong>Order Cancelled</strong><span class="notif-dot"></span></div><p>ORD006 cancelled by Meera Joshi</p><small class="text-muted">5 Mar 2026, 01:30 pm</small></div><button class="btn btn-sm btn-ghost" title="Mark as read" data-mark-read="1"><i class="bi bi-check2"></i></button></div></div></div>
+<div class="sidebar-overlay"></div><main class="page-content" id="pageContent">
 </main>
 </div>
 
-<script src="js/admin-design.js"></script>
-<script src="js/modules/notifications.js"></script>
-
-<!-- ===== design-mode modals (admin-design.js) ===== -->
-<div class="design-modal" id="notifications-item-1" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <div class="modal-header"><h3>New Order Received</h3><button class="modal-close" type="button" data-modal-close="notifications-item-1" aria-label="Close">&times;</button></div>
-    <div class="modal-body">
-<p style="margin:0 0 14px;font-size:0.95rem">ORD041 from Deepika Nair — ₹1,45,000</p><hr><small class="text-muted">20 Mar 2026, 10:30 am</small>
-    </div>
-    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="notifications-item-1">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
-  </div>
-</div>
-
-<div class="design-modal" id="notifications-item-2" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <div class="modal-header"><h3>New Seller Registration</h3><button class="modal-close" type="button" data-modal-close="notifications-item-2" aria-label="Close">&times;</button></div>
-    <div class="modal-body">
-<p style="margin:0 0 14px;font-size:0.95rem">Shanti Marriage Mandapam requested approval</p><hr><small class="text-muted">20 Mar 2026, 09:15 am</small>
-    </div>
-    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="notifications-item-2">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
-  </div>
-</div>
-
-<div class="design-modal" id="notifications-item-3" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <div class="modal-header"><h3>Payment Received</h3><button class="modal-close" type="button" data-modal-close="notifications-item-3" aria-label="Close">&times;</button></div>
-    <div class="modal-body">
-<p style="margin:0 0 14px;font-size:0.95rem">PAY008 — ₹2,85,000 via Razorpay</p><hr><small class="text-muted">19 Mar 2026, 04:45 pm</small>
-    </div>
-    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="notifications-item-3">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
-  </div>
-</div>
-
-<div class="design-modal" id="notifications-item-4" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <div class="modal-header"><h3>New Review</h3><button class="modal-close" type="button" data-modal-close="notifications-item-4" aria-label="Close">&times;</button></div>
-    <div class="modal-body">
-<p style="margin:0 0 14px;font-size:0.95rem">Priya Sharma reviewed Bridal Gown — Ivory Lace (5★)</p><hr><small class="text-muted">19 Mar 2026, 02:20 pm</small>
-    </div>
-    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="notifications-item-4">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
-  </div>
-</div>
-
-<div class="design-modal" id="notifications-item-5" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <div class="modal-header"><h3>System Update</h3><button class="modal-close" type="button" data-modal-close="notifications-item-5" aria-label="Close">&times;</button></div>
-    <div class="modal-body">
-<p style="margin:0 0 14px;font-size:0.95rem">AI Virtual Try-On service updated to v2.0</p><hr><small class="text-muted">18 Mar 2026, 11:00 am</small>
-    </div>
-    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="notifications-item-5">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
-  </div>
-</div>
-
-<div class="design-modal" id="notifications-item-6" role="dialog" aria-modal="true">
-  <div class="modal-box">
-    <div class="modal-header"><h3>Order Cancelled</h3><button class="modal-close" type="button" data-modal-close="notifications-item-6" aria-label="Close">&times;</button></div>
-    <div class="modal-body">
-<p style="margin:0 0 14px;font-size:0.95rem">ORD006 cancelled by Meera Joshi</p><hr><small class="text-muted">5 Mar 2026, 01:30 pm</small>
-    </div>
-    <div class="modal-footer"><button class="btn btn-ghost" type="button" data-modal-close="notifications-item-6">Close</button><button class="btn btn-primary" type="button" data-toast="Saved (design mode)">Save changes</button>    </div>
-  </div>
-</div>
+<script src="js/data.js?v=1"></script>
+<script src="js/admin-design.js?v=2"></script>
 </body>
 </html>

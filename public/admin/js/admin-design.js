@@ -7,14 +7,33 @@
    add / edit), toggle switches, toasts, confirm dialogs.
    No data is saved, no API is called — visual behavior only.
 
-   Per-module JS: each module may ship js/modules/<page>.js which is
-   executed once its page loads (registration at the bottom). The
-   shared runtime stays tiny; module files hold page-specific wiring
-   only if a page truly needs it.
+   Demo content lives in js/data.js (single file, 53 pages, 878 modals).
+   This runtime injects it at DOMContentLoaded, then wires interactions.
    ================================================================ */
 (function () {
     var Design = {};
-    Design.modules = {};   // name -> init fn, called on DOMContentLoaded
+
+    /* ---------- Demo content injection (design-only) ----------
+       All demo content lives in js/data.js (window.DesignData). Each page
+       declares its slug via <body data-design-page="..."> or defaults to the
+       filename. DesignData[page].main fills <main>; .modals are appended to
+       <body> hidden. When data.js is removed (backend connected) injection
+       is skipped and the pages' server-rendered markup is used as-is. */
+    Design.injectDesign = function () {
+        var data = window.DesignData;
+        if (!data) return;
+        var page = (document.body.getAttribute('data-design-page') ||
+            (location.pathname.split('/').pop() || '').replace(/\.html$/, ''));
+        var entry = data[page];
+        if (!entry) return;
+        var main = document.querySelector('main');
+        if (main && entry.main) main.innerHTML = entry.main;
+        var host = document.createElement('div');
+        host.innerHTML = entry.modals.join('\n');
+        while (host.firstChild) {
+            document.body.appendChild(host.firstChild);
+        }
+    };
 
     /* one-time binding guard (protects against double script loads) */
     Design._wireOnce = function (key, fn) {
@@ -82,6 +101,19 @@
                 if (closer) {
                     Design.closeModal(closer.getAttribute('data-modal-close'));
                     return;
+                }
+                /* legacy-captured modals: bare × (.btn-close) or a ghost
+                   "Close" footer button — close the enclosing modal */
+                var x = e.target.closest('.design-modal .btn-close');
+                if (x) {
+                    var xm = x.closest('.design-modal');
+                    if (xm) Design.closeModal(xm.id);
+                    return;
+                }
+                var g = e.target.closest('.design-modal .modal-footer .btn-ghost');
+                if (g && (g.textContent || '').trim().toLowerCase() === 'close') {
+                    var gm = g.closest('.design-modal');
+                    if (gm) Design.closeModal(gm.id);
                 }
                 if (e.target.classList && e.target.classList.contains('design-modal')) {
                     e.target.style.display = 'none';
@@ -357,7 +389,42 @@
         });
     };
 
+    /* Notifications filter tabs (was js/modules/notifications.js):
+       tabs filter .notif-item rows by the type-* class / icon name */
+    Design.initNotifFilter = function () {
+        Design._wireOnce('_notifFilterWired', function () {
+            var TAB_TYPE = {
+                all: null,
+                order: ['type-primary', 'bag-check', 'bag'],
+                payment: ['type-success', 'credit-card', 'currency', 'cash'],
+                system: ['type-info', 'bell', 'gear'],
+                review: ['type-warning', 'star'],
+                user: ['type-secondary', 'person']
+            };
+            document.addEventListener('click', function (e) {
+                var btn = e.target.closest('.filter-tabs [data-tab-switch]');
+                if (!btn) return;
+                var key = (btn.textContent || '').trim().toLowerCase();
+                var want = TAB_TYPE[key];
+                if (want === undefined) return;
+                document.querySelectorAll('.notif-item').forEach(function (item) {
+                    if (want === null) { item.style.display = ''; return; }
+                    var iconWrap = item.querySelector('.notif-icon');
+                    var icon = iconWrap ? iconWrap.querySelector('i') : null;
+                    var wrapperCls = iconWrap ? iconWrap.className : '';
+                    var icls = icon ? (icon.className.match(/bi-([\w-]+)/) || [])[1] : '';
+                    var show = want.some(function (w) {
+                        if (w.indexOf('type-') === 0) return wrapperCls.indexOf(w) > -1;
+                        return icls && icls.indexOf(w) > -1;
+                    });
+                    item.style.display = show ? '' : 'none';
+                });
+            });
+        });
+    };
+
     document.addEventListener('DOMContentLoaded', function () {
+        Design.injectDesign();      /* MUST be first: content before wiring */
         Design.initTabs();
         Design.initModals();
         Design.initToggles();
@@ -372,16 +439,10 @@
         Design.initPills();
         Design.initRoleSelect();
         Design.initNotifs();
+        Design.initNotifFilter();
         Design.initListItems();
         Design.initCopy();
-        /* run any registered page module for this document */
-        var path = location.pathname.split('/').pop() || 'index.html';
-        var key = path.replace('.html', '');
-        if (Design.modules[key]) {
-            try { Design.modules[key](Design); } catch (err) { /* design-only */ }
-        }
     });
 
     window.Design = Design;
-Design.register = function (name, init) { Design.modules[name] = init; };
 })();

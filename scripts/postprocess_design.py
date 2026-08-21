@@ -121,9 +121,17 @@ def round2_wire(s, page_id):
         s = re.sub(r'<div class="filter-tabs"[^>]*>.*?</div>', _tabbed, s, flags=re.S)
         # pills (if any) + items + Mark All Read
         s = re.sub(r'(<button[^>]*class="filter-pill[^"]*)(")', r'\1\2 data-pill="1"', s)
-        s = re.sub(r'(<div[^>]*class="notif-item[^"]*)(")', r'\1\2 data-notif="1"', s)
+        # per-notif: clickable item -> detail modal; check button -> mark read
+        extra_notif_modals = _wire_notifs(s)
+        s = re.sub(r'(<div[^>]*class="notif-item[^"]*)(")', r'\1\2 data-modal-open="notifications-item-N"', s)
+        # fix: replace the placeholder with real ids in order
+        _seq = iter(range(1, 100))
+        s = re.sub(r'data-modal-open="notifications-item-N"', lambda m: f'data-modal-open="notifications-item-{next(_seq)}"', s)
+        # check buttons mark read (stopPropagation handled by Design.initNotifs)
+        s = re.sub(r'(<button class="btn btn-sm btn-ghost" title="Mark as read")', r'\1 data-mark-read="1"', s)
         s = re.sub(r'(<button[^>]*class="[^"]*)(")([^>]*>\s*(?:<i[^>]*></i>\s*)?Mark All Read)',
-                   r'\1\2 data-toast="All notifications marked read (design mode)"\3', s)
+                   r'\1\2 data-toast="All notifications marked as read (design mode)"\3', s)
+        notif_modals.extend(extra_notif_modals)
     # ---- tracking ----
     if P == 'tracking':
         s = re.sub(r'(<button class="btn btn-sm btn-ghost" title="Copy Tracking ID")', r'\1 data-copy="1"', s)
@@ -165,6 +173,25 @@ def round2_wire(s, page_id):
     return s
 
 _ROUND2_EXTRA = []   # extra modals collected by round2_wire for this page
+notif_modals = []    # per-notification detail modals (notifications page)
+
+def _wire_notifs(s):
+    """Build one legacy-style detail modal per notif item, from the item's own
+    markup (title / message / date) — same content the old openNotif showed."""
+    out = []
+    items = re.findall(r'<div class="notif-item[^">]*"[^>]*>.*?(?=<div class="notif-item |$)', s, re.S)
+    items = [x.split('</div></div></div>')[0] + '</div></div></div>' for x in items]
+    for i, it in enumerate(items, 1):
+        title = re.search(r'<strong>([^<]+)</strong>', it)
+        msg = re.search(r'<p>([^<]*)</p>', it)
+        date = re.search(r'<small class="text-muted">([^<]+)</small>', it)
+        t = (title.group(1) if title else 'Notification').strip()
+        m_ = (msg.group(1) if msg else '').strip()
+        d = (date.group(1) if date else '').strip()
+        body = (f'<p style="margin:0 0 14px;font-size:0.95rem">{m_}</p>'
+                f'<hr><small class="text-muted">{d}</small>')
+        out.append(modal_shell(f'notifications-item-{i}', t, body))
+    return out
 
 def _inject_modals(s, modals_extra):
     _ROUND2_EXTRA.extend(modals_extra)
@@ -415,8 +442,10 @@ def process_page(path):
     # ---------- 1c. round 2: page-level controls (tabs/pills/cards/lists) ----------
     extra_modals = []
     _ROUND2_EXTRA.clear()
+    notif_modals.clear()
     s = round2_wire(s, page_id)
     extra_modals.extend(_ROUND2_EXTRA)
+    extra_modals.extend(notif_modals)
     if page_id == 'payments':
         extra_modals.append(modal_shell('payments-invoice', 'Invoice — ORD001',
             '<dl class="detail-grid"><dt>Order</dt><dd class="plain">ORD001</dd>'
