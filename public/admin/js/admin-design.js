@@ -4,19 +4,46 @@
     var Design = {};
 
     
-    Design.injectDesign = function () {
+    Design.injectData = function () {
         var data = window.DesignData;
         if (!data) return;
         var page = (document.body.getAttribute('data-design-page') ||
             (location.pathname.split('/').pop() || '').replace(/\.html$/, ''));
         var entry = data[page];
         if (!entry) return;
-        var main = document.querySelector('main');
-        if (main && entry.main) main.innerHTML = entry.main;
-        var host = document.createElement('div');
-        host.innerHTML = entry.modals.join('\n');
-        while (host.firstChild) {
-            document.body.appendChild(host.firstChild);
+        var q = function (sel) { return document.querySelectorAll(sel); };
+        if (entry.rows) {
+            Object.keys(entry.rows).forEach(function (slot) {
+                q('[data-rows="' + slot + '"]').forEach(function (tb) {
+                    tb.innerHTML = entry.rows[slot].join('\n');
+                });
+            });
+        }
+        if (entry.stats) {
+            Object.keys(entry.stats).forEach(function (key) {
+                q('[data-stat="' + key + '"]').forEach(function (el) {
+                    el.textContent = entry.stats[key];
+                });
+            });
+        }
+        if (entry.lists) {
+            Object.keys(entry.lists).forEach(function (key) {
+                q('[data-list="' + key + '"]').forEach(function (host) {
+                    host.insertAdjacentHTML('beforeend', entry.lists[key].join('\n'));
+                });
+            });
+        }
+        if (entry.tree) {
+            q('.cat-tree[data-tree], .cat-tree').forEach(function (host) {
+                host.insertAdjacentHTML('beforeend', entry.tree);
+            });
+        }
+        if (entry.modals) {
+            var frag = document.createElement('div');
+            frag.innerHTML = entry.modals.join('\n');
+            while (frag.firstChild) {
+                document.body.appendChild(frag.firstChild);
+            }
         }
     };
 
@@ -395,7 +422,7 @@
     };
 
     document.addEventListener('DOMContentLoaded', function () {
-        Design.injectDesign();      
+        Design.injectData();
         Design.initTabs();
         Design.initModals();
         Design.initToggles();
