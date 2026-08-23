@@ -1,24 +1,9 @@
 'use strict';
-/* ================================================================
-   TATITO FASHIONS — Admin Design Runtime (design-only, no backend)
-   ================================================================
-   Minimal JS so the static module pages behave like the old working
-   panel at the DESIGN level: tab switching, modals (view details /
-   add / edit), toggle switches, toasts, confirm dialogs.
-   No data is saved, no API is called — visual behavior only.
 
-   Demo content lives in js/data.js (single file, 53 pages, 878 modals).
-   This runtime injects it at DOMContentLoaded, then wires interactions.
-   ================================================================ */
 (function () {
     var Design = {};
 
-    /* ---------- Demo content injection (design-only) ----------
-       All demo content lives in js/data.js (window.DesignData). Each page
-       declares its slug via <body data-design-page="..."> or defaults to the
-       filename. DesignData[page].main fills <main>; .modals are appended to
-       <body> hidden. When data.js is removed (backend connected) injection
-       is skipped and the pages' server-rendered markup is used as-is. */
+    
     Design.injectDesign = function () {
         var data = window.DesignData;
         if (!data) return;
@@ -35,20 +20,14 @@
         }
     };
 
-    /* one-time binding guard (protects against double script loads) */
+    
     Design._wireOnce = function (key, fn) {
         if (Design[key]) return;
         Design[key] = true;
         fn();
     };
 
-    /* ---------- Tabs ----------
-       Two known layouts:
-       1) Settings page: .settings-tab[data-tab-btn] buttons + panels
-          inside #settingsTabContent (.tab-panel[data-tab])
-       2) Website Setup: .tab-btn[data-tab-btn] buttons + panels
-          inside #wsTabContent (.tab-panel[data-tab])
-       Wiring is idempotent and page-scoped. */
+    
     function wireTabs(tabs, panels) {
         if (!tabs.length || !panels.length) return;
         tabs.forEach(function (t) {
@@ -75,7 +54,7 @@
         if (wtabs.length && wpanels.length) wireTabs(wtabs, wpanels);
     };
 
-    /* ---------- Modals ---------- */
+    
     Design.openModal = function (id) {
         Design.closeDropdowns();
         var m = document.getElementById(id);
@@ -102,8 +81,7 @@
                     Design.closeModal(closer.getAttribute('data-modal-close'));
                     return;
                 }
-                /* legacy-captured modals: bare × (.btn-close) or a ghost
-                   "Close" footer button — close the enclosing modal */
+                
                 var x = e.target.closest('.design-modal .btn-close');
                 if (x) {
                     var xm = x.closest('.design-modal');
@@ -131,7 +109,7 @@
         });
     };
 
-    /* ---------- Toggles (design-only flip, debounced) ---------- */
+    
     Design.initToggles = function () {
         Design._wireOnce('_togglesWired', function () {
             var lastToggle = { el: null, t: 0 };
@@ -139,7 +117,7 @@
                 var t = e.target.closest('.toggle-switch');
                 if (!t || t.hasAttribute('data-static')) return;
                 var now = Date.now();
-                if (lastToggle.el === t && (now - lastToggle.t) < 60) return; // double-fire guard
+                if (lastToggle.el === t && (now - lastToggle.t) < 60) return; 
                 lastToggle.el = t; lastToggle.t = now;
                 t.classList.toggle('on');
                 var row = t.closest('.toggle-row');
@@ -149,7 +127,7 @@
         });
     };
 
-    /* ---------- Toast (design feedback) ---------- */
+    
     Design.toast = function (msg, type) {
         var wrap = document.getElementById('designToastWrap');
         if (!wrap) {
@@ -179,7 +157,7 @@
         });
     };
 
-    /* ---------- Confirm (design) ---------- */
+    
     Design.initConfirm = function () {
         Design._wireOnce('_confirmWired', function () {
             document.addEventListener('click', function (e) {
@@ -194,10 +172,7 @@
         });
     };
 
-    /* ---------- Member three-dot dropdowns ----------
-       Each member row: .member-actions-btn toggles the sibling
-       .member-dropdown (.show). Items carry data-modal-open /
-       data-confirm / data-toast and reuse the generic handlers above. */
+    
     Design.closeDropdowns = function (except) {
         document.querySelectorAll('.member-dropdown.show').forEach(function (d) {
             if (d !== except) d.classList.remove('show');
@@ -217,13 +192,13 @@
                     if (!isOpen) dd.classList.add('show');
                     return;
                 }
-                /* any click outside a dropdown (incl. its items) closes it */
+                
                 Design.closeDropdowns();
             });
         });
     };
 
-    /* ---------- Upload zones (file-picker placeholder) ---------- */
+    
     Design.initUploads = function () {
         document.querySelectorAll('.upload-field, .upload-zone').forEach(function (field) {
             if (field._uploadWired) return;
@@ -234,9 +209,9 @@
         });
     };
 
-    /* ---------- Round 2: page-level controls ---------- */
+    
 
-    /* Topbar: hamburger toggle (legacy toggleSidebar) + clear cache */
+    
     Design.initTopbar = function () {
         Design._wireOnce('_topbarWired', function () {
             document.addEventListener('click', function (e) {
@@ -262,9 +237,7 @@
         });
     };
 
-    /* Sidebar nav groups: click header to expand/collapse (legacy toggleSection).
-       The active section ships expanded via inline display; JS only toggles
-       groups — stays inert if markup is plain <details>. */
+    
     Design.initNavGroups = function () {
         Design._wireOnce('_navWired', function () {
             document.addEventListener('click', function (e) {
@@ -283,7 +256,7 @@
         });
     };
 
-    /* Categories tree: Expand All / Collapse All */
+    
     Design.initTree = function () {
         Design._wireOnce('_treeWired', function () {
             document.addEventListener('click', function (e) {
@@ -298,7 +271,7 @@
         });
     };
 
-    /* Generic tab switchers: [data-tab-switch] activate among siblings */
+    
     Design.initTabSwitch = function () {
         Design._wireOnce('_tabSwitchWired', function () {
             document.addEventListener('click', function (e) {
@@ -311,7 +284,7 @@
         });
     };
 
-    /* Filter pills (tracking/notifications): click = active */
+    
     Design.initPills = function () {
         Design._wireOnce('_pillsWired', function () {
             document.addEventListener('click', function (e) {
@@ -324,7 +297,7 @@
         });
     };
 
-    /* Roles sidebar list: click to select */
+    
     Design.initRoleSelect = function () {
         Design._wireOnce('_roleWired', function () {
             document.addEventListener('click', function (e) {
@@ -342,8 +315,7 @@
         });
     };
 
-    /* Notifications: check button marks item read (and must NOT open the modal).
-       The item itself is a data-modal-open trigger handled by initModals. */
+    
     Design.initNotifs = function () {
         Design._wireOnce('_notifWired', function () {
             document.addEventListener('click', function (e) {
@@ -361,11 +333,11 @@
                     }
                     Design.toast('Marked as read', 'success');
                 }
-            }, true);   // capture: runs before the modal-open delegated handler
+            }, true);   
         });
     };
 
-    /* Clickable list items: templates list (notifications now via modals) */
+    
     Design.initListItems = function () {
         Design._wireOnce('_listWired', function () {
             document.addEventListener('click', function (e) {
@@ -378,7 +350,7 @@
         });
     };
 
-    /* Copy buttons (tracking) */
+    
     Design.initCopy = function () {
         Design._wireOnce('_copyWired', function () {
             document.addEventListener('click', function (e) {
@@ -389,8 +361,7 @@
         });
     };
 
-    /* Notifications filter tabs (was js/modules/notifications.js):
-       tabs filter .notif-item rows by the type-* class / icon name */
+    
     Design.initNotifFilter = function () {
         Design._wireOnce('_notifFilterWired', function () {
             var TAB_TYPE = {
@@ -424,7 +395,7 @@
     };
 
     document.addEventListener('DOMContentLoaded', function () {
-        Design.injectDesign();      /* MUST be first: content before wiring */
+        Design.injectDesign();      
         Design.initTabs();
         Design.initModals();
         Design.initToggles();

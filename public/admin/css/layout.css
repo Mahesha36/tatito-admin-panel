@@ -1,7 +1,3 @@
-/* ============================================
-   TATITO FASHIONS — Layout
-   ============================================ */
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
@@ -12,8 +8,6 @@ body {
     font-size: 14px;
 }
 
-/* ===== Global Number Font (matches category & product pages) ===== */
-/* Apply Inter with tabular figures to all numeric elements across the admin panel */
 .stat-value,
 .stat-card h3,
 .stat-card h2,
@@ -39,11 +33,9 @@ input[type="number"],
     font-variant-numeric: tabular-nums lining-nums;
 }
 
-/* ===== Admin Layout ===== */
 .admin-body { min-height: 100vh; }
 .admin-layout, .admin-body { display: flex; }
 
-/* ===== Sidebar ===== */
 .sidebar {
     width: var(--sidebar-width);
     background: var(--bg-sidebar);
@@ -79,7 +71,6 @@ input[type="number"],
     padding: 8px 0;
 }
 
-/* ===== Collapsible Nav Groups ===== */
 .sidebar-nav .nav-group {
     margin-bottom: 2px;
 }
@@ -142,7 +133,6 @@ input[type="number"],
     font-size: 0.95rem; width: 18px; text-align: center;
 }
 
-/* Flat fallback for nav items outside groups */
 .sidebar-nav .nav-item, .sidebar-nav a.nav-item {
     display: flex; align-items: center; gap: 12px;
     padding: 10px 24px;
@@ -202,12 +192,10 @@ input[type="number"],
     z-index: 99;
 }
 .sidebar-overlay.show, .sidebar-overlay.open { display: block; }
-/* desktop: sidebar is always visible, the mobile toggle must not dim the screen */
 @media (min-width: 769px) {
     .sidebar-overlay { display: none !important; }
 }
 
-/* ===== Main Area ===== */
 .main-area, .main-wrapper {
     flex: 1;
     margin-left: var(--sidebar-width);
@@ -216,7 +204,6 @@ input[type="number"],
     min-height: 100vh;
 }
 
-/* ===== Topbar ===== */
 .topbar {
     height: var(--topbar-height);
     background: var(--bg-card);
@@ -270,7 +257,6 @@ input[type="number"],
     border: 2px solid var(--bg-card);
 }
 
-/* Language dropdown */
 .lang-dropdown {
     position: relative;
 }
@@ -295,14 +281,12 @@ input[type="number"],
     background: rgba(201,162,75,0.08); color: var(--gold-deep);
 }
 
-/* ===== Content Area ===== */
 .content-area, .page-content-wrapper {
     flex: 1;
     padding: 24px;
     overflow-x: auto;
 }
 
-/* ===== Auth / Login Layout ===== */
 .auth-body { background: var(--bg); }
 .auth-wrapper, .login-wrapper {
     min-height: 100vh;
@@ -393,7 +377,6 @@ input[type="number"],
 }
 .demo-btn:hover { border-color: var(--gold); background: rgba(201,162,75,0.08); }
 
-/* ===== Responsive ===== */
 @media (max-width: 992px) {
     .auth-left, .login-brand-panel { display: none; }
     .auth-right, .login-form-panel { flex: 1; }

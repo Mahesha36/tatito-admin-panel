@@ -1,8 +1,3 @@
-/* ============================================
-   TATITO FASHIONS — Components
-   ============================================ */
-
-/* ===== Buttons ===== */
 .btn {
     display: inline-flex; align-items: center; justify-content: center; gap: 6px;
     padding: 9px 18px; border-radius: var(--radius-sm); border: none;
@@ -23,7 +18,6 @@
 .btn-lg { padding: 12px 28px; font-size: 1rem; }
 .btn-block { width: 100%; }
 
-/* ===== Cards ===== */
 .card {
     background: var(--bg-card);
     border-radius: var(--radius-md);
@@ -36,7 +30,6 @@
 .card-header h3 { font-size: 0.95rem; font-weight: 600; color: var(--text); margin: 0; }
 .card-body { padding: 20px; }
 
-/* ===== Stat Cards ===== */
 .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; margin-bottom: 16px; }
 .stat-card { background: var(--bg-card); border-radius: var(--radius-md); box-shadow: var(--shadow-sm); padding: 20px; display: flex; align-items: center; gap: 16px; border: 1px solid var(--border-light); transition: var(--transition); }
 .stat-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
@@ -51,7 +44,6 @@
 .stat-value { font-size: 1.4rem; font-weight: 700; color: var(--text); font-family: var(--font-number); font-feature-settings: 'tnum' 1, 'lnum' 1; font-variant-numeric: tabular-nums lining-nums; }
 .stat-sub { font-size: 0.75rem; color: var(--text-muted); }
 
-/* ===== Tables ===== */
 .table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
 .table thead th { background: var(--bg-input); padding: 10px 12px; text-align: left; font-weight: 600; color: var(--text-secondary); border-bottom: 2px solid var(--border-color); white-space: nowrap; font-size: 0.78rem; text-transform: uppercase; letter-spacing: 0.5px; }
 .table tbody td { padding: 10px 12px; border-bottom: 1px solid var(--border-light); color: var(--text); }
@@ -59,12 +51,10 @@
 .table-borderless tbody td, .table-borderless thead th { border: none; }
 .table-hover tbody tr:hover { background: var(--border-light); }
 
-/* DataTables overrides */
 .dataTables_wrapper { font-size: 0.85rem; }
 .dataTables_filter input, .dataTables_length select { border: 1px solid var(--border-color); border-radius: var(--radius-sm); padding: 5px 10px; font-size: 0.85rem; }
 .dataTables_paginate .paginate_button { border-radius: var(--radius-sm) !important; margin: 0 2px; }
 
-/* ===== Badges ===== */
 .badge { display: inline-flex; align-items: center; padding: 3px 10px; border-radius: 20px; font-size: 0.72rem; font-weight: 600; }
 .badge-success { background: var(--success-bg); color: var(--success); }
 .badge-danger { background: var(--danger-bg); color: var(--danger); }
@@ -73,7 +63,6 @@
 .badge-primary { background: var(--info-bg); color: var(--info); }
 .badge-gold { background: rgba(201,162,75,0.15); color: var(--gold-deep); font-weight: 600; }
 
-/* ===== Forms ===== */
 .form-group { margin-bottom: 16px; }
 .form-group label { display: block; margin-bottom: 6px; font-size: 0.82rem; font-weight: 600; color: var(--text-secondary); }
 .form-control { width: 100%; padding: 10px 14px; border: 1px solid var(--border-color); border-radius: var(--radius-sm); font-size: 0.88rem; font-family: var(--font-body); background: var(--bg-input); color: var(--text); transition: var(--transition); }
@@ -84,7 +73,6 @@ select.form-control { cursor: pointer; }
 .form-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
 .form-section { max-width: 520px; }
 
-/* ===== Password toggle ===== */
 .password-wrapper { position: relative; }
 .password-wrapper .form-control { padding-right: 42px; }
 .input-group { position: relative; }
@@ -92,7 +80,6 @@ select.form-control { cursor: pointer; }
 .password-toggle { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; padding: 4px; z-index: 2; }
 .password-toggle-btn { position: absolute; right: 10px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: var(--text-muted); font-size: 1rem; padding: 4px; z-index: 2; }
 
-/* ===== Modal ===== */
 .modal-overlay { display: none; position: fixed; inset: 0; background: rgba(20,18,15,0.55); z-index: 1000; align-items: center; justify-content: center; padding: 20px; }
 .modal-overlay.show { display: flex; }
 .modal-box { background: var(--bg-card); border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); max-width: 560px; width: 100%; max-height: 90vh; overflow-y: auto; }
@@ -104,12 +91,10 @@ select.form-control { cursor: pointer; }
 .modal-footer { display: flex; justify-content: flex-end; gap: 10px; padding: 16px 24px; border-top: 1px solid var(--border-light); }
 .btn-close { background: none; border: none; font-size: 1.4rem; cursor: pointer; color: var(--text-muted); padding: 0; line-height: 1; }
 
-/* ===== Toggle Switch (button-based) ===== */
 .toggle-switch { position: relative; display: inline-flex; align-items: center; width: 46px; height: 24px; border: none; border-radius: 24px; background: #ccc; cursor: pointer; transition: var(--transition); padding: 0; }
 .toggle-switch.on { background: linear-gradient(135deg, var(--gold) 0%, var(--gold-deep) 100%); }
 .toggle-knob { position: absolute; left: 3px; top: 3px; width: 18px; height: 18px; background: white; border-radius: 50%; transition: var(--transition); }
 .toggle-switch.on .toggle-knob { transform: translateX(22px); }
-/* checkbox-based toggle (legacy) */
 .toggle-switch input { opacity: 0; width: 0; height: 0; }
 .toggle-slider { position: absolute; cursor: pointer; inset: 0; background: #ccc; border-radius: 24px; transition: var(--transition); }
 .toggle-slider::before { content: ''; position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background: white; border-radius: 50%; transition: var(--transition); }
@@ -121,14 +106,12 @@ select.form-control { cursor: pointer; }
 .toggle-info strong { font-size: 0.88rem; font-weight: 600; display: block; }
 .toggle-info p { font-size: 0.78rem; color: var(--text-muted); margin: 0; }
 
-/* ===== Toast ===== */
 .toast-container { position: fixed; top: 20px; right: 20px; z-index: 2000; display: flex; flex-direction: column; gap: 8px; }
 .toast-item { display: flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: var(--radius-sm); box-shadow: var(--shadow-md); font-size: 0.85rem; font-weight: 500; transition: opacity 0.3s; min-width: 260px; background: var(--bg-card); border-left: 4px solid var(--info); }
 .toast-item.success { border-left-color: var(--success); color: var(--success); }
 .toast-item.error { border-left-color: var(--danger); color: var(--danger); }
 .toast-item.warning { border-left-color: var(--warning); color: var(--warning); }
 
-/* ===== Progress Bar ===== */
 .progress-bar { width: 100%; height: 6px; background: var(--border-light); border-radius: 3px; overflow: hidden; }
 .progress-fill { height: 100%; border-radius: 3px; transition: width 0.3s ease; }
 .progress-fill.success { background: var(--success); }
@@ -136,10 +119,8 @@ select.form-control { cursor: pointer; }
 .progress-fill.danger { background: var(--danger); }
 .progress-fill.gold { background: var(--gold); }
 
-/* ===== Product Thumb ===== */
 .product-thumb { width: 36px; height: 36px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
 
-/* ===== Seller List ===== */
 .seller-list { display: flex; flex-direction: column; gap: 12px; }
 .seller-row { display: flex; align-items: center; gap: 12px; }
 .seller-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
@@ -147,7 +128,6 @@ select.form-control { cursor: pointer; }
 .seller-info strong { font-size: 0.85rem; display: block; }
 .seller-info small { font-size: 0.75rem; color: var(--text-muted); }
 
-/* ===== Settings Layout ===== */
 .settings-layout { display: flex; gap: 0; }
 .settings-sidebar { width: 200px; border-right: 1px solid var(--border-color); padding: 16px 0; flex-shrink: 0; }
 .settings-tab { display: flex; align-items: center; gap: 10px; padding: 10px 20px; font-size: 0.85rem; color: var(--text-secondary); text-decoration: none; cursor: pointer; transition: var(--transition); border-left: 3px solid transparent; }
@@ -156,7 +136,6 @@ select.form-control { cursor: pointer; }
 .settings-main { flex: 1; padding: 20px; }
 @media (max-width: 768px) { .settings-layout { flex-direction: column; } .settings-sidebar { width: 100%; border-right: none; border-bottom: 1px solid var(--border-color); display: flex; flex-wrap: wrap; gap: 4px; padding: 8px; } }
 
-/* ===== Language Grid ===== */
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
 .lang-card { position: relative; border: 2px solid var(--border-color); border-radius: var(--radius-md); padding: 16px; cursor: pointer; transition: var(--transition); text-align: center; }
 .lang-card:hover { border-color: var(--gold); }
@@ -165,7 +144,6 @@ select.form-control { cursor: pointer; }
 .lang-native { font-size: 0.82rem; color: var(--text-muted); margin-top: 4px; }
 .lang-check { position: absolute; top: 8px; right: 8px; color: var(--gold); font-size: 1.1rem; }
 
-/* ===== Utility ===== */
 .d-flex { display: flex; }
 .align-center { align-items: center; }
 .justify-between { justify-content: space-between; }
@@ -180,7 +158,6 @@ select.form-control { cursor: pointer; }
 .mb-3 { margin-bottom: 16px; }
 hr { border: none; border-top: 1px solid var(--border-color); margin: 16px 0; }
 
-/* ===== Member Action Dropdown ===== */
 .member-actions { position: relative; display: inline-block; }
 .member-actions-btn {
     display: inline-flex; align-items: center; justify-content: center;

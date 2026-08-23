@@ -1,8 +1,3 @@
-/* ============================================
-   TATITO FASHIONS — Page-Specific Styles
-   ============================================ */
-
-/* ===== Welcome Banner ===== */
 .welcome-banner {
     background: linear-gradient(135deg, var(--black) 0%, var(--black-soft) 100%);
     border-radius: var(--radius-lg);
@@ -21,7 +16,6 @@
 .welcome-banner h2 { font-family: var(--font-display); font-size: 1.4rem; color: var(--gold); margin-bottom: 4px; }
 .welcome-banner p { color: rgba(250,247,241,0.7); font-size: 0.85rem; }
 
-/* ===== Page Content Helpers ===== */
 .page-content { animation: fadeIn 0.2s ease; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
 
@@ -32,41 +26,34 @@
 .content-grid.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
 @media (max-width: 768px) { .content-grid.two-col { grid-template-columns: 1fr; } }
 
-/* ===== Loading & Empty States ===== */
 .loading-state { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 60px; color: var(--text-muted); font-size: 0.9rem; }
 .loading-state i { font-size: 1.2rem; animation: spin 1s linear infinite; }
 .empty-state { text-align: center; padding: 48px 20px; color: var(--text-muted); }
 .empty-state i { font-size: 2.5rem; margin-bottom: 12px; display: block; opacity: 0.4; }
 .empty-state p { font-size: 0.88rem; }
 
-/* ===== Table Thumb ===== */
 .table-thumb { width: 36px; height: 36px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; font-size: 0.9rem; flex-shrink: 0; }
 
-/* ===== Stars ===== */
 .stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 1px; }
 
-/* ===== Quick Actions ===== */
 .quick-actions, .action-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; }
 .quick-action, .action-btn { display: flex; flex-direction: column; align-items: center; gap: 8px; padding: 16px; border: 1px solid var(--border-color); border-radius: var(--radius-md); background: var(--bg-card); cursor: pointer; transition: var(--transition); text-align: center; }
 .quick-action:hover, .action-btn:hover { border-color: var(--gold); transform: translateY(-2px); box-shadow: var(--shadow-sm); }
 .quick-action i, .action-btn i { font-size: 1.4rem; color: var(--gold-deep); }
 .quick-action span, .action-btn span { font-size: 0.8rem; font-weight: 600; }
 
-/* ===== Filter Tabs ===== */
 .filter-tabs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 16px; }
 .filter-chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
 .filter-chip { padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border-color); background: var(--bg-card); font-size: 0.8rem; cursor: pointer; transition: var(--transition); }
 .filter-chip:hover { border-color: var(--gold); }
 .filter-chip.active { background: linear-gradient(135deg, var(--gold), var(--gold-deep)); color: white; border-color: transparent; }
 
-/* ===== Review Items ===== */
 .review-item { display: flex; gap: 14px; padding: 16px 0; }
 .review-avatar { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-weight: 700; flex-shrink: 0; font-size: 0.9rem; }
 .review-body { flex: 1; }
 .review-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px; }
 .review-text { font-size: 0.85rem; margin: 4px 0; color: var(--text-secondary); }
 
-/* ===== Order Tracker ===== */
 .order-tracker { display: flex; justify-content: space-between; margin-bottom: 24px; position: relative; padding: 8px 0; }
 .order-tracker::before { content: ''; position: absolute; top: 20px; left: 5%; right: 5%; height: 2px; background: var(--border-color); z-index: 0; }
 .tracker-step { display: flex; flex-direction: column; align-items: center; gap: 6px; z-index: 1; flex: 1; }
@@ -74,7 +61,6 @@
 .tracker-step.done .tracker-dot { background: var(--success); border-color: var(--success); color: white; }
 .tracker-step small { font-size: 0.7rem; color: var(--text-muted); text-align: center; }
 
-/* ===== Notification Items ===== */
 .notif-list { display: flex; flex-direction: column; }
 .notif-item { display: flex; gap: 12px; padding: 14px 16px; border-bottom: 1px solid var(--border-light); cursor: pointer; transition: var(--transition); align-items: flex-start; }
 .notif-item:hover { background: var(--border-light); }
@@ -92,33 +78,27 @@
 .notification-item:hover { background: var(--border-light); }
 .notification-item.unread { background: rgba(201,162,75,0.04); }
 
-/* ===== Tracking Progress ===== */
 .tracking-progress { width: 120px; height: 6px; background: var(--border-light); border-radius: 3px; overflow: hidden; margin-bottom: 4px; }
 .tracking-bar { height: 100%; background: var(--gold); border-radius: 3px; transition: width 0.3s; }
 
-/* ===== Tabs ===== */
 .tab-bar { display: flex; gap: 0; border-bottom: 2px solid var(--border-color); margin-bottom: 16px; }
 .tab-item { padding: 10px 20px; font-size: 0.85rem; font-weight: 600; color: var(--text-muted); cursor: pointer; border-bottom: 2px solid transparent; margin-bottom: -2px; transition: var(--transition); }
 .tab-item:hover { color: var(--text); }
 .tab-item.active { color: var(--gold-deep); border-bottom-color: var(--gold); }
 
-/* ===== Referral Tree ===== */
 .referral-level { padding: 12px 16px; border-radius: var(--radius-sm); margin-bottom: 8px; border-left: 4px solid; }
 .referral-level.l1 { border-color: var(--gold); background: rgba(201,162,75,0.05); }
 .referral-level.l2 { border-color: var(--info); background: rgba(13,110,253,0.05); }
 .referral-level.l3 { border-color: var(--success); background: rgba(25,135,84,0.05); }
 .referral-level.l4 { border-color: var(--danger); background: rgba(220,53,69,0.05); }
 
-/* ===== CKEditor ===== */
 .ck-editor__editable { min-height: 300px; }
 
-/* ===== Responsive ===== */
 @media (max-width: 768px) {
     .content-area, .page-content-wrapper { padding: 16px; }
     .topbar { padding: 0 16px; }
 }
 
-/* ===== Media Manager ===== */
 .media-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
 .media-item { display: flex; align-items: center; gap: 12px; padding: 12px; border-radius: 10px; background: var(--ivory); border: 1px solid var(--line); transition: all 0.2s; }
 .media-item:hover { box-shadow: 0 4px 12px rgba(20,18,15,0.08); transform: translateY(-1px); }
@@ -128,17 +108,14 @@
 .media-meta { font-size: 0.72rem; color: var(--gray-400); }
 .media-actions { flex-shrink: 0; }
 
-/* ===== Empty State ===== */
 .empty-state { text-align: center; padding: 60px 20px; color: var(--gray-400); }
 .empty-state i { font-size: 3rem; margin-bottom: 12px; display: block; }
 .empty-state h3 { font-family: var(--font-heading); font-size: 1.1rem; color: var(--gray-600); margin-bottom: 4px; }
 .empty-state p { font-size: 0.85rem; }
 
-/* ===== Chart Container ===== */
 .chart-container { position: relative; height: 280px; width: 100%; }
 .chart-container-sm { position: relative; height: 200px; width: 100%; }
 
-/* ===== Top Product Item ===== */
 .top-product-item { display: flex; align-items: center; gap: 10px; padding: 8px 0; border-bottom: 1px solid var(--line); }
 .top-product-item:last-child { border-bottom: none; }
 .product-info { flex: 1; }
@@ -146,11 +123,9 @@
 .product-meta { font-size: 0.72rem; color: var(--gray-400); }
 .product-sales { font-size: 0.83rem; font-weight: 700; color: var(--gold-deep); }
 
-/* ===== Stat Trend ===== */
 .stat-trend { font-size: 0.72rem; color: var(--gray-400); }
 .stat-trend.up { color: var(--green, #2D9A6C); }
 
-/* ===== Category Tree ===== */
 .cat-tree { font-size: 0.88rem; }
 .cat-tree-item { margin-bottom: 2px; }
 .cat-tree-node {
@@ -177,7 +152,6 @@
 .cat-level-3 .cat-tree-node .cat-name { font-size: 0.82rem; color: var(--gray-600); font-weight: 400; }
 .cat-tree-bullet { width: 6px; height: 6px; border-radius: 50%; background: var(--gray-300); flex-shrink: 0; }
 
-/* ===== Product Image Upload ===== */
 .img-upload-zone {
     border: 2px dashed var(--line); border-radius: 12px; padding: 28px; text-align: center;
     cursor: pointer; transition: all 0.2s; background: var(--ivory);
@@ -194,7 +168,6 @@
     display: flex; align-items: center; justify-content: center; line-height: 1;
 }
 
-/* ===== Filter Pills ===== */
 .filter-pills { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
 .filter-pill {
     padding: 6px 16px; border-radius: 20px; border: 1px solid var(--line); background: white;
@@ -206,10 +179,8 @@
 .pill-count { background: rgba(255,255,255,0.2); border-radius: 10px; padding: 1px 8px; font-size: 0.7rem; }
 .filter-pill:not(.active) .pill-count { background: var(--ivory); color: var(--gray-500); }
 
-/* ===== Tracking Progress Wrap ===== */
 .tracking-progress-wrap { display: flex; flex-direction: column; gap: 4px; }
 
-/* ===== Info Box ===== */
 .info-box {
     display: flex; flex-direction: column; gap: 2px; padding: 12px 14px;
     background: var(--ivory); border-radius: 8px; border: 1px solid var(--line);
@@ -217,7 +188,6 @@
 .info-label { font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; color: var(--gray-400); }
 .info-value { font-size: 0.85rem; font-weight: 600; color: var(--black); word-break: break-word; }
 
-/* ===== Toggle Switch (CSS-only ON/OFF) ===== */
 .toggle-switch {
     width: 42px; height: 24px; border-radius: 12px; border: none; cursor: pointer;
     background: #D4D0C8; position: relative; transition: background 0.25s; flex-shrink: 0; padding: 0;
@@ -230,13 +200,11 @@
 .toggle-switch.on .toggle-knob { transform: translateX(18px); }
 .toggle-switch:disabled { opacity: 0.6; cursor: not-allowed; }
 
-/* ===== Toggle Row ===== */
 .toggle-row { display: flex; align-items: center; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--line); }
 .toggle-row:last-child { border-bottom: none; }
 .toggle-info strong { font-size: 0.85rem; color: var(--black); display: block; }
 .toggle-info p { font-size: 0.75rem; color: var(--gray-500); margin: 2px 0 0; }
 
-/* ===== Settings Layout ===== */
 .settings-layout { display: grid; grid-template-columns: 220px 1fr; gap: 20px; }
 .settings-sidebar { display: flex; flex-direction: column; gap: 2px; }
 .settings-tab {
@@ -251,7 +219,6 @@
 .form-section { background: white; padding: 24px; border-radius: 10px; border: 1px solid var(--line); }
 .feature-toggles { background: white; padding: 20px 24px; border-radius: 10px; border: 1px solid var(--line); }
 
-/* ===== Tab Bar (Buttons) ===== */
 .tab-bar { display: flex; gap: 4px; border-bottom: 2px solid var(--line); margin-bottom: 20px; }
 .tab-btn {
     padding: 10px 18px; font-size: 0.83rem; font-weight: 600; color: var(--gray-500);
@@ -261,7 +228,6 @@
 .tab-btn:hover { color: var(--black); }
 .tab-btn.active { color: var(--gold-deep); border-bottom-color: var(--gold); }
 
-/* ===== Table Actions ===== */
 .table-actions { display: flex; gap: 4px; }
 .action-btn {
     width: 32px; height: 32px; border-radius: 6px; border: 1px solid var(--line);
@@ -273,16 +239,13 @@
 .action-btn.view:hover { background: #F0F5FE; border-color: #3D5A80; color: #3D5A80; }
 .action-btn.delete:hover { background: #FEF0F0; border-color: #C0463A; color: #C0463A; }
 
-/* ===== Cell User ===== */
 .cell-user { display: flex; align-items: center; gap: 10px; }
 .user-cell-name { font-size: 0.85rem; font-weight: 600; color: var(--black); }
 .user-cell-meta { font-size: 0.72rem; color: var(--gray-400); }
 
-/* ===== Form Row ===== */
 .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 .required { color: #C0463A; }
 
-/* ===== Roles & Permissions ===== */
 .roles-layout { display: grid; grid-template-columns: 240px 1fr; gap: 20px; }
 .role-item { transition: all 0.15s; }
 .role-item:hover { background: var(--ivory) !important; }
@@ -293,7 +256,6 @@
 }
 .perm-summary-item { padding: 10px 14px; background: var(--ivory); border-radius: 8px; border: 1px solid var(--line); }
 
-/* ===== Language Cards ===== */
 .lang-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); gap: 12px; }
 .lang-card {
     padding: 16px; border-radius: 10px; border: 2px solid var(--line); background: white;
@@ -305,10 +267,8 @@
 .lang-native { font-size: 0.95rem; color: var(--gray-500); margin-top: 4px; }
 .lang-check { position: absolute; top: 8px; right: 8px; color: var(--gold); font-size: 1.1rem; }
 
-/* ===== Badge Variants ===== */
 .badge-gold { background: rgba(201,162,75,0.15); color: var(--gold-deep); }
 
-/* ===== CKEditor Enhancements ===== */
 .ck-editor__editable { min-height: 280px; border-radius: 0 0 6px 6px !important; }
 .ck-toolbar { border-radius: 6px 6px 0 0 !important; }
 
@@ -317,7 +277,6 @@
     .form-row { grid-template-columns: 1fr; }
 }
 
-/* ===== Upload Field ===== */
 .upload-field {
     display: flex; align-items: center; gap: 14px; padding: 14px;
     border: 2px dashed var(--line); border-radius: 10px; cursor: pointer;
@@ -329,35 +288,26 @@
 .upload-info { font-size: 0.82rem; color: var(--gray-600); }
 .upload-info i { color: var(--gold); font-size: 1rem; }
 
-/* ===== Color Input ===== */
 .form-color { height: 48px; padding: 4px; cursor: pointer; }
 
-/* ===== Code Textarea ===== */
 .code-textarea { font-family: 'Courier New', monospace; font-size: 0.78rem; background: #1e1e2e; color: #cdd6f4; border-color: #313244; }
 
-/* ===== Slider Image Item ===== */
 .slider-img-item { display: flex; align-items: center; gap: 12px; padding: 10px; border: 1px solid var(--line); border-radius: 8px; margin-bottom: 8px; }
 
-/* ===== CK Editor Toolbar Override ===== */
 .ck-toolbar__items { flex-wrap: wrap !important; }
 
-/* ===== Upload Field ===== */
 .upload-field { display: flex; align-items: center; gap: 12px; padding: 14px; border: 2px dashed var(--line); border-radius: 8px; cursor: pointer; transition: border-color 0.2s; }
 .upload-field:hover { border-color: var(--gold); }
 .upload-preview { width: 60px; height: 60px; border-radius: 6px; overflow: hidden; background: var(--ivory); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
 .upload-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
 .upload-info { font-size: 0.82rem; color: var(--gray-500); }
 
-/* ===== Color Picker ===== */
 .form-color { height: 44px; padding: 4px; cursor: pointer; }
 
-/* ===== Code Textarea ===== */
 .code-textarea { font-family: 'Courier New', monospace; font-size: 0.82rem; background: #1E1E2E; color: #A9B1D6; border: 1px solid var(--line); }
 
-/* ===== Upload Textarea ===== */
 .upload-textarea { font-family: 'Courier New', monospace; font-size: 0.82rem; }
 
-/* ===== Upload Zone (Spec Modules) ===== */
 .upload-zone {
     border: 2px dashed var(--border-color); border-radius: var(--radius-md);
     padding: 20px; text-align: center; cursor: pointer; transition: var(--transition);
@@ -366,10 +316,8 @@
 .upload-zone i { font-size: 1.8rem; color: var(--gold); margin-bottom: 6px; display: block; }
 .upload-zone p { font-size: 0.82rem; color: var(--text-muted); margin: 0; }
 
-/* ===== Status Flow (Bespoke Orders, Stylist Bookings) ===== */
 .status-flow { display: flex; flex-direction: column; gap: 2px; }
 
-/* ===== Toggle Switch in Forms ===== */
 form .toggle-switch { vertical-align: middle; }
 
 
