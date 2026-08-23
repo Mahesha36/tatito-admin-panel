@@ -1,17 +1,4 @@
 'use strict';
-/* ============================================================
-   TATITO FASHIONS — Admin demo data (design-only)
-   ============================================================
-   ALL demo content for the 53 module pages, extracted 1:1
-   from the static design pages. One file — when the Laravel
-   backend is connected this is the ONLY file to delete:
-   pages then render server-side (Blade) and admin-design.js
-   detects an empty DesignData and goes fully inert.
-
-   Structure per page:
-     main   — full <main> inner HTML (tables, cards, stats…)
-     modals — every design-mode modal body (view / edit / add)
-   ============================================================ */
 (function () {
     var data = {
         'approvals': { main: '<div class="page-content"><div class="page-toolbar"><div><h3>Approvals</h3><p class="text-muted">User/Seller/Designer registration approvals</p></div></div><div class="stat-grid"><div class="stat-card"><div class="stat-icon orange"><i class="bi bi-hourglass-split"></i></div><div class="stat-body"><div class="stat-label">Pending Sellers</div><div class="stat-value">1</div></div></div><div class="stat-card"><div class="stat-icon purple"><i class="bi bi-palette"></i></div><div class="stat-body"><div class="stat-label">Pending Designers</div><div class="stat-value">0</div></div></div><div class="stat-card"><div class="stat-icon blue"><i class="bi bi-shop"></i></div><div class="stat-body"><div class="stat-label">Pending Boutiques</div><div class="stat-value">0</div></div></div></div><div class="card" style="margin-top:1rem"><div class="card-header"><h3>Seller Approval Requests</h3></div><div class="card-body"><table class="table table-hover"><thead><tr><th>ID</th><th>Business</th><th>City</th><th></th></tr></thead><tbody><tr><td>SEL010</td><td><strong>Shanti Marriage Mandapam</strong></td><td>Pune</td><td><button class="btn btn-sm btn-success" data-toast="Approved (design mode)"><i class="bi bi-check-lg"></i></button> <button class="btn btn-sm btn-danger" data-toast="Rejected (design mode)"><i class="bi bi-x-lg"></i></button></td></tr></tbody></table></div></div><div class="card" style="margin-top:1rem"><div class="card-header"><h3>Designer Approval Requests</h3></div><div class="card-body"><div class="empty-state"><i class="bi bi-check-circle"></i><p>No pending designer requests.</p></div></div></div></div>', modals: [
