@@ -95,6 +95,11 @@
         m.style.display = 'none';
         document.body.style.overflow = '';
     };
+    Design.closeNearestModal = function (el) {
+        var m = el.closest('.design-modal');
+        if (m) Design.closeModal(m.id);
+    };
+
     Design.initModals = function () {
         Design._wireOnce('_modalsWired', function () {
             document.addEventListener('click', function (e) {
@@ -105,14 +110,13 @@
                 }
                 var closer = e.target.closest('[data-modal-close]');
                 if (closer) {
-                    Design.closeModal(closer.getAttribute('data-modal-close'));
+                    Design.closeNearestModal(closer);
                     return;
                 }
                 
-                var x = e.target.closest('.design-modal .btn-close');
+                var x = e.target.closest('.design-modal .modal-close, .design-modal .btn-close');
                 if (x) {
-                    var xm = x.closest('.design-modal');
-                    if (xm) Design.closeModal(xm.id);
+                    Design.closeNearestModal(x);
                     return;
                 }
                 var g = e.target.closest('.design-modal .modal-footer .btn-ghost');

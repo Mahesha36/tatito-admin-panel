@@ -185,7 +185,17 @@
 </main>
 </div>
 
+<div class="design-modal" id="home-collections-add" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Add Home Collection</h3><button class="modal-close" data-modal-close="1">&times;</button></div><div class="modal-body"><form id="hcForm"><div class="form-row"><div class="form-group"><label>Target Module *</label><select class="form-control" name="target_module"><option value="fashions">Fashions</option><option value="weddings">Weddings</option><option value="jewellery">Jewellery</option></select></div><div class="form-group"><label>Gender *</label><select class="form-control" name="gender"><option value="Men">Men</option><option value="Women">Women</option><option value="Kids">Kids</option></select></div></div><div class="form-group"><label>Title *</label><input type="text" class="form-control" name="title" required></div><div class="form-group"><label>Subtitle</label><input type="text" class="form-control" name="subtitle"></div><div class="form-group"><label>Image</label><div class="upload-zone" onclick="this.querySelector('input').click()"><i class="bi bi-cloud-arrow-up"></i><p>Click to upload image</p><input type="file" accept="image/*" hidden></div></div><div class="form-group"><label>Video URL</label><input type="url" class="form-control" name="video_url" placeholder="https://..."></div><div class="form-row"><div class="form-group"><label>Sort Order</label><input type="number" class="form-control" name="sort_order" value="1"></div><div class="form-group"><label>Active</label><div><button type="button" class="toggle-switch on" onclick="this.classList.toggle('on')"><span class="toggle-knob"></span></button></div></div></div></form></div><div class="modal-footer"><button class="btn btn-outline" data-modal-close="1">Cancel</button><button class="btn btn-primary">Save</button></div>
+  </div>
+</div>
+<div class="design-modal" id="home-collections-e-HC001" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Edit Collection</h3><button class="modal-close" data-modal-close="1">&times;</button></div><div class="modal-body"><form id="hcForm"><div class="form-row"><div class="form-group"><label>Target Module</label><select class="form-control" name="target_module"><option selected>fashions</option><option >weddings</option><option >jewellery</option></select></div><div class="form-group"><label>Gender</label><select class="form-control" name="gender"><option selected>Men</option><option >Women</option><option >Kids</option></select></div></div><div class="form-group"><label>Title</label><input type="text" class="form-control" name="title" value="Men&#39;s Fashion"></div><div class="form-group"><label>Subtitle</label><input type="text" class="form-control" name="subtitle" value="Sherwanis, Kurtas &amp; Ethnic Wear"></div><div class="form-group"><label>Video URL</label><input type="url" class="form-control" name="video_url" value=""></div><div class="form-row"><div class="form-group"><label>Sort Order</label><input type="number" class="form-control" name="sort_order" value="1"></div><div class="form-group"><label>Active</label><div><button type="button" class="toggle-switch on" onclick="this.classList.toggle('on')"><span class="toggle-knob"></span></button></div></div></div></form></div><div class="modal-footer"><button class="btn btn-outline" data-modal-close="1">Cancel</button><button class="btn btn-primary">Save</button></div>
+  </div>
+</div>
 <script src="js/data.js?v=1"></script>
-<script src="js/admin-design.js?v=2"></script>
+<script src="js/admin-design.js?v=3"></script>
 </body>
 </html>
