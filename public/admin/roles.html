@@ -185,7 +185,12 @@
 </main>
 </div>
 
+<div class="design-modal" id="roles-add" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Add New Role</h3><button class="modal-close" data-modal-close="1">&times;</button></div><div class="modal-body"><form id="addRoleForm"><div class="form-group"><label>Role Name <span class="required">*</span></label><input type="text" class="form-control" name="name" placeholder="e.g. Sales Executive" required></div><div class="form-group"><label>Description</label><textarea class="form-control" rows="2" name="desc" placeholder="What can this role do?"></textarea></div><div class="form-group"><label>Base Permission Template</label><select class="form-control" name="template"><option value="custom">Custom (no permissions)</option><option value="all">Full Access (like Super Admin)</option><option value="manager">Manager (all except System & Staff)</option><option value="orders">Order Manager (Orders & Payments)</option><option value="support">Support (Tickets & Queries)</option><option value="content">Content (CMS & Media)</option></select></div></form></div><div class="modal-footer"><button class="btn btn-outline" data-modal-close="1">Cancel</button><button class="btn btn-primary"><i class="bi bi-check-lg"></i> Create Role</button></div>
+  </div>
+</div>
 <script src="js/data.js?v=1"></script>
-<script src="js/admin-design.js?v=2"></script>
+<script src="js/admin-design.js?v=3"></script>
 </body>
 </html>

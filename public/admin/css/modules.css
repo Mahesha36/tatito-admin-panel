@@ -213,29 +213,30 @@
 }
 .design-modal .modal-box {
     background: var(--bg-card);
-    border-radius: var(--radius);
-    max-width: 640px; width: 100%;
-    max-height: 86vh; overflow-y: auto;
-    box-shadow: 0 24px 64px rgba(0,0,0,0.35);
-    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    max-width: 560px; width: 100%;
+    max-height: 90vh; overflow-y: auto;
+    box-shadow: var(--shadow-lg);
 }
+.design-modal .modal-box.modal-lg { max-width: 760px; }
+.design-modal .modal-box.modal-xl { max-width: 960px; }
 .design-modal .modal-header {
     display: flex; align-items: center; justify-content: space-between;
-    padding: 16px 20px; border-bottom: 1px solid var(--border-light);
+    padding: 16px 24px; border-bottom: 1px solid var(--border-light);
 }
 .design-modal .modal-header h3 {
-    font-family: var(--font-display); font-size: 1.05rem; color: var(--text); margin: 0;
+    font-size: 1rem; font-weight: 600; margin: 0; color: var(--text);
 }
-.design-modal .modal-body { padding: 20px; }
+.design-modal .modal-body { padding: 24px; }
 .design-modal .modal-footer {
-    display: flex; justify-content: flex-end; gap: 8px;
-    padding: 14px 20px; border-top: 1px solid var(--border-light);
+    display: flex; justify-content: flex-end; gap: 10px;
+    padding: 16px 24px; border-top: 1px solid var(--border-light);
 }
-.design-modal .modal-close {
-    background: none; border: none; font-size: 1.2rem; color: var(--text-muted);
-    cursor: pointer; padding: 4px 8px; border-radius: 6px;
+.design-modal .modal-close, .design-modal .btn-close {
+    background: none; border: none; font-size: 1.4rem; cursor: pointer;
+    color: var(--text-muted); padding: 0; line-height: 1;
 }
-.design-modal .modal-close:hover { color: var(--danger); background: var(--danger-bg); }
+.design-modal .modal-close:hover { color: var(--danger); }
 
 .detail-grid { display: grid; grid-template-columns: 140px 1fr; gap: 8px 16px; font-size: 0.85rem; }
 .detail-grid dt { color: var(--text-muted); font-weight: 500; margin: 0; }

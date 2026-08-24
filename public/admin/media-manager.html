@@ -185,7 +185,12 @@
 </main>
 </div>
 
+<div class="design-modal" id="media-manager-uploadMedia" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Upload Media</h3><button class="modal-close" data-modal-close="1">&times;</button></div><div class="modal-body"><div id="uploadPreview" style="min-height:80px;margin-bottom:12px"></div><div class="upload-zone" style="padding:30px;text-align:center;cursor:pointer;border:2px dashed var(--line);border-radius:8px" onclick="document.getElementById('mediaFileInput').click()"><i class="bi bi-cloud-arrow-up" style="font-size:2rem;color:var(--gold)"></i><p style="margin-top:8px;color:var(--gray-500)">Click to select files</p><input type="file" id="mediaFileInput" accept="image/*,video/*" multiple hidden></div></div><div class="modal-footer"><button class="btn btn-outline" data-modal-close="1">Cancel</button><button class="btn btn-primary">Upload</button></div>
+  </div>
+</div>
 <script src="js/data.js?v=1"></script>
-<script src="js/admin-design.js?v=2"></script>
+<script src="js/admin-design.js?v=3"></script>
 </body>
 </html>
