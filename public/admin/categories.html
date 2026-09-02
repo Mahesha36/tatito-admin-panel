@@ -185,6 +185,11 @@
 </main>
 </div>
 
+<div class="design-modal" id="categories-edit-node" role="dialog" aria-modal="true">
+  <div class="modal-box">
+<div class="modal-header"><h3 class="modal-title">Edit Category</h3><button class="modal-close" data-modal-close="1">&times;</button></div><div class="modal-body"><form id="editCatNodeForm"><div class="form-group"><label>Category Name</label><input type="text" class="form-control" name="name" value="" required></div><div class="form-group icon-group"><label>Icon</label><input type="text" class="form-control" name="icon" value="bi-folder"></div></form></div><div class="modal-footer"><button class="btn btn-outline" data-modal-close="1">Cancel</button><button class="btn btn-primary"><i class="bi bi-check-lg"></i> Save</button></div>
+  </div>
+</div>
 <div class="design-modal" id="categories-add" role="dialog" aria-modal="true">
   <div class="modal-box">
 <div class="modal-header"><h3 class="modal-title">Add Sub-Category</h3><button class="modal-close" data-modal-close="1">&times;</button></div><div class="modal-body"><form id="addChildCatForm"><div class="form-group"><label>Category Name <span style="color:#C0463A">*</span></label><input type="text" class="form-control" name="name" required></div></form></div><div class="modal-footer"><button class="btn btn-outline" data-modal-close="1">Cancel</button><button class="btn btn-primary"><i class="bi bi-check-lg"></i> Save</button></div>
@@ -217,6 +222,6 @@
 </div>
 <script src="js/data.js?v=1"></script>
 <script src="js/admin-design.js?v=4"></script>
-    <script src="js/categories.js?v=1"></script>
+    <script src="js/categories.js?v=4"></script>
 </body>
 </html>
